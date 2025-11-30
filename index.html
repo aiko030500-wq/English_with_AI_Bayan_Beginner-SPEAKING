@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>ENGLISH WITH AI BAYAN – Beginner SPEAKING</title>
+  <title>ENGLISH WITH AI BAYAN – Beginner READING</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <style>
@@ -12,6 +12,8 @@
       --gold:#ffd54f;
       --bg:#f1fbfd;
       --danger:#c62828;
+      --correct:#1b5e20;
+      --wrong:#b71c1c;
     }
 
     *{
@@ -29,7 +31,6 @@
       flex-direction:column;
     }
 
-    /* ====== SIMPLE REUSABLE ====== */
     button{
       border:none;
       border-radius:999px;
@@ -60,7 +61,8 @@
       background:#f1f5f9;
     }
 
-    /* ====== LOGIN SCREEN ====== */
+    /* ===== LOGIN ===== */
+
     #loginScreen{
       flex:1;
       display:flex;
@@ -160,13 +162,13 @@
       color:#00695c;
     }
 
-    /* ====== APP HEADER ====== */
+    /* ===== APP HEADER ===== */
+
     header{
-      display:none; /* скрыт, пока не залогинятся */
+      display:none;
       background:linear-gradient(90deg,#008b8b,#00b8b8);
       color:#fff;
       padding:10px 18px;
-      display:flex;
       align-items:center;
       justify-content:space-between;
       box-shadow:0 2px 6px rgba(0,0,0,.25);
@@ -216,11 +218,11 @@
       display:inline-block;
     }
 
-    /* ====== MAIN LAYOUT ====== */
+    /* ===== APP LAYOUT ===== */
+
     #appScreen{
       display:none;
       flex:1;
-      padding:0;
       flex-direction:column;
     }
 
@@ -236,7 +238,7 @@
 
     @media(min-width:900px){
       main{
-        grid-template-columns:1.8fr 1.2fr;
+        grid-template-columns:1.9fr 1.1fr;
         align-items:flex-start;
       }
     }
@@ -276,13 +278,14 @@
       margin-bottom:4px;
     }
 
-    /* TOPIC CHIPS */
+    /* topic chips */
+
     .chips{
       display:flex;
       flex-wrap:wrap;
       gap:6px;
       margin-bottom:6px;
-      max-height:160px;
+      max-height:140px;
       overflow:auto;
       padding-right:2px;
     }
@@ -297,67 +300,34 @@
       transition:.15s;
       white-space:nowrap;
     }
-
     .chip:hover{
       background:#e0fbff;
     }
-
     .chip.active{
       background:var(--blue-main);
       color:#fff;
       border-color:var(--blue-main);
     }
 
-    /* TIMER */
-    .timer-row{
-      margin-top:4px;
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      align-items:center;
-      font-size:.82rem;
-    }
+    /* reading card */
 
-    select{
-      padding:4px 8px;
-      border-radius:999px;
-      border:1px solid rgba(0,0,0,.18);
-      font-size:.8rem;
-      background:#fff;
-    }
-
-    #timerDisplay{
-      font-weight:700;
-      padding:4px 10px;
-      border-radius:999px;
-      background:#e0f2f1;
-      color:#004d40;
-      min-width:60px;
-      text-align:center;
-      font-size:.8rem;
-    }
-
-    /* PROMPT CARD */
-    .prompt-card{
+    .reading-card{
       margin-top:8px;
       border-radius:14px;
       border:1px solid rgba(0,0,0,.05);
       padding:14px 14px 16px;
       background:linear-gradient(135deg,#ffffff,#e1f8ff);
-      position:relative;
-      overflow:hidden;
     }
 
-    .prompt-topic{
+    .reading-topic-head{
       font-size:.78rem;
       text-transform:uppercase;
       letter-spacing:.09em;
       color:#006064;
-      margin-bottom:4px;
       display:flex;
       justify-content:space-between;
-      align-items:center;
       gap:8px;
+      margin-bottom:4px;
     }
 
     .badge-level{
@@ -368,35 +338,87 @@
       color:#8d5b00;
     }
 
-    .prompt-index{
-      font-size:.82rem;
-      margin-bottom:2px;
-      color:#607d8b;
+    .reading-title{
+      font-size:1rem;
+      font-weight:600;
+      margin-bottom:4px;
+      color:#004d40;
     }
 
-    .prompt-type{
-      font-size:.78rem;
-      color:#00796b;
-      margin-bottom:6px;
-    }
-
-    .prompt-text{
-      font-size:.98rem;
+    .reading-text{
+      font-size:.9rem;
       line-height:1.5;
       margin-bottom:6px;
     }
 
-    .prompt-hint{
-      font-size:.8rem;
-      color:#78909c;
-      margin-bottom:4px;
+    .reading-vocab{
+      font-size:.78rem;
+      color:#455a64;
+      background:#f8feff;
+      border-radius:10px;
+      padding:6px 8px;
+      margin-bottom:8px;
     }
 
-    .prompt-actions{
+    .questions{
+      margin-top:4px;
+      font-size:.86rem;
+    }
+
+    .question{
+      margin-bottom:8px;
+      padding:6px 8px;
+      border-radius:10px;
+      background:#ffffff;
+      border:1px solid rgba(0,0,0,.05);
+    }
+
+    .question.correct{
+      border-color:var(--correct);
+      background:#e8f5e9;
+    }
+
+    .question.wrong{
+      border-color:var(--wrong);
+      background:#ffebee;
+    }
+
+    .question-text{
+      margin-bottom:4px;
+      font-weight:500;
+      color:#004055;
+    }
+
+    .option{
+      display:block;
+      margin-bottom:3px;
+      cursor:pointer;
+    }
+
+    .question small{
+      font-size:.75rem;
+      color:#607d8b;
+    }
+
+    .reading-actions{
+      margin-top:8px;
       display:flex;
       flex-wrap:wrap;
       gap:8px;
-      margin-top:6px;
+      align-items:center;
+    }
+
+    .reading-result{
+      font-size:.8rem;
+      color:#455a64;
+      margin-top:4px;
+    }
+
+    .reading-result.good{
+      color:var(--correct);
+    }
+    .reading-result.bad{
+      color:var(--wrong);
     }
 
     .progress-info{
@@ -433,13 +455,13 @@
       background:#e8f5e9;
       color:#1b5e20;
     }
-
     .done-badge.off{
       background:#ffebee;
       color:#b71c1c;
     }
 
-    /* ====== RIGHT PANEL: AI + JOURNAL ====== */
+    /* ===== RIGHT PANEL (AI + journal) ===== */
+
     .chat-note{
       font-size:.78rem;
       color:#607d8b;
@@ -474,7 +496,6 @@
 
     .chat-msg.user{
       background:#e0f7fa;
-      align-self:flex-end;
     }
 
     .chat-msg.ai{
@@ -521,7 +542,6 @@
       margin-top:4px;
     }
 
-    /* JOURNAL */
     .journal-header{
       margin-top:10px;
       font-size:.84rem;
@@ -551,16 +571,13 @@
       padding:3px 0;
       border-bottom:1px dashed rgba(0,0,0,.07);
     }
-
     .journal-row:last-child{
       border-bottom:none;
     }
-
     .journal-row span.pin{
       font-weight:600;
       color:#004d40;
     }
-
     .journal-row span.info{
       color:#455a64;
     }
@@ -577,7 +594,7 @@
   </style>
 </head>
 <body>
-  <!-- LOGIN SCREEN -->
+  <!-- LOGIN -->
   <div id="loginScreen">
     <div class="login-card">
       <div class="login-header">
@@ -586,27 +603,26 @@
         </div>
         <div>
           <div class="login-title-main">ENGLISH WITH AI BAYAN</div>
-          <div class="login-title-sub">BEGINNER – SPEAKING with AI Bayan</div>
+          <div class="login-title-sub">BEGINNER – READING with AI Bayan</div>
         </div>
       </div>
 
       <div class="login-body">
         <label for="pinInput">Enter your PIN code</label>
-        <input id="pinInput" type="number" placeholder="For example: 301" />
+        <input id="pinInput" type="number" placeholder="Ask your teacher for PIN" />
         <button id="loginBtn" class="btn-primary">Login</button>
         <div id="loginError" class="login-error"></div>
         <div id="loginClassInfo" class="login-class-info"></div>
       </div>
 
       <div class="login-footer">
-        PIN ranges (like Beginner app):<br>
-        3E: 101–115, 4G: 201–215, 5G: 301–315, 5Zh: 401–415,<br>
-        6G: 501–515, 7B: 601–615, 7V: 701–715, 8E: 801–815, 9Zh: 901–915.
+        PIN codes are the same as in ENGLISH WITH AI BAYAN – Beginner.<br>
+        If you don’t know your PIN, ask your teacher.
       </div>
     </div>
   </div>
 
-  <!-- APP SCREEN -->
+  <!-- APP -->
   <div id="appScreen">
     <header>
       <div class="header-left">
@@ -616,76 +632,66 @@
         <div>
           <div class="header-text-main">ENGLISH WITH AI BAYAN</div>
           <div class="header-text-sub">
-            Beginner – SPEAKING • AI Bayan help (1 question per day)
+            Beginner – READING • AI Bayan help (1 question per day)
           </div>
           <div id="userChip" class="user-chip"></div>
         </div>
       </div>
       <div class="header-badge">
-        <span class="icon">🎤</span>
-        <span>Talk 30–60 sec for each question</span>
+        <span class="icon">📖</span>
+        <span>Read the text and answer 4 questions</span>
       </div>
     </header>
 
     <main>
-      <!-- LEFT: SPEAKING CARD -->
+      <!-- LEFT: READING -->
       <section class="panel">
-        <h2><span class="icon">💬</span> Speaking practice – Beginner</h2>
+        <h2><span class="icon">📚</span> Reading practice – Beginner</h2>
 
-        <p class="small-label">Choose a topic:</p>
+        <p class="small-label">Choose a reading text:</p>
         <div id="topicChips" class="chips"></div>
 
-        <div class="timer-row">
-          <span>Timer:</span>
-          <select id="timerSelect">
-            <option value="0">No timer</option>
-            <option value="30">30 sec</option>
-            <option value="60">1 min</option>
-            <option value="90">1.5 min</option>
-          </select>
-          <button id="startTimerBtn" class="btn-ghost">Start ⏱</button>
-          <span id="timerDisplay">–</span>
-        </div>
-
-        <div id="promptCard" class="prompt-card">
-          <div class="prompt-topic">
-            <span id="topicName">Choose a topic above</span>
+        <div id="readingCard" class="reading-card">
+          <div class="reading-topic-head">
+            <span id="topicName">Choose a text above</span>
             <span id="topicLevel" class="badge-level"></span>
           </div>
-          <div id="promptIndex" class="prompt-index"></div>
-          <div id="promptType" class="prompt-type"></div>
-          <div id="promptText" class="prompt-text">
-            Click on a topic and start speaking.
+          <div class="reading-title" id="readingTitle"></div>
+          <div class="reading-text" id="readingText">
+            Select one of the topics above to start reading.
           </div>
-          <div id="promptHint" class="prompt-hint"></div>
+          <div class="reading-vocab" id="readingVocab" style="display:none;"></div>
 
-          <div class="prompt-actions">
+          <div class="questions" id="questionsBox"></div>
+
+          <div class="reading-actions">
             <button id="prevBtn" class="btn-ghost">← Previous</button>
             <button id="nextBtn" class="btn-primary">Next →</button>
             <button id="randomBtn" class="btn-ghost">🎲 Random</button>
-            <button id="printBtn" class="btn-ghost">🖨 Print worksheet</button>
-            <button id="toggleDoneBtn" class="btn-ghost">✔ Mark as done</button>
+            <button id="checkBtn" class="btn-primary">Check answers</button>
+            <button id="resetBtn" class="btn-ghost">Reset</button>
           </div>
+          <div id="readingResult" class="reading-result"></div>
 
           <div class="progress-info">
-            <div id="doneStatus" class="done-badge off">Not done</div>
+            <div id="doneStatus" class="done-badge off">Not completed</div>
             <div class="progress-bar">
               <div id="progressInner" class="progress-bar-inner"></div>
             </div>
-            <div id="progressText">0 / 0 done</div>
+            <div id="progressText">0 / 0 texts completed</div>
           </div>
         </div>
 
         <p class="small-label">
-          Teacher idea: Student A answers 1,3,5; Student B answers 2,4,6 – then swap.
+          Teacher idea: Students read silently, then work in pairs and compare answers before they click “Check answers”.
         </p>
       </section>
 
-      <!-- RIGHT: AI BAYAN + TEACHER JOURNAL -->
+      <!-- RIGHT: AI + JOURNAL -->
       <aside class="panel">
-        <h2><span class="icon">🤖</span> AI Bayan – help for speaking</h2>
+        <h2><span class="icon">🤖</span> AI Bayan – help for reading</h2>
         <p class="chat-note">
-          Ask AI Bayan about <b>grammar, words or translation</b> for your speaking topic.<br>
+          Ask AI Bayan about <b>words, grammar or translation</b> from the text.<br>
           Limit: <b>1 question per day</b> for each PIN.<br>
           <span id="aiLimit"></span>
         </p>
@@ -697,7 +703,7 @@
 
         <div class="chat-actions">
           <button id="askBtn" class="btn-primary">Ask AI Bayan</button>
-          <span>AI answers will be saved only on this device.</span>
+          <span>AI answers are saved only on this device.</span>
         </div>
         <div id="aiError" class="danger-text"></div>
 
@@ -707,7 +713,7 @@
         </div>
         <div id="journalBox" class="journal-box">
           <div style="font-size:.78rem;color:#78909c;">
-            Journal shows how many questions are marked “done” for each PIN on this device.
+            Journal shows how many reading texts are completed by each PIN on this device.
           </div>
         </div>
       </aside>
@@ -715,7 +721,7 @@
   </div>
 
   <script>
-    /* ---------- CLASS RANGES (same as Beginner) ---------- */
+    /* ----- PIN ranges (как в Beginner, без вывода подсказок на экран) ----- */
     const classRanges = [
       { cls: "3E",  from: 101, to: 115 },
       { cls: "4G",  from: 201, to: 215 },
@@ -723,709 +729,714 @@
       { cls: "5Zh", from: 401, to: 415 },
       { cls: "6G",  from: 501, to: 515 },
       { cls: "7B",  from: 601, to: 615 },
-      { cls: "7V", from: 701, to: 715 },
+      { cls: "7V",  from: 701, to: 715 },
       { cls: "8E",  from: 801, to: 815 },
       { cls: "9Zh", from: 901, to: 915 }
     ];
-
     function getClassByPin(pin){
       for(const r of classRanges){
-        if(pin >= r.from && pin <= r.to) return r.cls;
+        if(pin>=r.from && pin<=r.to) return r.cls;
       }
       return null;
     }
 
-    /* ---------- SPEAKING TOPICS DATA (20 × 6) ---------- */
+    /* ----- READING DATA (10 texts × 4 questions) ----- */
     const topics = [
       {
-        id: 1,
-        name: "My Family",
-        level: "Beginner",
-        type: "solo/pair",
-        prompts: [
-          { text: "Talk about your family. How many people are there?", taskType: "Solo talk", hint: "Say who they are and how old they are." },
-          { text: "Describe one family member. What is he or she like?", taskType: "Solo talk", hint: "Describe appearance and character." },
-          { text: "Student A: Ask 3 questions about Student B’s family. Student B: Answer.", taskType: "Pair role-play A/B", hint: "Use: How many…? What does… do? How old is…?" },
-          { text: "Tell about a family tradition you have.", taskType: "Solo talk", hint: "For example: New Year, Nauryz, birthdays." },
-          { text: "Who do you spend the most time with in your family? Why?", taskType: "Solo talk", hint: "Explain what you do together." },
-          { text: "Describe a perfect family day for you.", taskType: "Solo talk", hint: "Morning, afternoon, evening – step by step." }
+        id:1,
+        name:"My School Day",
+        level:"Beginner",
+        title:"A Busy School Day",
+        text:"My name is Aigerim and I am eleven years old. I usually get up at seven o’clock. I have a quick breakfast with my family and then I walk to school with my friend Dana. Our lessons start at eight. We have Maths, English and PE in the morning. I like English best because we play games and speak a lot. We usually finish school at one o’clock. In the afternoon I do my homework, help my mum and then I watch a little TV or play on my phone. I always go to bed before ten.",
+        vocab:"quick breakfast – быстрый завтрак; finish – заканчивать; before – перед.",
+        questions:[
+          {
+            q:"What time does Aigerim usually get up?",
+            options:["At six o’clock.","At seven o’clock.","At eight o’clock."],
+            correct:1
+          },
+          {
+            q:"How does she go to school?",
+            options:["By bus.","By car.","On foot with her friend."],
+            correct:2
+          },
+          {
+            q:"Which subject does she like best?",
+            options:["Maths.","English.","PE."],
+            correct:1
+          },
+          {
+            q:"What does she do in the afternoon?",
+            options:["She sleeps all day.","She does homework and helps her mum.","She goes back to school."],
+            correct:1
+          }
         ]
       },
       {
-        id: 2,
-        name: "My Home",
-        level: "Beginner",
-        type: "solo/pair",
-        prompts: [
-          { text: "Describe your home. How many rooms are there?", taskType: "Solo talk", hint: "Living room, kitchen, bedroom, bathroom…" },
-          { text: "Talk about your favourite room at home.", taskType: "Solo talk", hint: "Say what is in the room and what you do there." },
-          { text: "Student A: Ask about Student B’s home. Student B: Answer.", taskType: "Pair Q&A", hint: "Ask: Where do you live? Is it a flat or a house?" },
-          { text: "What do you usually do at home in the evening?", taskType: "Solo talk", hint: "Use present simple: I watch…, I do…, I play…" },
-          { text: "Describe your dream room.", taskType: "Solo talk", hint: "Talk about colours, furniture, and things." },
-          { text: "Tell 3 rules in your home.", taskType: "Solo talk", hint: "Use must / mustn’t if possible." }
+        id:2,
+        name:"My Best Friend",
+        level:"Beginner",
+        title:"My Best Friend Timur",
+        text:"My best friend’s name is Timur. He is in my class. Timur is tall and slim. He has short dark hair and big brown eyes. He is very friendly and always helps other students. We usually sit together in English lessons. After school we sometimes play football in the yard or go to the park. Timur loves computer games, but he never forgets to do his homework. When I have a problem, I can always talk to him.",
+        vocab:"slim – стройный; friendly – дружелюбный; yard – двор.",
+        questions:[
+          {
+            q:"Where is Timur?",
+            options:["He is in another school.","He is in the writer’s class.","He is the writer’s teacher."],
+            correct:1
+          },
+          {
+            q:"What does Timur look like?",
+            options:["He is tall and slim.","He is short and fat.","He has long blond hair."],
+            correct:0
+          },
+          {
+            q:"What do they do after school?",
+            options:["They always study in the library.","They sometimes play football or go to the park.","They go shopping every day."],
+            correct:1
+          },
+          {
+            q:"What does Timur never forget?",
+            options:["To feed his cat.","To play computer games.","To do his homework."],
+            correct:2
+          }
         ]
       },
       {
-        id: 3,
-        name: "Daily Routine",
-        level: "Beginner",
-        type: "solo/pair",
-        prompts: [
-          { text: "Describe your morning routine.", taskType: "Solo talk", hint: "Wake up, wash, have breakfast, go to school…" },
-          { text: "Talk about your school day.", taskType: "Solo talk", hint: "What time do you start? What do you do after school?" },
-          { text: "Student A: Ask 5 questions about Student B’s daily routine.", taskType: "Pair Q&A", hint: "Use: What time do you…? How often do you…?" },
-          { text: "Compare your weekend routine and your school-day routine.", taskType: "Solo talk", hint: "Use: On weekdays…, At the weekend…" },
-          { text: "What is the most difficult part of your day? Why?", taskType: "Solo talk", hint: "Talk about homework, getting up, tests, etc." },
-          { text: "Describe your ideal day with no school.", taskType: "Solo talk", hint: "From morning to night." }
+        id:3,
+        name:"At the Zoo",
+        level:"Beginner",
+        title:"A Day at the Zoo",
+        text:"Last Saturday my family visited the city zoo. It was sunny and warm. We saw many animals: lions, tigers, monkeys and giraffes. I liked the monkeys best because they were very funny. They jumped, played and ate bananas. My little brother was afraid of the lions because they were big and loud. At one o’clock we had lunch near the lake. After lunch we bought some souvenirs and went home by bus. It was a great day.",
+        vocab:"afraid – бояться; loud – громкий; souvenirs – сувениры.",
+        questions:[
+          {
+            q:"When did the family visit the zoo?",
+            options:["Last Sunday.","Last Saturday.","Last Monday."],
+            correct:1
+          },
+          {
+            q:"Which animals did they see?",
+            options:["Only monkeys.","Only lions and tigers.","Many animals, for example lions and giraffes."],
+            correct:2
+          },
+          {
+            q:"Why was the brother afraid?",
+            options:["Because the lions were big and loud.","Because it was raining.","Because he was hungry."],
+            correct:0
+          },
+          {
+            q:"How did they go home?",
+            options:["On foot.","By bus.","By car."],
+            correct:1
+          }
         ]
       },
       {
-        id: 4,
-        name: "School Life",
-        level: "Beginner",
-        type: "solo/pair",
-        prompts: [
-          { text: "Describe your school.", taskType: "Solo talk", hint: "Talk about the building, students, teachers." },
-          { text: "Talk about your favourite subject at school.", taskType: "Solo talk", hint: "Explain why you like it." },
-          { text: "Student A: You are the teacher. Student B: You are the student. Make a short dialogue in class.", taskType: "Pair role-play A/B", hint: "Use: Stand up, open your books, please." },
-          { text: "Talk about one school rule. Do you like it or not?", taskType: "Solo talk", hint: "Use: We must / We mustn’t…" },
-          { text: "Describe your classroom.", taskType: "Solo talk", hint: "What can you see? Where do you sit?" },
-          { text: "Tell about your best school day.", taskType: "Solo talk", hint: "What happened? Why was it special?" }
+        id:4,
+        name:"Rainy Sunday",
+        level:"Beginner",
+        title:"A Rainy Sunday at Home",
+        text:"On Sunday the weather was terrible. It was cold, rainy and windy, so my family stayed at home. In the morning my mum baked apple pies in the kitchen. They smelled wonderful. My dad read a book in the living room. My sister and I did our homework and then played board games. After lunch we watched a funny film together. In the evening we drank hot tea with pie and talked. It was a quiet but very cosy day.",
+        vocab:"terrible – ужасный; smelled – пахли; cosy – уютный.",
+        questions:[
+          {
+            q:"Why did the family stay at home?",
+            options:["Because it was very hot.","Because the weather was bad.","Because the TV was broken."],
+            correct:1
+          },
+          {
+            q:"What did the mum do?",
+            options:["She baked apple pies.","She went shopping.","She watched a film all day."],
+            correct:0
+          },
+          {
+            q:"What did they do after lunch?",
+            options:["They watched a film.","They went to the park.","They cleaned the house."],
+            correct:0
+          },
+          {
+            q:"How was the day?",
+            options:["Quiet and cosy.","Very boring and lonely.","Very noisy and dangerous."],
+            correct:0
+          }
         ]
       },
       {
-        id: 5,
-        name: "Free Time",
-        level: "Beginner",
-        type: "solo/pair",
-        prompts: [
-          { text: "Describe your hobbies.", taskType: "Solo talk", hint: "Use: I like / I love / I enjoy + V-ing." },
-          { text: "What do you usually do after school?", taskType: "Solo talk", hint: "Talk about 2–3 activities." },
-          { text: "Student A: Ask about Student B’s free time. Student B: Answer.", taskType: "Pair Q&A", hint: "Ask: What do you do in the evening? At the weekend?" },
-          { text: "Describe a hobby you want to try in the future.", taskType: "Solo talk", hint: "Explain why you want this hobby." },
-          { text: "Talk about weekend fun in your city or village.", taskType: "Solo talk", hint: "Where do children go? What do they do?" },
-          { text: "Tell about one hobby you had when you were younger.", taskType: "Solo talk", hint: "Use: When I was younger, I…" }
+        id:5,
+        name:"My Favourite Sport",
+        level:"Beginner",
+        title:"Playing Volleyball",
+        text:"My favourite sport is volleyball. I play it twice a week in the school gym. Our PE teacher is strict but kind. First we warm up, run and stretch. Then we play in teams. I usually play in the same team with my friends Arman and Bek. I am not very tall, but I can jump well. Sometimes we take part in school competitions. When we win, we feel proud and happy.",
+        vocab:"warm up – разминаться; stretch – тянуться; proud – гордый.",
+        questions:[
+          {
+            q:"How often does the writer play volleyball?",
+            options:["Every day.","Once a week.","Twice a week."],
+            correct:2
+          },
+          {
+            q:"Where do they play?",
+            options:["In the school gym.","In the street.","On the beach."],
+            correct:0
+          },
+          {
+            q:"What is the teacher like?",
+            options:["Strict but kind.","Very angry.","Very lazy."],
+            correct:0
+          },
+          {
+            q:"How do they feel when they win?",
+            options:["Sad and tired.","Proud and happy.","Hungry and angry."],
+            correct:1
+          }
         ]
       },
       {
-        id: 6,
-        name: "Food & Drinks",
-        level: "Beginner",
-        type: "solo/pair",
-        prompts: [
-          { text: "Talk about your favourite food.", taskType: "Solo talk", hint: "Describe the taste and when you eat it." },
-          { text: "Describe what you ate yesterday for breakfast, lunch and dinner.", taskType: "Solo talk", hint: "Use past simple: I ate…, I drank…" },
-          { text: "Student A: You are in a café. Student B: You are the waiter. Order food and drinks.", taskType: "Pair role-play A/B", hint: "Use: Could I have…? Here you are." },
-          { text: "Compare healthy and unhealthy food.", taskType: "Solo talk", hint: "Give examples of each group." },
-          { text: "Describe your fridge today. What food is inside?", taskType: "Solo talk", hint: "Name different products." },
-          { text: "Tell 3 things you can cook.", taskType: "Solo talk", hint: "Even simple things like eggs, tea, sandwiches." }
+        id:6,
+        name:"Visit to Granny",
+        level:"Beginner",
+        title:"Weekend at Granny’s House",
+        text:"Every month I visit my granny in the village. She lives in a small but beautiful house with a big garden. In the morning we feed the chickens and water the flowers. Sometimes we pick apples and berries. My granny cooks very tasty soup and homemade bread. In the evening we sit on the bench in front of the house and watch the stars. I love these quiet weekends.",
+        vocab:"pick – собирать; homemade – домашний; bench – скамейка.",
+        questions:[
+          {
+            q:"Where does granny live?",
+            options:["In a big city.","In a village.","Near the sea."],
+            correct:1
+          },
+          {
+            q:"What do they do in the morning?",
+            options:["They watch TV.","They feed chickens and water flowers.","They go to school."],
+            correct:1
+          },
+          {
+            q:"What does granny cook?",
+            options:["Soup and homemade bread.","Only pizza.","Only sweets."],
+            correct:0
+          },
+          {
+            q:"What do they watch in the evening?",
+            options:["Cars.","The sea.","The stars."],
+            correct:2
+          }
         ]
       },
       {
-        id: 7,
-        name: "Clothes & Style",
-        level: "Beginner",
-        type: "solo/pair",
-        prompts: [
-          { text: "Describe what you are wearing today.", taskType: "Solo talk", hint: "Name colours and types of clothes." },
-          { text: "Talk about your favourite clothes.", taskType: "Solo talk", hint: "When do you wear them?" },
-          { text: "Student A: You are in a clothes shop. Student B: You are the shop assistant.", taskType: "Pair role-play A/B", hint: "Ask for size, colour, price." },
-          { text: "Describe your school uniform (or what students wear at school).", taskType: "Solo talk", hint: "Say if you like it or not." },
-          { text: "What clothes do you wear in winter and in summer?", taskType: "Solo talk", hint: "Compare seasons." },
-          { text: "Tell a funny or strange story about clothes.", taskType: "Solo talk", hint: "Maybe something that happened to you or your friend." }
+        id:7,
+        name:"Day in the City",
+        level:"Beginner",
+        title:"A Day in Almaty",
+        text:"Last month my class went on a trip to Almaty. We left early in the morning and arrived at ten o’clock. First we visited a museum and learned many interesting facts about the city. Then we had lunch in a small café. After lunch we walked around the centre and took a lot of photos. In the evening we went to a shopping mall where we bought ice cream and small gifts for our families. We came home tired but excited.",
+        vocab:"trip – поездка; arrived – приехали; mall – торговый центр.",
+        questions:[
+          {
+            q:"Where did the class go?",
+            options:["To Astana.","To Almaty.","To the village."],
+            correct:1
+          },
+          {
+            q:"What did they do first?",
+            options:["They went to the mall.","They visited a museum.","They had lunch."],
+            correct:1
+          },
+          {
+            q:"What did they buy in the mall?",
+            options:["Books and pens.","Ice cream and gifts.","Shoes."],
+            correct:1
+          },
+          {
+            q:"How did they feel when they came home?",
+            options:["Tired but excited.","Hungry and angry.","Sad."],
+            correct:0
+          }
         ]
       },
       {
-        id: 8,
-        name: "Weather & Seasons",
-        level: "Beginner",
-        type: "solo/pair",
-        prompts: [
-          { text: "Describe the weather today.", taskType: "Solo talk", hint: "Is it hot, cold, windy, cloudy…?" },
-          { text: "Talk about your favourite season and why you like it.", taskType: "Solo talk", hint: "Mention activities and clothes." },
-          { text: "Student A: You are a TV weather presenter. Student B: Ask questions about the weather.", taskType: "Pair role-play A/B", hint: "Use: Today it will be…, The temperature will be…" },
-          { text: "What do people do in winter and in summer?", taskType: "Solo talk", hint: "Name different activities for each season." },
-          { text: "Describe the weather in your city or region.", taskType: "Solo talk", hint: "Talk about temperature and seasons." },
-          { text: "What is the best weather for you? Why?", taskType: "Solo talk", hint: "Explain what you can do in this weather." }
+        id:8,
+        name:"Our Classroom",
+        level:"Beginner",
+        title:"My Bright Classroom",
+        text:"Our classroom is on the second floor of the school. It is bright and clean. There are twenty desks for students and one big desk for the teacher. On the walls you can see colourful posters and our project work. At the back of the classroom there is a small library with English books and magazines. We often work in pairs or groups and sometimes we go to the board to present our projects. I feel comfortable in this classroom.",
+        vocab:"bright – светлый; project – проект; present – представлять.",
+        questions:[
+          {
+            q:"Where is the classroom?",
+            options:["On the first floor.","On the second floor.","In another building."],
+            correct:1
+          },
+          {
+            q:"What is on the walls?",
+            options:["Only clocks.","Colourful posters and project work.","Nothing."],
+            correct:1
+          },
+          {
+            q:"What is at the back of the classroom?",
+            options:["A small library.","A big TV.","A kitchen."],
+            correct:0
+          },
+          {
+            q:"How does the writer feel in this classroom?",
+            options:["Uncomfortable.","Bored.","Comfortable."],
+            correct:2
+          }
         ]
       },
       {
-        id: 9,
-        name: "Animals & Pets",
-        level: "Beginner",
-        type: "solo/pair",
-        prompts: [
-          { text: "Describe your favourite animal.", taskType: "Solo talk", hint: "Say what it looks like and what it eats." },
-          { text: "Talk about animals that live in Kazakhstan.", taskType: "Solo talk", hint: "Name wild animals and farm animals." },
-          { text: "Student A: Ask about Student B’s pet. Student B: Answer.", taskType: "Pair Q&A", hint: "Ask: Have you got a pet? What is its name?" },
-          { text: "Describe an animal’s daily routine.", taskType: "Solo talk", hint: "For example: a dog, a cat, a horse…" },
-          { text: "Compare zoo animals and wild animals.", taskType: "Solo talk", hint: "Where do they live? How do they live?" },
-          { text: "Tell about a funny animal moment.", taskType: "Solo talk", hint: "Something you saw or watched in a video." }
+        id:9,
+        name:"Four Seasons",
+        level:"Beginner",
+        title:"The Four Seasons",
+        text:"There are four seasons in a year: spring, summer, autumn and winter. In spring the weather gets warmer and trees become green. Many people feel happy after a long winter. In summer it is usually hot. Children have holidays and often go to camps, the sea or the village. Autumn is a colourful season with yellow and red leaves. It is time to go back to school. In winter it is cold and snowy. We can play snowballs, skate and drink hot tea at home.",
+        vocab:"become – становиться; leaves – листья; snowballs – снежки.",
+        questions:[
+          {
+            q:"What happens in spring?",
+            options:["It gets colder.","Trees become green.","It snows a lot."],
+            correct:1
+          },
+          {
+            q:"What do children often do in summer?",
+            options:["They go to camps or the sea.","They stay at school.","They sleep all day."],
+            correct:0
+          },
+          {
+            q:"What colour are the leaves in autumn?",
+            options:["Blue and purple.","Yellow and red.","Black."],
+            correct:1
+          },
+          {
+            q:"What can we do in winter?",
+            options:["Swim in the sea.","Plant flowers.","Play snowballs and skate."],
+            correct:2
+          }
         ]
       },
       {
-        id: 10,
-        name: "My City / Town",
-        level: "Beginner",
-        type: "solo/pair",
-        prompts: [
-          { text: "Describe your city or town.", taskType: "Solo talk", hint: "Is it big or small? What places are there?" },
-          { text: "Talk about your neighbourhood.", taskType: "Solo talk", hint: "What can you see near your home?" },
-          { text: "Student A: You are a tourist. Student B: Give directions to a place.", taskType: "Pair role-play A/B", hint: "Use: Go straight, turn left, next to…" },
-          { text: "Describe a place you like in your city.", taskType: "Solo talk", hint: "Park, square, beach, shopping centre…" },
-          { text: "What problems does your city or town have?", taskType: "Solo talk", hint: "Traffic, rubbish, noise, etc." },
-          { text: "Describe your dream city.", taskType: "Solo talk", hint: "What would it have? What would it look like?" }
-        ]
-      },
-      {
-        id: 11,
-        name: "Sport",
-        level: "Beginner",
-        type: "solo/pair",
-        prompts: [
-          { text: "Talk about your favourite sport.", taskType: "Solo talk", hint: "How often do you play it or watch it?" },
-          { text: "Describe a sportsman or sportswoman you like.", taskType: "Solo talk", hint: "What sport? Why do you like them?" },
-          { text: "Student A: You want to join a sports club. Student B: Give information.", taskType: "Pair role-play A/B", hint: "Talk about days, time, price." },
-          { text: "What sport would you like to try? Why?", taskType: "Solo talk", hint: "Explain your choice." },
-          { text: "Compare indoor and outdoor sports.", taskType: "Solo talk", hint: "Give advantages of each." },
-          { text: "Describe a sports event you watched.", taskType: "Solo talk", hint: "On TV or in real life." }
-        ]
-      },
-      {
-        id: 12,
-        name: "Holidays & Festivals",
-        level: "Beginner",
-        type: "solo/pair",
-        prompts: [
-          { text: "Describe your favourite holiday.", taskType: "Solo talk", hint: "What do you do? What do you eat?" },
-          { text: "Talk about how your family celebrates this holiday.", taskType: "Solo talk", hint: "Mention traditions and activities." },
-          { text: "Student A & B: Make a plan for a holiday party.", taskType: "Pair discussion", hint: "Talk about food, music, guests, games." },
-          { text: "Describe a traditional Kazakh celebration.", taskType: "Solo talk", hint: "For example: Nauryz." },
-          { text: "What gift did you last receive? Who gave it to you?", taskType: "Solo talk", hint: "Say when and why." },
-          { text: "Describe the best holiday memory in your life.", taskType: "Solo talk", hint: "Explain why it was so special." }
-        ]
-      },
-      {
-        id: 13,
-        name: "Health & Body",
-        level: "Beginner",
-        type: "solo/pair",
-        prompts: [
-          { text: "Name 5 parts of the body and describe one part.", taskType: "Solo talk", hint: "Head, arm, leg, etc." },
-          { text: "Talk about healthy habits.", taskType: "Solo talk", hint: "Sleep, food, sport, water…" },
-          { text: "Student A: You are a doctor. Student B: You are a patient. Make a short dialogue.", taskType: "Pair role-play A/B", hint: "Use: What’s the matter? You should…" },
-          { text: "Describe your morning health routine.", taskType: "Solo talk", hint: "Teeth, face, exercises, breakfast." },
-          { text: "What food is healthy for children?", taskType: "Solo talk", hint: "Give examples of good food." },
-          { text: "Tell about a time you were sick.", taskType: "Solo talk", hint: "What did you have? What did you do?" }
-        ]
-      },
-      {
-        id: 14,
-        name: "Shopping",
-        level: "Beginner",
-        type: "solo/pair",
-        prompts: [
-          { text: "Talk about your favourite shop.", taskType: "Solo talk", hint: "What do you buy there?" },
-          { text: "Describe what people buy every day.", taskType: "Solo talk", hint: "Food, drinks, basic things." },
-          { text: "Student A: You are buying items. Student B: You are the shop assistant.", taskType: "Pair role-play A/B", hint: "Use: How much is it? I’d like…" },
-          { text: "Cash vs card – what do people use more in your family?", taskType: "Solo talk", hint: "Explain why." },
-          { text: "What do you want to buy for yourself now?", taskType: "Solo talk", hint: "Describe your wish." },
-          { text: "Describe your last purchase.", taskType: "Solo talk", hint: "Where? When? What? How much?" }
-        ]
-      },
-      {
-        id: 15,
-        name: "Traveling",
-        level: "Beginner",
-        type: "solo/pair",
-        prompts: [
-          { text: "Talk about a place you visited.", taskType: "Solo talk", hint: "When did you go? With whom?" },
-          { text: "Describe how you travelled there.", taskType: "Solo talk", hint: "By car, bus, train, plane…" },
-          { text: "Student A: Ask for travel advice. Student B: Answer.", taskType: "Pair Q&A", hint: "Use: Where should I go? What can I see there?" },
-          { text: "Describe your dream trip.", taskType: "Solo talk", hint: "Country, city, activities." },
-          { text: "Beach vs mountains – which do you prefer?", taskType: "Solo talk", hint: "Explain reasons." },
-          { text: "Tell about a travel problem you had or imagine one.", taskType: "Solo talk", hint: "For example: lost ticket, late bus…" }
-        ]
-      },
-      {
-        id: 16,
-        name: "Nature",
-        level: "Beginner",
-        type: "solo/pair",
-        prompts: [
-          { text: "Describe a place in nature you like.", taskType: "Solo talk", hint: "Lake, forest, steppe, sea, etc." },
-          { text: "Talk about trees, plants and flowers in your area.", taskType: "Solo talk", hint: "Name 2–3 examples." },
-          { text: "Student A: Your friend wants to plant a tree. Give advice.", taskType: "Pair role-play A/B", hint: "Talk about when, where and how." },
-          { text: "Why is nature important for people?", taskType: "Solo talk", hint: "Give at least 3 reasons." },
-          { text: "Describe the most beautiful natural place you have seen.", taskType: "Solo talk", hint: "Say what you could see, hear and feel." },
-          { text: "Tell 3 things people should do to protect nature.", taskType: "Solo talk", hint: "Use: should / shouldn’t." }
-        ]
-      },
-      {
-        id: 17,
-        name: "Technology",
-        level: "Beginner",
-        type: "solo/pair",
-        prompts: [
-          { text: "Talk about your phone or tablet.", taskType: "Solo talk", hint: "How often do you use it? What for?" },
-          { text: "Describe one app you use very often.", taskType: "Solo talk", hint: "What can you do with it?" },
-          { text: "Student A: Ask about Student B’s screen time. Student B: Answer.", taskType: "Pair Q&A", hint: "How many hours per day? Is it good or bad?" },
-          { text: "Describe a day without technology.", taskType: "Solo talk", hint: "What would you do? Would it be easy or difficult?" },
-          { text: "Talk about good and bad sides of phones.", taskType: "Solo talk", hint: "Give 2 good and 2 bad sides." },
-          { text: "What gadget do you want in the future?", taskType: "Solo talk", hint: "Describe your dream gadget." }
-        ]
-      },
-      {
-        id: 18,
-        name: "Transportation",
-        level: "Beginner",
-        type: "solo/pair",
-        prompts: [
-          { text: "Talk about how you go to school.", taskType: "Solo talk", hint: "On foot, by bus, by car, etc." },
-          { text: "Describe your favourite type of transport.", taskType: "Solo talk", hint: "Why do you like it?" },
-          { text: "Student A: Ask for directions. Student B: Give directions.", taskType: "Pair role-play A/B", hint: "To the school, shop, bus stop, etc." },
-          { text: "Compare car and bus.", taskType: "Solo talk", hint: "Talk about speed, price, comfort." },
-          { text: "Describe transport in your city or town.", taskType: "Solo talk", hint: "What transport is popular?" },
-          { text: "Tell a funny or strange transport moment.", taskType: "Solo talk", hint: "Something that happened on the road or in a bus." }
-        ]
-      },
-      {
-        id: 19,
-        name: "Friends",
-        level: "Beginner",
-        type: "solo/pair",
-        prompts: [
-          { text: "Describe your best friend.", taskType: "Solo talk", hint: "Appearance, character and hobbies." },
-          { text: "Talk about what you do together.", taskType: "Solo talk", hint: "Give 2–3 activities." },
-          { text: "Student A: Ask about Student B’s friends. Student B: Answer.", taskType: "Pair Q&A", hint: "Use: How long have you been friends? What do you do together?" },
-          { text: "What makes a good friend?", taskType: "Solo talk", hint: "Give 3 qualities." },
-          { text: "Describe a fun moment with your friend.", taskType: "Solo talk", hint: "Where were you? What happened?" },
-          { text: "Talk about a small friendship problem and how to solve it.", taskType: "Solo talk", hint: "For example: argument, jealousy, etc." }
-        ]
-      },
-      {
-        id: 20,
-        name: "My Future",
-        level: "Beginner",
-        type: "solo/pair",
-        prompts: [
-          { text: "Talk about your future job.", taskType: "Solo talk", hint: "Why do you want this job?" },
-          { text: "Describe your dream life at 20 years old.", taskType: "Solo talk", hint: "Where will you live? What will you do?" },
-          { text: "Student A: Ask about Student B’s future plans. Student B: Answer.", taskType: "Pair Q&A", hint: "Use: What will you…? Do you want to…?" },
-          { text: "What do you want to learn next year?", taskType: "Solo talk", hint: "School subjects, skills, hobbies." },
-          { text: "Where would you like to live in the future?", taskType: "Solo talk", hint: "City, village, country – explain why." },
-          { text: "Tell about one big dream you have.", taskType: "Solo talk", hint: "How can you make it real?" }
+        id:10,
+        name:"New Student",
+        level:"Beginner",
+        title:"A New Student in Our Class",
+        text:"This year we have a new student in our class. His name is Daniel and he comes from another city. On the first day he was very quiet and a little nervous. Our teacher asked everybody to introduce themselves. After the lesson I showed Daniel the canteen and the gym. Now he has many friends and he often laughs in class. He says our class is friendly and he is happy here.",
+        vocab:"quiet – тихий; nervous – нервный; introduce – представляться.",
+        questions:[
+          {
+            q:"Where does Daniel come from?",
+            options:["From another city.","From another country.","From the same street."],
+            correct:0
+          },
+          {
+            q:"How did he feel on the first day?",
+            options:["Very angry.","Quiet and nervous.","Very noisy."],
+            correct:1
+          },
+          {
+            q:"What did the writer do after the lesson?",
+            options:["Went home.","Showed Daniel the canteen and the gym.","Gave Daniel homework."],
+            correct:1
+          },
+          {
+            q:"How does Daniel feel now?",
+            options:["Unhappy and lonely.","Still nervous.","Happy in this class."],
+            correct:2
+          }
         ]
       }
     ];
 
-    /* ---------- STATE ---------- */
-    let currentUser = null;  // { pin, cls }
-    let currentTopic = null;
-    let currentIndex = 0;
-    let timerId = null;
-    let timeLeft = 0;
+    /* ----- STATE & STORAGE ----- */
+    let currentUser=null;   // {pin,cls}
+    let currentTopic=null;
+    let currentIndex=0;
 
-    // progress[pin][topicId] = [true/false,...]
-    const PROGRESS_KEY = "aiBayanSpeakingProgress";
-    let progress = loadProgress();
+    const PROGRESS_KEY="aiBayanReadingProgress";
+    const AI_USAGE_KEY="aiBayanReadingAiUsage";
 
-    // AI usage by day: usage[pin] = { date, count }
-    const AI_USAGE_KEY = "aiBayanSpeakingAiUsage";
-    let aiUsage = loadAiUsage();
+    // progress[pin][topicId] = true/false (completed)
+    let progress=loadJson(PROGRESS_KEY) || {};
+    // aiUsage[pin]={date,count}
+    let aiUsage=loadJson(AI_USAGE_KEY) || {};
 
-    /* ---------- DOM ---------- */
-    const loginScreen = document.getElementById("loginScreen");
-    const appScreen = document.getElementById("appScreen");
-    const loginBtn = document.getElementById("loginBtn");
-    const pinInput = document.getElementById("pinInput");
-    const loginError = document.getElementById("loginError");
-    const loginClassInfo = document.getElementById("loginClassInfo");
-    const userChip = document.getElementById("userChip");
-
-    const topicChips = document.getElementById("topicChips");
-    const timerSelect = document.getElementById("timerSelect");
-    const startTimerBtn = document.getElementById("startTimerBtn");
-    const timerDisplay = document.getElementById("timerDisplay");
-
-    const topicNameEl = document.getElementById("topicName");
-    const topicLevelEl = document.getElementById("topicLevel");
-    const promptIndexEl = document.getElementById("promptIndex");
-    const promptTypeEl = document.getElementById("promptType");
-    const promptTextEl = document.getElementById("promptText");
-    const promptHintEl = document.getElementById("promptHint");
-
-    const prevBtn = document.getElementById("prevBtn");
-    const nextBtn = document.getElementById("nextBtn");
-    const randomBtn = document.getElementById("randomBtn");
-    const printBtn = document.getElementById("printBtn");
-    const toggleDoneBtn = document.getElementById("toggleDoneBtn");
-    const doneStatus = document.getElementById("doneStatus");
-    const progressInner = document.getElementById("progressInner");
-    const progressText = document.getElementById("progressText");
-
-    const chatBox = document.getElementById("chatBox");
-    const aiQuestion = document.getElementById("aiQuestion");
-    const askBtn = document.getElementById("askBtn");
-    const aiLimitEl = document.getElementById("aiLimit");
-    const aiError = document.getElementById("aiError");
-
-    const journalBox = document.getElementById("journalBox");
-    const refreshJournalBtn = document.getElementById("refreshJournalBtn");
-
-    /* ---------- LOCALSTORAGE HELPERS ---------- */
-    function loadProgress(){
+    function loadJson(key){
       try{
-        const raw = localStorage.getItem(PROGRESS_KEY);
-        return raw ? JSON.parse(raw) : {};
-      }catch(e){
-        return {};
-      }
+        const raw=localStorage.getItem(key);
+        return raw?JSON.parse(raw):null;
+      }catch(e){return null;}
+    }
+    function saveJson(key,obj){
+      try{localStorage.setItem(key,JSON.stringify(obj));}catch(e){}
     }
 
-    function saveProgress(){
-      try{
-        localStorage.setItem(PROGRESS_KEY, JSON.stringify(progress));
-      }catch(e){}
-    }
+    function todayStr(){return new Date().toISOString().slice(0,10);}
 
-    function loadAiUsage(){
-      try{
-        const raw = localStorage.getItem(AI_USAGE_KEY);
-        return raw ? JSON.parse(raw) : {};
-      }catch(e){
-        return {};
-      }
-    }
+    /* ----- DOM ----- */
+    const loginScreen=document.getElementById("loginScreen");
+    const appScreen=document.getElementById("appScreen");
+    const loginBtn=document.getElementById("loginBtn");
+    const pinInput=document.getElementById("pinInput");
+    const loginError=document.getElementById("loginError");
+    const loginClassInfo=document.getElementById("loginClassInfo");
+    const userChip=document.getElementById("userChip");
 
-    function saveAiUsage(){
-      try{
-        localStorage.setItem(AI_USAGE_KEY, JSON.stringify(aiUsage));
-      }catch(e){}
-    }
+    const topicChips=document.getElementById("topicChips");
+    const topicNameEl=document.getElementById("topicName");
+    const topicLevelEl=document.getElementById("topicLevel");
+    const readingTitleEl=document.getElementById("readingTitle");
+    const readingTextEl=document.getElementById("readingText");
+    const readingVocabEl=document.getElementById("readingVocab");
+    const questionsBox=document.getElementById("questionsBox");
 
-    function todayStr(){
-      return new Date().toISOString().slice(0,10); // YYYY-MM-DD
-    }
+    const prevBtn=document.getElementById("prevBtn");
+    const nextBtn=document.getElementById("nextBtn");
+    const randomBtn=document.getElementById("randomBtn");
+    const checkBtn=document.getElementById("checkBtn");
+    const resetBtn=document.getElementById("resetBtn");
+    const readingResult=document.getElementById("readingResult");
+    const doneStatus=document.getElementById("doneStatus");
+    const progressInner=document.getElementById("progressInner");
+    const progressText=document.getElementById("progressText");
 
-    /* ---------- LOGIN ---------- */
+    const chatBox=document.getElementById("chatBox");
+    const aiQuestion=document.getElementById("aiQuestion");
+    const askBtn=document.getElementById("askBtn");
+    const aiLimitEl=document.getElementById("aiLimit");
+    const aiError=document.getElementById("aiError");
+
+    const journalBox=document.getElementById("journalBox");
+    const refreshJournalBtn=document.getElementById("refreshJournalBtn");
+
+    /* ----- LOGIN LOGIC ----- */
     loginBtn.addEventListener("click",handleLogin);
     pinInput.addEventListener("keydown",e=>{
       if(e.key==="Enter") handleLogin();
     });
 
     function handleLogin(){
-      const pin = Number(pinInput.value.trim());
-      loginError.textContent = "";
-      loginClassInfo.textContent = "";
+      const pin=Number(pinInput.value.trim());
+      loginError.textContent="";
+      loginClassInfo.textContent="";
 
       if(!pin || isNaN(pin)){
-        loginError.textContent = "Please enter your PIN code.";
+        loginError.textContent="Please enter your PIN code.";
         return;
       }
-      const cls = getClassByPin(pin);
+      const cls=getClassByPin(pin);
       if(!cls){
-        loginError.textContent = "PIN not found. Ask your teacher.";
+        loginError.textContent="PIN not found. Ask your teacher.";
         return;
       }
+      currentUser={pin,cls};
+      userChip.textContent="Class "+cls+" • PIN "+pin;
+      loginClassInfo.textContent="Welcome! Class "+cls+". You can start reading practice.";
 
-      currentUser = { pin, cls };
-      userChip.textContent = "Class " + cls + " • PIN " + pin;
-      loginClassInfo.textContent = "Welcome! Class " + cls + ". You can start speaking practice.";
-      // show app
-      loginScreen.style.display = "none";
-      appScreen.style.display = "flex";
-      document.querySelector("header").style.display = "flex";
+      loginScreen.style.display="none";
+      appScreen.style.display="flex";
+      document.querySelector("header").style.display="flex";
 
-      updateAiLimitInfo();
       renderTopics();
-      renderPrompt();
+      renderTopic();
+      updateAiLimitInfo();
       renderJournal();
     }
 
-    /* ---------- TOPIC RENDERING ---------- */
+    /* ----- TOPICS UI ----- */
     function renderTopics(){
-      topicChips.innerHTML = "";
-      topics.forEach(t => {
-        const chip = document.createElement("button");
-        chip.className = "chip";
-        chip.textContent = t.id + ". " + t.name;
-        chip.dataset.id = t.id;
+      topicChips.innerHTML="";
+      topics.forEach(t=>{
+        const chip=document.createElement("button");
+        chip.className="chip";
+        chip.textContent=t.id+". "+t.name;
+        chip.dataset.id=t.id;
         chip.addEventListener("click",()=>selectTopic(t.id));
         topicChips.appendChild(chip);
       });
       updateActiveChip();
+      updateProgressBar();
     }
 
     function updateActiveChip(){
-      const chips = document.querySelectorAll(".chip");
+      const chips=document.querySelectorAll(".chip");
       chips.forEach(ch=>{
-        const id = Number(ch.dataset.id);
+        const id=Number(ch.dataset.id);
         ch.classList.toggle("active",currentTopic && currentTopic.id===id);
       });
     }
 
     function selectTopic(id){
-      const t = topics.find(x=>x.id===id);
+      const t=topics.find(x=>x.id===id);
       if(!t) return;
-      currentTopic = t;
-      currentIndex = 0;
-      updateActiveChip();
-      renderPrompt();
-      resetTimerDisplay();
+      currentTopic=t;
+      currentIndex=topics.indexOf(t); // для next/prev
+      renderTopic();
     }
 
-    /* ---------- PROMPT RENDER ---------- */
-    function renderPrompt(){
+    function renderTopic(){
       if(!currentTopic){
-        topicNameEl.textContent = "Choose a topic above";
-        topicLevelEl.textContent = "";
-        promptIndexEl.textContent = "";
-        promptTypeEl.textContent = "";
-        promptTextEl.textContent = "Click on a topic and start speaking.";
-        promptHintEl.textContent = "";
-        updateProgressUI();
+        topicNameEl.textContent="Choose a text above";
+        topicLevelEl.textContent="";
+        readingTitleEl.textContent="";
+        readingTextEl.textContent="Select one of the topics above to start reading.";
+        readingVocabEl.style.display="none";
+        questionsBox.innerHTML="";
+        updateProgressBar();
         return;
       }
-      const total = currentTopic.prompts.length;
-      const item = currentTopic.prompts[currentIndex];
+      updateActiveChip();
 
-      topicNameEl.textContent = currentTopic.name;
-      topicLevelEl.textContent = currentTopic.level;
-      promptIndexEl.textContent = "Question " + (currentIndex+1) + " of " + total;
-      promptTypeEl.textContent = item.taskType || "";
-      promptTextEl.textContent = item.text;
-      promptHintEl.textContent = item.hint ? "Hint: " + item.hint : "";
-
-      updateProgressUI();
+      topicNameEl.textContent=currentTopic.name;
+      topicLevelEl.textContent=currentTopic.level;
+      readingTitleEl.textContent=currentTopic.title;
+      readingTextEl.textContent=currentTopic.text;
+      if(currentTopic.vocab){
+        readingVocabEl.style.display="block";
+        readingVocabEl.textContent="Vocabulary: "+currentTopic.vocab;
+      }else{
+        readingVocabEl.style.display="none";
+      }
+      renderQuestions();
+      readingResult.textContent="";
+      readingResult.classList.remove("good","bad");
+      updateProgressBar();
     }
 
-    /* ---------- PROGRESS / DONE ---------- */
+    function renderQuestions(){
+      questionsBox.innerHTML="";
+      currentTopic.questions.forEach((qObj,qIndex)=>{
+        const qDiv=document.createElement("div");
+        qDiv.className="question";
+        qDiv.dataset.index=qIndex;
+
+        const qText=document.createElement("div");
+        qText.className="question-text";
+        qText.textContent=(qIndex+1)+". "+qObj.q;
+        qDiv.appendChild(qText);
+
+        qObj.options.forEach((opt,optIndex)=>{
+          const label=document.createElement("label");
+          label.className="option";
+          const radio=document.createElement("input");
+          radio.type="radio";
+          radio.name="q"+qIndex;
+          radio.value=optIndex;
+          label.appendChild(radio);
+          label.appendChild(document.createTextNode(" "+opt));
+          qDiv.appendChild(label);
+        });
+
+        const note=document.createElement("small");
+        note.textContent="";
+        qDiv.appendChild(note);
+
+        questionsBox.appendChild(qDiv);
+      });
+    }
+
+    /* ----- CHECK ANSWERS ----- */
+    checkBtn.addEventListener("click",()=>{
+      if(!currentTopic) return;
+      const qDivs=[...questionsBox.querySelectorAll(".question")];
+      let correctCount=0;
+      qDivs.forEach((div,idx)=>{
+        div.classList.remove("correct","wrong");
+        const radios=[...div.querySelectorAll("input[type=radio]")];
+        const chosen=radios.find(r=>r.checked);
+        const small=div.querySelector("small");
+        const correctIndex=currentTopic.questions[idx].correct;
+        if(!chosen){
+          small.textContent="Choose an answer.";
+          return;
+        }
+        const value=Number(chosen.value);
+        if(value===correctIndex){
+          correctCount++;
+          div.classList.add("correct");
+          small.textContent="Correct!";
+        }else{
+          div.classList.add("wrong");
+          small.textContent="Wrong. Try again.";
+        }
+      });
+
+      const total=currentTopic.questions.length;
+      if(correctCount===total){
+        readingResult.textContent="Perfect! You answered all questions correctly.";
+        readingResult.classList.add("good");
+        readingResult.classList.remove("bad");
+        markTopicCompleted();
+      }else{
+        readingResult.textContent="You got "+correctCount+" of "+total+". Check the red questions.";
+        readingResult.classList.add("bad");
+        readingResult.classList.remove("good");
+      }
+      updateProgressBar();
+      renderJournal();
+    });
+
+    resetBtn.addEventListener("click",()=>{
+      if(!currentTopic) return;
+      renderQuestions();
+      readingResult.textContent="";
+      readingResult.classList.remove("good","bad");
+      const qDivs=[...questionsBox.querySelectorAll(".question")];
+      qDivs.forEach(div=>{
+        div.classList.remove("correct","wrong");
+      });
+    });
+
+    /* prev/next/random */
+    prevBtn.addEventListener("click",()=>{
+      if(!currentTopic) return;
+      currentIndex=(currentIndex-1+topics.length)%topics.length;
+      currentTopic=topics[currentIndex];
+      renderTopic();
+    });
+    nextBtn.addEventListener("click",()=>{
+      if(!currentTopic) return;
+      currentIndex=(currentIndex+1)%topics.length;
+      currentTopic=topics[currentIndex];
+      renderTopic();
+    });
+    randomBtn.addEventListener("click",()=>{
+      let newIndex=currentIndex;
+      while(newIndex===currentIndex){
+        newIndex=Math.floor(Math.random()*topics.length);
+      }
+      currentIndex=newIndex;
+      currentTopic=topics[currentIndex];
+      renderTopic();
+    });
+
+    /* ----- PROGRESS / JOURNAL ----- */
     function getUserProgress(){
       if(!currentUser) return null;
-      if(!progress[currentUser.pin]) progress[currentUser.pin] = {};
+      if(!progress[currentUser.pin]) progress[currentUser.pin]={};
       return progress[currentUser.pin];
     }
 
-    function isCurrentDone(){
-      if(!currentUser || !currentTopic) return false;
-      const userProg = getUserProgress();
-      if(!userProg[currentTopic.id]) userProg[currentTopic.id] = new Array(currentTopic.prompts.length).fill(false);
-      return !!userProg[currentTopic.id][currentIndex];
-    }
-
-    function toggleCurrentDone(){
+    function markTopicCompleted(){
       if(!currentUser || !currentTopic) return;
-      const userProg = getUserProgress();
-      if(!userProg[currentTopic.id]) userProg[currentTopic.id] = new Array(currentTopic.prompts.length).fill(false);
-      userProg[currentTopic.id][currentIndex] = !userProg[currentTopic.id][currentIndex];
-      saveProgress();
-      updateProgressUI();
-      renderJournal();
+      const userProg=getUserProgress();
+      userProg[currentTopic.id]=true;
+      saveJson(PROGRESS_KEY,progress);
     }
 
-    function updateProgressUI(){
-      if(!currentTopic){
-        doneStatus.textContent = "Not done";
+    function isTopicCompletedForUser(topicId){
+      if(!currentUser) return false;
+      const userProg=getUserProgress();
+      return !!userProg[topicId];
+    }
+
+    function updateProgressBar(){
+      if(!currentUser){
+        doneStatus.textContent="Not completed";
         doneStatus.classList.add("off");
-        progressInner.style.width = "0%";
-        progressText.textContent = "0 / 0 done";
-        toggleDoneBtn.disabled = true;
+        progressInner.style.width="0%";
+        progressText.textContent="0 / 0 texts completed";
         return;
       }
-      toggleDoneBtn.disabled = false;
+      const userProg=getUserProgress();
+      const total=topics.length;
+      let done=0;
+      topics.forEach(t=>{
+        if(userProg[t.id]) done++;
+      });
 
-      const userProg = getUserProgress();
-      if(!userProg[currentTopic.id]) userProg[currentTopic.id] = new Array(currentTopic.prompts.length).fill(false);
-      const arr = userProg[currentTopic.id];
-      const total = currentTopic.prompts.length;
-      const doneCount = arr.filter(Boolean).length;
-
-      const isDone = arr[currentIndex];
-      if(isDone){
-        doneStatus.textContent = "Done ✔";
+      if(currentTopic && userProg[currentTopic.id]){
+        doneStatus.textContent="Completed ✔";
         doneStatus.classList.remove("off");
-        toggleDoneBtn.textContent = "✖ Unmark done";
       }else{
-        doneStatus.textContent = "Not done";
+        doneStatus.textContent="Not completed";
         doneStatus.classList.add("off");
-        toggleDoneBtn.textContent = "✔ Mark as done";
       }
 
-      const percent = total ? (doneCount/total)*100 : 0;
-      progressInner.style.width = percent + "%";
-      progressText.textContent = doneCount + " / " + total + " done";
+      const percent=total?(done/total)*100:0;
+      progressInner.style.width=percent+"%";
+      progressText.textContent=done+" / "+total+" texts completed";
     }
 
-    toggleDoneBtn.addEventListener("click",toggleCurrentDone);
+    function renderJournal(){
+      journalBox.innerHTML="";
+      const info=document.createElement("div");
+      info.style.fontSize=".78rem";
+      info.style.color="#78909c";
+      info.textContent="Journal shows how many reading texts are fully correct for each PIN on this device.";
+      journalBox.appendChild(info);
 
-    /* ---------- TIMER ---------- */
-    function resetTimerDisplay(){
-      if(timerId){
-        clearInterval(timerId);
-        timerId = null;
-      }
-      const sec = Number(timerSelect.value);
-      timerDisplay.textContent = sec>0 ? (sec + "s") : "–";
-    }
-
-    function startTimer(){
-      const seconds = Number(timerSelect.value);
-      if(!seconds){
-        timerDisplay.textContent = "–";
+      const pins=Object.keys(progress).map(p=>Number(p)).sort((a,b)=>a-b);
+      if(pins.length===0){
+        const empty=document.createElement("div");
+        empty.style.fontSize=".8rem";
+        empty.style.marginTop="6px";
+        empty.textContent="No data yet. When students complete texts, you will see it here.";
+        journalBox.appendChild(empty);
         return;
       }
-      if(timerId) clearInterval(timerId);
 
-      timeLeft = seconds;
-      timerDisplay.textContent = timeLeft + "s";
-
-      timerId = setInterval(()=>{
-        timeLeft--;
-        if(timeLeft<=0){
-          clearInterval(timerId);
-          timerId = null;
-          timerDisplay.textContent = "⏰ time!";
-          return;
+      pins.forEach(pin=>{
+        const cls=getClassByPin(pin) || "?";
+        const userProg=progress[pin] || {};
+        let done=0;
+        for(const topicId in userProg){
+          if(userProg[topicId]) done++;
         }
-        timerDisplay.textContent = timeLeft + "s";
-      },1000);
+        const row=document.createElement("div");
+        row.className="journal-row";
+
+        const left=document.createElement("span");
+        left.className="pin";
+        left.textContent="PIN "+pin+" (class "+cls+")";
+
+        const right=document.createElement("span");
+        right.className="info";
+        right.textContent=done+" / "+topics.length+" texts completed";
+
+        row.appendChild(left);
+        row.appendChild(right);
+        journalBox.appendChild(row);
+      });
     }
+    refreshJournalBtn.addEventListener("click",renderJournal);
 
-    startTimerBtn.addEventListener("click",startTimer);
-    timerSelect.addEventListener("change",resetTimerDisplay);
-
-    /* ---------- NAV BUTTONS ---------- */
-    prevBtn.addEventListener("click",()=>{
-      if(!currentTopic) return;
-      currentIndex = (currentIndex - 1 + currentTopic.prompts.length) % currentTopic.prompts.length;
-      renderPrompt();
-      resetTimerDisplay();
-    });
-
-    nextBtn.addEventListener("click",()=>{
-      if(!currentTopic) return;
-      currentIndex = (currentIndex + 1) % currentTopic.prompts.length;
-      renderPrompt();
-      resetTimerDisplay();
-    });
-
-    randomBtn.addEventListener("click",()=>{
-      if(!currentTopic) return;
-      const max = currentTopic.prompts.length;
-      if(max<=1) return;
-      let newIndex;
-      do{
-        newIndex = Math.floor(Math.random()*max);
-      }while(newIndex===currentIndex);
-      currentIndex = newIndex;
-      renderPrompt();
-      resetTimerDisplay();
-    });
-
-    /* ---------- PRINT WORKSHEET ---------- */
-    printBtn.addEventListener("click",()=>{
-      if(!currentTopic) return;
-      const w = window.open("","_blank");
-      if(!w) return;
-
-      const title = currentTopic.name + " – Speaking worksheet";
-      const html = `
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<title>${title}</title>
-<style>
-  body{
-    font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-    margin:24px;
-  }
-  h1{
-    font-size:1.4rem;
-    margin-bottom:4px;
-  }
-  h2{
-    font-size:1rem;
-    margin-top:4px;
-    color:#455a64;
-  }
-  ol{
-    margin-top:12px;
-  }
-  li{
-    margin-bottom:10px;
-    line-height:1.4;
-  }
-  .type{
-    font-size:.85rem;
-    color:#546e7a;
-  }
-  .hint{
-    font-size:.8rem;
-    color:#78909c;
-  }
-</style>
-</head>
-<body>
-  <h1>${currentTopic.name} – Speaking questions</h1>
-  <h2>Level: ${currentTopic.level}</h2>
-  <ol>
-    ${currentTopic.prompts.map(p=>`
-      <li>
-        <div>${p.text}</div>
-        ${p.taskType ? `<div class="type">${p.taskType}</div>` : ""}
-        ${p.hint ? `<div class="hint">Hint: ${p.hint}</div>` : ""}
-      </li>`).join("")}
-  </ol>
-</body>
-</html>
-      `;
-      w.document.open();
-      w.document.write(html);
-      w.document.close();
-    });
-
-    /* ---------- AI BAYAN INTEGRATION ---------- */
-    const AI_ENDPOINT = "https://shiny-tree-f78c.aiko030500.workers.dev/";
+    /* ----- AI BAYAN ----- */
+    const AI_ENDPOINT="https://shiny-tree-f78c.aiko030500.workers.dev/";
 
     function getRemainingQuestionsToday(){
       if(!currentUser) return 0;
-      const pin = currentUser.pin;
-      const today = todayStr();
-      const rec = aiUsage[pin];
-      if(!rec || rec.date!==today) return 1; // limit = 1
-      const used = rec.count || 0;
+      const pin=currentUser.pin;
+      const today=todayStr();
+      const rec=aiUsage[pin];
+      if(!rec || rec.date!==today) return 1; // лимит 1 / день
+      const used=rec.count||0;
       return Math.max(0,1-used);
     }
 
     function updateAiLimitInfo(){
       if(!currentUser){
-        aiLimitEl.textContent = "";
-        askBtn.disabled = true;
+        aiLimitEl.textContent="";
+        askBtn.disabled=true;
         return;
       }
-      const left = getRemainingQuestionsToday();
+      const left=getRemainingQuestionsToday();
       if(left<=0){
-        aiLimitEl.textContent = "Today you have used your 1 question. Come back tomorrow.";
-        askBtn.disabled = true;
+        aiLimitEl.textContent="Today you have used your 1 question. Come back tomorrow.";
+        askBtn.disabled=true;
       }else{
-        aiLimitEl.textContent = "You can ask " + left + " question today.";
-        askBtn.disabled = false;
+        aiLimitEl.textContent="You can ask "+left+" question today.";
+        askBtn.disabled=false;
       }
     }
 
     function appendChatMessage(role,text){
-      const div = document.createElement("div");
-      div.className = "chat-msg " + (role==="user" ? "user" : "ai");
-      const small = document.createElement("small");
-      small.textContent = role==="user" ? "You" : "AI Bayan";
-      const p = document.createElement("div");
-      p.textContent = text;
+      const div=document.createElement("div");
+      div.className="chat-msg "+(role==="user"?"user":"ai");
+      const small=document.createElement("small");
+      small.textContent=role==="user"?"You":"AI Bayan";
+      const p=document.createElement("div");
+      p.textContent=text;
       div.appendChild(small);
       div.appendChild(p);
       chatBox.appendChild(div);
-      chatBox.scrollTop = chatBox.scrollHeight;
+      chatBox.scrollTop=chatBox.scrollHeight;
     }
 
     askBtn.addEventListener("click",sendToAiBayan);
@@ -1437,125 +1448,74 @@
     });
 
     function sendToAiBayan(){
-      aiError.textContent = "";
+      aiError.textContent="";
       if(!currentUser){
-        aiError.textContent = "Please login with your PIN.";
+        aiError.textContent="Please login with your PIN.";
         return;
       }
-      const left = getRemainingQuestionsToday();
+      const left=getRemainingQuestionsToday();
       if(left<=0){
-        aiError.textContent = "Limit reached: 1 AI question per day for this PIN.";
+        aiError.textContent="Limit reached: 1 AI question per day for this PIN.";
         updateAiLimitInfo();
         return;
       }
-      const q = aiQuestion.value.trim();
+      const q=aiQuestion.value.trim();
       if(!q){
-        aiError.textContent = "Write a question for AI Bayan.";
+        aiError.textContent="Write a question for AI Bayan.";
         return;
       }
 
       appendChatMessage("user",q);
-      aiQuestion.value = "";
-      askBtn.disabled = true;
-      askBtn.textContent = "Asking...";
+      aiQuestion.value="";
+      askBtn.disabled=true;
+      askBtn.textContent="Asking...";
 
-      const payload = {
+      const payload={
         question:q,
         pin:currentUser.pin,
         cls:currentUser.cls,
-        section:"speaking_beginner",
+        section:"reading_beginner",
         topic: currentTopic ? currentTopic.name : null,
-        ts: new Date().toISOString()
+        ts:new Date().toISOString()
       };
 
       fetch(AI_ENDPOINT,{
         method:"POST",
-        headers:{ "Content-Type":"application/json" },
+        headers:{"Content-Type":"application/json"},
         body:JSON.stringify(payload)
       })
       .then(res=>res.text())
       .then(text=>{
-        let answer = text;
+        let answer=text;
         try{
-          const obj = JSON.parse(text);
-          answer = obj.answer || obj.response || obj.result || text;
+          const obj=JSON.parse(text);
+          answer=obj.answer || obj.response || obj.result || text;
         }catch(e){}
         appendChatMessage("ai",answer || "AI Bayan sent an empty answer.");
-        // update usage
-        const pin = currentUser.pin;
-        const today = todayStr();
-        const rec = aiUsage[pin];
+        const pin=currentUser.pin;
+        const today=todayStr();
+        const rec=aiUsage[pin];
         if(!rec || rec.date!==today){
-          aiUsage[pin] = { date:today, count:1 };
+          aiUsage[pin]={date:today,count:1};
         }else{
-          aiUsage[pin].count = (aiUsage[pin].count||0)+1;
+          aiUsage[pin].count=(aiUsage[pin].count||0)+1;
         }
-        saveAiUsage();
+        saveJson(AI_USAGE_KEY,aiUsage);
         updateAiLimitInfo();
       })
       .catch(err=>{
         console.error(err);
-        aiError.textContent = "Error: cannot connect to AI Bayan now.";
+        aiError.textContent="Error: cannot connect to AI Bayan now.";
       })
       .finally(()=>{
-        askBtn.disabled = getRemainingQuestionsToday()<=0;
-        askBtn.textContent = "Ask AI Bayan";
+        askBtn.disabled=getRemainingQuestionsToday()<=0;
+        askBtn.textContent="Ask AI Bayan";
       });
     }
 
-    /* ---------- TEACHER JOURNAL ---------- */
-    function renderJournal(){
-      journalBox.innerHTML = "";
-      const info = document.createElement("div");
-      info.style.fontSize=".78rem";
-      info.style.color="#78909c";
-      info.textContent = "Journal shows how many tasks are marked 'done' for each PIN on this device.";
-      journalBox.appendChild(info);
-
-      const pins = Object.keys(progress).map(p=>Number(p)).sort((a,b)=>a-b);
-      if(pins.length===0){
-        const empty = document.createElement("div");
-        empty.style.fontSize=".8rem";
-        empty.style.marginTop = "6px";
-        empty.textContent = "No data yet. When students mark questions as done, you will see it here.";
-        journalBox.appendChild(empty);
-        return;
-      }
-
-      pins.forEach(pin=>{
-        const cls = getClassByPin(pin) || "?";
-        const userProg = progress[pin] || {};
-        let totalDone = 0;
-        let totalTasks = 0;
-        for(const topicId in userProg){
-          const arr = userProg[topicId];
-          if(Array.isArray(arr)){
-            totalTasks += arr.length;
-            totalDone += arr.filter(Boolean).length;
-          }
-        }
-        const row = document.createElement("div");
-        row.className = "journal-row";
-
-        const left = document.createElement("span");
-        left.className = "pin";
-        left.textContent = "PIN " + pin + " (class " + cls + ")";
-
-        const right = document.createElement("span");
-        right.className = "info";
-        right.textContent = totalDone + " / " + totalTasks + " done";
-
-        row.appendChild(left);
-        row.appendChild(right);
-        journalBox.appendChild(row);
-      });
-    }
-
-    refreshJournalBtn.addEventListener("click",renderJournal);
-
-    /* ---------- INIT (NO AUTO-LOGIN, ТОЛЬКО ПИН) ---------- */
+    /* ----- INIT ----- */
     renderTopics();
-    renderPrompt();
+    renderTopic();
   </script>
 </body>
 </html>
