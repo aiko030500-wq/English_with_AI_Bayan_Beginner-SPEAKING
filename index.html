@@ -2,19 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>ENGLISH WITH AI BAYAN – Beginner READING</title>
+  <title>Essay Trainer – ENGLISH WITH AI BAYAN</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <style>
     :root{
-      --brown-main:#7B4F27;   /* насыщенный коричневый */
-      --brown-soft:#A36E3A;
-      --gold:#E8C46C;
-      --bg:#F3F7FA;           /* фон как в грамматике */
-      --danger:#C62828;
-      --correct:#1B5E20;
-      --wrong:#B71C1C;
-      --text-main:#3A2412;
+      /* ФИОЛЕТОВАЯ ТЕМА */
+      --violet-main:#6a1b9a;
+      --violet-soft:#9c27b0;
+      --accent:#ffca28;
+      --bg:#f5f3ff;
+      --card:#ffffff;
+      --text:#2e1342;
+      --border:#d1c4e9;
     }
 
     *{
@@ -26,2094 +25,1165 @@
 
     body{
       background:var(--bg);
-      color:var(--text-main);
+      color:var(--text);
       min-height:100vh;
-      display:flex;
-      flex-direction:column;
     }
 
-    button{
-      border:none;
-      border-radius:999px;
-      padding:7px 15px;
+    /* --------- LOGIN SCREEN --------- */
+    #loginScreen{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:16px;
+    }
+
+    .login-card{
+      background:var(--card);
+      border-radius:20px;
+      box-shadow:0 6px 18px rgba(75,0,130,0.25);
+      padding:20px 20px 18px;
+      max-width:380px;
+      width:100%;
+      text-align:center;
+      border:1px solid var(--border);
+    }
+
+    .login-title{
+      font-size:1.2rem;
+      font-weight:700;
+      margin-bottom:6px;
+      color:var(--violet-main);
+    }
+
+    .login-subtitle{
       font-size:.85rem;
+      color:#5e548e;
+      margin-bottom:12px;
+    }
+
+    .pin-input{
+      width:100%;
+      border:1px solid var(--border);
+      border-radius:999px;
+      padding:10px 14px;
+      font-size:1rem;
+      margin:8px 0 10px;
+      outline:none;
+      text-align:center;
+      background:#faf5ff;
+    }
+
+    .pin-input:focus{
+      border-color:var(--violet-soft);
+      box-shadow:0 0 0 2px rgba(156,39,176,0.18);
+      background:#fff;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:6px;
+      padding:8px 16px;
+      border-radius:999px;
+      border:none;
       cursor:pointer;
+      font-size:.9rem;
+      font-weight:600;
+      transition:transform .1s, box-shadow .1s, background .15s;
+      white-space:nowrap;
+    }
+
+    .btn-primary{
+      background:var(--violet-main);
+      color:#fff;
+      box-shadow:0 3px 8px rgba(74,20,140,0.4);
+      margin-top:4px;
+      width:100%;
+    }
+
+    .btn-primary:hover{
+      background:#7b1fa2;
+      transform:translateY(-1px);
+      box-shadow:0 5px 14px rgba(74,20,140,0.4);
+    }
+
+    .login-hint{
+      font-size:.75rem;
+      color:#6b6491;
+      margin-top:8px;
+    }
+
+    .login-error{
+      font-size:.8rem;
+      color:#c62828;
+      margin-top:6px;
+      min-height:18px;
+    }
+
+    .login-badge{
       display:inline-flex;
       align-items:center;
       gap:6px;
-      transition:.15s;
-    }
-    button:disabled{
-      opacity:.5;
-      cursor:not-allowed;
-    }
-    .btn-primary{
-      background:var(--brown-main);
-      color:#fff;
-    }
-    .btn-primary:hover:not(:disabled){
-      background:#5d3b1d;
-    }
-    .btn-ghost{
-      background:#ffffff;
-      border:1px solid rgba(0,0,0,.12);
-    }
-    .btn-ghost:hover:not(:disabled){
-      background:#f2e5d7;
+      padding:4px 10px;
+      border-radius:999px;
+      background:#f3e5f5;
+      color:#4a148c;
+      font-size:.75rem;
+      margin-bottom:10px;
     }
 
-    /* ===== HEADER ===== */
+    /* --------- APP SCREEN --------- */
+    #appScreen{
+      display:none;
+      min-height:100vh;
+      flex-direction:column;
+    }
+
     header{
-      display:flex;
-      background:linear-gradient(90deg,#7B4F27,#A36E3A);
+      background:linear-gradient(90deg,#6a1b9a,#9c27b0);
       color:#fff;
-      padding:10px 18px;
-      align-items:center;
+      padding:10px 16px;
+      display:flex;
       justify-content:space-between;
-      box-shadow:0 2px 6px rgba(0,0,0,.25);
-      gap:12px;
-    }
-    .header-left{
-      display:flex;
       align-items:center;
-      gap:10px;
+      box-shadow:0 2px 8px rgba(74,20,140,0.5);
     }
-    .logo-circle{
-      width:54px;
-      height:54px;
-      border-radius:50%;
-      background:#fff;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      overflow:hidden;
-      flex-shrink:0;
-      box-shadow:0 0 0 3px rgba(123,79,39,.35);
-    }
-    .logo-circle img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-    }
-    .header-text-main{
+
+    header h1{
+      font-size:1.1rem;
       font-weight:700;
-      font-size:.98rem;
-      letter-spacing:.12em;
-      text-transform:uppercase;
     }
-    .header-text-sub{
-      font-size:.8rem;
+
+    header span{
+      font-size:.82rem;
       opacity:.95;
+      display:block;
     }
-    .user-chip{
-      margin-top:2px;
-      font-size:.76rem;
-      background:rgba(0,0,0,.18);
-      padding:3px 9px;
-      border-radius:999px;
-      display:inline-block;
-    }
-    .header-badge{
-      background:rgba(255,255,255,.15);
-      color:#fff8e1;
-      padding:6px 10px;
-      border-radius:999px;
+
+    .header-right{
+      text-align:right;
       font-size:.78rem;
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:4px;
+      padding:3px 8px;
+      border-radius:999px;
+      font-size:.7rem;
+      background:rgba(255,202,40,0.16);
+      color:#fffde7;
+      margin-top:3px;
+    }
+
+    main{
+      flex:1;
+      padding:14px;
+      max-width:1240px;
+      width:100%;
+      margin:0 auto;
+    }
+
+    .layout{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+    }
+
+    .card{
+      background:var(--card);
+      border-radius:16px;
+      box-shadow:0 2px 8px rgba(0,0,0,0.08);
+      padding:12px 14px;
+      border:1px solid var(--border);
+    }
+
+    .left-panel{
+      flex:1 1 250px;
+      max-width:270px;
+    }
+
+    .middle-panel{
+      flex:1 1 320px;
+      min-width:280px;
+    }
+
+    .right-panel{
+      flex:1 1 320px;
+      min-width:280px;
+    }
+
+    .ai-panel{
+      margin-top:14px;
+    }
+
+    h2{
+      font-size:.98rem;
+      margin-bottom:6px;
       display:flex;
       align-items:center;
       gap:6px;
-      white-space:nowrap;
+      color:var(--violet-main);
     }
-    .header-badge span.icon{
-      font-size:1rem;
+
+    h2 span.icon{
+      font-size:1.1rem;
     }
-    @media(max-width:700px){
+
+    label{
+      font-size:.8rem;
+      font-weight:600;
+      margin-bottom:3px;
+      display:block;
+    }
+
+    select, input[type="text"], textarea{
+      width:100%;
+      border:1px solid var(--border);
+      border-radius:10px;
+      padding:7px 9px;
+      font-size:.88rem;
+      outline:none;
+      transition:border-color .2s, box-shadow .2s;
+      background:#fbf7ff;
+    }
+
+    select:focus, input[type="text"]:focus, textarea:focus{
+      border-color:var(--violet-soft);
+      box-shadow:0 0 0 2px rgba(156,39,176,0.16);
+      background:#fff;
+    }
+
+    textarea{
+      resize:vertical;
+      min-height:60px;
+    }
+
+    .small-note{
+      font-size:.76rem;
+      color:#6b6b96;
+      margin:3px 0 6px;
+    }
+
+    .btn-ghost{
+      background:transparent;
+      color:var(--violet-main);
+      border:1px dashed var(--border);
+    }
+
+    .btn-ghost:hover{
+      background:#f3e5f5;
+    }
+
+    .btn-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:6px;
+      margin-top:6px;
+    }
+
+    .pill-select-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:5px;
+      margin-bottom:6px;
+    }
+
+    .pill{
+      padding:4px 9px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      font-size:.78rem;
+      cursor:pointer;
+      background:#faf5ff;
+    }
+
+    .pill.active{
+      background:var(--accent);
+      border-color:#ffb300;
+      color:#4e342e;
+      font-weight:600;
+    }
+
+    .topics-list{
+      margin-top:5px;
+      font-size:.78rem;
+      max-height:120px;
+      overflow-y:auto;
+      padding-right:3px;
+    }
+
+    .topics-list div{
+      padding:3px 0;
+      border-bottom:1px dashed #ede7f6;
+      cursor:pointer;
+    }
+
+    .topics-list div:last-child{
+      border-bottom:none;
+    }
+
+    .topics-list div:hover{
+      color:var(--violet-main);
+    }
+
+    .section{
+      margin-bottom:8px;
+    }
+
+    .word-counter{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      font-size:.76rem;
+      color:#5c5470;
+      margin-top:3px;
+    }
+
+    .level-indicator{
+      font-size:.78rem;
+      color:#5c5470;
+      margin-top:5px;
+    }
+
+    /* --- AI CHAT --- */
+    .chat-box{
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:8px;
+      max-height:220px;
+      overflow-y:auto;
+      background:#faf5ff;
+      font-size:.78rem;
+    }
+
+    .msg{
+      padding:6px 8px;
+      border-radius:10px;
+      margin-bottom:5px;
+      max-width:100%;
+      word-wrap:break-word;
+    }
+
+    .msg.user{
+      background:#e1bee7;
+      align-self:flex-end;
+    }
+
+    .msg.ai{
+      background:#ede7f6;
+    }
+
+    .msg.system{
+      background:#fff3e0;
+      font-style:italic;
+      color:#6d4c41;
+    }
+
+    .chat-meta{
+      font-size:.7rem;
+      color:#6b6b96;
+      margin-top:4px;
+    }
+
+    .limit-ok{
+      color:#2e7d32;
+    }
+
+    .limit-warning{
+      color:#ef6c00;
+    }
+
+    .limit-max{
+      color:#c62828;
+      font-weight:600;
+    }
+
+    footer{
+      text-align:center;
+      font-size:.72rem;
+      color:#7b6d9d;
+      padding:6px 8px 10px;
+    }
+
+    .logout-btn{
+      font-size:.8rem;
+      padding:4px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.7);
+      background:rgba(0,0,0,0.08);
+      color:#fff;
+      cursor:pointer;
+    }
+
+    .logout-btn:hover{
+      background:rgba(0,0,0,0.18);
+    }
+
+    @media (max-width:768px){
       header{
         flex-direction:column;
         align-items:flex-start;
+        gap:6px;
       }
-      .header-badge{
-        align-self:flex-start;
+      .header-right{
+        text-align:left;
       }
-    }
-
-    /* ===== LOGIN ===== */
-    #loginScreen{
-      flex:1;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:24px 12px;
-    }
-    .login-card{
-      background:#fff;
-      border-radius:18px;
-      box-shadow:0 3px 10px rgba(0,0,0,.18);
-      max-width:420px;
-      width:100%;
-      padding:18px 18px 20px;
-    }
-    .login-header{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      margin-bottom:12px;
-    }
-    .login-title-main{
-      font-size:1rem;
-      font-weight:700;
-      letter-spacing:.14em;
-      text-transform:uppercase;
-      color:#4c2f16;
-    }
-    .login-title-sub{
-      font-size:.85rem;
-      color:#7B4F27;
-    }
-    .login-body{
-      margin-top:10px;
-      font-size:.88rem;
-    }
-    .login-body label{
-      display:block;
-      margin-bottom:6px;
-      color:#4c2f16;
-      font-weight:600;
-    }
-    .login-body input{
-      width:100%;
-      padding:8px 10px;
-      border-radius:999px;
-      border:1px solid rgba(0,0,0,.2);
-      font-size:.9rem;
-      margin-bottom:8px;
-      outline:none;
-    }
-    .login-body input:focus{
-      border-color:var(--brown-main);
-      box-shadow:0 0 0 2px rgba(123,79,39,.25);
-    }
-    .login-footer{
-      margin-top:8px;
-      font-size:.78rem;
-      color:#6d5b4a;
-      line-height:1.4;
-    }
-    .login-error{
-      margin-top:6px;
-      font-size:.8rem;
-      color:#b71c1c;
-    }
-    .login-class-info{
-      margin-top:4px;
-      font-size:.8rem;
-      color:#33691E;
-    }
-
-    /* ===== MAIN LAYOUT ===== */
-    #appScreen{
-      display:none;
-      flex:1;
-      flex-direction:column;
-    }
-    main{
-      flex:1;
-      max-width:1180px;
-      width:100%;
-      margin:0 auto;
-      padding:14px 12px 26px;
-      display:grid;
-      gap:14px;
-    }
-    @media(min-width:900px){
-      main{
-        grid-template-columns:1.8fr 1.2fr;
-        align-items:flex-start;
-      }
-    }
-
-    .panel{
-      background:#fff;
-      border-radius:16px;
-      box-shadow:0 2px 8px rgba(0,0,0,.08);
-      padding:14px 16px 18px;
-    }
-    .panel h2{
-      font-size:1.02rem;
-      margin-bottom:8px;
-      color:#4c2f16;
-      display:flex;
-      align-items:center;
-      gap:8px;
-    }
-    .panel h2 span.icon{
-      width:22px;
-      height:22px;
-      border-radius:999px;
-      background:var(--brown-soft);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      color:#fff;
-      font-size:.9rem;
-    }
-    .small-label{
-      font-size:.8rem;
-      color:#6d5b4a;
-      margin-top:4px;
-      margin-bottom:4px;
-    }
-
-    /* ----- TOP MENU: BACK / MAIN / PRINT ----- */
-    .top-toolbar{
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      margin-bottom:8px;
-      align-items:center;
-    }
-
-    /* topics menu */
-    .topics-list{
-      display:grid;
-      gap:8px;
-      margin-bottom:10px;
-    }
-    @media(min-width:900px){
-      .topics-list{
-        grid-template-columns:repeat(2,minmax(0,1fr));
-      }
-    }
-    .topic-card{
-      background:#ffffff;
-      border-radius:12px;
-      border:1px solid rgba(0,0,0,.06);
-      box-shadow:0 1px 2px rgba(0,0,0,.05);
-      padding:8px 10px;
-      cursor:pointer;
-      transition:.15s;
-    }
-    .topic-card:hover{
-      box-shadow:0 3px 6px rgba(0,0,0,.12);
-      transform:translateY(-1px);
-      border-color:rgba(123,79,39,.35);
-    }
-    .topic-card.active{
-      border-color:var(--brown-main);
-      box-shadow:0 3px 6px rgba(0,0,0,.16);
-    }
-    .topic-title-row{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:6px;
-      margin-bottom:2px;
-    }
-    .topic-title{
-      font-size:.9rem;
-      font-weight:600;
-      color:#3A2412;
-    }
-    .topic-level{
-      font-size:.7rem;
-      padding:2px 8px;
-      border-radius:999px;
-      background:#fff3cd;
-      color:#795548;
-    }
-    .topic-sub{
-      font-size:.78rem;
-      color:#6d5b4a;
-    }
-
-    /* reading + exercises */
-    .reading-layout{
-      display:grid;
-      gap:10px;
-    }
-    @media(min-width:800px){
-      .reading-layout{
-        grid-template-columns:1.2fr 1.1fr;
-      }
-    }
-
-    .text-card{
-      background:linear-gradient(135deg,#ffffff,#faefe1);
-      border-radius:14px;
-      border:1px solid rgba(0,0,0,.05);
-      padding:12px 14px 14px;
-    }
-    .text-head{
-      font-size:.78rem;
-      text-transform:uppercase;
-      letter-spacing:.09em;
-      color:#865531;
-      display:flex;
-      justify-content:space-between;
-      gap:8px;
-      margin-bottom:4px;
-    }
-    .badge-level{
-      padding:2px 9px;
-      border-radius:999px;
-      font-size:.7rem;
-      background:#fff3cd;
-      color:#795548;
-    }
-    .text-title{
-      font-size:1rem;
-      font-weight:600;
-      margin-bottom:4px;
-      color:#3A2412;
-    }
-    .text-body{
-      font-size:.9rem;
-      line-height:1.5;
-      margin-bottom:6px;
-    }
-    .vocab-box{
-      font-size:.78rem;
-      color:#5d4037;
-      background:#fffaf0;
-      border-radius:10px;
-      padding:6px 8px;
-    }
-
-    .ex-panel{
-      background:#fdf7ef;
-      border-radius:14px;
-      border:1px solid rgba(0,0,0,.05);
-      padding:10px 12px 12px;
-      display:flex;
-      flex-direction:column;
-      gap:8px;
-    }
-    .ex-tabs{
-      display:flex;
-      flex-wrap:wrap;
-      gap:6px;
-    }
-    .ex-tab{
-      font-size:.78rem;
-      padding:5px 10px;
-      border-radius:999px;
-      border:1px solid transparent;
-      background:transparent;
-      color:#5d4037;
-      cursor:pointer;
-    }
-    .ex-tab.active{
-      background:#ffffff;
-      border-color:#d7c2a7;
-      box-shadow:0 1px 3px rgba(0,0,0,.12);
-    }
-    .ex-title{
-      font-size:.9rem;
-      font-weight:600;
-      color:#4c2f16;
-      margin-top:2px;
-      margin-bottom:2px;
-    }
-    .ex-desc{
-      font-size:.78rem;
-      color:#6d5b4a;
-      margin-bottom:4px;
-    }
-    .ex-content{
-      font-size:.86rem;
-      max-height:220px;
-      overflow:auto;
-      padding-right:4px;
-    }
-    .question-block{
-      border-radius:10px;
-      background:#ffffff;
-      border:1px solid rgba(0,0,0,.05);
-      padding:6px 8px;
-      margin-bottom:6px;
-    }
-    .question-block.correct{
-      border-color:var(--correct);
-      background:#e8f5e9;
-    }
-    .question-block.wrong{
-      border-color:var(--wrong);
-      background:#ffebee;
-    }
-    .question-text{
-      font-weight:500;
-      margin-bottom:4px;
-      color:#3A2412;
-    }
-    .option-label{
-      display:block;
-      margin-bottom:3px;
-      cursor:pointer;
-    }
-    .small-note{
-      font-size:.75rem;
-      color:#6d5b4a;
-      margin-top:2px;
-    }
-    .order-row{
-      display:flex;
-      align-items:flex-start;
-      gap:6px;
-      margin-bottom:5px;
-    }
-    .order-row select{
-      padding:2px 6px;
-      border-radius:6px;
-      border:1px solid rgba(0,0,0,.2);
-      font-size:.78rem;
-      background:#fff;
-    }
-
-    .ex-buttons{
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      margin-top:4px;
-      align-items:center;
-    }
-    .ex-result{
-      font-size:.8rem;
-      color:#3A2412;
-    }
-    .ex-result.good{
-      color:var(--correct);
-    }
-    .ex-result.bad{
-      color:var(--wrong);
-    }
-
-    .progress-info{
-      margin-top:6px;
-      font-size:.78rem;
-      color:#5d4037;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:8px;
-      flex-wrap:wrap;
-    }
-    .progress-bar{
-      flex:1;
-      height:6px;
-      border-radius:999px;
-      background:#e0d3c4;
-      overflow:hidden;
-      min-width:80px;
-    }
-    .progress-bar-inner{
-      height:100%;
-      width:0%;
-      background:var(--brown-main);
-      transition:width .2s;
-    }
-    .done-badge{
-      font-size:.75rem;
-      padding:3px 9px;
-      border-radius:999px;
-      background:#e8f5e9;
-      color:var(--correct);
-    }
-    .done-badge.off{
-      background:#ffebee;
-      color:var(--wrong);
-    }
-
-    /* ===== RIGHT PANEL (AI + journal) ===== */
-    .chat-note{
-      font-size:.78rem;
-      color:#6d5b4a;
-      margin-bottom:6px;
-    }
-    .chat-note b{
-      color:#4c2f16;
-    }
-    #aiLimit{
-      font-weight:600;
-    }
-    .chat-box{
-      border-radius:12px;
-      border:1px solid rgba(0,0,0,.08);
-      padding:8px 10px;
-      background:#fffaf3;
-      max-height:210px;
-      overflow:auto;
-      font-size:.8rem;
-      margin-bottom:8px;
-    }
-    .chat-msg{
-      margin-bottom:6px;
-      padding:6px 8px;
-      border-radius:10px;
-    }
-    .chat-msg.user{
-      background:#ffe0b2;
-    }
-    .chat-msg.ai{
-      background:#e8f5e9;
-    }
-    .chat-msg small{
-      display:block;
-      font-size:.7rem;
-      color:#5d4037;
-      margin-bottom:2px;
-    }
-    #aiQuestion{
-      width:100%;
-      min-height:60px;
-      max-height:100px;
-      padding:6px 8px;
-      border-radius:10px;
-      border:1px solid rgba(0,0,0,.18);
-      resize:vertical;
-      font-size:.84rem;
-      outline:none;
-      background:#fffdf7;
-    }
-    #aiQuestion:focus{
-      border-color:var(--brown-main);
-      box-shadow:0 0 0 2px rgba(123,79,39,.2);
-    }
-    .chat-actions{
-      margin-top:6px;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:8px;
-      flex-wrap:wrap;
-      font-size:.78rem;
-      color:#6d5b4a;
-    }
-    .danger-text{
-      color:var(--danger);
-      font-size:.78rem;
-      margin-top:4px;
-    }
-
-    .journal-header{
-      margin-top:10px;
-      font-size:.84rem;
-      font-weight:600;
-      color:#4c2f16;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:6px;
-    }
-    .journal-box{
-      margin-top:6px;
-      border-radius:10px;
-      border:1px solid rgba(0,0,0,.08);
-      padding:6px 8px;
-      max-height:160px;
-      overflow:auto;
-      font-size:.78rem;
-      background:#fdf7ef;
-    }
-    .journal-row{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:3px 0;
-      border-bottom:1px dashed rgba(0,0,0,.07);
-    }
-    .journal-row:last-child{
-      border-bottom:none;
-    }
-    .journal-row span.pin{
-      font-weight:600;
-      color:#3A2412;
-    }
-    .journal-row span.info{
-      color:#6d5b4a;
-    }
-
-    @media print{
-      header, #loginScreen, .top-toolbar{ display:none !important; }
-      body{ background:#fff; }
-      .panel{ box-shadow:none; }
     }
   </style>
 </head>
 <body>
-  <!-- HEADER -->
-  <header>
-    <div class="header-left">
-      <div class="logo-circle">
-        <img src="logo.png" alt="AI Bayan logo" onerror="this.style.display='none';">
-      </div>
-      <div>
-        <div class="header-text-main">ENGLISH WITH AI BAYAN</div>
-        <div class="header-text-sub">
-          Beginner – stars – reading topics
-        </div>
-        <div id="userChip" class="user-chip">Not logged in</div>
-      </div>
+
+<!-- ---------- LOGIN ---------- -->
+<section id="loginScreen">
+  <div class="login-card">
+    <div class="login-badge">✨ ENGLISH WITH AI BAYAN · Essay</div>
+    <div class="login-title">Essay Trainer + AI Bayan</div>
+    <div class="login-subtitle">
+      Введите ваш PIN-код (как в Beginner).<br/>
+      Учителя: 9991 / 9992 / 9999.
     </div>
-    <div class="header-badge">
-      <span class="icon">📖</span>
-      <span>Read • Think • Answer</span>
+
+    <input id="pinInput" class="pin-input" type="number" placeholder="Введите PIN (например, 601)" />
+
+    <button class="btn btn-primary" id="loginBtn">Войти</button>
+
+    <div class="login-error" id="loginError"></div>
+
+    <div class="login-hint">
+      Ученики – PIN как в Beginner:<br/>
+      3E: 101–115 · 4G: 201–215 · 5G: 301–315 · 5Zh: 401–415<br/>
+      6G: 501–515 · 7B: 601–615 · 7V: 701–715 · 8E: 801–815 · 9Zh: 901–915<br/>
+      Учителя: 9991 (7B), 9992 (7V), 9999 (Super Teacher).
+    </div>
+  </div>
+</section>
+
+<!-- ---------- APP ---------- -->
+<section id="appScreen">
+  <header>
+    <div>
+      <h1>Essay Trainer</h1>
+      <span>ENGLISH WITH AI BAYAN · Essay writing + AI helper</span>
+    </div>
+    <div class="header-right">
+      <div>👤 <span id="userInfo">Student</span></div>
+      <div class="badge">
+        ✍️ Essay + 🤖 AI Bayan · Limit 10 Q/day
+      </div>
+      <button class="logout-btn" id="logoutBtn">Выйти</button>
     </div>
   </header>
 
-  <!-- LOGIN -->
-  <div id="loginScreen">
-    <div class="login-card">
-      <div class="login-header">
-        <div class="logo-circle">
-          <img src="logo.png" alt="AI Bayan logo" onerror="this.style.display='none';">
-        </div>
-        <div>
-          <div class="login-title-main">ENGLISH WITH AI BAYAN</div>
-          <div class="login-title-sub">BEGINNER – READING with AI Bayan</div>
-        </div>
-      </div>
+  <main>
+    <div class="layout">
+      <!-- LEFT: SETTINGS + TOPICS -->
+      <section class="card left-panel">
+        <h2><span class="icon">🎯</span>Essay settings</h2>
 
-      <div class="login-body">
-        <label for="pinInput">Enter your PIN code</label>
-        <input id="pinInput" type="number" placeholder="Ask your teacher for PIN" />
-        <button id="loginBtn" class="btn-primary">Login</button>
-        <div id="loginError" class="login-error"></div>
-        <div id="loginClassInfo" class="login-class-info"></div>
-      </div>
-
-      <div class="login-footer">
-        PIN codes are the same as in ENGLISH WITH AI BAYAN – Beginner (grammar).<br>
-        Teacher PIN: 3244 (Tcher).
-      </div>
-    </div>
-  </div>
-
-  <!-- APP -->
-  <div id="appScreen">
-    <main>
-      <!-- LEFT: MENU + TEXT + EXERCISES -->
-      <section class="panel">
-        <h2><span class="icon">📚</span> Reading – Beginner</h2>
-
-        <div class="top-toolbar">
-          <button id="backBtn" class="btn-ghost">← Back</button>
-          <button id="mainMenuBtn" class="btn-ghost">Main menu</button>
-          <button id="printBtn" class="btn-ghost">🖨 Print</button>
-        </div>
-
-        <p class="small-label">Choose a text:</p>
-        <div id="topicsList" class="topics-list"></div>
-
-        <div class="reading-layout">
-          <!-- TEXT -->
-          <div class="text-card">
-            <div class="text-head">
-              <span id="topicName">Choose a text above</span>
-              <span id="topicLevel" class="badge-level"></span>
-            </div>
-            <div id="textTitle" class="text-title"></div>
-            <div id="textBody" class="text-body">
-              Select one of the topics above to start reading.
-            </div>
-            <div id="vocabBox" class="vocab-box" style="display:none;"></div>
-          </div>
-
-          <!-- EXERCISES -->
-          <div class="ex-panel">
-            <div class="ex-tabs" id="exTabs"></div>
-            <div class="ex-title" id="exTitle"></div>
-            <div class="ex-desc" id="exDesc"></div>
-            <div class="ex-content" id="exContent"></div>
-            <div class="ex-buttons">
-              <button id="checkBtn" class="btn-primary">Check exercise</button>
-              <button id="resetBtn" class="btn-ghost">Reset</button>
-              <button id="toggleDoneBtn" class="btn-ghost">✔ Mark topic as done</button>
-              <span id="exResult" class="ex-result"></span>
-            </div>
-            <div class="progress-info">
-              <div id="doneStatus" class="done-badge off">Not done</div>
-              <div class="progress-bar">
-                <div id="progressInner" class="progress-bar-inner"></div>
-              </div>
-              <div id="progressText">0 / 0 topics done</div>
-            </div>
+        <div class="section">
+          <label>Level</label>
+          <div class="pill-select-row" id="levelRow">
+            <button class="pill active" data-level="7–8 grade">7–8 grade</button>
+            <button class="pill" data-level="Olympiad">Olympiad</button>
+            <button class="pill" data-level="Exam">Exam</button>
           </div>
         </div>
 
-        <p class="small-label">
-          Teacher idea: Students first read silently, then do tasks 1–6 step by step. Stronger students can start from task 3 or 4.
-        </p>
+        <div class="section">
+          <label for="essayType">Essay type</label>
+          <select id="essayType">
+            <option value="opinion">Opinion essay (your point of view)</option>
+            <option value="forAgainst">For & Against essay</option>
+            <option value="argumentative">Argumentative essay</option>
+            <option value="descriptive">Descriptive essay</option>
+          </select>
+          <p class="small-note">
+            Тип меняет только подсказки. Структуру можно адаптировать.
+          </p>
+        </div>
+
+        <div class="section">
+          <label for="topicInput">Topic</label>
+          <input id="topicInput" type="text"
+                  placeholder="The role of sports in students’ lives" />
+          <div class="btn-row">
+            <button class="btn btn-primary" id="newTopicBtn">🎲 New topic</button>
+            <button class="btn btn-ghost" id="clearTopicBtn">🧹 Clear</button>
+          </div>
+          <p class="small-note">
+            Нажми на тему ниже — она вставится в поле.
+          </p>
+        </div>
+
+        <div class="section">
+          <label>Suggested topics (7–8 grade)</label>
+          <div class="topics-list" id="topicsList"></div>
+        </div>
       </section>
 
-      <!-- RIGHT: AI + JOURNAL -->
-      <aside class="panel">
-        <h2><span class="icon">🤖</span> AI Bayan – help for reading</h2>
-        <p class="chat-note">
-          Ask AI Bayan about <b>words, grammar or translation</b> from the text.<br>
-          Students: limit <b>1 question per day</b> for each PIN.<br>
-          Teacher Tcher (PIN 3244): <b>no limit</b>.<br>
-          <span id="aiLimit"></span>
+      <!-- MIDDLE: PLAN -->
+      <section class="card middle-panel">
+        <h2><span class="icon">🧩</span>Essay plan</h2>
+        <p class="small-note">
+          Напиши по 1–3 предложения для каждой части, потом собери эссе.
         </p>
 
-        <div id="chatBox" class="chat-box"></div>
-
-        <textarea id="aiQuestion"
-          placeholder="Write your question for AI Bayan (English or Russian)..."></textarea>
-
-        <div class="chat-actions">
-          <button id="askBtn" class="btn-primary">Ask AI Bayan</button>
-          <span>AI answers are saved only on this device.</span>
+        <div class="section">
+          <label for="introInput">Introduction</label>
+          <textarea id="introInput"
+            placeholder="Introduce the topic and give a general opinion. Example: Nowadays, sports play an important role in students’ lives. In my opinion, ...">
+          </textarea>
         </div>
-        <div id="aiError" class="danger-text"></div>
 
-        <div class="journal-header">
-          <span>Teacher journal (this device)</span>
-          <button id="refreshJournalBtn" class="btn-ghost">Refresh</button>
+        <div class="section">
+          <label for="body1Input">Body paragraph 1 (Argument 1)</label>
+          <textarea id="body1Input"
+            placeholder="Main idea + explanation + example. Use: Firstly, To begin with, One important reason is that...">
+          </textarea>
         </div>
-        <div id="journalBox" class="journal-box">
-          <div style="font-size:.78rem;color:#6d5b4a;">
-            Journal shows how many reading topics are marked “done” by each PIN on this device (students only).
-          </div>
+
+        <div class="section">
+          <label for="body2Input">Body paragraph 2 (Argument 2)</label>
+          <textarea id="body2Input"
+            placeholder="Second reason + explanation + example. Use: Secondly, Moreover, Another important point is that...">
+          </textarea>
         </div>
-      </aside>
-    </main>
-  </div>
 
-  <script>
-    /* ----- PIN ranges (students) ----- */
-    const classRanges = [
-      { cls: "3E",  from: 101, to: 115 },
-      { cls: "4G",  from: 201, to: 215 },
-      { cls: "5G",  from: 301, to: 315 },
-      { cls: "5Zh", from: 401, to: 415 },
-      { cls: "6G",  from: 501, to: 515 },
-      { cls: "7B",  from: 601, to: 615 },
-      { cls: "7V",  from: 701, to: 715 },
-      { cls: "8E",  from: 801, to: 815 },
-      { cls: "9Zh", from: 901, to: 915 }
-    ];
-    function getClassByPin(pin){
-      for(const r of classRanges){
-        if(pin>=r.from && pin<=r.to) return r.cls;
+        <div class="section">
+          <label for="conclusionInput">Conclusion</label>
+          <textarea id="conclusionInput"
+            placeholder="Summarise your ideas and repeat opinion in other words. Use: In conclusion, To sum up, All in all...">
+          </textarea>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn btn-primary" id="buildEssayBtn">✨ Build draft essay</button>
+          <button class="btn btn-ghost" id="clearPlanBtn">🧹 Clear plan</button>
+        </div>
+      </section>
+
+      <!-- RIGHT: FINAL ESSAY -->
+      <section class="card right-panel">
+        <h2><span class="icon">✏️</span>Final essay</h2>
+        <p class="small-note">
+          Здесь редактируй готовое эссе. Счётчик слов обновляется автоматически.
+        </p>
+
+        <textarea id="finalEssay"
+          placeholder="Your full essay will appear here after you click “Build draft essay”. You can edit it, add linking words, improve vocabulary, etc.">
+        </textarea>
+
+        <div class="word-counter">
+          <span id="wordCount">Words: 0</span>
+          <span id="wordAdvice">Target: 120–150 words for 7–8 grade</span>
+        </div>
+
+        <div class="level-indicator" id="levelHint">
+          Current level: <b>7–8 grade</b> · Good length for school & small olympiads: <b>120–150 words</b>.
+        </div>
+
+        <div class="btn-row" style="margin-top:6px;">
+          <button class="btn btn-ghost" id="clearEssayBtn">🧹 Clear essay</button>
+          <button class="btn btn-ghost" id="copyEssayBtn">📋 Copy</button>
+          <button class="btn btn-primary" id="printBtn">🖨️ Print</button>
+        </div>
+      </section>
+    </div>
+
+    <!-- AI BAYAN PANEL -->
+    <section class="card ai-panel">
+      <h2><span class="icon">🤖</span>AI Bayan – Essay helper</h2>
+      <p class="small-note">
+        Задавай вопросы по лексике, грамматике, структуре эссе. Лимит: <b>10 вопросов в день</b> на один PIN.
+      </p>
+
+      <div id="chatBox" class="chat-box"></div>
+
+      <textarea id="aiQuestion"
+        placeholder="Ask AI Bayan about your essay: “Can you suggest a better introduction?”, “How to say this in English?”">
+      </textarea>
+
+      <div class="btn-row">
+        <button class="btn btn-primary" id="askBtn">Ask AI Bayan</button>
+        <button class="btn btn-ghost" id="clearChatBtn">🧹 Clear chat</button>
+      </div>
+
+      <div class="chat-meta" id="aiLimitText">
+        Login with your PIN to see the limit.
+      </div>
+    </section>
+
+    <!-- TEACHER MODE PANEL -->
+    <section id="teacherPanel" class="card" style="display:none; margin-top:14px;">
+      <h2><span class="icon">👩‍🏫</span>Teacher Mode – Student Essays Today</h2>
+      <p class="small-note">Все эссе, которые ученики писали сегодня (сохраняются локально на этом устройстве).</p>
+
+      <div id="teacherList" style="max-height:300px; overflow-y:auto; font-size:.85rem;"></div>
+    </section>
+  </main>
+
+  <footer>
+    Essay Trainer + AI Bayan · Violet edition · PIN system like Beginner
+  </footer>
+</section>
+
+<script>
+  /* ---------- PIN RANGES (как в Beginner) ---------- */
+  const classRanges = [
+    { cls: "3E",  from: 101, to: 115 },
+    { cls: "4G",  from: 201, to: 215 },
+    { cls: "5G",  from: 301, to: 315 },
+    { cls: "5Zh", from: 401, to: 415 },
+    { cls: "6G",  from: 501, to: 515 },
+    { cls: "7B",  from: 601, to: 615 },
+    { cls: "7V",  from: 701, to: 715 },
+    { cls: "8E",  from: 801, to: 815 },
+    { cls: "9Zh", from: 901, to: 915 }
+  ];
+
+  /* ---- TEACHER MODE PINS ---- */
+  const teacherPins = {
+    9991: "Teacher 7B",
+    9992: "Teacher 7V",
+    9999: "Super Teacher"
+  };
+
+  let currentUser = null; // {pin, cls, teacher?}
+
+  const loginScreen = document.getElementById("loginScreen");
+  const appScreen = document.getElementById("appScreen");
+  const pinInput = document.getElementById("pinInput");
+  const loginBtn = document.getElementById("loginBtn");
+  const loginError = document.getElementById("loginError");
+  const userInfo = document.getElementById("userInfo");
+  const logoutBtn = document.getElementById("logoutBtn");
+  const teacherPanel = document.getElementById("teacherPanel");
+
+  function findClassByPin(pin){
+    for(const range of classRanges){
+      if(pin >= range.from && pin <= range.to){
+        return range.cls;
       }
-      return null;
+    }
+    return null;
+  }
+
+  function showScreen(name){
+    if(name === "login"){
+      loginScreen.style.display = "flex";
+      appScreen.style.display = "none";
+    }else{
+      loginScreen.style.display = "none";
+      appScreen.style.display = "flex";
+    }
+  }
+
+  function handleLogin(){
+    const pinVal = parseInt(pinInput.value.trim(), 10);
+    if(isNaN(pinVal)){
+      loginError.textContent = "Введите корректный PIN.";
+      return;
     }
 
-    /* ----- DATA: READING TOPICS (6 примеров; можно расширить до 20) ----- */
-    const topics = [
-      {
-        id:1,
-        name:"My School Day",
-        level:"Beginner",
-        title:"A Busy School Day",
-        text:"My name is Aigerim and I am eleven years old. I usually get up at seven o’clock. I have breakfast with my family and then I walk to school with my friend Dana. Our lessons start at eight. We have Maths, English and PE in the morning. I like English best because we play games and speak a lot. We usually finish school at one o’clock. In the afternoon I do my homework, help my mum and then I watch a little TV or chat with my friends online. I always go to bed before ten.",
-        vocab:"finish – заканчивать; before – перед; online – в интернете.",
-        exercises:[
-          {
-            type:"trueFalse",
-            title:"Ex 1. True or False",
-            desc:"Read the sentences. Are they true (T) or false (F)?",
-            items:[
-              { text:"Aigerim is eleven years old.", answer:true },
-              { text:"She goes to school by bus.", answer:false },
-              { text:"She likes English best.", answer:true },
-              { text:"She usually finishes school at four o’clock.", answer:false }
-            ]
-          },
-          {
-            type:"mcq",
-            title:"Ex 2. Multiple choice",
-            desc:"Choose the correct answer (A, B or C).",
-            items:[
-              {
-                q:"Who does Aigerim go to school with?",
-                options:["With her brother.","With her friend Dana.","With her neighbour."],
-                correct:1
-              },
-              {
-                q:"What lessons does she have in the morning?",
-                options:["Maths, English and PE.","Science and History.","Art and Music."],
-                correct:0
-              },
-              {
-                q:"What does she like doing in English lessons?",
-                options:["Writing long tests.","Listening to the teacher only.","Playing games and speaking."],
-                correct:2
-              }
-            ]
-          },
-          {
-            type:"mcq",
-            title:"Ex 3. Gap-fill",
-            desc:"Choose the best word to complete the sentence.",
-            items:[
-              {
-                q:"She usually gets up ___ seven o’clock.",
-                options:["at","in","on"],
-                correct:0
-              },
-              {
-                q:"She walks to school ___ her friend.",
-                options:["with","for","from"],
-                correct:0
-              },
-              {
-                q:"She goes to bed ___ ten.",
-                options:["after","before","between"],
-                correct:1
-              }
-            ]
-          },
-          {
-            type:"mcq",
-            title:"Ex 4. Main idea",
-            desc:"What is the main idea of the text?",
-            items:[
-              {
-                q:"Choose the best title.",
-                options:[
-                  "Aigerim’s favourite school subject.",
-                  "Aigerim’s free time at the weekend.",
-                  "Aigerim’s typical school day."
-                ],
-                correct:2
-              }
-            ]
-          },
-          {
-            type:"mcq",
-            title:"Ex 5. Parts of the text",
-            desc:"Match the parts of the text with the information.",
-            items:[
-              {
-                q:"The beginning of the text is mostly about…",
-                options:["Aigerim’s evening.","Aigerim’s morning and school.","A trip to another city."],
-                correct:1
-              },
-              {
-                q:"The middle of the text is about…",
-                options:["Her favourite subject.","Her pet.","Her grandparents."],
-                correct:0
-              },
-              {
-                q:"The end of the text is about…",
-                options:["What she does after school.","Her friends’ hobbies.","Her summer holidays."],
-                correct:0
-              }
-            ]
-          },
-          {
-            type:"order",
-            title:"Ex 6. Order of events",
-            desc:"Put the events in the correct order (1–4).",
-            items:[
-              { text:"She does her homework and helps her mum.", order:3 },
-              { text:"She has breakfast with her family.", order:1 },
-              { text:"She walks to school with Dana.", order:2 },
-              { text:"She watches TV or chats online.", order:4 }
-            ]
-          }
-        ]
-      },
-      {
-        id:2,
-        name:"My Best Friend",
-        level:"Beginner",
-        title:"My Best Friend Timur",
-        text:"My best friend’s name is Timur. He is in my class. Timur is tall and slim. He has short dark hair and big brown eyes. He is very friendly and always helps other students. We usually sit together in English lessons. After school we sometimes play football in the yard or go to the park. Timur loves computer games, but he never forgets to do his homework. When I have a problem, I can always talk to him.",
-        vocab:"slim – стройный; friendly – дружелюбный; yard – двор.",
-        exercises:[
-          {
-            type:"trueFalse",
-            title:"Ex 1. True or False",
-            desc:"Are the sentences true (T) or false (F)?",
-            items:[
-              { text:"Timur is in another school.", answer:false },
-              { text:"He is tall and slim.", answer:true },
-              { text:"He is unfriendly and rude.", answer:false },
-              { text:"He loves computer games.", answer:true }
-            ]
-          },
-          {
-            type:"mcq",
-            title:"Ex 2. Multiple choice",
-            desc:"Choose the correct answer.",
-            items:[
-              {
-                q:"Where do the friends usually sit together?",
-                options:["In Maths lessons.","In English lessons.","In PE lessons."],
-                correct:1
-              },
-              {
-                q:"What do they sometimes do after school?",
-                options:["Play football or go to the park.","Study in the library.","Go shopping."],
-                correct:0
-              },
-              {
-                q:"What can the writer do when he has a problem?",
-                options:["Ignore it.","Talk to Timur.","Talk only to the teacher."],
-                correct:1
-              }
-            ]
-          },
-          {
-            type:"mcq",
-            title:"Ex 3. Gap-fill",
-            desc:"Choose the word that best completes the sentence.",
-            items:[
-              {
-                q:"Timur always helps ___ students.",
-                options:["other","another","others"],
-                correct:0
-              },
-              {
-                q:"They sometimes play football ___ the yard.",
-                options:["in","on","at"],
-                correct:0
-              },
-              {
-                q:"He never forgets ___ his homework.",
-                options:["does","doing","to do"],
-                correct:2
-              }
-            ]
-          },
-          {
-            type:"mcq",
-            title:"Ex 4. Main idea",
-            desc:"Choose the best sentence that describes the text.",
-            items:[
-              {
-                q:"The text is mainly about…",
-                options:[
-                  "Timur’s favourite computer games.",
-                  "Timur’s appearance and character as a good friend.",
-                  "A football match in the park."
-                ],
-                correct:1
-              }
-            ]
-          },
-          {
-            type:"mcq",
-            title:"Ex 5. Parts of the text",
-            desc:"Answer about parts of the text.",
-            items:[
-              {
-                q:"The first part of the text describes…",
-                options:["what Timur looks like.","where they play.","their school rules."],
-                correct:0
-              },
-              {
-                q:"The middle of the text describes…",
-                options:["Timur’s family.","their activities together.","a school trip."],
-                correct:1
-              },
-              {
-                q:"The last sentence shows…",
-                options:["that Timur is a very important friend.","that they don’t talk much.","that Timur hates problems."],
-                correct:0
-              }
-            ]
-          },
-          {
-            type:"order",
-            title:"Ex 6. Order of events",
-            desc:"Put these ideas in the order they appear in the text.",
-            items:[
-              { text:"Timur’s appearance is described.", order:2 },
-              { text:"The writer explains he can talk to Timur about problems.", order:4 },
-              { text:"We learn Timur is in the same class.", order:1 },
-              { text:"We read about what they do after school.", order:3 }
-            ]
-          }
-        ]
-      },
-      {
-        id:3,
-        name:"Rainy Sunday",
-        level:"Beginner",
-        title:"A Rainy Sunday at Home",
-        text:"On Sunday the weather was terrible. It was cold, rainy and windy, so my family stayed at home. In the morning my mum baked apple pies in the kitchen. They smelled wonderful. My dad read a book in the living room. My sister and I did our homework and then played board games. After lunch we watched a funny film together. In the evening we drank hot tea with pie and talked. It was a quiet but very cosy day.",
-        vocab:"terrible – ужасный; smelled – пахли; cosy – уютный.",
-        exercises:[
-          {
-            type:"trueFalse",
-            title:"Ex 1. True or False",
-            desc:"Decide if the sentences are true (T) or false (F).",
-            items:[
-              { text:"The weather was sunny and hot.", answer:false },
-              { text:"The family stayed at home.", answer:true },
-              { text:"The children played board games.", answer:true },
-              { text:"In the evening they went to the cinema.", answer:false }
-            ]
-          },
-          {
-            type:"mcq",
-            title:"Ex 2. Multiple choice",
-            desc:"Choose the correct answer.",
-            items:[
-              {
-                q:"Why did the family stay at home?",
-                options:["Because the weather was terrible.","Because the TV was broken.","Because it was a holiday."],
-                correct:0
-              },
-              {
-                q:"What did the mum do?",
-                options:["She read a book.","She baked apple pies.","She went shopping."],
-                correct:1
-              },
-              {
-                q:"What did they do after lunch?",
-                options:["Watched a film.","Cleaned the house.","Went for a walk."],
-                correct:0
-              }
-            ]
-          },
-          {
-            type:"mcq",
-            title:"Ex 3. Gap-fill",
-            desc:"Choose the best word.",
-            items:[
-              {
-                q:"The pies ___ wonderful.",
-                options:["smelled","looked","sounded"],
-                correct:0
-              },
-              {
-                q:"They watched a ___ film.",
-                options:["quiet","funny","boring"],
-                correct:1
-              },
-              {
-                q:"It was a quiet but very ___ day.",
-                options:["cosy","cold","dangerous"],
-                correct:0
-              }
-            ]
-          },
-          {
-            type:"mcq",
-            title:"Ex 4. Main idea",
-            desc:"What is the main idea of the text?",
-            items:[
-              {
-                q:"The text shows that…",
-                options:[
-                  "a rainy day can still be nice at home.",
-                  "rainy days are always boring.",
-                  "the family likes travelling."
-                ],
-                correct:0
-              }
-            ]
-          },
-          {
-            type:"mcq",
-            title:"Ex 5. Parts of the text",
-            desc:"Answer about different parts of the story.",
-            items:[
-              {
-                q:"The beginning describes…",
-                options:["the evening.","the weather and the decision to stay home.","the lunch."],
-                correct:1
-              },
-              {
-                q:"The middle part describes…",
-                options:["what everyone does at home.","a trip to the city.","a school day."],
-                correct:0
-              },
-              {
-                q:"The end of the text describes…",
-                options:["the next morning.","the evening with tea and talking.","their neighbours."],
-                correct:1
-              }
-            ]
-          },
-          {
-            type:"order",
-            title:"Ex 6. Order of events",
-            desc:"Put the events in the correct order.",
-            items:[
-              { text:"They watched a funny film.", order:3 },
-              { text:"Mum baked apple pies.", order:1 },
-              { text:"The children did homework and played board games.", order:2 },
-              { text:"They drank hot tea and talked.", order:4 }
-            ]
-          }
-        ]
-      },
-      {
-        id:4,
-        name:"Visit to Granny",
-        level:"Beginner",
-        title:"Weekend at Granny’s House",
-        text:"Every month I visit my granny in the village. She lives in a small but beautiful house with a big garden. In the morning we feed the chickens and water the flowers. Sometimes we pick apples and berries. My granny cooks very tasty soup and homemade bread. In the evening we sit on the bench in front of the house and watch the stars. I love these quiet weekends.",
-        vocab:"pick – собирать; homemade – домашний; bench – скамейка.",
-        exercises:[
-          {
-            type:"trueFalse",
-            title:"Ex 1. True or False",
-            desc:"True (T) or false (F)?",
-            items:[
-              { text:"The writer visits granny every week.", answer:false },
-              { text:"Granny has a big garden.", answer:true },
-              { text:"They watch TV every evening.", answer:false },
-              { text:"The writer likes these weekends.", answer:true }
-            ]
-          },
-          {
-            type:"mcq",
-            title:"Ex 2. Multiple choice",
-            desc:"Choose the correct answer.",
-            items:[
-              {
-                q:"Where does granny live?",
-                options:["In a village.","In the city centre.","Near the sea."],
-                correct:0
-              },
-              {
-                q:"What do they do in the morning?",
-                options:["Go to school.","Feed chickens and water flowers.","Sleep all day."],
-                correct:1
-              },
-              {
-                q:"What do they watch in the evening?",
-                options:["The stars.","The river.","Cars."],
-                correct:0
-              }
-            ]
-          },
-          {
-            type:"mcq",
-            title:"Ex 3. Gap-fill",
-            desc:"Choose the best word.",
-            items:[
-              {
-                q:"Granny lives in a small but ___ house.",
-                options:["ugly","beautiful","dirty"],
-                correct:1
-              },
-              {
-                q:"They sometimes pick apples and ___.",
-                options:["trees","books","berries"],
-                correct:2
-              },
-              {
-                q:"The bread is ___.",
-                options:["homemade","fast","cold"],
-                correct:0
-              }
-            ]
-          },
-          {
-            type:"mcq",
-            title:"Ex 4. Main idea",
-            desc:"Choose the best sentence.",
-            items:[
-              {
-                q:"The text is mostly about…",
-                options:[
-                  "a noisy weekend in the city.",
-                  "quiet and happy weekends at granny’s house.",
-                  "a difficult school day."
-                ],
-                correct:1
-              }
-            ]
-          },
-          {
-            type:"mcq",
-            title:"Ex 5. Parts of the text",
-            desc:"Answer about the parts.",
-            items:[
-              {
-                q:"The first part tells us about…",
-                options:["how often the writer visits and where granny lives.","what they eat.","who lives next door."],
-                correct:0
-              },
-              {
-                q:"The middle part tells us about…",
-                options:["school subjects.","their morning work and food.","a TV show."],
-                correct:1
-              },
-              {
-                q:"The last sentence shows…",
-                options:["the writer doesn’t like the weekends.","the writer loves these weekends.","the writer wants to move to the city."],
-                correct:1
-              }
-            ]
-          },
-          {
-            type:"order",
-            title:"Ex 6. Order of events",
-            desc:"Put the ideas in order.",
-            items:[
-              { text:"They sit on the bench and watch the stars.", order:4 },
-              { text:"They feed the chickens.", order:2 },
-              { text:"We learn that the writer visits granny every month.", order:1 },
-              { text:"They eat tasty soup and bread.", order:3 }
-            ]
-          }
-        ]
-      },
-      {
-        id:5,
-        name:"Four Seasons",
-        level:"Beginner",
-        title:"The Four Seasons",
-        text:"There are four seasons in a year: spring, summer, autumn and winter. In spring the weather gets warmer and trees become green. Many people feel happy after a long winter. In summer it is usually hot. Children have holidays and often go to camps, the sea or the village. Autumn is a colourful season with yellow and red leaves. It is time to go back to school. In winter it is cold and snowy. We can play snowballs, skate and drink hot tea at home.",
-        vocab:"become – становиться; leaves – листья; snowballs – снежки.",
-        exercises:[
-          {
-            type:"trueFalse",
-            title:"Ex 1. True or False",
-            desc:"Read and mark T/F.",
-            items:[
-              { text:"In spring the weather gets colder.", answer:false },
-              { text:"In summer children often have holidays.", answer:true },
-              { text:"Autumn is a colourful season.", answer:true },
-              { text:"In winter it is usually very hot.", answer:false }
-            ]
-          },
-          {
-            type:"mcq",
-            title:"Ex 2. Multiple choice",
-            desc:"Choose the correct answer.",
-            items:[
-              {
-                q:"What happens in spring?",
-                options:["Trees become green.","Leaves become black.","It starts to snow."],
-                correct:0
-              },
-              {
-                q:"Where can children go in summer?",
-                options:["Only to school.","To camps or the sea.","Nowhere."],
-                correct:1
-              },
-              {
-                q:"What can we do in winter?",
-                options:["Swim in the river.","Play snowballs and skate.","Plant flowers."],
-                correct:1
-              }
-            ]
-          },
-          {
-            type:"mcq",
-            title:"Ex 3. Gap-fill",
-            desc:"Choose the correct missing word.",
-            items:[
-              {
-                q:"Autumn is a ___ season.",
-                options:["colourful","boring","empty"],
-                correct:0
-              },
-              {
-                q:"In winter it is cold and ___.",
-                options:["green","snowy","windy only"],
-                correct:1
-              },
-              {
-                q:"In summer children often go on ___.",
-                options:["homework","holidays","lessons"],
-                correct:1
-              }
-            ]
-          },
-          {
-            type:"mcq",
-            title:"Ex 4. Main idea",
-            desc:"Choose the best title.",
-            items:[
-              {
-                q:"The text is about…",
-                options:[
-                  "different sports in winter.",
-                  "what people eat in summer.",
-                  "the four seasons and what people do."
-                ],
-                correct:2
-              }
-            ]
-          },
-          {
-            type:"mcq",
-            title:"Ex 5. Parts of the text",
-            desc:"Answer about parts.",
-            items:[
-              {
-                q:"The first part tells us…",
-                options:["only about winter.","the names of all seasons and spring.","about a trip."],
-                correct:1
-              },
-              {
-                q:"The middle part tells us…",
-                options:["about summer and autumn.","about granny’s village.","about shopping."],
-                correct:0
-              },
-              {
-                q:"The last part tells us…",
-                options:["about winter activities.","about breakfast.","about tests at school."],
-                correct:0
-              }
-            ]
-          },
-          {
-            type:"order",
-            title:"Ex 6. Order of events",
-            desc:"Put the seasons in the order they appear in the text.",
-            items:[
-              { text:"Summer – children have holidays.", order:2 },
-              { text:"Winter – we play snowballs.", order:4 },
-              { text:"Autumn – colourful leaves.", order:3 },
-              { text:"Spring – trees become green.", order:1 }
-            ]
-          }
-        ]
-      },
-      {
-        id:6,
-        name:"New Student",
-        level:"Beginner",
-        title:"A New Student in Our Class",
-        text:"This year we have a new student in our class. His name is Daniel and he comes from another city. On the first day he was very quiet and a little nervous. Our teacher asked everybody to introduce themselves. After the lesson I showed Daniel the canteen and the gym. Now he has many friends and he often laughs in class. He says our class is friendly and he is happy here.",
-        vocab:"quiet – тихий; nervous – нервный; introduce – представляться.",
-        exercises:[
-          {
-            type:"trueFalse",
-            title:"Ex 1. True or False",
-            desc:"Are these sentences true (T) or false (F)?",
-            items:[
-              { text:"Daniel comes from the same city.", answer:false },
-              { text:"He was nervous on the first day.", answer:true },
-              { text:"The writer showed him the canteen.", answer:true },
-              { text:"Now Daniel has no friends.", answer:false }
-            ]
-          },
-          {
-            type:"mcq",
-            title:"Ex 2. Multiple choice",
-            desc:"Choose the correct answer.",
-            items:[
-              {
-                q:"What did the teacher ask the students to do?",
-                options:["To introduce themselves.","To write a test.","To clean the classroom."],
-                correct:0
-              },
-              {
-                q:"Where did the writer take Daniel after the lesson?",
-                options:["To the library and the office.","To the canteen and the gym.","Home."],
-                correct:1
-              },
-              {
-                q:"How does Daniel feel now?",
-                options:["He is happy in this class.","He is still very nervous.","He wants to leave the school."],
-                correct:0
-              }
-            ]
-          },
-          {
-            type:"mcq",
-            title:"Ex 3. Gap-fill",
-            desc:"Choose the best word.",
-            items:[
-              {
-                q:"Daniel is a new student in ___ class.",
-                options:["our","his old","their"],
-                correct:0
-              },
-              {
-                q:"On the first day he was very ___ and nervous.",
-                options:["noisy","quiet","angry"],
-                correct:1
-              },
-              {
-                q:"He says our class is ___.",
-                options:["boring","strict","friendly"],
-                correct:2
-              }
-            ]
-          },
-          {
-            type:"mcq",
-            title:"Ex 4. Main idea",
-            desc:"Choose the best sentence.",
-            items:[
-              {
-                q:"The main idea of the text is that…",
-                options:[
-                  "new students always feel bad.",
-                  "a new student can become happy if the class is friendly.",
-                  "teachers never help new students."
-                ],
-                correct:1
-              }
-            ]
-          },
-          {
-            type:"mcq",
-            title:"Ex 5. Parts of the text",
-            desc:"Answer about different parts of the story.",
-            items:[
-              {
-                q:"The beginning of the text tells us…",
-                options:["Daniel’s hobbies.","that Daniel is new and from another city.","about summer holidays."],
-                correct:1
-              },
-              {
-                q:"The middle of the text tells us…",
-                options:["about the first day and the tour of the school.","about tests.","about a football match."],
-                correct:0
-              },
-              {
-                q:"The last sentences tell us…",
-                options:["that Daniel is unhappy.","that Daniel is happy and has friends.","that Daniel changed school again."],
-                correct:1
-              }
-            ]
-          },
-          {
-            type:"order",
-            title:"Ex 6. Order of events",
-            desc:"Put the events in the correct order.",
-            items:[
-              { text:"The teacher asks students to introduce themselves.", order:2 },
-              { text:"Daniel was quiet and nervous.", order:1 },
-              { text:"The writer shows Daniel the canteen and the gym.", order:3 },
-              { text:"Daniel has many friends and feels happy.", order:4 }
-            ]
-          }
-        ]
-      }
-    ];
-
-    /* ----- STATE & STORAGE ----- */
-    let currentUser=null;      // {pin, cls, isTeacher}
-    let currentTopic=null;
-    let currentExerciseIndex=0;
-
-    const PROGRESS_KEY="aiBayanReadingBrownProgress";
-    const AI_USAGE_KEY="aiBayanReadingBrownAi";
-
-    let progress = loadJson(PROGRESS_KEY) || {};
-    let aiUsage = loadJson(AI_USAGE_KEY) || {};
-    let teacherTempProgress = {}; // прогресс учителя – только в памяти
-
-    function loadJson(key){
-      try{
-        const raw=localStorage.getItem(key);
-        return raw?JSON.parse(raw):null;
-      }catch(e){return null;}
+    // ---- TEACHER MODE ----
+    if(teacherPins[pinVal]){
+      currentUser = { pin: pinVal, cls: teacherPins[pinVal], teacher: true };
+      userInfo.textContent = teacherPins[pinVal] + " · PIN " + pinVal;
+      loginError.textContent = "";
+      pinInput.value = "";
+      showScreen("app");
+      initAiLimitText();
+      openTeacherPanel();
+      return;
     }
-    function saveJson(key,obj){
-      try{localStorage.setItem(key,JSON.stringify(obj));}catch(e){}
+
+    const cls = findClassByPin(pinVal);
+    if(!cls){
+      loginError.textContent = "Неверный PIN. Проверьте диапазон.";
+      return;
     }
-    function todayStr(){return new Date().toISOString().slice(0,10);}
 
-    /* ----- DOM ----- */
-    const loginScreen=document.getElementById("loginScreen");
-    const appScreen=document.getElementById("appScreen");
-    const loginBtn=document.getElementById("loginBtn");
-    const pinInput=document.getElementById("pinInput");
-    const loginError=document.getElementById("loginError");
-    const loginClassInfo=document.getElementById("loginClassInfo");
-    const userChip=document.getElementById("userChip");
+    currentUser = { pin: pinVal, cls, teacher:false };
+    userInfo.textContent = cls + " · PIN " + pinVal;
+    loginError.textContent = "";
+    pinInput.value = "";
+    teacherPanel.style.display = "none";
+    showScreen("app");
+    initAiLimitText();
+  }
 
-    const topicsList=document.getElementById("topicsList");
-    const topicNameEl=document.getElementById("topicName");
-    const topicLevelEl=document.getElementById("topicLevel");
-    const textTitleEl=document.getElementById("textTitle");
-    const textBodyEl=document.getElementById("textBody");
-    const vocabBox=document.getElementById("vocabBox");
+  loginBtn.addEventListener("click", handleLogin);
+  pinInput.addEventListener("keydown", (e) => {
+    if(e.key === "Enter"){
+      handleLogin();
+    }
+  });
 
-    const exTabs=document.getElementById("exTabs");
-    const exTitle=document.getElementById("exTitle");
-    const exDesc=document.getElementById("exDesc");
-    const exContent=document.getElementById("exContent");
-    const checkBtn=document.getElementById("checkBtn");
-    const resetBtn=document.getElementById("resetBtn");
-    const toggleDoneBtn=document.getElementById("toggleDoneBtn");
-    const exResult=document.getElementById("exResult");
-    const doneStatus=document.getElementById("doneStatus");
-    const progressInner=document.getElementById("progressInner");
-    const progressText=document.getElementById("progressText");
+  logoutBtn.addEventListener("click", () => {
+    currentUser = null;
+    teacherPanel.style.display = "none";
+    showScreen("login");
+    initAiLimitText();
+  });
 
-    const backBtn=document.getElementById("backBtn");
-    const mainMenuBtn=document.getElementById("mainMenuBtn");
-    const printBtn=document.getElementById("printBtn");
+  /* ---------- ESSAY TRAINER DATA & ELEMENTS ---------- */
+  const topics = [
+    "The role of sports in students’ lives",
+    "Why is reading still important for teenagers?",
+    "Are phones useful or distracting at school?",
+    "What makes a good friend?",
+    "Should students have homework every day?",
+    "Should school start later in the morning?",
+    "Is it important for teenagers to learn foreign languages?",
+    "The impact of social media on students",
+    "What can students do to protect the environment?",
+    "Why is teamwork important at school?"
+  ];
 
-    const chatBox=document.getElementById("chatBox");
-    const aiQuestion=document.getElementById("aiQuestion");
-    const askBtn=document.getElementById("askBtn");
-    const aiLimitEl=document.getElementById("aiLimit");
-    const aiError=document.getElementById("aiError");
+  const topicsListEl = document.getElementById("topicsList");
+  const topicInput = document.getElementById("topicInput");
+  const newTopicBtn = document.getElementById("newTopicBtn");
+  const clearTopicBtn = document.getElementById("clearTopicBtn");
+  const essayTypeSelect = document.getElementById("essayType");
 
-    const journalBox=document.getElementById("journalBox");
-    const refreshJournalBtn=document.getElementById("refreshJournalBtn");
+  const introInput = document.getElementById("introInput");
+  const body1Input = document.getElementById("body1Input");
+  const body2Input = document.getElementById("body2Input");
+  const conclusionInput = document.getElementById("conclusionInput");
 
-    /* ----- LOGIN ----- */
-    loginBtn.addEventListener("click",handleLogin);
-    pinInput.addEventListener("keydown",e=>{
-      if(e.key==="Enter") handleLogin();
+  const buildEssayBtn = document.getElementById("buildEssayBtn");
+  const clearPlanBtn = document.getElementById("clearPlanBtn");
+
+  const finalEssay = document.getElementById("finalEssay");
+  const wordCountEl = document.getElementById("wordCount");
+  const wordAdviceEl = document.getElementById("wordAdvice");
+  const clearEssayBtn = document.getElementById("clearEssayBtn");
+  const copyEssayBtn = document.getElementById("copyEssayBtn");
+  const printBtn = document.getElementById("printBtn");
+
+  const levelRow = document.getElementById("levelRow");
+  const levelHint = document.getElementById("levelHint");
+
+  function renderTopics(){
+    topicsListEl.innerHTML = "";
+    topics.forEach(t => {
+      const div = document.createElement("div");
+      div.textContent = "• " + t;
+      div.addEventListener("click", () => {
+        topicInput.value = t;
+      });
+      topicsListEl.appendChild(div);
     });
+  }
 
-    function handleLogin(){
-      const pinStr=pinInput.value.trim();
-      const pin=Number(pinStr);
-      loginError.textContent="";
-      loginClassInfo.textContent="";
+  function setRandomTopic(){
+    const index = Math.floor(Math.random() * topics.length);
+    topicInput.value = topics[index];
+  }
 
-      if(!pinStr){
-        loginError.textContent="Please enter your PIN code.";
-        return;
-      }
+  clearTopicBtn.addEventListener("click", () => {
+    topicInput.value = "";
+  });
 
-      // TEACHER MODE
-      if(pinStr==="3244"){
-        currentUser={
-          pin:3244,
-          cls:"Teacher",
-          isTeacher:true,
-          name:"Tcher"
-        };
-        userChip.textContent="Teacher Tcher • PIN 3244 (Teacher mode)";
-        loginClassInfo.textContent="Teacher mode: progress is not saved to student journal. AI has no limit.";
+  newTopicBtn.addEventListener("click", setRandomTopic);
+
+  function buildDraftEssay(){
+    const topicText = topicInput.value.trim();
+    const type = essayTypeSelect.value;
+
+    let intro = introInput.value.trim();
+    let body1 = body1Input.value.trim();
+    let body2 = body2Input.value.trim();
+    let conclusion = conclusionInput.value.trim();
+
+    if(!intro && topicText){
+      if(type === "opinion"){
+        intro = `Nowadays, the topic of "${topicText}" is very important for many students. In my opinion, this question plays a big role in our lives.`;
+      }else if(type === "forAgainst"){
+        intro = `There are different opinions about "${topicText}". Some people agree with this idea, while others are against it.`;
       }else{
-        if(!pin || isNaN(pin)){
-          loginError.textContent="PIN not found. Ask your teacher.";
-          return;
-        }
-        const cls=getClassByPin(pin);
-        if(!cls){
-          loginError.textContent="PIN not found. Ask your teacher.";
-          return;
-        }
-        currentUser={
-          pin,
-          cls,
-          isTeacher:false
-        };
-        userChip.textContent="Class "+cls+" • PIN "+pin;
-        loginClassInfo.textContent="Welcome! Class "+cls+". You can start reading practice.";
-      }
-
-      loginScreen.style.display="none";
-      appScreen.style.display="flex";
-
-      renderTopics();
-      if(topics.length>0) selectTopic(topics[0].id);
-      updateProgressUI();
-      updateAiLimitInfo();
-      renderJournal();
-    }
-
-    /* ----- TOPICS UI ----- */
-    function renderTopics(){
-      topicsList.innerHTML="";
-      topics.forEach(t=>{
-        const card=document.createElement("div");
-        card.className="topic-card";
-        card.dataset.id=t.id;
-
-        const row=document.createElement("div");
-        row.className="topic-title-row";
-
-        const title=document.createElement("div");
-        title.className="topic-title";
-        title.textContent=t.id+". "+t.name;
-
-        const level=document.createElement("div");
-        level.className="topic-level";
-        level.textContent=t.level;
-
-        row.appendChild(title);
-        row.appendChild(level);
-
-        const sub=document.createElement("div");
-        sub.className="topic-sub";
-        sub.textContent=t.title;
-
-        card.appendChild(row);
-        card.appendChild(sub);
-
-        card.addEventListener("click",()=>selectTopic(t.id));
-        topicsList.appendChild(card);
-      });
-      updateActiveTopicCard();
-    }
-
-    function updateActiveTopicCard(){
-      const cards=document.querySelectorAll(".topic-card");
-      cards.forEach(card=>{
-        const id=Number(card.dataset.id);
-        card.classList.toggle("active",currentTopic && currentTopic.id===id);
-      });
-    }
-
-    function selectTopic(id){
-      const t=topics.find(x=>x.id===id);
-      if(!t) return;
-      currentTopic=t;
-      currentExerciseIndex=0;
-      updateActiveTopicCard();
-      renderText();
-      renderExerciseTabs();
-      renderExercise();
-      exResult.textContent="";
-      exResult.className="ex-result";
-      updateProgressUI();
-    }
-
-    function renderText(){
-      if(!currentTopic){
-        topicNameEl.textContent="Choose a text above";
-        topicLevelEl.textContent="";
-        textTitleEl.textContent="";
-        textBodyEl.textContent="Select one of the topics above to start reading.";
-        vocabBox.style.display="none";
-        return;
-      }
-      topicNameEl.textContent=currentTopic.name;
-      topicLevelEl.textContent=currentTopic.level;
-      textTitleEl.textContent=currentTopic.title;
-      textBodyEl.textContent=currentTopic.text;
-      if(currentTopic.vocab){
-        vocabBox.style.display="block";
-        vocabBox.textContent="Vocabulary: "+currentTopic.vocab;
-      }else{
-        vocabBox.style.display="none";
+        intro = `The topic "${topicText}" is often discussed by teachers and students. It is important to understand its advantages and disadvantages.`;
       }
     }
 
-    /* ----- EXERCISES ----- */
-    function renderExerciseTabs(){
-      exTabs.innerHTML="";
-      if(!currentTopic) return;
-      currentTopic.exercises.forEach((ex,idx)=>{
-        const btn=document.createElement("button");
-        btn.className="ex-tab";
-        btn.textContent=(idx+1)+". "+ex.title.replace(/^Ex \\d+\\. /,"");
-        btn.dataset.index=idx;
-        btn.addEventListener("click",()=>{
-          currentExerciseIndex=idx;
-          renderExercise();
-        });
-        exTabs.appendChild(btn);
-      });
-      updateActiveExTab();
+    if(!body1){
+      body1 = "Firstly, there are several strong reasons that support this point of view. For example, many students say that it helps them develop important skills.";
     }
 
-    function updateActiveExTab(){
-      const tabs=document.querySelectorAll(".ex-tab");
-      tabs.forEach(t=>{
-        const idx=Number(t.dataset.index);
-        t.classList.toggle("active",idx===currentExerciseIndex);
-      });
+    if(!body2){
+      body2 = "Secondly, this idea can also influence students' future life. It may teach them responsibility, independence and cooperation with other people.";
     }
 
-    function renderExercise(){
-      if(!currentTopic) return;
-      updateActiveExTab();
-      const ex=currentTopic.exercises[currentExerciseIndex];
-      exTitle.textContent=ex.title;
-      exDesc.textContent=ex.desc;
-      exContent.innerHTML="";
-      exResult.textContent="";
-      exResult.className="ex-result";
+    if(!conclusion){
+      conclusion = "In conclusion, this topic has both positive and negative sides. However, I believe that its advantages are more significant for students’ development.";
+    }
 
-      if(ex.type==="trueFalse" || ex.type==="mcq"){
-        ex.items.forEach((item,idx)=>{
-          const block=document.createElement("div");
-          block.className="question-block";
-          block.dataset.index=idx;
+    const parts = [intro, body1, body2, conclusion].filter(Boolean);
+    finalEssay.value = parts.join("\n\n");
+    updateWordCount();
+  }
 
-          const qText=document.createElement("div");
-          qText.className="question-text";
-          qText.textContent=(ex.type==="trueFalse" ? "" : (idx+1)+". ")+(item.q || item.text);
-          block.appendChild(qText);
+  buildEssayBtn.addEventListener("click", buildDraftEssay);
 
-          if(ex.type==="trueFalse"){
-            ["True","False"].forEach((labelVal,i)=>{
-              const label=document.createElement("label");
-              label.className="option-label";
-              const radio=document.createElement("input");
-              radio.type="radio";
-              radio.name="q"+idx;
-              radio.value= i===0 ? "true" : "false";
-              label.appendChild(radio);
-              label.appendChild(document.createTextNode(" "+labelVal));
-              block.appendChild(label);
-            });
-          }else{
-            item.options.forEach((opt,optIndex)=>{
-              const label=document.createElement("label");
-              label.className="option-label";
-              const radio=document.createElement("input");
-              radio.type="radio";
-              radio.name="q"+idx;
-              radio.value=optIndex;
-              label.appendChild(radio);
-              label.appendChild(document.createTextNode(" "+opt));
-              block.appendChild(label);
-            });
+  clearPlanBtn.addEventListener("click", () => {
+    introInput.value = "";
+    body1Input.value = "";
+    body2Input.value = "";
+    conclusionInput.value = "";
+  });
+
+  function countWords(text){
+    return text
+      .trim()
+      .split(/\s+/)
+      .filter(w => w.length > 0).length;
+  }
+
+  function getCurrentLevel(){
+    const active = levelRow.querySelector(".pill.active");
+    return active ? active.dataset.level : "7–8 grade";
+  }
+
+  function updateWordCount(){
+    const words = countWords(finalEssay.value);
+    wordCountEl.textContent = "Words: " + words;
+
+    const levelText = getCurrentLevel();
+    let advice;
+    if(levelText === "7–8 grade"){
+      advice = "Target: 120–150 words for 7–8 grade";
+    }else if(levelText === "Olympiad"){
+      advice = "Target: 180–220 words for school/oblast olympiad";
+    }else{
+      advice = "Target: 200–250 words for exam practice";
+    }
+    wordAdviceEl.textContent = advice;
+  }
+
+  finalEssay.addEventListener("input", () => {
+    updateWordCount();
+    saveEssayForTeacher();
+  });
+
+  clearEssayBtn.addEventListener("click", () => {
+    finalEssay.value = "";
+    updateWordCount();
+    saveEssayForTeacher();
+  });
+
+  copyEssayBtn.addEventListener("click", async () => {
+    try{
+      await navigator.clipboard.writeText(finalEssay.value);
+      copyEssayBtn.textContent = "✅ Copied";
+      setTimeout(() => copyEssayBtn.textContent = "📋 Copy", 1500);
+    }catch(e){
+      alert("Cannot copy automatically. Please select text and copy manually.");
+    }
+  });
+
+  /* ---------- PRINT ESSAY ---------- */
+  printBtn.addEventListener("click", () => {
+    const content = finalEssay.value.replace(/\n/g, "<br/>");
+    const printWindow = window.open("", "_blank");
+    printWindow.document.write(`
+      <html>
+      <head>
+        <title>Print Essay</title>
+        <style>
+          body{
+            font-family: system-ui, sans-serif;
+            padding: 20px;
+            line-height: 1.6;
+            font-size: 16px;
           }
+        </style>
+      </head>
+      <body>${content}</body>
+      </html>
+    `);
+    printWindow.document.close();
+    printWindow.print();
+  });
 
-          const small=document.createElement("div");
-          small.className="small-note";
-          small.textContent="";
-          block.appendChild(small);
+  levelRow.addEventListener("click", (e) => {
+    const pill = e.target.closest(".pill");
+    if(!pill) return;
+    levelRow.querySelectorAll(".pill").forEach(p => p.classList.remove("active"));
+    pill.classList.add("active");
 
-          exContent.appendChild(block);
-        });
-      }else if(ex.type==="order"){
-        ex.items.forEach((item,idx)=>{
-          const row=document.createElement("div");
-          row.className="order-row";
-          const select=document.createElement("select");
-          select.dataset.correct=item.order;
-          for(let n=1;n<=ex.items.length;n++){
-            const opt=document.createElement("option");
-            opt.value=n;
-            opt.textContent=n;
-            select.appendChild(opt);
-          }
-          const text=document.createElement("div");
-          text.textContent=item.text;
-          row.appendChild(select);
-          row.appendChild(text);
-          exContent.appendChild(row);
-        });
-      }
+    const level = pill.dataset.level;
+    if(level === "7–8 grade"){
+      levelHint.innerHTML = 'Current level: <b>7–8 grade</b> · Good length: <b>120–150 words</b>.';
+    }else if(level === "Olympiad"){
+      levelHint.innerHTML = 'Current level: <b>Olympiad</b> · Good length: <b>180–220 words</b>. Use stronger vocabulary and more complex sentences.';
+    }else{
+      levelHint.innerHTML = 'Current level: <b>Exam practice</b> · Good length: <b>200–250 words</b>. Focus on clear structure and linking words.';
+    }
+    updateWordCount();
+  });
+
+  essayTypeSelect.addEventListener("change", () => {
+    const type = essayTypeSelect.value;
+    if(type === "opinion"){
+      introInput.placeholder =
+        "Introduce the topic + give your opinion.\nExample: Nowadays, ... In my opinion, ...";
+      body1Input.placeholder =
+        "Argument 1 FOR your opinion + explanation + example.\nUse: Firstly, To begin with...";
+      body2Input.placeholder =
+        "Argument 2 FOR your opinion + explanation + example.\nUse: Secondly, Moreover...";
+      conclusionInput.placeholder =
+        "Repeat your opinion in other words + final thought.\nUse: In conclusion, I strongly believe that...";
+    }else if(type === "forAgainst"){
+      introInput.placeholder =
+        "Introduce the topic and say there are different opinions.\nExample: Some people think..., while others say...";
+      body1Input.placeholder =
+        "Arguments FOR the idea.\nUse: On the one hand, Firstly...";
+      body2Input.placeholder =
+        "Arguments AGAINST the idea.\nUse: On the other hand, However...";
+      conclusionInput.placeholder =
+        "Summarise both sides + your own opinion.\nUse: To sum up, In my view...";
+    }else if(type === "argumentative"){
+      introInput.placeholder =
+        "Introduce the problem + short background.\nExample: There is a strong debate about...";
+      body1Input.placeholder =
+        "Strong argument 1 with example.\nUse: Firstly, The main reason is that...";
+      body2Input.placeholder =
+        "Strong argument 2 + maybe counter-argument.\nUse: Secondly, In addition, Some people claim that..., but...";
+      conclusionInput.placeholder =
+        "Summarise your arguments + final message.\nUse: Therefore, I am convinced that...";
+    }else{
+      introInput.placeholder =
+        "Introduce the topic you describe.\nExample: My favourite place/activity/person is...";
+      body1Input.placeholder =
+        "Describe appearance / main features.\nUse many adjectives.";
+      body2Input.placeholder =
+        "Describe feelings, atmosphere or reasons why it is important.";
+      conclusionInput.placeholder =
+        "Short final impression.\nUse: In conclusion, That is why this is special for me.";
+    }
+  });
+
+  /* ---------- AI BAYAN CHAT WITH LIMIT 10 / DAY ---------- */
+  const chatBox = document.getElementById("chatBox");
+  const aiQuestion = document.getElementById("aiQuestion");
+  const askBtn = document.getElementById("askBtn");
+  const clearChatBtn = document.getElementById("clearChatBtn");
+  const aiLimitText = document.getElementById("aiLimitText");
+
+  const AI_LIMIT_PER_DAY = 10;
+  const WORKER_URL = "https://shiny-tree-f78c.aiko030500.workers.dev/";
+
+  function getTodayStr(){
+    return new Date().toISOString().slice(0,10); // YYYY-MM-DD
+  }
+
+  function getAiUsage(){
+    if(!currentUser) return {count:0, key:null};
+    const key = "essay_ai_usage_" + currentUser.pin + "_" + getTodayStr();
+    const raw = localStorage.getItem(key);
+    let val = 0;
+    if(raw){
+      const n = parseInt(raw,10);
+      if(!isNaN(n)) val = n;
+    }
+    return {key, count:val};
+  }
+
+  function setAiUsage(count){
+    if(!currentUser) return;
+    const usage = getAiUsage();
+    if(!usage.key) return;
+    localStorage.setItem(usage.key, String(count));
+  }
+
+  function initAiLimitText(){
+    if(!currentUser){
+      aiLimitText.textContent = "Login with your PIN to use AI Bayan (10 questions per day).";
+      return;
+    }
+    const usage = getAiUsage().count;
+    const left = Math.max(0, AI_LIMIT_PER_DAY - usage);
+    if(usage >= AI_LIMIT_PER_DAY){
+      aiLimitText.innerHTML =
+        `<span class="limit-max">You have used all ${AI_LIMIT_PER_DAY} questions for today.</span>`;
+    }else if(left <= 3){
+      aiLimitText.innerHTML =
+        `<span class="limit-warning">Questions today: ${usage}/${AI_LIMIT_PER_DAY}. Only ${left} left.</span>`;
+    }else{
+      aiLimitText.innerHTML =
+        `<span class="limit-ok">Questions today: ${usage}/${AI_LIMIT_PER_DAY}. Keep practising wisely.</span>`;
+    }
+  }
+
+  function appendMessage(text, type){
+    const div = document.createElement("div");
+    div.className = "msg " + type;
+    div.textContent = text;
+    chatBox.appendChild(div);
+    chatBox.scrollTop = chatBox.scrollHeight;
+  }
+
+  async function sendToAiBayan(){
+    if(!currentUser){
+      alert("Сначала войдите по PIN.");
+      return;
+    }
+    const question = aiQuestion.value.trim();
+    if(!question){
+      return;
     }
 
-    checkBtn.addEventListener("click",()=>{
-      if(!currentTopic) return;
-      const ex=currentTopic.exercises[currentExerciseIndex];
-      let correct=0;
-      let total=0;
-
-      if(ex.type==="trueFalse" || ex.type==="mcq"){
-        const blocks=[...exContent.querySelectorAll(".question-block")];
-        blocks.forEach((block,idx)=>{
-          block.classList.remove("correct","wrong");
-          const note=block.querySelector(".small-note");
-          note.textContent="";
-          const inputs=[...block.querySelectorAll("input[type=radio]")];
-          const chosen=inputs.find(r=>r.checked);
-          total++;
-          if(!chosen){
-            note.textContent="Choose an answer.";
-            return;
-          }
-          if(ex.type==="trueFalse"){
-            const isTrue = chosen.value==="true";
-            const expected = ex.items[idx].answer;
-            if(isTrue===expected){
-              correct++;
-              block.classList.add("correct");
-              note.textContent="Correct!";
-            }else{
-              block.classList.add("wrong");
-              note.textContent="Wrong. Try again.";
-            }
-          }else{
-            const value=Number(chosen.value);
-            const expected=ex.items[idx].correct;
-            if(value===expected){
-              correct++;
-              block.classList.add("correct");
-              note.textContent="Correct!";
-            }else{
-              block.classList.add("wrong");
-              note.textContent="Wrong. Try again.";
-            }
-          }
-        });
-      }else if(ex.type==="order"){
-        const rows=[...exContent.querySelectorAll(".order-row")];
-        rows.forEach(row=>{
-          total++;
-          const select=row.querySelector("select");
-          const chosen=Number(select.value);
-          const expected=Number(select.dataset.correct);
-          if(chosen===expected){
-            correct++;
-            select.style.borderColor="green";
-          }else{
-            select.style.borderColor="red";
-          }
-        });
-      }
-
-      if(total===0) return;
-      if(correct===total){
-        exResult.textContent="Perfect: "+correct+" / "+total;
-        exResult.classList.add("good");
-        exResult.classList.remove("bad");
-      }else{
-        exResult.textContent="You got "+correct+" / "+total+". Check the red parts.";
-        exResult.classList.add("bad");
-        exResult.classList.remove("good");
-      }
-    });
-
-    resetBtn.addEventListener("click",()=>{
-      renderExercise();
-    });
-
-    /* ----- TOPIC DONE + PROGRESS ----- */
-    function getUserProgress(){
-      if(!currentUser) return null;
-      if(currentUser.isTeacher) return teacherTempProgress;
-      if(!progress[currentUser.pin]) progress[currentUser.pin]={};
-      return progress[currentUser.pin];
+    const usageData = getAiUsage();
+    if(usageData.count >= AI_LIMIT_PER_DAY){
+      initAiLimitText();
+      appendMessage("Daily limit reached (10 questions). Try again tomorrow.", "system");
+      return;
     }
 
-    function isTopicDone(){
-      if(!currentUser || !currentTopic) return false;
-      const userProg=getUserProgress();
-      return !!userProg[currentTopic.id];
-    }
+    appendMessage("You: " + question, "user");
+    aiQuestion.value = "";
 
-    function toggleTopicDone(){
-      if(!currentUser || !currentTopic) return;
-      const userProg=getUserProgress();
-      userProg[currentTopic.id]=!userProg[currentTopic.id];
-      if(!currentUser.isTeacher){
-        saveJson(PROGRESS_KEY,progress);
-        renderJournal();
-      }
-      updateProgressUI();
-    }
-    toggleDoneBtn.addEventListener("click",toggleTopicDone);
+    const thinkingMsg = document.createElement("div");
+    thinkingMsg.className = "msg system";
+    thinkingMsg.textContent = "AI Bayan is thinking...";
+    chatBox.appendChild(thinkingMsg);
+    chatBox.scrollTop = chatBox.scrollHeight;
 
-    function updateProgressUI(){
-      if(!currentUser){
-        doneStatus.textContent="Not done";
-        doneStatus.classList.add("off");
-        progressInner.style.width="0%";
-        progressText.textContent="0 / 0 topics done";
-        return;
-      }
-      const userProg=getUserProgress();
-      const total=topics.length;
-      let done=0;
-      topics.forEach(t=>{
-        if(userProg[t.id]) done++;
-      });
-
-      if(currentTopic && userProg[currentTopic.id]){
-        doneStatus.textContent=currentUser.isTeacher?"Done (Teacher only) ✔":"Done ✔";
-        doneStatus.classList.remove("off");
-        toggleDoneBtn.textContent="✖ Unmark topic";
-      }else{
-        doneStatus.textContent="Not done";
-        doneStatus.classList.add("off");
-        toggleDoneBtn.textContent="✔ Mark topic as done";
-      }
-      const percent=total?(done/total)*100:0;
-      progressInner.style.width=percent+"%";
-      progressText.textContent=done+" / "+total+" topics done";
-    }
-
-    /* ----- JOURNAL ----- */
-    function renderJournal(){
-      journalBox.innerHTML="";
-      const info=document.createElement("div");
-      info.style.fontSize=".78rem";
-      info.style.color="#6d5b4a";
-      info.textContent="Journal shows how many reading topics are marked 'done' by each student PIN on this device.";
-      journalBox.appendChild(info);
-
-      const pins=Object.keys(progress)
-        .map(p=>Number(p))
-        .filter(p=>p!==3244) // teacher PIN не показываем
-        .sort((a,b)=>a-b);
-
-      if(pins.length===0){
-        const empty=document.createElement("div");
-        empty.style.fontSize=".8rem";
-        empty.style.marginTop="6px";
-        empty.textContent="No student data yet. When students mark topics as done, you will see it here.";
-        journalBox.appendChild(empty);
-        return;
-      }
-      pins.forEach(pin=>{
-        const cls=getClassByPin(pin) || "?";
-        const userProg=progress[pin] || {};
-        let done=0;
-        for(const topicId in userProg){
-          if(userProg[topicId]) done++;
-        }
-        const row=document.createElement("div");
-        row.className="journal-row";
-
-        const left=document.createElement("span");
-        left.className="pin";
-        left.textContent="PIN "+pin+" (class "+cls+")";
-
-        const right=document.createElement("span");
-        right.className="info";
-        right.textContent=done+" / "+topics.length+" topics done";
-
-        row.appendChild(left);
-        row.appendChild(right);
-        journalBox.appendChild(row);
-      });
-    }
-    refreshJournalBtn.addEventListener("click",renderJournal);
-
-    /* ----- AI BAYAN ----- */
-    const AI_ENDPOINT="https://shiny-tree-f78c.aiko030500.workers.dev/";
-
-    function getRemainingQuestionsToday(){
-      if(!currentUser) return 0;
-      if(currentUser.isTeacher) return 999; // no real limit
-      const pin=currentUser.pin;
-      const today=todayStr();
-      const rec=aiUsage[pin];
-      if(!rec || rec.date!==today) return 1; // 1 question per day
-      const used=rec.count||0;
-      return Math.max(0,1-used);
-    }
-
-    function updateAiLimitInfo(){
-      if(!currentUser){
-        aiLimitEl.textContent="";
-        askBtn.disabled=true;
-        return;
-      }
-      if(currentUser.isTeacher){
-        aiLimitEl.textContent="Teacher mode: no AI limit today.";
-        askBtn.disabled=false;
-        return;
-      }
-      const left=getRemainingQuestionsToday();
-      if(left<=0){
-        aiLimitEl.textContent="Today you have used your 1 question. Come back tomorrow.";
-        askBtn.disabled=true;
-      }else{
-        aiLimitEl.textContent="You can ask "+left+" question today.";
-        askBtn.disabled=false;
-      }
-    }
-
-    function appendChatMessage(role,text){
-      const div=document.createElement("div");
-      div.className="chat-msg "+(role==="user"?"user":"ai");
-      const small=document.createElement("small");
-      small.textContent=role==="user"?"You":(currentUser && currentUser.isTeacher?"AI Bayan (teacher view)":"AI Bayan");
-      const p=document.createElement("div");
-      p.textContent=text;
-      div.appendChild(small);
-      div.appendChild(p);
-      chatBox.appendChild(div);
-      chatBox.scrollTop=chatBox.scrollHeight;
-    }
-
-    askBtn.addEventListener("click",sendToAiBayan);
-    aiQuestion.addEventListener("keydown",e=>{
-      if(e.key==="Enter" && (e.ctrlKey || e.metaKey)){
-        e.preventDefault();
-        sendToAiBayan();
-      }
-    });
-
-    function sendToAiBayan(){
-      aiError.textContent="";
-      if(!currentUser){
-        aiError.textContent="Please login with your PIN.";
-        return;
-      }
-      if(!currentUser.isTeacher){
-        const left=getRemainingQuestionsToday();
-        if(left<=0){
-          aiError.textContent="Limit reached: 1 AI question per day for this PIN.";
-          updateAiLimitInfo();
-          return;
-        }
-      }
-      const q=aiQuestion.value.trim();
-      if(!q){
-        aiError.textContent="Write a question for AI Bayan.";
-        return;
-      }
-
-      appendChatMessage("user",q);
-      aiQuestion.value="";
-      askBtn.disabled=true;
-      askBtn.textContent="Asking...";
-
-      const payload={
-        question:q,
-        pin:currentUser.pin,
-        cls:currentUser.cls,
-        teacher:!!currentUser.isTeacher,
-        section:"reading_beginner_brown",
-        topic: currentTopic ? currentTopic.name : null,
-        ts:new Date().toISOString()
+    try{
+      const payload = {
+        question,
+        pin: currentUser.pin,
+        cls: currentUser.cls,
+        app: "EssayTrainer"
       };
 
-      fetch(AI_ENDPOINT,{
+      const response = await fetch(WORKER_URL, {
         method:"POST",
-        headers:{"Content-Type":"application/json"},
-        body:JSON.stringify(payload)
-      })
-      .then(res=>res.text())
-      .then(text=>{
-        let answer=text;
-        try{
-          const obj=JSON.parse(text);
-          answer=obj.answer || obj.response || obj.result || text;
-        }catch(e){}
-        appendChatMessage("ai",answer || "AI Bayan sent an empty answer.");
-        if(!currentUser.isTeacher){
-          const pin=currentUser.pin;
-          const today=todayStr();
-          const rec=aiUsage[pin];
-          if(!rec || rec.date!==today){
-            aiUsage[pin]={date:today,count:1};
-          }else{
-            aiUsage[pin].count=(aiUsage[pin].count||0)+1;
-          }
-          saveJson(AI_USAGE_KEY,aiUsage);
-        }
-        updateAiLimitInfo();
-      })
-      .catch(err=>{
-        console.error(err);
-        aiError.textContent="Error: cannot connect to AI Bayan now.";
-      })
-      .finally(()=>{
-        askBtn.disabled = !currentUser ? true :
-          (!currentUser.isTeacher && getRemainingQuestionsToday()<=0);
-        askBtn.textContent="Ask AI Bayan";
+        headers:{ "Content-Type":"application/json" },
+        body: JSON.stringify(payload)
       });
-    }
 
-    /* ----- BACK / MAIN MENU / PRINT ----- */
-    backBtn.addEventListener("click",()=>{
-      if(window.history.length>1){
-        window.history.back();
-      }else{
-        window.scrollTo({top:0,behavior:"smooth"});
+      chatBox.removeChild(thinkingMsg);
+
+      if(!response.ok){
+        appendMessage("Error from AI Bayan. Please try again later.", "system");
+        return;
       }
-    });
 
-    mainMenuBtn.addEventListener("click",()=>{
-      topicsList.scrollIntoView({behavior:"smooth"});
-    });
+      let answer = "";
+      // пробуем как JSON
+      let data = null;
+      try{
+        data = await response.json();
+      }catch(_){
+        data = null;
+      }
 
-    printBtn.addEventListener("click",()=>{
-      window.print();
-    });
+      if(data && (data.answer || data.reply || data.result)){
+        answer = data.answer || data.reply || data.result;
+      }else{
+        // если воркер возвращает просто текст
+        const text = data ? "" : await response.text();
+        answer = text || "AI Bayan sent an empty reply.";
+      }
 
-    /* ----- INIT ----- */
-    function init(){
-      renderTopics();
-      // текст до логина – заглушка, настоящее наполняется после handleLogin
+      appendMessage(answer, "ai");
+
+      // успешный ответ — увеличиваем счётчик
+      const newCount = usageData.count + 1;
+      setAiUsage(newCount);
+      initAiLimitText();
+    }catch(err){
+      console.error(err);
+      chatBox.removeChild(thinkingMsg);
+      appendMessage("Connection error. Please check internet or try again later.", "system");
     }
-    init();
-  </script>
+  }
+
+  askBtn.addEventListener("click", sendToAiBayan);
+
+  aiQuestion.addEventListener("keydown", (e) => {
+    if(e.key === "Enter" && !e.shiftKey){
+      e.preventDefault();
+      sendToAiBayan();
+    }
+  });
+
+  clearChatBtn.addEventListener("click", () => {
+    chatBox.innerHTML = "";
+  });
+
+  /* ---------- SAVE ESSAY FOR TEACHER MODE ---------- */
+  function saveEssayForTeacher(){
+    if(!currentUser || currentUser.teacher) return;
+
+    const data = {
+      pin: currentUser.pin,
+      cls: currentUser.cls,
+      topic: topicInput.value,
+      essay: finalEssay.value,
+      words: countWords(finalEssay.value),
+      date: getTodayStr()
+    };
+
+    const key = "essay_saved_" + currentUser.pin + "_" + getTodayStr();
+    localStorage.setItem(key, JSON.stringify(data));
+  }
+
+  /* ---------- TEACHER MODE ---------- */
+  function openTeacherPanel(){
+    teacherPanel.style.display = "block";
+    loadTeacherData();
+  }
+
+  function loadTeacherData(){
+    const container = document.getElementById("teacherList");
+    container.innerHTML = "";
+
+    const today = getTodayStr();
+
+    for(let i=0; i<localStorage.length; i++){
+      const key = localStorage.key(i);
+
+      if(key.startsWith("essay_saved_") && key.includes(today)){
+        const dataStr = localStorage.getItem(key);
+        if(!dataStr) continue;
+        let data;
+        try{
+          data = JSON.parse(dataStr);
+        }catch(_){
+          continue;
+        }
+        const div = document.createElement("div");
+        div.style.padding = "8px 0";
+        div.style.borderBottom = "1px dashed #d1c4e9";
+
+        div.innerHTML = `
+          <b>PIN ${data.pin}</b> · Class: ${data.cls}<br>
+          <b>Topic:</b> ${data.topic || "(no topic)"}<br>
+          <b>Words:</b> ${data.words}<br>
+          <b>Essay:</b><br>${(data.essay || "").replace(/\n/g,"<br>")}
+        `;
+
+        container.appendChild(div);
+      }
+    }
+
+    if(container.innerHTML.trim() === ""){
+      container.innerHTML = "<em>No essays today.</em>";
+    }
+  }
+
+  /* ---------- INIT ---------- */
+  renderTopics();
+  setRandomTopic();
+  updateWordCount();
+  initAiLimitText();
+  showScreen("login");
+</script>
 </body>
 </html>
