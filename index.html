@@ -10,7 +10,7 @@
       --brown-main:#7B4F27;   /* насыщенный коричневый */
       --brown-soft:#A36E3A;
       --gold:#E8C46C;
-      --bg:#F5EFE7;
+      --bg:#F3F7FA;           /* фон как в грамматике */
       --danger:#C62828;
       --correct:#1B5E20;
       --wrong:#B71C1C;
@@ -62,6 +62,81 @@
       background:#f2e5d7;
     }
 
+    /* ===== HEADER ===== */
+    header{
+      display:flex;
+      background:linear-gradient(90deg,#7B4F27,#A36E3A);
+      color:#fff;
+      padding:10px 18px;
+      align-items:center;
+      justify-content:space-between;
+      box-shadow:0 2px 6px rgba(0,0,0,.25);
+      gap:12px;
+    }
+    .header-left{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    .logo-circle{
+      width:54px;
+      height:54px;
+      border-radius:50%;
+      background:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+      flex-shrink:0;
+      box-shadow:0 0 0 3px rgba(123,79,39,.35);
+    }
+    .logo-circle img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+    .header-text-main{
+      font-weight:700;
+      font-size:.98rem;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+    .header-text-sub{
+      font-size:.8rem;
+      opacity:.95;
+    }
+    .user-chip{
+      margin-top:2px;
+      font-size:.76rem;
+      background:rgba(0,0,0,.18);
+      padding:3px 9px;
+      border-radius:999px;
+      display:inline-block;
+    }
+    .header-badge{
+      background:rgba(255,255,255,.15);
+      color:#fff8e1;
+      padding:6px 10px;
+      border-radius:999px;
+      font-size:.78rem;
+      display:flex;
+      align-items:center;
+      gap:6px;
+      white-space:nowrap;
+    }
+    .header-badge span.icon{
+      font-size:1rem;
+    }
+    @media(max-width:700px){
+      header{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+      .header-badge{
+        align-self:flex-start;
+      }
+    }
+
     /* ===== LOGIN ===== */
     #loginScreen{
       flex:1;
@@ -83,23 +158,6 @@
       align-items:center;
       gap:10px;
       margin-bottom:12px;
-    }
-    .logo-circle{
-      width:54px;
-      height:54px;
-      border-radius:50%;
-      background:#fff;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      overflow:hidden;
-      flex-shrink:0;
-      box-shadow:0 0 0 3px rgba(123,79,39,.35);
-    }
-    .logo-circle img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
     }
     .login-title-main{
       font-size:1rem;
@@ -150,55 +208,6 @@
       margin-top:4px;
       font-size:.8rem;
       color:#33691E;
-    }
-
-    /* ===== HEADER ===== */
-    header{
-      display:none;
-      background:linear-gradient(90deg,#7B4F27,#A36E3A);
-      color:#fff;
-      padding:10px 18px;
-      align-items:center;
-      justify-content:space-between;
-      box-shadow:0 2px 6px rgba(0,0,0,.25);
-      gap:12px;
-    }
-    .header-left{
-      display:flex;
-      align-items:center;
-      gap:10px;
-    }
-    .header-text-main{
-      font-weight:700;
-      font-size:.98rem;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-    }
-    .header-text-sub{
-      font-size:.8rem;
-      opacity:.95;
-    }
-    .header-badge{
-      background:rgba(255,255,255,.15);
-      color:#fff8e1;
-      padding:6px 10px;
-      border-radius:999px;
-      font-size:.78rem;
-      display:flex;
-      align-items:center;
-      gap:6px;
-      white-space:nowrap;
-    }
-    .header-badge span.icon{
-      font-size:1rem;
-    }
-    .user-chip{
-      margin-top:2px;
-      font-size:.76rem;
-      background:rgba(0,0,0,.18);
-      padding:3px 9px;
-      border-radius:999px;
-      display:inline-block;
     }
 
     /* ===== MAIN LAYOUT ===== */
@@ -255,37 +264,69 @@
       margin-bottom:4px;
     }
 
-    /* topics list */
-    .topics-list{
+    /* ----- TOP MENU: BACK / MAIN / PRINT ----- */
+    .top-toolbar{
       display:flex;
       flex-wrap:wrap;
-      gap:6px;
+      gap:8px;
       margin-bottom:8px;
-      max-height:140px;
-      overflow:auto;
-      padding-right:2px;
+      align-items:center;
     }
-    .topic-chip{
-      border-radius:999px;
-      padding:6px 11px;
-      border:1px solid rgba(0,0,0,.1);
-      font-size:.78rem;
-      background:#fdf5ea;
+
+    /* topics menu */
+    .topics-list{
+      display:grid;
+      gap:8px;
+      margin-bottom:10px;
+    }
+    @media(min-width:900px){
+      .topics-list{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+      }
+    }
+    .topic-card{
+      background:#ffffff;
+      border-radius:12px;
+      border:1px solid rgba(0,0,0,.06);
+      box-shadow:0 1px 2px rgba(0,0,0,.05);
+      padding:8px 10px;
       cursor:pointer;
       transition:.15s;
-      white-space:nowrap;
     }
-    .topic-chip:hover{
-      background:#f4e0c3;
+    .topic-card:hover{
+      box-shadow:0 3px 6px rgba(0,0,0,.12);
+      transform:translateY(-1px);
+      border-color:rgba(123,79,39,.35);
     }
-    .topic-chip.active{
-      background:var(--brown-main);
-      color:#fff;
+    .topic-card.active{
       border-color:var(--brown-main);
+      box-shadow:0 3px 6px rgba(0,0,0,.16);
+    }
+    .topic-title-row{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:6px;
+      margin-bottom:2px;
+    }
+    .topic-title{
+      font-size:.9rem;
+      font-weight:600;
+      color:#3A2412;
+    }
+    .topic-level{
+      font-size:.7rem;
+      padding:2px 8px;
+      border-radius:999px;
+      background:#fff3cd;
+      color:#795548;
+    }
+    .topic-sub{
+      font-size:.78rem;
+      color:#6d5b4a;
     }
 
-    /* reading + exercises layout (как грамматика: текст слева, вкладки справа) */
-
+    /* reading + exercises */
     .reading-layout{
       display:grid;
       gap:10px;
@@ -338,7 +379,6 @@
       padding:6px 8px;
     }
 
-    /* exercise tabs */
     .ex-panel{
       background:#fdf7ef;
       border-radius:14px;
@@ -592,18 +632,34 @@
       color:#6d5b4a;
     }
 
-    @media(max-width:700px){
-      header{
-        flex-direction:column;
-        align-items:flex-start;
-      }
-      .header-badge{
-        align-self:flex-start;
-      }
+    @media print{
+      header, #loginScreen, .top-toolbar{ display:none !important; }
+      body{ background:#fff; }
+      .panel{ box-shadow:none; }
     }
   </style>
 </head>
 <body>
+  <!-- HEADER -->
+  <header>
+    <div class="header-left">
+      <div class="logo-circle">
+        <img src="logo.png" alt="AI Bayan logo" onerror="this.style.display='none';">
+      </div>
+      <div>
+        <div class="header-text-main">ENGLISH WITH AI BAYAN</div>
+        <div class="header-text-sub">
+          Beginner – stars – reading topics
+        </div>
+        <div id="userChip" class="user-chip">Not logged in</div>
+      </div>
+    </div>
+    <div class="header-badge">
+      <span class="icon">📖</span>
+      <span>Read • Think • Answer</span>
+    </div>
+  </header>
+
   <!-- LOGIN -->
   <div id="loginScreen">
     <div class="login-card">
@@ -627,41 +683,29 @@
 
       <div class="login-footer">
         PIN codes are the same as in ENGLISH WITH AI BAYAN – Beginner (grammar).<br>
-        If you don’t know your PIN, ask your teacher.
+        Teacher PIN: 3244 (Tcher).
       </div>
     </div>
   </div>
 
   <!-- APP -->
   <div id="appScreen">
-    <header>
-      <div class="header-left">
-        <div class="logo-circle">
-          <img src="logo.png" alt="AI Bayan logo" onerror="this.style.display='none';">
-        </div>
-        <div>
-          <div class="header-text-main">ENGLISH WITH AI BAYAN</div>
-          <div class="header-text-sub">
-            Beginner – READING • 6 tasks for each text • AI Bayan help
-          </div>
-          <div id="userChip" class="user-chip"></div>
-        </div>
-      </div>
-      <div class="header-badge">
-        <span class="icon">📖</span>
-        <span>Read • Think • Answer</span>
-      </div>
-    </header>
-
     <main>
-      <!-- LEFT: TEXT + EXERCISES -->
+      <!-- LEFT: MENU + TEXT + EXERCISES -->
       <section class="panel">
         <h2><span class="icon">📚</span> Reading – Beginner</h2>
+
+        <div class="top-toolbar">
+          <button id="backBtn" class="btn-ghost">← Back</button>
+          <button id="mainMenuBtn" class="btn-ghost">Main menu</button>
+          <button id="printBtn" class="btn-ghost">🖨 Print</button>
+        </div>
+
         <p class="small-label">Choose a text:</p>
         <div id="topicsList" class="topics-list"></div>
 
         <div class="reading-layout">
-          <!-- text block -->
+          <!-- TEXT -->
           <div class="text-card">
             <div class="text-head">
               <span id="topicName">Choose a text above</span>
@@ -674,7 +718,7 @@
             <div id="vocabBox" class="vocab-box" style="display:none;"></div>
           </div>
 
-          <!-- exercises block -->
+          <!-- EXERCISES -->
           <div class="ex-panel">
             <div class="ex-tabs" id="exTabs"></div>
             <div class="ex-title" id="exTitle"></div>
@@ -706,7 +750,8 @@
         <h2><span class="icon">🤖</span> AI Bayan – help for reading</h2>
         <p class="chat-note">
           Ask AI Bayan about <b>words, grammar or translation</b> from the text.<br>
-          Limit: <b>1 question per day</b> for each PIN.<br>
+          Students: limit <b>1 question per day</b> for each PIN.<br>
+          Teacher Tcher (PIN 3244): <b>no limit</b>.<br>
           <span id="aiLimit"></span>
         </p>
 
@@ -727,7 +772,7 @@
         </div>
         <div id="journalBox" class="journal-box">
           <div style="font-size:.78rem;color:#6d5b4a;">
-            Journal shows how many reading topics are marked “done” by each PIN on this device.
+            Journal shows how many reading topics are marked “done” by each PIN on this device (students only).
           </div>
         </div>
       </aside>
@@ -735,7 +780,7 @@
   </div>
 
   <script>
-    /* ----- PIN ranges (как в Beginner) ----- */
+    /* ----- PIN ranges (students) ----- */
     const classRanges = [
       { cls: "3E",  from: 101, to: 115 },
       { cls: "4G",  from: 201, to: 215 },
@@ -745,7 +790,7 @@
       { cls: "7B",  from: 601, to: 615 },
       { cls: "7V",  from: 701, to: 715 },
       { cls: "8E",  from: 801, to: 815 },
-      { cls: "9Zh",  from: 901, to: 915 }
+      { cls: "9Zh", from: 901, to: 915 }
     ];
     function getClassByPin(pin){
       for(const r of classRanges){
@@ -754,7 +799,7 @@
       return null;
     }
 
-    /* ----- DATA: READING TOPICS (пример: 6 текстов; можно добавить ещё) ----- */
+    /* ----- DATA: READING TOPICS (6 примеров; можно расширить до 20) ----- */
     const topics = [
       {
         id:1,
@@ -952,7 +997,7 @@
           {
             type:"mcq",
             title:"Ex 5. Parts of the text",
-            desc:"Choose the correct answer for each part.",
+            desc:"Answer about parts of the text.",
             items:[
               {
                 q:"The first part of the text describes…",
@@ -995,7 +1040,7 @@
           {
             type:"trueFalse",
             title:"Ex 1. True or False",
-            desc:"Decide if the sentences are true or false.",
+            desc:"Decide if the sentences are true (T) or false (F).",
             items:[
               { text:"The weather was sunny and hot.", answer:false },
               { text:"The family stayed at home.", answer:true },
@@ -1109,7 +1154,7 @@
           {
             type:"trueFalse",
             title:"Ex 1. True or False",
-            desc:"True or false?",
+            desc:"True (T) or false (F)?",
             items:[
               { text:"The writer visits granny every week.", answer:false },
               { text:"Granny has a big garden.", answer:true },
@@ -1337,7 +1382,7 @@
           {
             type:"trueFalse",
             title:"Ex 1. True or False",
-            desc:"Are these sentences true or false?",
+            desc:"Are these sentences true (T) or false (F)?",
             items:[
               { text:"Daniel comes from the same city.", answer:false },
               { text:"He was nervous on the first day.", answer:true },
@@ -1443,17 +1488,16 @@
     ];
 
     /* ----- STATE & STORAGE ----- */
-    let currentUser=null;      // {pin,cls}
-    let currentTopic=null;     // topic object
+    let currentUser=null;      // {pin, cls, isTeacher}
+    let currentTopic=null;
     let currentExerciseIndex=0;
 
     const PROGRESS_KEY="aiBayanReadingBrownProgress";
     const AI_USAGE_KEY="aiBayanReadingBrownAi";
 
-    // progress[pin][topicId] = true/false
     let progress = loadJson(PROGRESS_KEY) || {};
-    // aiUsage[pin] = {date,count}
     let aiUsage = loadJson(AI_USAGE_KEY) || {};
+    let teacherTempProgress = {}; // прогресс учителя – только в памяти
 
     function loadJson(key){
       try{
@@ -1466,7 +1510,7 @@
     }
     function todayStr(){return new Date().toISOString().slice(0,10);}
 
-    /* ----- DOM ELEMENTS ----- */
+    /* ----- DOM ----- */
     const loginScreen=document.getElementById("loginScreen");
     const appScreen=document.getElementById("appScreen");
     const loginBtn=document.getElementById("loginBtn");
@@ -1494,6 +1538,10 @@
     const progressInner=document.getElementById("progressInner");
     const progressText=document.getElementById("progressText");
 
+    const backBtn=document.getElementById("backBtn");
+    const mainMenuBtn=document.getElementById("mainMenuBtn");
+    const printBtn=document.getElementById("printBtn");
+
     const chatBox=document.getElementById("chatBox");
     const aiQuestion=document.getElementById("aiQuestion");
     const askBtn=document.getElementById("askBtn");
@@ -1510,29 +1558,50 @@
     });
 
     function handleLogin(){
-      const pin=Number(pinInput.value.trim());
+      const pinStr=pinInput.value.trim();
+      const pin=Number(pinStr);
       loginError.textContent="";
       loginClassInfo.textContent="";
 
-      if(!pin || isNaN(pin)){
+      if(!pinStr){
         loginError.textContent="Please enter your PIN code.";
         return;
       }
-      const cls=getClassByPin(pin);
-      if(!cls){
-        loginError.textContent="PIN not found. Ask your teacher.";
-        return;
+
+      // TEACHER MODE
+      if(pinStr==="3244"){
+        currentUser={
+          pin:3244,
+          cls:"Teacher",
+          isTeacher:true,
+          name:"Tcher"
+        };
+        userChip.textContent="Teacher Tcher • PIN 3244 (Teacher mode)";
+        loginClassInfo.textContent="Teacher mode: progress is not saved to student journal. AI has no limit.";
+      }else{
+        if(!pin || isNaN(pin)){
+          loginError.textContent="PIN not found. Ask your teacher.";
+          return;
+        }
+        const cls=getClassByPin(pin);
+        if(!cls){
+          loginError.textContent="PIN not found. Ask your teacher.";
+          return;
+        }
+        currentUser={
+          pin,
+          cls,
+          isTeacher:false
+        };
+        userChip.textContent="Class "+cls+" • PIN "+pin;
+        loginClassInfo.textContent="Welcome! Class "+cls+". You can start reading practice.";
       }
-      currentUser={pin,cls};
-      userChip.textContent="Class "+cls+" • PIN "+pin;
-      loginClassInfo.textContent="Welcome! Class "+cls+". You can start reading practice.";
 
       loginScreen.style.display="none";
       appScreen.style.display="flex";
-      document.querySelector("header").style.display="flex";
 
       renderTopics();
-      selectTopic(topics[0].id);
+      if(topics.length>0) selectTopic(topics[0].id);
       updateProgressUI();
       updateAiLimitInfo();
       renderJournal();
@@ -1542,21 +1611,42 @@
     function renderTopics(){
       topicsList.innerHTML="";
       topics.forEach(t=>{
-        const btn=document.createElement("button");
-        btn.className="topic-chip";
-        btn.textContent=t.id+". "+t.name;
-        btn.dataset.id=t.id;
-        btn.addEventListener("click",()=>selectTopic(t.id));
-        topicsList.appendChild(btn);
+        const card=document.createElement("div");
+        card.className="topic-card";
+        card.dataset.id=t.id;
+
+        const row=document.createElement("div");
+        row.className="topic-title-row";
+
+        const title=document.createElement("div");
+        title.className="topic-title";
+        title.textContent=t.id+". "+t.name;
+
+        const level=document.createElement("div");
+        level.className="topic-level";
+        level.textContent=t.level;
+
+        row.appendChild(title);
+        row.appendChild(level);
+
+        const sub=document.createElement("div");
+        sub.className="topic-sub";
+        sub.textContent=t.title;
+
+        card.appendChild(row);
+        card.appendChild(sub);
+
+        card.addEventListener("click",()=>selectTopic(t.id));
+        topicsList.appendChild(card);
       });
-      updateActiveTopicChip();
+      updateActiveTopicCard();
     }
 
-    function updateActiveTopicChip(){
-      const chips=document.querySelectorAll(".topic-chip");
-      chips.forEach(ch=>{
-        const id=Number(ch.dataset.id);
-        ch.classList.toggle("active",currentTopic && currentTopic.id===id);
+    function updateActiveTopicCard(){
+      const cards=document.querySelectorAll(".topic-card");
+      cards.forEach(card=>{
+        const id=Number(card.dataset.id);
+        card.classList.toggle("active",currentTopic && currentTopic.id===id);
       });
     }
 
@@ -1565,7 +1655,7 @@
       if(!t) return;
       currentTopic=t;
       currentExerciseIndex=0;
-      updateActiveTopicChip();
+      updateActiveTopicCard();
       renderText();
       renderExerciseTabs();
       renderExercise();
@@ -1639,7 +1729,7 @@
 
           const qText=document.createElement("div");
           qText.className="question-text";
-          qText.textContent=(ex.type==="trueFalse" ? "" : (idx+1)+". ")+ (item.q || item.text);
+          qText.textContent=(ex.type==="trueFalse" ? "" : (idx+1)+". ")+(item.q || item.text);
           block.appendChild(qText);
 
           if(ex.type==="trueFalse"){
@@ -1774,6 +1864,7 @@
     /* ----- TOPIC DONE + PROGRESS ----- */
     function getUserProgress(){
       if(!currentUser) return null;
+      if(currentUser.isTeacher) return teacherTempProgress;
       if(!progress[currentUser.pin]) progress[currentUser.pin]={};
       return progress[currentUser.pin];
     }
@@ -1788,9 +1879,11 @@
       if(!currentUser || !currentTopic) return;
       const userProg=getUserProgress();
       userProg[currentTopic.id]=!userProg[currentTopic.id];
-      saveJson(PROGRESS_KEY,progress);
+      if(!currentUser.isTeacher){
+        saveJson(PROGRESS_KEY,progress);
+        renderJournal();
+      }
       updateProgressUI();
-      renderJournal();
     }
     toggleDoneBtn.addEventListener("click",toggleTopicDone);
 
@@ -1808,8 +1901,9 @@
       topics.forEach(t=>{
         if(userProg[t.id]) done++;
       });
+
       if(currentTopic && userProg[currentTopic.id]){
-        doneStatus.textContent="Done ✔";
+        doneStatus.textContent=currentUser.isTeacher?"Done (Teacher only) ✔":"Done ✔";
         doneStatus.classList.remove("off");
         toggleDoneBtn.textContent="✖ Unmark topic";
       }else{
@@ -1828,15 +1922,19 @@
       const info=document.createElement("div");
       info.style.fontSize=".78rem";
       info.style.color="#6d5b4a";
-      info.textContent="Journal shows how many reading topics are marked 'done' by each PIN on this device.";
+      info.textContent="Journal shows how many reading topics are marked 'done' by each student PIN on this device.";
       journalBox.appendChild(info);
 
-      const pins=Object.keys(progress).map(p=>Number(p)).sort((a,b)=>a-b);
+      const pins=Object.keys(progress)
+        .map(p=>Number(p))
+        .filter(p=>p!==3244) // teacher PIN не показываем
+        .sort((a,b)=>a-b);
+
       if(pins.length===0){
         const empty=document.createElement("div");
         empty.style.fontSize=".8rem";
         empty.style.marginTop="6px";
-        empty.textContent="No data yet. When students mark topics as done, you will see it here.";
+        empty.textContent="No student data yet. When students mark topics as done, you will see it here.";
         journalBox.appendChild(empty);
         return;
       }
@@ -1870,6 +1968,7 @@
 
     function getRemainingQuestionsToday(){
       if(!currentUser) return 0;
+      if(currentUser.isTeacher) return 999; // no real limit
       const pin=currentUser.pin;
       const today=todayStr();
       const rec=aiUsage[pin];
@@ -1882,6 +1981,11 @@
       if(!currentUser){
         aiLimitEl.textContent="";
         askBtn.disabled=true;
+        return;
+      }
+      if(currentUser.isTeacher){
+        aiLimitEl.textContent="Teacher mode: no AI limit today.";
+        askBtn.disabled=false;
         return;
       }
       const left=getRemainingQuestionsToday();
@@ -1898,7 +2002,7 @@
       const div=document.createElement("div");
       div.className="chat-msg "+(role==="user"?"user":"ai");
       const small=document.createElement("small");
-      small.textContent=role==="user"?"You":"AI Bayan";
+      small.textContent=role==="user"?"You":(currentUser && currentUser.isTeacher?"AI Bayan (teacher view)":"AI Bayan");
       const p=document.createElement("div");
       p.textContent=text;
       div.appendChild(small);
@@ -1921,11 +2025,13 @@
         aiError.textContent="Please login with your PIN.";
         return;
       }
-      const left=getRemainingQuestionsToday();
-      if(left<=0){
-        aiError.textContent="Limit reached: 1 AI question per day for this PIN.";
-        updateAiLimitInfo();
-        return;
+      if(!currentUser.isTeacher){
+        const left=getRemainingQuestionsToday();
+        if(left<=0){
+          aiError.textContent="Limit reached: 1 AI question per day for this PIN.";
+          updateAiLimitInfo();
+          return;
+        }
       }
       const q=aiQuestion.value.trim();
       if(!q){
@@ -1942,6 +2048,7 @@
         question:q,
         pin:currentUser.pin,
         cls:currentUser.cls,
+        teacher:!!currentUser.isTeacher,
         section:"reading_beginner_brown",
         topic: currentTopic ? currentTopic.name : null,
         ts:new Date().toISOString()
@@ -1960,15 +2067,17 @@
           answer=obj.answer || obj.response || obj.result || text;
         }catch(e){}
         appendChatMessage("ai",answer || "AI Bayan sent an empty answer.");
-        const pin=currentUser.pin;
-        const today=todayStr();
-        const rec=aiUsage[pin];
-        if(!rec || rec.date!==today){
-          aiUsage[pin]={date:today,count:1};
-        }else{
-          aiUsage[pin].count=(aiUsage[pin].count||0)+1;
+        if(!currentUser.isTeacher){
+          const pin=currentUser.pin;
+          const today=todayStr();
+          const rec=aiUsage[pin];
+          if(!rec || rec.date!==today){
+            aiUsage[pin]={date:today,count:1};
+          }else{
+            aiUsage[pin].count=(aiUsage[pin].count||0)+1;
+          }
+          saveJson(AI_USAGE_KEY,aiUsage);
         }
-        saveJson(AI_USAGE_KEY,aiUsage);
         updateAiLimitInfo();
       })
       .catch(err=>{
@@ -1976,14 +2085,35 @@
         aiError.textContent="Error: cannot connect to AI Bayan now.";
       })
       .finally(()=>{
-        askBtn.disabled=getRemainingQuestionsToday()<=0;
+        askBtn.disabled = !currentUser ? true :
+          (!currentUser.isTeacher && getRemainingQuestionsToday()<=0);
         askBtn.textContent="Ask AI Bayan";
       });
     }
 
+    /* ----- BACK / MAIN MENU / PRINT ----- */
+    backBtn.addEventListener("click",()=>{
+      if(window.history.length>1){
+        window.history.back();
+      }else{
+        window.scrollTo({top:0,behavior:"smooth"});
+      }
+    });
+
+    mainMenuBtn.addEventListener("click",()=>{
+      topicsList.scrollIntoView({behavior:"smooth"});
+    });
+
+    printBtn.addEventListener("click",()=>{
+      window.print();
+    });
+
     /* ----- INIT ----- */
-    renderTopics();
-    // текст до логина – заглушка; настоящие данные подставятся после handleLogin
+    function init(){
+      renderTopics();
+      // текст до логина – заглушка, настоящее наполняется после handleLogin
+    }
+    init();
   </script>
 </body>
 </html>
