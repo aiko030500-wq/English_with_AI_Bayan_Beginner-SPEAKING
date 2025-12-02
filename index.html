@@ -2,18 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Essay Trainer – ENGLISH WITH AI BAYAN</title>
+  <title>ENGLISH WITH AI BAYAN – Excel 7 Grammar (Watermelon)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <style>
     :root{
-      /* ФИОЛЕТОВАЯ ТЕМА */
-      --violet-main:#6a1b9a;
-      --violet-soft:#9c27b0;
-      --accent:#ffca28;
-      --bg:#f5f3ff;
+      /* WATERMELON PALETTE */
+      --green-main:#1b5e20;   /* тёмно-зелёный кожура */
+      --green-soft:#43a047;   /* мягкий зелёный */
+      --pink-main:#ff6f91;    /* мякоть арбуза */
+      --pink-soft:#ffb3c6;    /* светлая мякоть */
+      --seed:#2d3436;         /* цвет косточек */
+      --bg:#fff8f8;           /* лёгкий розовый фон */
       --card:#ffffff;
-      --text:#2e1342;
-      --border:#d1c4e9;
+      --border:#ffd1dc;       /* розоватая рамка */
     }
 
     *{
@@ -24,1166 +26,1712 @@
     }
 
     body{
-      background:var(--bg);
-      color:var(--text);
-      min-height:100vh;
-    }
-
-    /* --------- LOGIN SCREEN --------- */
-    #loginScreen{
+      background:radial-gradient(circle at top,#ffeef5 0,#fff8f8 40%,#ffffff 100%);
+      color:#3c2a2a;
       min-height:100vh;
       display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:16px;
-    }
-
-    .login-card{
-      background:var(--card);
-      border-radius:20px;
-      box-shadow:0 6px 18px rgba(75,0,130,0.25);
-      padding:20px 20px 18px;
-      max-width:380px;
-      width:100%;
-      text-align:center;
-      border:1px solid var(--border);
-    }
-
-    .login-title{
-      font-size:1.2rem;
-      font-weight:700;
-      margin-bottom:6px;
-      color:var(--violet-main);
-    }
-
-    .login-subtitle{
-      font-size:.85rem;
-      color:#5e548e;
-      margin-bottom:12px;
-    }
-
-    .pin-input{
-      width:100%;
-      border:1px solid var(--border);
-      border-radius:999px;
-      padding:10px 14px;
-      font-size:1rem;
-      margin:8px 0 10px;
-      outline:none;
-      text-align:center;
-      background:#faf5ff;
-    }
-
-    .pin-input:focus{
-      border-color:var(--violet-soft);
-      box-shadow:0 0 0 2px rgba(156,39,176,0.18);
-      background:#fff;
-    }
-
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:6px;
-      padding:8px 16px;
-      border-radius:999px;
-      border:none;
-      cursor:pointer;
-      font-size:.9rem;
-      font-weight:600;
-      transition:transform .1s, box-shadow .1s, background .15s;
-      white-space:nowrap;
-    }
-
-    .btn-primary{
-      background:var(--violet-main);
-      color:#fff;
-      box-shadow:0 3px 8px rgba(74,20,140,0.4);
-      margin-top:4px;
-      width:100%;
-    }
-
-    .btn-primary:hover{
-      background:#7b1fa2;
-      transform:translateY(-1px);
-      box-shadow:0 5px 14px rgba(74,20,140,0.4);
-    }
-
-    .login-hint{
-      font-size:.75rem;
-      color:#6b6491;
-      margin-top:8px;
-    }
-
-    .login-error{
-      font-size:.8rem;
-      color:#c62828;
-      margin-top:6px;
-      min-height:18px;
-    }
-
-    .login-badge{
-      display:inline-flex;
-      align-items:center;
-      gap:6px;
-      padding:4px 10px;
-      border-radius:999px;
-      background:#f3e5f5;
-      color:#4a148c;
-      font-size:.75rem;
-      margin-bottom:10px;
-    }
-
-    /* --------- APP SCREEN --------- */
-    #appScreen{
-      display:none;
-      min-height:100vh;
       flex-direction:column;
     }
 
+    /* HEADER */
     header{
-      background:linear-gradient(90deg,#6a1b9a,#9c27b0);
+      background:linear-gradient(90deg,var(--green-main),var(--pink-main));
       color:#fff;
       padding:10px 16px;
       display:flex;
+      align-items:center;
+      justify-content:space-between;
+      box-shadow:0 2px 6px rgba(0,0,0,0.25);
+      position:sticky;
+      top:0;
+      z-index:10;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .brand-logo{
+      width:46px;
+      height:46px;
+      border-radius:50%;
+      border:2px solid #fef3c7;
+      background:
+        radial-gradient(circle at 30% 30%,#ffe5ec 0,#ff9fb8 40%,#ff6f91 60%,#e91e63 80%),
+        url("logo.png") center/60% no-repeat;
+      box-shadow:0 0 0 3px rgba(255,255,255,0.35);
+      flex-shrink:0;
+    }
+
+    .brand-text h1{
+      font-size:18px;
+      letter-spacing:0.03em;
+      text-transform:uppercase;
+    }
+
+    .brand-text p{
+      font-size:12px;
+      opacity:0.9;
+    }
+
+    .grade-badge{
+      border-radius:999px;
+      padding:6px 14px;
+      border:1px solid rgba(255,255,255,0.6);
+      font-size:12px;
+      display:flex;
+      flex-direction:column;
+      text-align:right;
+      background:rgba(0,0,0,0.08);
+      backdrop-filter:blur(4px);
+    }
+
+    .grade-badge span:first-child{
+      font-weight:600;
+    }
+
+    #studentBadge{
+      font-size:11px;
+      margin-top:2px;
+      opacity:0.95;
+    }
+
+    /* LAYOUT */
+    main{
+      flex:1;
+      display:flex;
+      flex-direction:row;
+      gap:10px;
+      padding:10px;
+    }
+
+    @media (max-width: 900px){
+      main{
+        flex-direction:column;
+      }
+    }
+
+    /* LEFT: TOPICS PANEL */
+    #topicsPanel{
+      flex:0 0 290px;
+      max-width:320px;
+      background:var(--card);
+      border-radius:18px;
+      border:1px solid var(--border);
+      padding:10px;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      box-shadow:0 6px 14px rgba(0,0,0,0.06);
+    }
+
+    @media (max-width: 900px){
+      #topicsPanel{
+        max-width:none;
+        width:100%;
+      }
+    }
+
+    #topicsPanel h2{
+      font-size:16px;
+      display:flex;
       justify-content:space-between;
       align-items:center;
-      box-shadow:0 2px 8px rgba(74,20,140,0.5);
+      margin-bottom:4px;
     }
 
-    header h1{
-      font-size:1.1rem;
-      font-weight:700;
+    #topicsPanel h2 span{
+      font-size:11px;
+      font-weight:400;
+      color:#7a4b4b;
+      text-transform:uppercase;
+      letter-spacing:0.06em;
     }
 
-    header span{
-      font-size:.82rem;
-      opacity:.95;
-      display:block;
+    .topic-list{
+      list-style:none;
+      max-height:70vh;
+      overflow:auto;
+      padding-right:4px;
+      display:flex;
+      flex-direction:column;
+      gap:6px;
     }
 
-    .header-right{
-      text-align:right;
-      font-size:.78rem;
+    .topic-item{
+      border-radius:12px;
+      border:1px solid var(--border);
+      padding:8px 10px;
+      font-size:13px;
+      background:linear-gradient(120deg,#fffafd,#fffafa);
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:6px;
+      cursor:pointer;
+      transition:background 0.15s, transform 0.1s, box-shadow 0.1s, border-color 0.15s;
+    }
+
+    .topic-item:hover{
+      background:linear-gradient(120deg,#ffeef6,#fffafa);
+      transform:translateY(-1px);
+      box-shadow:0 3px 6px rgba(0,0,0,0.08);
+    }
+
+    .topic-item.active{
+      background:linear-gradient(120deg,#ffdde9,#ffeef6);
+      border-color:#ff8fab;
+      box-shadow:0 0 0 1px rgba(255,143,171,0.5);
+    }
+
+    .topic-title{
+      font-weight:600;
+      font-size:13px;
+      color:#3b2b2b;
+    }
+
+    .topic-meta{
+      font-size:11px;
+      color:#8c5b5b;
+    }
+
+    .topic-chip{
+      font-size:10px;
+      padding:2px 7px;
+      border-radius:999px;
+      border:1px solid rgba(27,94,32,0.25);
+      background:#e9ffef;
+      white-space:nowrap;
+      color:#1b5e20;
+    }
+
+    /* CENTER: TOPIC VIEW */
+    #topicView{
+      flex:1;
+      background:var(--card);
+      border-radius:18px;
+      border:1px solid var(--border);
+      padding:12px 14px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      box-shadow:0 6px 14px rgba(0,0,0,0.06);
+      min-height:260px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    #topicView::before{
+      content:"";
+      position:absolute;
+      right:-40px;
+      top:-40px;
+      width:120px;
+      height:120px;
+      border-radius:50%;
+      background:
+        radial-gradient(circle at 30% 30%,#ffe4ec 0,#ffabc4 40%,#ff6f91 80%);
+      opacity:0.18;
+      pointer-events:none;
+    }
+
+    #topicHeader{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:8px;
+      border-bottom:1px solid #ffd6e2;
+      padding-bottom:6px;
+      position:relative;
+      z-index:1;
+    }
+
+    #topicHeader h2{
+      font-size:18px;
+      color:#402020;
+    }
+
+    #topicTagline{
+      font-size:12px;
+      color:#7a4b4b;
+      margin-top:2px;
+    }
+
+    .topic-labels{
+      display:flex;
+      flex-wrap:wrap;
+      gap:6px;
+      justify-content:flex-end;
+      align-items:center;
     }
 
     .badge{
-      display:inline-flex;
-      align-items:center;
-      gap:4px;
-      padding:3px 8px;
+      font-size:10px;
+      padding:3px 7px;
       border-radius:999px;
-      font-size:.7rem;
-      background:rgba(255,202,40,0.16);
-      color:#fffde7;
-      margin-top:3px;
+      border:1px solid rgba(64,32,32,0.18);
+      background:#fff7fb;
+      color:#5e3a3a;
     }
 
-    main{
-      flex:1;
-      padding:14px;
-      max-width:1240px;
-      width:100%;
-      margin:0 auto;
+    .badge-level{
+      border-color:rgba(27,94,32,0.4);
+      background:#e9ffef;
+      color:#1b5e20;
     }
 
-    .layout{
-      display:flex;
-      flex-wrap:wrap;
-      gap:14px;
+    .badge-focus{
+      border-color:rgba(255,111,145,0.6);
+      background:#ffe5ef;
+      color:#bf1e5b;
     }
 
-    .card{
-      background:var(--card);
-      border-radius:16px;
-      box-shadow:0 2px 8px rgba(0,0,0,0.08);
-      padding:12px 14px;
-      border:1px solid var(--border);
+    #explanation{
+      font-size:14px;
+      line-height:1.5;
+      position:relative;
+      z-index:1;
     }
 
-    .left-panel{
-      flex:1 1 250px;
-      max-width:270px;
+    #explanation p{
+      margin-bottom:4px;
     }
 
-    .middle-panel{
-      flex:1 1 320px;
-      min-width:280px;
+    #rulesRu{
+      background:#fff9fb;
+      border-radius:12px;
+      border:1px dashed #ffb3c6;
+      padding:8px 10px;
+      font-size:13px;
+      display:none;
     }
 
-    .right-panel{
-      flex:1 1 320px;
-      min-width:280px;
+    #examples{
+      font-size:13px;
+      line-height:1.5;
+      display:none;
     }
 
-    .ai-panel{
-      margin-top:14px;
+    #examples ul{
+      padding-left:18px;
     }
 
-    h2{
-      font-size:.98rem;
-      margin-bottom:6px;
-      display:flex;
-      align-items:center;
-      gap:6px;
-      color:var(--violet-main);
-    }
-
-    h2 span.icon{
-      font-size:1.1rem;
-    }
-
-    label{
-      font-size:.8rem;
-      font-weight:600;
+    #examples li{
       margin-bottom:3px;
-      display:block;
     }
 
-    select, input[type="text"], textarea{
-      width:100%;
-      border:1px solid var(--border);
-      border-radius:10px;
-      padding:7px 9px;
-      font-size:.88rem;
-      outline:none;
-      transition:border-color .2s, box-shadow .2s;
-      background:#fbf7ff;
-    }
-
-    select:focus, input[type="text"]:focus, textarea:focus{
-      border-color:var(--violet-soft);
-      box-shadow:0 0 0 2px rgba(156,39,176,0.16);
-      background:#fff;
-    }
-
-    textarea{
-      resize:vertical;
-      min-height:60px;
-    }
-
-    .small-note{
-      font-size:.76rem;
-      color:#6b6b96;
-      margin:3px 0 6px;
-    }
-
-    .btn-ghost{
-      background:transparent;
-      color:var(--violet-main);
-      border:1px dashed var(--border);
-    }
-
-    .btn-ghost:hover{
-      background:#f3e5f5;
-    }
-
-    .btn-row{
-      display:flex;
-      flex-wrap:wrap;
-      gap:6px;
-      margin-top:6px;
-    }
-
-    .pill-select-row{
-      display:flex;
-      flex-wrap:wrap;
-      gap:5px;
-      margin-bottom:6px;
-    }
-
-    .pill{
-      padding:4px 9px;
-      border-radius:999px;
-      border:1px solid var(--border);
-      font-size:.78rem;
-      cursor:pointer;
-      background:#faf5ff;
-    }
-
-    .pill.active{
-      background:var(--accent);
-      border-color:#ffb300;
-      color:#4e342e;
+    .examples-title{
       font-weight:600;
+      margin-bottom:2px;
+      font-size:13px;
     }
 
-    .topics-list{
-      margin-top:5px;
-      font-size:.78rem;
-      max-height:120px;
-      overflow-y:auto;
-      padding-right:3px;
+    /* EXERCISES */
+    #tasks{
+      margin-top:4px;
+      display:none;
     }
 
-    .topics-list div{
-      padding:3px 0;
-      border-bottom:1px dashed #ede7f6;
-      cursor:pointer;
-    }
-
-    .topics-list div:last-child{
-      border-bottom:none;
-    }
-
-    .topics-list div:hover{
-      color:var(--violet-main);
-    }
-
-    .section{
-      margin-bottom:8px;
-    }
-
-    .word-counter{
+    #tasks h3{
+      font-size:15px;
+      margin-bottom:4px;
       display:flex;
       justify-content:space-between;
       align-items:center;
-      font-size:.76rem;
-      color:#5c5470;
+    }
+
+    #tasks h3 span{
+      font-size:11px;
+      color:#7a4b4b;
+      text-transform:uppercase;
+      letter-spacing:0.06em;
+    }
+
+    .task-item{
+      border-radius:12px;
+      border:1px solid var(--border);
+      padding:7px 9px;
+      margin-bottom:6px;
+      font-size:13px;
+      background:linear-gradient(120deg,#fffefe,#fff6fa);
+    }
+
+    .task-q{
+      margin-bottom:4px;
+    }
+
+    .task-controls{
+      display:flex;
+      flex-wrap:wrap;
+      gap:6px;
+      align-items:center;
       margin-top:3px;
     }
 
-    .level-indicator{
-      font-size:.78rem;
-      color:#5c5470;
-      margin-top:5px;
+    .task-answer{
+      display:none;
+      font-size:12px;
+      color:#1b5e20;
+      margin-top:2px;
     }
 
-    /* --- AI CHAT --- */
-    .chat-box{
+    .task-answer.visible{
+      display:block;
+    }
+
+    .btn{
+      border-radius:999px;
+      padding:5px 10px;
+      border:none;
+      font-size:12px;
+      cursor:pointer;
+      display:inline-flex;
+      align-items:center;
+      gap:4px;
+    }
+
+    .btn-primary{
+      background:var(--green-main);
+      color:#fff;
+    }
+
+    .btn-outline{
+      background:transparent;
+      color:var(--green-main);
+      border:1px solid rgba(27,94,32,0.4);
+    }
+
+    .btn:active{
+      transform:translateY(1px);
+      box-shadow:none;
+    }
+
+    .btn-print{
+      font-size:11px;
+      padding:3px 9px;
+    }
+
+    /* RIGHT: AI PANEL */
+    #aiPanel{
+      flex:0 0 320px;
+      max-width:340px;
+      background:var(--card);
+      border-radius:18px;
       border:1px solid var(--border);
+      padding:10px 10px 12px;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      box-shadow:0 6px 14px rgba(0,0,0,0.06);
+    }
+
+    @media (max-width: 900px){
+      #aiPanel{
+        max-width:none;
+        width:100%;
+      }
+    }
+
+    #aiPanel h3{
+      font-size:15px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+
+    #aiPanel h3 span{
+      font-size:11px;
+      font-weight:400;
+      color:#7a4b4b;
+    }
+
+    .chat-note{
+      font-size:11px;
+      color:#7a4b4b;
+      line-height:1.4;
+    }
+
+    .chat-box{
+      flex:1;
       border-radius:12px;
-      padding:8px;
-      max-height:220px;
-      overflow-y:auto;
-      background:#faf5ff;
-      font-size:.78rem;
-    }
-
-    .msg{
+      background:#fff9fb;
+      border:1px solid #ffd1dc;
       padding:6px 8px;
-      border-radius:10px;
-      margin-bottom:5px;
-      max-width:100%;
-      word-wrap:break-word;
+      overflow:auto;
+      font-size:12px;
+      max-height:260px;
     }
 
-    .msg.user{
-      background:#e1bee7;
+    .chat-msg{
+      margin-bottom:6px;
+      padding:4px 6px;
+      border-radius:8px;
+    }
+
+    .chat-msg.user{
+      background:#e3ffe6;
       align-self:flex-end;
     }
 
-    .msg.ai{
-      background:#ede7f6;
+    .chat-msg.ai{
+      background:#ffe5f0;
     }
 
-    .msg.system{
-      background:#fff3e0;
-      font-style:italic;
-      color:#6d4c41;
+    .chat-msg.system{
+      background:#fff3cd;
     }
 
-    .chat-meta{
-      font-size:.7rem;
-      color:#6b6b96;
+    #aiQuestion{
+      width:100%;
+      min-height:80px;
+      border-radius:12px;
+      border:1px solid var(--border);
+      padding:6px 8px;
+      font-size:13px;
+      resize:vertical;
+      background:#fffdfd;
+    }
+
+    .chat-actions{
+      display:flex;
+      justify-content:flex-end;
       margin-top:4px;
     }
 
-    .limit-ok{
-      color:#2e7d32;
+    #aiStatus{
+      font-size:11px;
+      color:#7a4b4b;
+      margin-top:2px;
+      min-height:14px;
     }
 
-    .limit-warning{
-      color:#ef6c00;
+    /* LOGIN OVERLAY */
+    .login-overlay{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.35);
+      backdrop-filter:blur(3px);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:999;
     }
 
-    .limit-max{
+    .login-box{
+      width:90%;
+      max-width:380px;
+      background:#ffffff;
+      border-radius:18px;
+      padding:16px 18px 18px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.35);
+      border:1px solid var(--border);
+    }
+
+    .login-box h2{
+      font-size:18px;
+      margin-bottom:4px;
+      color:#3c2a2a;
+    }
+
+    .login-box p{
+      font-size:12px;
+      color:#7a4b4b;
+      margin-bottom:8px;
+    }
+
+    .login-field{
+      margin-bottom:8px;
+    }
+
+    .login-field label{
+      display:block;
+      font-size:12px;
+      margin-bottom:4px;
+      color:#3c2a2a;
+    }
+
+    .login-field select,
+    .login-field input{
+      width:100%;
+      padding:6px 8px;
+      border-radius:10px;
+      border:1px solid #ffc2d1;
+      font-size:13px;
+      background:#fff9fb;
+    }
+
+    .login-field select:focus,
+    .login-field input:focus{
+      outline:none;
+      border-color:#ff6f91;
+      box-shadow:0 0 0 1px rgba(255,111,145,0.3);
+    }
+
+    .login-error{
+      min-height:14px;
+      font-size:11px;
       color:#c62828;
-      font-weight:600;
+      margin-top:4px;
     }
 
+    /* FOOTER */
     footer{
+      padding:6px 10px 10px;
+      font-size:10px;
+      color:#7a4b4b;
       text-align:center;
-      font-size:.72rem;
-      color:#7b6d9d;
-      padding:6px 8px 10px;
     }
 
-    .logout-btn{
-      font-size:.8rem;
-      padding:4px 10px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,0.7);
-      background:rgba(0,0,0,0.08);
-      color:#fff;
-      cursor:pointer;
+    footer span{
+      font-weight:600;
+      color:var(--green-main);
     }
 
-    .logout-btn:hover{
-      background:rgba(0,0,0,0.18);
-    }
-
-    @media (max-width:768px){
-      header{
-        flex-direction:column;
-        align-items:flex-start;
-        gap:6px;
+    /* PRINT */
+    @media print{
+      header, #aiPanel, #topicsPanel, footer, .login-overlay{
+        display:none !important;
       }
-      .header-right{
-        text-align:left;
+      body{
+        background:#ffffff;
+      }
+      #topicView{
+        border:none;
+        box-shadow:none;
       }
     }
   </style>
 </head>
 <body>
 
-<!-- ---------- LOGIN ---------- -->
-<section id="loginScreen">
-  <div class="login-card">
-    <div class="login-badge">✨ ENGLISH WITH AI BAYAN · Essay</div>
-    <div class="login-title">Essay Trainer + AI Bayan</div>
-    <div class="login-subtitle">
-      Введите ваш PIN-код (как в Beginner).<br/>
-      Учителя: 9991 / 9992 / 9999.
+<!-- LOGIN OVERLAY -->
+<div id="loginOverlay" class="login-overlay">
+  <div class="login-box">
+    <h2>ENGLISH WITH AI BAYAN – 7 grade</h2>
+    <p>Введи ПИН-код 7 класса и выбери своё имя из журнала.</p>
+
+    <div class="login-field">
+      <label for="studentName">Имя из учительского журнала</label>
+      <select id="studentName">
+        <option value="">-- выбери своё имя --</option>
+        <option>Сырым7С</option>
+        <option>Самир7Б</option>
+        <option>Орда7О</option>
+        <option>Руслан7В</option>
+        <option>Руслан7И</option>
+        <option>Максут7С</option>
+        <option>Аделина7М</option>
+        <option>Эльнора7А</option>
+        <option>Лунара7А</option>
+        <option>Максим7М</option>
+        <option>Ринат7Ц</option>
+        <option>Артем7А</option>
+        <option>Б7А</option>
+      </select>
     </div>
 
-    <input id="pinInput" class="pin-input" type="number" placeholder="Введите PIN (например, 601)" />
+    <div class="login-field">
+      <label for="pinInput">PIN-код</label>
+      <input type="password" id="pinInput" placeholder="Например: 2844" />
+    </div>
 
-    <button class="btn btn-primary" id="loginBtn">Войти</button>
+    <button id="loginBtn" class="btn btn-primary" style="width:100%; margin-top:4px;">
+      Войти в грамматику
+    </button>
 
-    <div class="login-error" id="loginError"></div>
+    <p id="loginError" class="login-error"></p>
+  </div>
+</div>
 
-    <div class="login-hint">
-      Ученики – PIN как в Beginner:<br/>
-      3E: 101–115 · 4G: 201–215 · 5G: 301–315 · 5Zh: 401–415<br/>
-      6G: 501–515 · 7B: 601–615 · 7V: 701–715 · 8E: 801–815 · 9Zh: 901–915<br/>
-      Учителя: 9991 (7B), 9992 (7V), 9999 (Super Teacher).
+<header>
+  <div class="brand">
+    <div class="brand-logo"></div>
+    <div class="brand-text">
+      <h1>ENGLISH WITH AI BAYAN</h1>
+      <p>Excel 7 – Watermelon Grammar</p>
     </div>
   </div>
-</section>
+  <div class="grade-badge">
+    <span>Grade 7 · Excel for Kazakhstan</span>
+    <span>All grammar topics in order</span>
+    <span id="studentBadge">Student: ---</span>
+  </div>
+</header>
 
-<!-- ---------- APP ---------- -->
-<section id="appScreen">
-  <header>
-    <div>
-      <h1>Essay Trainer</h1>
-      <span>ENGLISH WITH AI BAYAN · Essay writing + AI helper</span>
-    </div>
-    <div class="header-right">
-      <div>👤 <span id="userInfo">Student</span></div>
-      <div class="badge">
-        ✍️ Essay + 🤖 AI Bayan · Limit 10 Q/day
+<main>
+  <!-- LEFT: TOPICS LIST -->
+  <section id="topicsPanel">
+    <h2>
+      Grammar topics
+      <span id="topicsCount"></span>
+    </h2>
+    <ul class="topic-list" id="topicList"></ul>
+  </section>
+
+  <!-- CENTER: TOPIC VIEW -->
+  <section id="topicView">
+    <div id="topicHeader">
+      <div>
+        <h2 id="topicTitle">Choose a topic</h2>
+        <p id="topicTagline">
+          Click on any topic on the left. Topics follow the Excel 7 grammar order (Modules 1–9).
+        </p>
       </div>
-      <button class="logout-btn" id="logoutBtn">Выйти</button>
-    </div>
-  </header>
-
-  <main>
-    <div class="layout">
-      <!-- LEFT: SETTINGS + TOPICS -->
-      <section class="card left-panel">
-        <h2><span class="icon">🎯</span>Essay settings</h2>
-
-        <div class="section">
-          <label>Level</label>
-          <div class="pill-select-row" id="levelRow">
-            <button class="pill active" data-level="7–8 grade">7–8 grade</button>
-            <button class="pill" data-level="Olympiad">Olympiad</button>
-            <button class="pill" data-level="Exam">Exam</button>
-          </div>
-        </div>
-
-        <div class="section">
-          <label for="essayType">Essay type</label>
-          <select id="essayType">
-            <option value="opinion">Opinion essay (your point of view)</option>
-            <option value="forAgainst">For & Against essay</option>
-            <option value="argumentative">Argumentative essay</option>
-            <option value="descriptive">Descriptive essay</option>
-          </select>
-          <p class="small-note">
-            Тип меняет только подсказки. Структуру можно адаптировать.
-          </p>
-        </div>
-
-        <div class="section">
-          <label for="topicInput">Topic</label>
-          <input id="topicInput" type="text"
-                  placeholder="The role of sports in students’ lives" />
-          <div class="btn-row">
-            <button class="btn btn-primary" id="newTopicBtn">🎲 New topic</button>
-            <button class="btn btn-ghost" id="clearTopicBtn">🧹 Clear</button>
-          </div>
-          <p class="small-note">
-            Нажми на тему ниже — она вставится в поле.
-          </p>
-        </div>
-
-        <div class="section">
-          <label>Suggested topics (7–8 grade)</label>
-          <div class="topics-list" id="topicsList"></div>
-        </div>
-      </section>
-
-      <!-- MIDDLE: PLAN -->
-      <section class="card middle-panel">
-        <h2><span class="icon">🧩</span>Essay plan</h2>
-        <p class="small-note">
-          Напиши по 1–3 предложения для каждой части, потом собери эссе.
-        </p>
-
-        <div class="section">
-          <label for="introInput">Introduction</label>
-          <textarea id="introInput"
-            placeholder="Introduce the topic and give a general opinion. Example: Nowadays, sports play an important role in students’ lives. In my opinion, ...">
-          </textarea>
-        </div>
-
-        <div class="section">
-          <label for="body1Input">Body paragraph 1 (Argument 1)</label>
-          <textarea id="body1Input"
-            placeholder="Main idea + explanation + example. Use: Firstly, To begin with, One important reason is that...">
-          </textarea>
-        </div>
-
-        <div class="section">
-          <label for="body2Input">Body paragraph 2 (Argument 2)</label>
-          <textarea id="body2Input"
-            placeholder="Second reason + explanation + example. Use: Secondly, Moreover, Another important point is that...">
-          </textarea>
-        </div>
-
-        <div class="section">
-          <label for="conclusionInput">Conclusion</label>
-          <textarea id="conclusionInput"
-            placeholder="Summarise your ideas and repeat opinion in other words. Use: In conclusion, To sum up, All in all...">
-          </textarea>
-        </div>
-
-        <div class="btn-row">
-          <button class="btn btn-primary" id="buildEssayBtn">✨ Build draft essay</button>
-          <button class="btn btn-ghost" id="clearPlanBtn">🧹 Clear plan</button>
-        </div>
-      </section>
-
-      <!-- RIGHT: FINAL ESSAY -->
-      <section class="card right-panel">
-        <h2><span class="icon">✏️</span>Final essay</h2>
-        <p class="small-note">
-          Здесь редактируй готовое эссе. Счётчик слов обновляется автоматически.
-        </p>
-
-        <textarea id="finalEssay"
-          placeholder="Your full essay will appear here after you click “Build draft essay”. You can edit it, add linking words, improve vocabulary, etc.">
-        </textarea>
-
-        <div class="word-counter">
-          <span id="wordCount">Words: 0</span>
-          <span id="wordAdvice">Target: 120–150 words for 7–8 grade</span>
-        </div>
-
-        <div class="level-indicator" id="levelHint">
-          Current level: <b>7–8 grade</b> · Good length for school & small olympiads: <b>120–150 words</b>.
-        </div>
-
-        <div class="btn-row" style="margin-top:6px;">
-          <button class="btn btn-ghost" id="clearEssayBtn">🧹 Clear essay</button>
-          <button class="btn btn-ghost" id="copyEssayBtn">📋 Copy</button>
-          <button class="btn btn-primary" id="printBtn">🖨️ Print</button>
-        </div>
-      </section>
+      <div class="topic-labels">
+        <span class="badge badge-level">Level: Grade 7 / Pre-Intermediate</span>
+        <span class="badge badge-focus">Excel 7 grammar + practice</span>
+        <button id="printBtn" class="btn btn-outline btn-print">🖨 Print topic</button>
+      </div>
     </div>
 
-    <!-- AI BAYAN PANEL -->
-    <section class="card ai-panel">
-      <h2><span class="icon">🤖</span>AI Bayan – Essay helper</h2>
-      <p class="small-note">
-        Задавай вопросы по лексике, грамматике, структуре эссе. Лимит: <b>10 вопросов в день</b> на один PIN.
+    <div id="explanation">
+      <p>Выбери тему слева, чтобы увидеть:</p>
+      <ul style="margin-left:18px; margin-top:4px; font-size:13px;">
+        <li>краткое правило на английском;</li>
+        <li>объяснение и комментарии на русском для 7 класса;</li>
+        <li>типичные примеры;</li>
+        <li>упражнения с кнопкой «Show answer».</li>
+      </ul>
+      <p style="margin-top:4px; font-size:12px; color:#7a4b4b;">
+        Темы собраны по Contents Excel 7: от Present simple vs continuous до Reported speech.
       </p>
+    </div>
 
-      <div id="chatBox" class="chat-box"></div>
+    <div id="rulesRu"></div>
+    <div id="examples"></div>
+    <div id="tasks"></div>
+  </section>
 
+  <!-- RIGHT: AI BAYAN CHAT -->
+  <aside id="aiPanel">
+    <div>
+      <h3>
+        AI Bayan – Grammar help
+        <span>Excel 7 · any language</span>
+      </h3>
+      <p class="chat-note">
+        Сначала попробуй сделать упражнения. Если что-то непонятно –
+        спроси AI Bayan: можно на английском, русском или казахском.
+      </p>
+    </div>
+
+    <div id="chatBox" class="chat-box">
+      <div class="chat-msg system">
+        💡 Tip: write concrete questions like
+        “Explain comparatives vs superlatives with 3 examples for 7th grade”
+        or “Проверь, правильно ли я составил это предложение…”.
+      </div>
+    </div>
+
+    <div>
       <textarea id="aiQuestion"
-        placeholder="Ask AI Bayan about your essay: “Can you suggest a better introduction?”, “How to say this in English?”">
-      </textarea>
+        placeholder="Write your question for AI Bayan (e.g. “Explain Present Perfect vs Past Simple with Kazakh/Russian comments”)"></textarea>
 
-      <div class="btn-row">
+      <div class="chat-actions">
         <button class="btn btn-primary" id="askBtn">Ask AI Bayan</button>
-        <button class="btn btn-ghost" id="clearChatBtn">🧹 Clear chat</button>
       </div>
 
-      <div class="chat-meta" id="aiLimitText">
-        Login with your PIN to see the limit.
-      </div>
-    </section>
+      <p id="aiStatus"></p>
+      <p class="chat-note">
+        В будущем учитель сможет видеть вопросы и ответы AI Bayan
+        в отдельном журнале исследования.
+      </p>
+    </div>
+  </aside>
+</main>
 
-    <!-- TEACHER MODE PANEL -->
-    <section id="teacherPanel" class="card" style="display:none; margin-top:14px;">
-      <h2><span class="icon">👩‍🏫</span>Teacher Mode – Student Essays Today</h2>
-      <p class="small-note">Все эссе, которые ученики писали сегодня (сохраняются локально на этом устройстве).</p>
-
-      <div id="teacherList" style="max-height:300px; overflow-y:auto; font-size:.85rem;"></div>
-    </section>
-  </main>
-
-  <footer>
-    Essay Trainer + AI Bayan · Violet edition · PIN system like Beginner
-  </footer>
-</section>
+<footer>
+  <span>AI Bayan</span> · Excel 7 Watermelon Grammar · Можно дополнять своими заданиями из Student’s Book.
+</footer>
 
 <script>
-  /* ---------- PIN RANGES (как в Beginner) ---------- */
-  const classRanges = [
-    { cls: "3E",  from: 101, to: 115 },
-    { cls: "4G",  from: 201, to: 215 },
-    { cls: "5G",  from: 301, to: 315 },
-    { cls: "5Zh", from: 401, to: 415 },
-    { cls: "6G",  from: 501, to: 515 },
-    { cls: "7B",  from: 601, to: 615 },
-    { cls: "7V",  from: 701, to: 715 },
-    { cls: "8E",  from: 801, to: 815 },
-    { cls: "9Zh", from: 901, to: 915 }
-  ];
+/* -------- LOGIN LOGIC FOR 7 GRADE -------- */
+const CLASS_PIN = "2844";
 
-  /* ---- TEACHER MODE PINS ---- */
-  const teacherPins = {
-    9991: "Teacher 7B",
-    9992: "Teacher 7V",
-    9999: "Super Teacher"
-  };
+const allowedNames = [
+  "Сырым7С",
+  "Самир7Б",
+  "Орда7О",
+  "Руслан7В",
+  "Руслан7И",
+  "Максут7С",
+  "Аделина7М",
+  "Эльнора7А",
+  "Лунара7А",
+  "Максим7М",
+  "Ринат7Ц",
+  "Артем7А",
+  "Б7А"
+];
 
-  let currentUser = null; // {pin, cls, teacher?}
+let currentStudentName = null;
 
-  const loginScreen = document.getElementById("loginScreen");
-  const appScreen = document.getElementById("appScreen");
-  const pinInput = document.getElementById("pinInput");
-  const loginBtn = document.getElementById("loginBtn");
-  const loginError = document.getElementById("loginError");
-  const userInfo = document.getElementById("userInfo");
-  const logoutBtn = document.getElementById("logoutBtn");
-  const teacherPanel = document.getElementById("teacherPanel");
+const loginOverlay = document.getElementById("loginOverlay");
+const studentNameSelect = document.getElementById("studentName");
+const pinInput = document.getElementById("pinInput");
+const loginBtn = document.getElementById("loginBtn");
+const loginError = document.getElementById("loginError");
+const studentBadge = document.getElementById("studentBadge");
 
-  function findClassByPin(pin){
-    for(const range of classRanges){
-      if(pin >= range.from && pin <= range.to){
-        return range.cls;
-      }
-    }
-    return null;
+function applyStudentName(){
+  if(studentBadge && currentStudentName){
+    studentBadge.textContent = "Student: " + currentStudentName;
+  }
+}
+
+function tryLogin(){
+  const name = (studentNameSelect.value || "").trim();
+  const pin = (pinInput.value || "").trim();
+
+  if(!name){
+    loginError.textContent = "Выбери своё имя из журнала.";
+    return;
   }
 
-  function showScreen(name){
-    if(name === "login"){
-      loginScreen.style.display = "flex";
-      appScreen.style.display = "none";
-    }else{
-      loginScreen.style.display = "none";
-      appScreen.style.display = "flex";
-    }
+  if(!pin){
+    loginError.textContent = "Введи PIN-код.";
+    return;
   }
 
-  function handleLogin(){
-    const pinVal = parseInt(pinInput.value.trim(), 10);
-    if(isNaN(pinVal)){
-      loginError.textContent = "Введите корректный PIN.";
-      return;
-    }
-
-    // ---- TEACHER MODE ----
-    if(teacherPins[pinVal]){
-      currentUser = { pin: pinVal, cls: teacherPins[pinVal], teacher: true };
-      userInfo.textContent = teacherPins[pinVal] + " · PIN " + pinVal;
-      loginError.textContent = "";
-      pinInput.value = "";
-      showScreen("app");
-      initAiLimitText();
-      openTeacherPanel();
-      return;
-    }
-
-    const cls = findClassByPin(pinVal);
-    if(!cls){
-      loginError.textContent = "Неверный PIN. Проверьте диапазон.";
-      return;
-    }
-
-    currentUser = { pin: pinVal, cls, teacher:false };
-    userInfo.textContent = cls + " · PIN " + pinVal;
-    loginError.textContent = "";
+  if(pin !== CLASS_PIN){
+    loginError.textContent = "Неверный PIN-код. Попробуй ещё раз.";
     pinInput.value = "";
-    teacherPanel.style.display = "none";
-    showScreen("app");
-    initAiLimitText();
+    return;
   }
 
-  loginBtn.addEventListener("click", handleLogin);
+  if(!allowedNames.includes(name)){
+    loginError.textContent = "Это имя не разрешено в журнале для этого ПИН.";
+    return;
+  }
+
+  // успех
+  currentStudentName = name;
+  loginError.textContent = "";
+  loginOverlay.style.display = "none";
+  applyStudentName();
+  console.log("Logged in as:", currentStudentName);
+}
+
+if(loginBtn){
+  loginBtn.addEventListener("click", tryLogin);
+}
+
+if(pinInput){
   pinInput.addEventListener("keydown", (e) => {
     if(e.key === "Enter"){
-      handleLogin();
+      e.preventDefault();
+      tryLogin();
     }
   });
+}
 
-  logoutBtn.addEventListener("click", () => {
-    currentUser = null;
-    teacherPanel.style.display = "none";
-    showScreen("login");
-    initAiLimitText();
-  });
+/* ------------- PRINT BUTTON ------------- */
+const printBtn = document.getElementById("printBtn");
+function printTopic(){
+  window.print();
+}
+if(printBtn){
+  printBtn.addEventListener("click", printTopic);
+}
 
-  /* ---------- ESSAY TRAINER DATA & ELEMENTS ---------- */
-  const topics = [
-    "The role of sports in students’ lives",
-    "Why is reading still important for teenagers?",
-    "Are phones useful or distracting at school?",
-    "What makes a good friend?",
-    "Should students have homework every day?",
-    "Should school start later in the morning?",
-    "Is it important for teenagers to learn foreign languages?",
-    "The impact of social media on students",
-    "What can students do to protect the environment?",
-    "Why is teamwork important at school?"
-  ];
+/* ------------- GRAMMAR TOPICS (Excel 7 order, grouped) ------------- */
 
-  const topicsListEl = document.getElementById("topicsList");
-  const topicInput = document.getElementById("topicInput");
-  const newTopicBtn = document.getElementById("newTopicBtn");
-  const clearTopicBtn = document.getElementById("clearTopicBtn");
-  const essayTypeSelect = document.getElementById("essayType");
-
-  const introInput = document.getElementById("introInput");
-  const body1Input = document.getElementById("body1Input");
-  const body2Input = document.getElementById("body2Input");
-  const conclusionInput = document.getElementById("conclusionInput");
-
-  const buildEssayBtn = document.getElementById("buildEssayBtn");
-  const clearPlanBtn = document.getElementById("clearPlanBtn");
-
-  const finalEssay = document.getElementById("finalEssay");
-  const wordCountEl = document.getElementById("wordCount");
-  const wordAdviceEl = document.getElementById("wordAdvice");
-  const clearEssayBtn = document.getElementById("clearEssayBtn");
-  const copyEssayBtn = document.getElementById("copyEssayBtn");
-  const printBtn = document.getElementById("printBtn");
-
-  const levelRow = document.getElementById("levelRow");
-  const levelHint = document.getElementById("levelHint");
-
-  function renderTopics(){
-    topicsListEl.innerHTML = "";
-    topics.forEach(t => {
-      const div = document.createElement("div");
-      div.textContent = "• " + t;
-      div.addEventListener("click", () => {
-        topicInput.value = t;
-      });
-      topicsListEl.appendChild(div);
-    });
-  }
-
-  function setRandomTopic(){
-    const index = Math.floor(Math.random() * topics.length);
-    topicInput.value = topics[index];
-  }
-
-  clearTopicBtn.addEventListener("click", () => {
-    topicInput.value = "";
-  });
-
-  newTopicBtn.addEventListener("click", setRandomTopic);
-
-  function buildDraftEssay(){
-    const topicText = topicInput.value.trim();
-    const type = essayTypeSelect.value;
-
-    let intro = introInput.value.trim();
-    let body1 = body1Input.value.trim();
-    let body2 = body2Input.value.trim();
-    let conclusion = conclusionInput.value.trim();
-
-    if(!intro && topicText){
-      if(type === "opinion"){
-        intro = `Nowadays, the topic of "${topicText}" is very important for many students. In my opinion, this question plays a big role in our lives.`;
-      }else if(type === "forAgainst"){
-        intro = `There are different opinions about "${topicText}". Some people agree with this idea, while others are against it.`;
-      }else{
-        intro = `The topic "${topicText}" is often discussed by teachers and students. It is important to understand its advantages and disadvantages.`;
+const topics = [
+  {
+    id:1,
+    module:"Module 1 – Hobbies & Leisure (Excel 7 SB pp. 5–16)",
+    title:"Present Simple vs Present Continuous",
+    focus:"habits vs actions now",
+    explanation: `
+      We use <strong>Present Simple</strong> for facts, routines and habits
+      (every day, usually, always).<br>
+      We use <strong>Present Continuous</strong> for actions happening
+      <strong>now / at the moment</strong>.
+    `,
+    ruleRu: `
+      <b>Present Simple</b> – постоянные действия, распорядок, факты.
+      Маркеры: every day, usually, often, on Mondays и т.д.<br>
+      Формы: I/you/we/they <b>play</b>, he/she/it <b>plays</b>.
+      Вспомогательные: do/does, don't/doesn't.<br><br>
+      <b>Present Continuous</b> – действие «прямо сейчас / вокруг настоящего».
+      Формы: am/is/are + V-ing (I am reading, She is reading).<br>
+      Маркеры: now, at the moment, today, this week.<br><br>
+      В Excel 7 часто нужно сравнить два времени и выбрать правильную форму.
+    `,
+    examples:[
+      "I usually do my homework in the evening. (Present Simple)",
+      "She is doing her homework now. (Present Continuous)",
+      "They don't go to school on Sundays.",
+      "Are you listening to the teacher now?"
+    ],
+    tasks:[
+      {
+        question:"Choose the correct form: Look! Tom ___ (plays / is playing) basketball now.",
+        answer:"Look! Tom is playing basketball now. (now → Present Continuous)"
+      },
+      {
+        question:"Complete: My brother ___ (usually / now) ___ (watch) TV in the evening, but today he ___ (do) his homework.",
+        answer:"My brother usually watches TV in the evening, but today he is doing his homework."
       }
-    }
-
-    if(!body1){
-      body1 = "Firstly, there are several strong reasons that support this point of view. For example, many students say that it helps them develop important skills.";
-    }
-
-    if(!body2){
-      body2 = "Secondly, this idea can also influence students' future life. It may teach them responsibility, independence and cooperation with other people.";
-    }
-
-    if(!conclusion){
-      conclusion = "In conclusion, this topic has both positive and negative sides. However, I believe that its advantages are more significant for students’ development.";
-    }
-
-    const parts = [intro, body1, body2, conclusion].filter(Boolean);
-    finalEssay.value = parts.join("\n\n");
-    updateWordCount();
+    ]
+  },
+  {
+    id:2,
+    module:"Module 1 – Hobbies & Leisure (Excel 7 SB pp. 5–16)",
+    title:"Singular & plural nouns",
+    focus:"regular and irregular plurals",
+    explanation: `
+      <strong>Countable nouns</strong> have singular and plural forms:
+      a book – two books. Many plurals use <strong>-s/-es</strong>, but some
+      are irregular.
+    `,
+    ruleRu: `
+      Единственное число: a hobby, an apple, a child.<br>
+      Множественное число: hobbies, apples, children.<br><br>
+      <b>Обычные правила:</b><br>
+      • book → books<br>
+      • box → boxes (после s, sh, ch, x, o → -es)<br>
+      • hobby → hobbies (согласная + y → -ies)<br><br>
+      <b>Неправильные:</b> child → children, man → men, woman → women,
+      person → people, foot → feet, tooth → teeth и т.д.<br>
+      В Excel 7 часто просят «Write the plural of the words».
+    `,
+    examples:[
+      "This hobby is interesting. These hobbies are interesting.",
+      "There is a child in the room. There are two children in the room.",
+      "I have one book and three notebooks."
+    ],
+    tasks:[
+      {
+        question:"Write the plural: a hobby, a box, a child, a man.",
+        answer:"hobbies, boxes, children, men."
+      },
+      {
+        question:"Complete: There ___ (be) two ___ (person) in the room.",
+        answer:"There are two people in the room."
+      }
+    ]
+  },
+  {
+    id:3,
+    module:"Module 1 – Hobbies & Leisure (Excel 7 SB pp. 5–16)",
+    title:"Comparatives, superlatives, very / much / as … as / too / enough",
+    focus:"comparison of adjectives",
+    explanation: `
+      We use the <strong>comparative</strong> to compare two things
+      (bigger, more exciting) and the <strong>superlative</strong> for
+      three or more (the biggest, the most exciting).<br>
+      We also use <strong>very, much, as … as, too, enough</strong> to
+      give more information about degree.
+    `,
+    ruleRu: `
+      <b>Comparative</b> – сравнительная степень: tall → taller,
+      big → bigger, interesting → more interesting.<br>
+      <b>Superlative</b> – превосходная: the tallest, the biggest,
+      the most interesting.<br><br>
+      very – очень: very interesting;<br>
+      much – намного (перед сравнительной): much bigger;<br>
+      as … as – такой же … как: as tall as;<br>
+      too – слишком: too difficult;<br>
+      enough – достаточно: tall enough, big enough.<br><br>
+      В Excel 7 это всё идёт одним блоком.
+    `,
+    examples:[
+      "This hobby is more exciting than watching TV.",
+      "Dombra is one of the most popular instruments in Kazakhstan.",
+      "This exercise is too difficult for me.",
+      "The film is not interesting enough."
+    ],
+    tasks:[
+      {
+        question:"Make one sentence: English / interesting / Maths (comparative).",
+        answer:"English is more interesting than Maths."
+      },
+      {
+        question:"Complete with too or enough: This bag is ___ heavy. I can’t carry it. / The water is warm ___. You can swim.",
+        answer:"This bag is too heavy. I can’t carry it. / The water is warm enough. You can swim."
+      }
+    ]
+  },
+  {
+    id:4,
+    module:"Module 2 – Communication & Technology (Excel 7 SB pp. 17–30)",
+    title:"Can / Could / Be able to (ability)",
+    focus:"ability now, in the past and in special situations",
+    explanation: `
+      <strong>Can</strong> shows ability now or general ability.
+      <strong>Could</strong> is ability in the past or polite requests.
+      <strong>Be able to</strong> works in many tenses.
+    `,
+    ruleRu: `
+      <b>Can</b>: I can swim. – Я умею плавать.<br>
+      <b>Could</b>: I could swim when I was five. – Я мог плавать, когда мне было 5.<br>
+      Вежливая просьба: Could you help me, please?<br><br>
+      <b>Be able to</b> – «быть способным»: am/is/are/was/were/will be able to.<br>
+      Удобно, когда нужен другой вид времени: will be able to, have been able to и т.д.
+    `,
+    examples:[
+      "I can use a computer very well.",
+      "When she was ten, she could play the piano.",
+      "Will you be able to come to the party?",
+      "Could you send me an email, please?"
+    ],
+    tasks:[
+      {
+        question:"Choose: When I was a child, I ___ (can / could) ride a bike.",
+        answer:"When I was a child, I could ride a bike."
+      },
+      {
+        question:"Complete: Next year I ___ (be able to) speak English better.",
+        answer:"Next year I will be able to speak English better."
+      }
+    ]
+  },
+  {
+    id:5,
+    module:"Module 2 – Communication & Technology (Excel 7 SB pp. 17–30)",
+    title:"Used to (past habits) & time words",
+    focus:"past habits vs present and time expressions",
+    explanation: `
+      We use <strong>used to</strong> for past habits and states
+      which are not true now. Time words help us show when.
+    `,
+    ruleRu: `
+      <b>Used to</b> + V – «раньше делал, сейчас нет».<br>
+      I used to play computer games every day, but now I don’t.<br><br>
+      Вопрос: Did you use to …?<br>
+      Отрицание: didn’t use to …<br><br>
+      <b>Time words:</b> yesterday, last year, in 2019, two days ago,
+      when I was 10, in the past и т.д.
+    `,
+    examples:[
+      "I used to watch a lot of TV, but now I prefer reading.",
+      "My grandfather used to live in a village.",
+      "Did you use to play computer games every day?",
+      "He didn’t use to like English."
+    ],
+    tasks:[
+      {
+        question:"Rewrite: Now I walk to school. Before I went by bus every day. (use used to)",
+        answer:"I used to go to school by bus every day, but now I walk."
+      },
+      {
+        question:"Make a question: you / play / football / every weekend (in the past)?",
+        answer:"Did you use to play football every weekend?"
+      }
+    ]
+  },
+  {
+    id:6,
+    module:"Module 2 – Communication & Technology (Excel 7 SB pp. 17–30)",
+    title:"Adjectives, -ing/-ed adjectives, adverbs, quite / rather",
+    focus:"describing people and things",
+    explanation: `
+      Adjectives describe nouns (a <strong>funny</strong> video).<br>
+      <strong>-ing</strong> adjectives describe things (boring, exciting),
+      <strong>-ed</strong> adjectives describe how we feel (bored, excited).<br>
+      Adverbs describe verbs (speak <strong>slowly</strong>).<br>
+      <strong>Quite</strong> and <strong>rather</strong> show degree.
+    `,
+    ruleRu: `
+      <b>Прилагательные</b>: clever, noisy, difficult, exciting и т.д.<br>
+      -ing → «какой» (фильм интересный), -ed → «какой я» (я заинтересован).<br>
+      The film is boring. – I am bored.<br><br>
+      <b>Наречия</b>: adjective + -ly (careful → carefully).<br>
+      He speaks slowly and clearly.<br><br>
+      quite – довольно, довольно-таки; rather – довольно (часто с негативным оттенком).
+    `,
+    examples:[
+      "This computer game is very exciting.",
+      "I’m excited about the new film.",
+      "She speaks English quite well.",
+      "It’s rather cold today."
+    ],
+    tasks:[
+      {
+        question:"Choose: The book is very (interesting / interested). I am (interesting / interested) in it.",
+        answer:"The book is very interesting. I am interested in it."
+      },
+      {
+        question:"Complete with an adverb: He is a careful driver. He drives very ___ .",
+        answer:"He is a careful driver. He drives very carefully."
+      }
+    ]
+  },
+  {
+    id:7,
+    module:"Module 2 – Communication & Technology (Excel 7 SB pp. 17–30)",
+    title:"Should / Shouldn’t (advice)",
+    focus:"giving advice and recommendations",
+    explanation: `
+      We use <strong>should / shouldn’t</strong> to give advice or say
+      that something is a good or bad idea.
+    `,
+    ruleRu: `
+      <b>Should + V</b> – «следует, стоит»: You should study every day.<br>
+      <b>Shouldn’t + V</b> – «не стоит»: You shouldn’t spend so much time online.<br>
+      После should / shouldn’t – всегда глагол без to: should go, shouldn’t play.
+    `,
+    examples:[
+      "You should do your homework before you play games.",
+      "You shouldn’t eat so much junk food.",
+      "Should I take an umbrella today?"
+    ],
+    tasks:[
+      {
+        question:"Give advice: Your friend is tired. (use should)",
+        answer:"You should go to bed earlier. / You should have a rest."
+      },
+      {
+        question:"Make a negative sentence with shouldn’t: spend / a lot of time / on social media.",
+        answer:"You shouldn’t spend a lot of time on social media."
+      }
+    ]
+  },
+  {
+    id:8,
+    module:"Module 3 – Holidays & Travel (Excel 7 SB pp. 29–40)",
+    title:"Present Perfect + just / yet / already / since / for",
+    focus:"experience and result connected with now",
+    explanation: `
+      We use <strong>Present Perfect</strong> (have/has + V3) to talk
+      about experience and results connected with now.
+      We often use <strong>just, yet, already, since, for</strong>.
+    `,
+    ruleRu: `
+      Формула: have/has + V3 (3-я форма): I have seen, She has gone.<br><br>
+      <b>just</b> – только что: He has just finished.<br>
+      <b>already</b> – уже (в утвердительных): She has already done it.<br>
+      <b>yet</b> – уже/ещё (в вопросах и отриц.): Have you finished yet? / I haven’t finished yet.<br>
+      <b>since</b> – с какого момента: since 2010, since Monday.<br>
+      <b>for</b> – как долго: for two days, for five years.
+    `,
+    examples:[
+      "I have just done my homework.",
+      "She has already visited Almaty.",
+      "We haven’t eaten yet.",
+      "He has lived in Aktau for ten years."
+    ],
+    tasks:[
+      {
+        question:"Complete: She ___ just ___ (finish) her project.",
+        answer:"She has just finished her project."
+      },
+      {
+        question:"Choose: I have lived here (since / for) 2015.",
+        answer:"I have lived here since 2015."
+      }
+    ]
+  },
+  {
+    id:9,
+    module:"Module 3 – Holidays & Travel (Excel 7 SB pp. 29–40)",
+    title:"Have been vs have gone & Present Perfect vs Past Simple",
+    focus:"experience vs finished past time",
+    explanation: `
+      <strong>Have been (to)</strong> – sb went and came back.
+      <strong>Have gone (to)</strong> – sb is still there.<br>
+      <strong>Present Perfect</strong> – experience / result, time not important.
+      <strong>Past Simple</strong> – finished action at a specific time.
+    `,
+    ruleRu: `
+      <b>Have been to</b>: I have been to Astana. – Я уже там был (опыт).<br>
+      <b>Have gone to</b>: She has gone to school. – Она ушла и сейчас в школе.<br><br>
+      <b>Present Perfect</b> – нет конкретного времени: I have seen this film.<br>
+      <b>Past Simple</b> – есть конкретное время: I saw this film yesterday.<br>
+      В Excel 7 любят выбирать между двумя временами.
+    `,
+    examples:[
+      "I have been to London twice.",
+      "She has gone to the shop. (She isn’t here now.)",
+      "We saw this film last week.",
+      "We have seen this film three times."
+    ],
+    tasks:[
+      {
+        question:"Choose: Tom ___ (has been / has gone) to the supermarket. He will be back soon.",
+        answer:"Tom has gone to the supermarket. He will be back soon."
+      },
+      {
+        question:"Choose: I ___ (have visited / visited) Paris in 2019.",
+        answer:"I visited Paris in 2019. (specific time → Past Simple)"
+      }
+    ]
+  },
+  {
+    id:10,
+    module:"Module 4 – Space & Earth (Excel 7 SB pp. 41–54)",
+    title:"Future: will / be going to / Present Continuous (future meaning)",
+    focus:"predictions, plans, arrangements",
+    explanation: `
+      <strong>Will</strong> – predictions, promises, instant decisions.<br>
+      <strong>Be going to</strong> – plans and intentions, evidence.<br>
+      <strong>Present Continuous (future)</strong> – fixed arrangements (time/place).
+    `,
+    ruleRu: `
+      <b>Will</b>: I think it will rain. I will help you.<br>
+      Отрицание: won’t + V.<br><br>
+      <b>Be going to</b>: I’m going to visit my grandparents. (план).<br>
+      It’s cloudy. It’s going to rain. (есть «знаки»).<br><br>
+      <b>Present Continuous (future)</b>: I’m meeting my friend at 5 o’clock.
+      (есть точное время/договорённость).
+    `,
+    examples:[
+      "It’s very cloudy. It’s going to rain.",
+      "I think our team will win.",
+      "We are visiting the planetarium on Saturday.",
+      "I’m going to study harder this term."
+    ],
+    tasks:[
+      {
+        question:"Choose: Look at those dark clouds. It ___ (will / is going to) rain.",
+        answer:"Look at those dark clouds. It is going to rain."
+      },
+      {
+        question:"Make a sentence (Present Continuous – arrangement): you / meet / your friend / at 4 o’clock / tomorrow.",
+        answer:"I am meeting my friend at 4 o’clock tomorrow."
+      }
+    ]
+  },
+  {
+    id:11,
+    module:"Module 6 – Entertainment & Media (Excel 7 SB pp. 61–72)",
+    title:"Passive (Present Simple & Past Simple) and it/there",
+    focus:"focus on action, not the doer",
+    explanation: `
+      In the <strong>Passive Voice</strong> the object becomes the subject:
+      “The film was watched by many people.”<br>
+      We use <strong>it</strong> and <strong>there</strong> in special structures:
+      “It is cold.” “There is a cinema near my house.”
+    `,
+    ruleRu: `
+      Схема: be + V3.<br>
+      Present Simple Passive: am/is/are + V3 → The film is watched.<br>
+      Past Simple Passive: was/were + V3 → The film was watched.<br><br>
+      <b>It</b> для погоды, времени, расстояния: It is cold. It is 5 o’clock.<br>
+      <b>There is/are</b> для существования: There is a TV in my room. There are many films on TV.
+    `,
+    examples:[
+      "Many films are shown on TV.",
+      "This programme is watched by millions of people.",
+      "The film was made in 2017.",
+      "There is a cinema near my house."
+    ],
+    tasks:[
+      {
+        question:"Change into passive: People watch this TV show every Saturday.",
+        answer:"This TV show is watched every Saturday."
+      },
+      {
+        question:"Complete with there is / there are / it is: ___ a new film on TV tonight. ___ very interesting.",
+        answer:"There is a new film on TV tonight. It is very interesting."
+      }
+    ]
+  },
+  {
+    id:12,
+    module:"Module 7 – Natural Disasters (Excel 7 SB pp. 73–84)",
+    title:"Past Continuous & Past Continuous vs Past Simple",
+    focus:"background action vs short action in the past",
+    explanation: `
+      <strong>Past Continuous</strong> (was/were + V-ing) describes an
+      action in progress in the past.<br>
+      Often we combine it with <strong>Past Simple</strong> for a long
+      action and a short action.
+    `,
+    ruleRu: `
+      Формула: was / were + V-ing.<br>
+      I was doing, they were playing.<br><br>
+      Две ситуации:<br>
+      • Длинное действие (фон): I was walking home…<br>
+      • Короткое действие (перебило): …when it started to rain.<br>
+      Часто используются слова: when, while.
+    `,
+    examples:[
+      "I was doing my homework at 7 o’clock yesterday.",
+      "They were playing football when it started to rain.",
+      "While we were watching TV, the lights went out."
+    ],
+    tasks:[
+      {
+        question:"Complete: He ___ (drive) home when he ___ (see) the accident.",
+        answer:"He was driving home when he saw the accident."
+      },
+      {
+        question:"Make a sentence with while: we / have dinner / the phone / ring.",
+        answer:"While we were having dinner, the phone rang."
+      }
+    ]
+  },
+  {
+    id:13,
+    module:"Module 8 – Healthy Habits (Excel 7 SB pp. 85–96)",
+    title:"Zero, First and Second Conditionals",
+    focus:"real and unreal situations",
+    explanation: `
+      <strong>Zero Conditional</strong>: facts (If + Present, Present).<br>
+      <strong>First Conditional</strong>: real future (If + Present, will + V).<br>
+      <strong>Second Conditional</strong>: unreal, imaginary (If + Past, would + V).
+    `,
+    ruleRu: `
+      <b>Zero</b>: If you heat water to 100°C, it boils. (факт, всегда так).<br>
+      <b>First</b>: If I study hard, I will pass the exam. (реально, будущее).<br>
+      <b>Second</b>: If I had more free time, I would do more sport. (нереально/маловероятно).<br><br>
+      Запятая в английском только если if-клауз стоит первым.
+    `,
+    examples:[
+      "If you eat a lot of junk food, you get unhealthy.",
+      "If it rains tomorrow, we will stay at home.",
+      "If I were you, I would go to bed earlier."
+    ],
+    tasks:[
+      {
+        question:"Make a first conditional: If / you / eat / healthier food, / you / feel / better.",
+        answer:"If you eat healthier food, you will feel better."
+      },
+      {
+        question:"Make a second conditional: If I / have / more time, / I / do / more sport.",
+        answer:"If I had more time, I would do more sport."
+      }
+    ]
+  },
+  {
+    id:14,
+    module:"Module 8 – Healthy Habits (Excel 7 SB pp. 85–96)",
+    title:"Modals: must / have to / need to / might",
+    focus:"obligation and possibility",
+    explanation: `
+      <strong>Must</strong> and <strong>have to</strong> show obligation.
+      <strong>Need to</strong> is similar. <strong>Might</strong> shows
+      weak possibility.
+    `,
+    ruleRu: `
+      <b>Must</b> – внутренняя необходимость/правило: You must do your homework.<br>
+      <b>Have to</b> – внешнее правило: I have to wear a uniform at school.<br>
+      <b>Need to</b> – нужно: You need to drink more water.<br>
+      <b>Might</b> – возможно (20–40%): It might rain later.<br><br>
+      После модальных – глагол без to (кроме need to): must go, have to go, might go.
+    `,
+    examples:[
+      "You mustn’t smoke here.",
+      "I have to get up early on weekdays.",
+      "You need to do more exercise.",
+      "It might be sunny tomorrow."
+    ],
+    tasks:[
+      {
+        question:"Choose: You ___ (must / might) wear a helmet when you ride a bike. It’s a rule.",
+        answer:"You must wear a helmet when you ride a bike."
+      },
+      {
+        question:"Make a sentence with might: it / rain / later.",
+        answer:"It might rain later."
+      }
+    ]
+  },
+  {
+    id:15,
+    module:"Module 9 – Clothes & Fashion (Excel 7 SB pp. 97–112)",
+    title:"Verb patterns: V + -ing / to-infinitive / bare infinitive",
+    focus:"like doing, want to do, can do",
+    explanation: `
+      Some verbs are followed by <strong>V-ing</strong>, some by
+      <strong>to-infinitive</strong>, some by <strong>bare infinitive</strong>
+      (without to).
+    `,
+    ruleRu: `
+      <b>V + -ing</b>: like, love, enjoy, hate, don’t mind: I enjoy reading.<br>
+      <b>V + to-infinitive</b>: want, decide, hope, plan, need: I want to go home.<br>
+      <b>Modal + V</b> (без to): can, must, should, might: I can swim.<br>
+      Также: let + smb + V (let me go), make + smb + V (make him study).
+    `,
+    examples:[
+      "I enjoy listening to music.",
+      "She wants to buy a new dress.",
+      "We decided to stay at home.",
+      "I can’t wear this jacket. It is too small."
+    ],
+    tasks:[
+      {
+        question:"Complete with -ing or to-infinitive: I like ___ (watch) films, but today I want ___ (read) a book.",
+        answer:"I like watching films, but today I want to read a book."
+      },
+      {
+        question:"Choose: He decided (to buy / buying) new trainers.",
+        answer:"He decided to buy new trainers."
+      }
+    ]
+  },
+  {
+    id:16,
+    module:"Module 9 – Clothes & Fashion (Excel 7 SB pp. 97–112)",
+    title:"Relative clauses: who / which / where",
+    focus:"joining sentences with relative pronouns",
+    explanation: `
+      We use <strong>who</strong> for people, <strong>which</strong> for
+      things and animals, <strong>where</strong> for places.
+    `,
+    ruleRu: `
+      <b>Who</b> – люди: The boy who is wearing a cap is my brother.<br>
+      <b>Which</b> – вещи/животные: The dress which I bought is green.<br>
+      <b>Where</b> – места: The shop where I work is in the city centre.<br>
+      В Excel 7 часто нужно соединить два предложения.
+    `,
+    examples:[
+      "The girl who is wearing a red dress is my cousin.",
+      "This is the shop where I buy my clothes.",
+      "The film which we watched yesterday was funny."
+    ],
+    tasks:[
+      {
+        question:"Join: This is the man. He designed our school uniform. (who)",
+        answer:"This is the man who designed our school uniform."
+      },
+      {
+        question:"Join: This is the shop. I always buy jeans there. (where)",
+        answer:"This is the shop where I always buy jeans."
+      }
+    ]
+  },
+  {
+    id:17,
+    module:"Module 9 – Clothes & Fashion (Excel 7 SB pp. 97–112)",
+    title:"Determiners: all / other & some / any / every / no (compounds)",
+    focus:"quantifiers and compounds (something, everybody…) ",
+    explanation: `
+      We use <strong>all, other</strong> and <strong>some, any, every, no</strong>
+      with nouns and in compounds: somebody, anywhere, everyone, nothing.
+    `,
+    ruleRu: `
+      <b>all</b> – все: all students, all my friends;<br>
+      <b>another / other</b> – другой, другие.<br><br>
+      some – немного/какой-то (утверждения); any – в вопросах/отрицаниях;<br>
+      every – каждый; no – никакой.<br>
+      compound words: somebody, anybody, everybody, nobody, somewhere, anywhere, everywhere, nowhere.<br>
+      <i>Важно:</i> после no- и every- слова глагол обычно в ед. числе:
+      Everybody is here. Nobody knows.
+    `,
+    examples:[
+      "All my friends like this style.",
+      "Somebody knocked at the door.",
+      "I don’t know anything about fashion.",
+      "Everybody is wearing jeans today."
+    ],
+    tasks:[
+      {
+        question:"Choose: ___ (Everybody / All people) in my class likes casual clothes.",
+        answer:"Everybody in my class likes casual clothes. / All people in my class like casual clothes."
+      },
+      {
+        question:"Complete: I can’t find my T-shirt. There is ___ (nothing / nobody) in the wardrobe.",
+        answer:"I can’t find my T-shirt. There is nothing in the wardrobe."
+      }
+    ]
+  },
+  {
+    id:18,
+    module:"Module 9 – Clothes & Fashion (Excel 7 SB pp. 97–112)",
+    title:"Reported speech: statements & said/told",
+    focus:"he said that…, he told me that…",
+    explanation: `
+      In <strong>reported speech</strong> we repeat what someone said,
+      often changing the tense (backshift) and pronouns.
+      We use <strong>said</strong> without object, and <strong>told</strong>
+      with object.
+    `,
+    ruleRu: `
+      <b>Прямая речь</b>: “I like this dress,” she said.<br>
+      <b>Косвенная</b>: She said (that) she liked that dress.<br><br>
+      <b>said</b> – без объекта: She said that…<br>
+      <b>told</b> – с объектом: She told me that…<br><br>
+      Часто сдвигаем время назад: Present → Past, will → would, can → could.
+    `,
+    examples:[
+      "Tom said that he was tired.",
+      "My mum told me that I had to clean my room.",
+      "She said that she didn’t like this colour."
+    ],
+    tasks:[
+      {
+        question:"Change into reported speech: “I am busy today,” he said.",
+        answer:"He said (that) he was busy that day."
+      },
+      {
+        question:"Complete: She ___ me that the lesson ___ difficult. (said/told, be)",
+        answer:"She told me that the lesson was difficult."
+      }
+    ]
+  },
+  {
+    id:19,
+    module:"Module 9 – Clothes & Fashion (Excel 7 SB pp. 97–112)",
+    title:"Reported questions",
+    focus:"changing word order and question words",
+    explanation: `
+      In <strong>reported questions</strong> we change the word order to
+      that of a statement and use <strong>if/whether</strong> or a
+      question word (what, where, why…).
+    `,
+    ruleRu: `
+      Прямая: “Where do you buy your clothes?” she asked me.<br>
+      Косвенная: She asked me where I bought my clothes.<br><br>
+      Нет вопросительного порядка: <i>where I bought</i>, не *where did I buy*.<br>
+      Yes/No-вопросы → if/whether: “Do you like this T-shirt?” → He asked if I liked that T-shirt.
+    `,
+    examples:[
+      "He asked me where I bought my jacket.",
+      "She asked if I liked this style.",
+      "They asked what I was wearing."
+    ],
+    tasks:[
+      {
+        question:"Change into reported question: “Do you like these shoes?” the shop assistant asked.",
+        answer:"The shop assistant asked if I liked those shoes."
+      },
+      {
+        question:"Change into reported question: “Where are you going?” my friend asked me.",
+        answer:"My friend asked me where I was going."
+      }
+    ]
+  },
+  {
+    id:20,
+    module:"Module 9 – Clothes & Fashion (Excel 7 SB pp. 97–112)",
+    title:"Reported commands and requests",
+    focus:"tell/ask + object + to-infinitive / not to",
+    explanation: `
+      We report orders and requests with <strong>tell / ask + object +
+      (not) to + V</strong>.
+    `,
+    ruleRu: `
+      Прямая: “Try on this jacket,” she said to me.<br>
+      Косвенная: She told me to try on that jacket.<br><br>
+      Прямая: “Don’t be late,” my mum said.<br>
+      Косвенная: My mum told me not to be late.<br><br>
+      Схема: told/asked + объект + (not) to + глагол.
+    `,
+    examples:[
+      "The teacher told us to do our homework.",
+      "My mum told me not to wear this T-shirt.",
+      "He asked me to help him."
+    ],
+    tasks:[
+      {
+        question:"Change into reported speech: “Don’t forget your PE kit,” the teacher said.",
+        answer:"The teacher told us not to forget our PE kit."
+      },
+      {
+        question:"Change into reported speech: “Try these jeans on,” my friend said.",
+        answer:"My friend told me to try those jeans on."
+      }
+    ]
   }
+];
 
-  buildEssayBtn.addEventListener("click", buildDraftEssay);
+/* ------------- RENDER TOPIC LIST ------------- */
+const topicListEl = document.getElementById("topicList");
+const topicsCountEl = document.getElementById("topicsCount");
 
-  clearPlanBtn.addEventListener("click", () => {
-    introInput.value = "";
-    body1Input.value = "";
-    body2Input.value = "";
-    conclusionInput.value = "";
+function renderTopicList(){
+  topicListEl.innerHTML = "";
+  topics.forEach((t, index) => {
+    const li = document.createElement("li");
+    li.className = "topic-item";
+    li.dataset.id = t.id;
+
+    const left = document.createElement("div");
+    const title = document.createElement("div");
+    title.className = "topic-title";
+    title.textContent = (index+1) + ". " + t.title;
+
+    const meta = document.createElement("div");
+    meta.className = "topic-meta";
+    meta.textContent = t.module;
+
+    left.appendChild(title);
+    left.appendChild(meta);
+
+    const chip = document.createElement("div");
+    chip.className = "topic-chip";
+    chip.textContent = "Excel 7";
+
+    li.appendChild(left);
+    li.appendChild(chip);
+
+    li.addEventListener("click", () => openTopic(t.id));
+
+    topicListEl.appendChild(li);
   });
 
-  function countWords(text){
-    return text
-      .trim()
-      .split(/\s+/)
-      .filter(w => w.length > 0).length;
-  }
+  topicsCountEl.textContent = topics.length + " topics";
+}
 
-  function getCurrentLevel(){
-    const active = levelRow.querySelector(".pill.active");
-    return active ? active.dataset.level : "7–8 grade";
-  }
+/* ------------- OPEN TOPIC ------------- */
+const topicTitleEl = document.getElementById("topicTitle");
+const topicTaglineEl = document.getElementById("topicTagline");
+const explanationEl = document.getElementById("explanation");
+const rulesRuEl = document.getElementById("rulesRu");
+const examplesEl = document.getElementById("examples");
+const tasksEl = document.getElementById("tasks");
 
-  function updateWordCount(){
-    const words = countWords(finalEssay.value);
-    wordCountEl.textContent = "Words: " + words;
+function openTopic(id){
+  const topic = topics.find(t => t.id === id);
+  if(!topic) return;
 
-    const levelText = getCurrentLevel();
-    let advice;
-    if(levelText === "7–8 grade"){
-      advice = "Target: 120–150 words for 7–8 grade";
-    }else if(levelText === "Olympiad"){
-      advice = "Target: 180–220 words for school/oblast olympiad";
-    }else{
-      advice = "Target: 200–250 words for exam practice";
-    }
-    wordAdviceEl.textContent = advice;
-  }
-
-  finalEssay.addEventListener("input", () => {
-    updateWordCount();
-    saveEssayForTeacher();
-  });
-
-  clearEssayBtn.addEventListener("click", () => {
-    finalEssay.value = "";
-    updateWordCount();
-    saveEssayForTeacher();
-  });
-
-  copyEssayBtn.addEventListener("click", async () => {
-    try{
-      await navigator.clipboard.writeText(finalEssay.value);
-      copyEssayBtn.textContent = "✅ Copied";
-      setTimeout(() => copyEssayBtn.textContent = "📋 Copy", 1500);
-    }catch(e){
-      alert("Cannot copy automatically. Please select text and copy manually.");
+  document.querySelectorAll(".topic-item").forEach(item => {
+    if(Number(item.dataset.id) === id){
+      item.classList.add("active");
+    } else {
+      item.classList.remove("active");
     }
   });
 
-  /* ---------- PRINT ESSAY ---------- */
-  printBtn.addEventListener("click", () => {
-    const content = finalEssay.value.replace(/\n/g, "<br/>");
-    const printWindow = window.open("", "_blank");
-    printWindow.document.write(`
-      <html>
-      <head>
-        <title>Print Essay</title>
-        <style>
-          body{
-            font-family: system-ui, sans-serif;
-            padding: 20px;
-            line-height: 1.6;
-            font-size: 16px;
-          }
-        </style>
-      </head>
-      <body>${content}</body>
-      </html>
-    `);
-    printWindow.document.close();
-    printWindow.print();
+  topicTitleEl.textContent = topic.title;
+  topicTaglineEl.textContent = topic.module + " · " + topic.focus;
+
+  explanationEl.innerHTML = topic.explanation;
+
+  rulesRuEl.style.display = "block";
+  rulesRuEl.innerHTML = topic.ruleRu;
+
+  examplesEl.style.display = "block";
+  examplesEl.innerHTML = "";
+  const exTitle = document.createElement("div");
+  exTitle.className = "examples-title";
+  exTitle.textContent = "Examples:";
+  const ul = document.createElement("ul");
+  topic.examples.forEach(ex => {
+    const li = document.createElement("li");
+    li.textContent = ex;
+    ul.appendChild(li);
   });
+  examplesEl.appendChild(exTitle);
+  examplesEl.appendChild(ul);
 
-  levelRow.addEventListener("click", (e) => {
-    const pill = e.target.closest(".pill");
-    if(!pill) return;
-    levelRow.querySelectorAll(".pill").forEach(p => p.classList.remove("active"));
-    pill.classList.add("active");
+  tasksEl.style.display = "block";
+  tasksEl.innerHTML = "";
+  const h3 = document.createElement("h3");
+  h3.innerHTML = 'Exercises <span>Click “Show answer” to check</span>';
+  tasksEl.appendChild(h3);
 
-    const level = pill.dataset.level;
-    if(level === "7–8 grade"){
-      levelHint.innerHTML = 'Current level: <b>7–8 grade</b> · Good length: <b>120–150 words</b>.';
-    }else if(level === "Olympiad"){
-      levelHint.innerHTML = 'Current level: <b>Olympiad</b> · Good length: <b>180–220 words</b>. Use stronger vocabulary and more complex sentences.';
-    }else{
-      levelHint.innerHTML = 'Current level: <b>Exam practice</b> · Good length: <b>200–250 words</b>. Focus on clear structure and linking words.';
-    }
-    updateWordCount();
-  });
-
-  essayTypeSelect.addEventListener("change", () => {
-    const type = essayTypeSelect.value;
-    if(type === "opinion"){
-      introInput.placeholder =
-        "Introduce the topic + give your opinion.\nExample: Nowadays, ... In my opinion, ...";
-      body1Input.placeholder =
-        "Argument 1 FOR your opinion + explanation + example.\nUse: Firstly, To begin with...";
-      body2Input.placeholder =
-        "Argument 2 FOR your opinion + explanation + example.\nUse: Secondly, Moreover...";
-      conclusionInput.placeholder =
-        "Repeat your opinion in other words + final thought.\nUse: In conclusion, I strongly believe that...";
-    }else if(type === "forAgainst"){
-      introInput.placeholder =
-        "Introduce the topic and say there are different opinions.\nExample: Some people think..., while others say...";
-      body1Input.placeholder =
-        "Arguments FOR the idea.\nUse: On the one hand, Firstly...";
-      body2Input.placeholder =
-        "Arguments AGAINST the idea.\nUse: On the other hand, However...";
-      conclusionInput.placeholder =
-        "Summarise both sides + your own opinion.\nUse: To sum up, In my view...";
-    }else if(type === "argumentative"){
-      introInput.placeholder =
-        "Introduce the problem + short background.\nExample: There is a strong debate about...";
-      body1Input.placeholder =
-        "Strong argument 1 with example.\nUse: Firstly, The main reason is that...";
-      body2Input.placeholder =
-        "Strong argument 2 + maybe counter-argument.\nUse: Secondly, In addition, Some people claim that..., but...";
-      conclusionInput.placeholder =
-        "Summarise your arguments + final message.\nUse: Therefore, I am convinced that...";
-    }else{
-      introInput.placeholder =
-        "Introduce the topic you describe.\nExample: My favourite place/activity/person is...";
-      body1Input.placeholder =
-        "Describe appearance / main features.\nUse many adjectives.";
-      body2Input.placeholder =
-        "Describe feelings, atmosphere or reasons why it is important.";
-      conclusionInput.placeholder =
-        "Short final impression.\nUse: In conclusion, That is why this is special for me.";
-    }
-  });
-
-  /* ---------- AI BAYAN CHAT WITH LIMIT 10 / DAY ---------- */
-  const chatBox = document.getElementById("chatBox");
-  const aiQuestion = document.getElementById("aiQuestion");
-  const askBtn = document.getElementById("askBtn");
-  const clearChatBtn = document.getElementById("clearChatBtn");
-  const aiLimitText = document.getElementById("aiLimitText");
-
-  const AI_LIMIT_PER_DAY = 10;
-  const WORKER_URL = "https://shiny-tree-f78c.aiko030500.workers.dev/";
-
-  function getTodayStr(){
-    return new Date().toISOString().slice(0,10); // YYYY-MM-DD
-  }
-
-  function getAiUsage(){
-    if(!currentUser) return {count:0, key:null};
-    const key = "essay_ai_usage_" + currentUser.pin + "_" + getTodayStr();
-    const raw = localStorage.getItem(key);
-    let val = 0;
-    if(raw){
-      const n = parseInt(raw,10);
-      if(!isNaN(n)) val = n;
-    }
-    return {key, count:val};
-  }
-
-  function setAiUsage(count){
-    if(!currentUser) return;
-    const usage = getAiUsage();
-    if(!usage.key) return;
-    localStorage.setItem(usage.key, String(count));
-  }
-
-  function initAiLimitText(){
-    if(!currentUser){
-      aiLimitText.textContent = "Login with your PIN to use AI Bayan (10 questions per day).";
-      return;
-    }
-    const usage = getAiUsage().count;
-    const left = Math.max(0, AI_LIMIT_PER_DAY - usage);
-    if(usage >= AI_LIMIT_PER_DAY){
-      aiLimitText.innerHTML =
-        `<span class="limit-max">You have used all ${AI_LIMIT_PER_DAY} questions for today.</span>`;
-    }else if(left <= 3){
-      aiLimitText.innerHTML =
-        `<span class="limit-warning">Questions today: ${usage}/${AI_LIMIT_PER_DAY}. Only ${left} left.</span>`;
-    }else{
-      aiLimitText.innerHTML =
-        `<span class="limit-ok">Questions today: ${usage}/${AI_LIMIT_PER_DAY}. Keep practising wisely.</span>`;
-    }
-  }
-
-  function appendMessage(text, type){
+  topic.tasks.forEach((task, i) => {
     const div = document.createElement("div");
-    div.className = "msg " + type;
-    div.textContent = text;
-    chatBox.appendChild(div);
-    chatBox.scrollTop = chatBox.scrollHeight;
+    div.className = "task-item";
+
+    const q = document.createElement("div");
+    q.className = "task-q";
+    q.textContent = (i+1) + ") " + task.question;
+
+    const controls = document.createElement("div");
+    controls.className = "task-controls";
+
+    const showBtn = document.createElement("button");
+    showBtn.className = "btn btn-outline";
+    showBtn.textContent = "Show answer";
+
+    const answerDiv = document.createElement("div");
+    answerDiv.className = "task-answer";
+    answerDiv.textContent = "Answer: " + task.answer;
+
+    showBtn.addEventListener("click", () => {
+      const visible = answerDiv.classList.toggle("visible");
+      showBtn.textContent = visible ? "Hide answer" : "Show answer";
+    });
+
+    controls.appendChild(showBtn);
+
+    div.appendChild(q);
+    div.appendChild(controls);
+    div.appendChild(answerDiv);
+    tasksEl.appendChild(div);
+  });
+}
+
+/* ------------- AI BAYAN CHAT ------------- */
+const AI_WORKER_URL = "https://shiny-tree-f78c.aiko030500.workers.dev/";
+const chatBox = document.getElementById("chatBox");
+const aiQuestion = document.getElementById("aiQuestion");
+const askBtn = document.getElementById("askBtn");
+const aiStatus = document.getElementById("aiStatus");
+
+function addChatMessage(role, text){
+  const div = document.createElement("div");
+  div.className = "chat-msg " + role;
+  div.textContent = text;
+  chatBox.appendChild(div);
+  chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+async function sendToAiBayan(){
+  const question = aiQuestion.value.trim();
+  if(!question){
+    aiStatus.textContent = "Write a question first.";
+    return;
   }
 
-  async function sendToAiBayan(){
-    if(!currentUser){
-      alert("Сначала войдите по PIN.");
-      return;
-    }
-    const question = aiQuestion.value.trim();
-    if(!question){
-      return;
-    }
+  const currentTopic = topicTitleEl.textContent || "";
 
-    const usageData = getAiUsage();
-    if(usageData.count >= AI_LIMIT_PER_DAY){
-      initAiLimitText();
-      appendMessage("Daily limit reached (10 questions). Try again tomorrow.", "system");
-      return;
-    }
+  addChatMessage("user", question);
+  aiQuestion.value = "";
+  aiStatus.textContent = "AI Bayan is thinking...";
 
-    appendMessage("You: " + question, "user");
-    aiQuestion.value = "";
-
-    const thinkingMsg = document.createElement("div");
-    thinkingMsg.className = "msg system";
-    thinkingMsg.textContent = "AI Bayan is thinking...";
-    chatBox.appendChild(thinkingMsg);
-    chatBox.scrollTop = chatBox.scrollHeight;
-
-    try{
-      const payload = {
-        question,
-        pin: currentUser.pin,
-        cls: currentUser.cls,
-        app: "EssayTrainer"
-      };
-
-      const response = await fetch(WORKER_URL, {
-        method:"POST",
-        headers:{ "Content-Type":"application/json" },
-        body: JSON.stringify(payload)
-      });
-
-      chatBox.removeChild(thinkingMsg);
-
-      if(!response.ok){
-        appendMessage("Error from AI Bayan. Please try again later.", "system");
-        return;
+  try{
+    const payload = {
+      question,
+      meta:{
+        app:"AI Bayan – Excel 7 Grammar",
+        topic: currentTopic,
+        student: currentStudentName || null
       }
+    };
 
-      let answer = "";
-      // пробуем как JSON
-      let data = null;
-      try{
-        data = await response.json();
-      }catch(_){
-        data = null;
-      }
+    const response = await fetch(AI_WORKER_URL,{
+      method:"POST",
+      headers:{ "Content-Type":"application/json" },
+      body: JSON.stringify(payload)
+    });
 
-      if(data && (data.answer || data.reply || data.result)){
-        answer = data.answer || data.reply || data.result;
-      }else{
-        // если воркер возвращает просто текст
-        const text = data ? "" : await response.text();
-        answer = text || "AI Bayan sent an empty reply.";
-      }
-
-      appendMessage(answer, "ai");
-
-      // успешный ответ — увеличиваем счётчик
-      const newCount = usageData.count + 1;
-      setAiUsage(newCount);
-      initAiLimitText();
-    }catch(err){
-      console.error(err);
-      chatBox.removeChild(thinkingMsg);
-      appendMessage("Connection error. Please check internet or try again later.", "system");
+    if(!response.ok){
+      throw new Error("HTTP error " + response.status);
     }
+
+    const data = await response.json().catch(()=>null);
+    const answer = data && (data.answer || data.result || data.message)
+      ? (data.answer || data.result || data.message)
+      : "AI Bayan: I received your question. Please check your worker settings for full answer format.";
+
+    addChatMessage("ai", answer);
+    aiStatus.textContent = "";
+  }catch(err){
+    console.error(err);
+    aiStatus.textContent = "Error: cannot reach AI Bayan worker.";
+    addChatMessage("system","⚠️ AI Bayan worker is not available now. Check the Cloudflare Worker URL or internet connection.");
   }
+}
 
+if(askBtn){
   askBtn.addEventListener("click", sendToAiBayan);
+}
 
+if(aiQuestion){
   aiQuestion.addEventListener("keydown", (e) => {
-    if(e.key === "Enter" && !e.shiftKey){
+    if(e.key === "Enter" && (e.ctrlKey || e.shiftKey)){
+      return; // new line
+    }
+    if(e.key === "Enter"){
       e.preventDefault();
       sendToAiBayan();
     }
   });
+}
 
-  clearChatBtn.addEventListener("click", () => {
-    chatBox.innerHTML = "";
-  });
-
-  /* ---------- SAVE ESSAY FOR TEACHER MODE ---------- */
-  function saveEssayForTeacher(){
-    if(!currentUser || currentUser.teacher) return;
-
-    const data = {
-      pin: currentUser.pin,
-      cls: currentUser.cls,
-      topic: topicInput.value,
-      essay: finalEssay.value,
-      words: countWords(finalEssay.value),
-      date: getTodayStr()
-    };
-
-    const key = "essay_saved_" + currentUser.pin + "_" + getTodayStr();
-    localStorage.setItem(key, JSON.stringify(data));
-  }
-
-  /* ---------- TEACHER MODE ---------- */
-  function openTeacherPanel(){
-    teacherPanel.style.display = "block";
-    loadTeacherData();
-  }
-
-  function loadTeacherData(){
-    const container = document.getElementById("teacherList");
-    container.innerHTML = "";
-
-    const today = getTodayStr();
-
-    for(let i=0; i<localStorage.length; i++){
-      const key = localStorage.key(i);
-
-      if(key.startsWith("essay_saved_") && key.includes(today)){
-        const dataStr = localStorage.getItem(key);
-        if(!dataStr) continue;
-        let data;
-        try{
-          data = JSON.parse(dataStr);
-        }catch(_){
-          continue;
-        }
-        const div = document.createElement("div");
-        div.style.padding = "8px 0";
-        div.style.borderBottom = "1px dashed #d1c4e9";
-
-        div.innerHTML = `
-          <b>PIN ${data.pin}</b> · Class: ${data.cls}<br>
-          <b>Topic:</b> ${data.topic || "(no topic)"}<br>
-          <b>Words:</b> ${data.words}<br>
-          <b>Essay:</b><br>${(data.essay || "").replace(/\n/g,"<br>")}
-        `;
-
-        container.appendChild(div);
-      }
-    }
-
-    if(container.innerHTML.trim() === ""){
-      container.innerHTML = "<em>No essays today.</em>";
-    }
-  }
-
-  /* ---------- INIT ---------- */
-  renderTopics();
-  setRandomTopic();
-  updateWordCount();
-  initAiLimitText();
-  showScreen("login");
+/* ------------- INIT ------------- */
+renderTopicList();
+if(topics.length > 0){
+  openTopic(topics[0].id);
+}
 </script>
 </body>
 </html>
