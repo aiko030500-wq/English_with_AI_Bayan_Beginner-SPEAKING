@@ -2,11 +2,10 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <title>ENGLISH WITH AI BAYAN – Grade 7 Grammar</title>
+  <title>ENGLISH WITH AI BAYAN – 7 grade</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     :root {
-      /* АРБУЗНЫЙ СТИЛЬ */
       --watermelon-dark: #0a8f39;
       --watermelon-light: #60d394;
       --watermelon-pink: #ff5470;
@@ -22,8 +21,7 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-        sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
 
     body {
@@ -66,9 +64,7 @@
       box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.6);
     }
 
-    .logo-circle span {
-      transform: translateY(-1px);
-    }
+    .logo-circle span { transform: translateY(-1px); }
 
     .title-block h1 {
       font-size: 18px;
@@ -99,19 +95,23 @@
       font-size: 11px;
     }
 
-    .tag-pill span {
-      font-weight: 600;
+    .tag-pill span { font-weight: 600; }
+
+    .top-nav-links {
+      display: flex;
+      gap: 6px;
+      margin-top: 3px;
     }
+
+    .user-label { font-size: 12px; }
 
     main {
       padding: 16px;
-      max-width: 1200px;
+      max-width: 1000px;
       margin: 0 auto 40px;
     }
 
-    .hidden {
-      display: none !important;
-    }
+    .hidden { display: none !important; }
 
     .card {
       background: var(--card);
@@ -133,16 +133,14 @@
       content: "";
       position: absolute;
       inset: -60px;
-      background-image: radial-gradient(circle at 20% 0, rgba(255, 255, 255, 0.4) 0, transparent 50%),
+      background-image:
+        radial-gradient(circle at 20% 0, rgba(255, 255, 255, 0.4) 0, transparent 50%),
         radial-gradient(circle at 80% 110%, rgba(255, 84, 112, 0.18) 0, transparent 55%);
       opacity: 0.8;
       pointer-events: none;
     }
 
-    .card--login-inner {
-      position: relative;
-      z-index: 1;
-    }
+    .card--login-inner { position: relative; z-index: 1; }
 
     h2.section-title {
       font-size: 20px;
@@ -153,9 +151,7 @@
       color: var(--watermelon-dark);
     }
 
-    h2.section-title span.emoji {
-      font-size: 22px;
-    }
+    h2.section-title span.emoji { font-size: 22px; }
 
     p.muted {
       font-size: 13px;
@@ -163,9 +159,7 @@
       margin-bottom: 14px;
     }
 
-    .form-group {
-      margin-bottom: 12px;
-    }
+    .form-group { margin-bottom: 12px; }
 
     label {
       display: block;
@@ -182,8 +176,8 @@
       border: 1px solid rgba(0, 0, 0, 0.14);
       font-size: 14px;
       outline: none;
-      transition: border 0.15s, box-shadow 0.15s, background 0.15s;
       background: #fffdfd;
+      transition: border 0.15s, box-shadow 0.15s, background 0.15s;
     }
 
     input[type="text"]:focus,
@@ -233,21 +227,7 @@
       color: #254332;
     }
 
-    .btn-outline:hover {
-      background: rgba(255, 255, 255, 0.8);
-    }
-
-    .chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 2px 10px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.7);
-      border: 1px dashed rgba(255, 255, 255, 0.8);
-      font-size: 11px;
-      color: #143321;
-    }
+    .btn-outline:hover { background: rgba(255, 255, 255, 0.8); }
 
     .login-note {
       font-size: 11px;
@@ -255,26 +235,18 @@
       margin-top: 8px;
     }
 
-    /* ------- LAYOUT MAIN SCREENS ------- */
-
+    /* STUDENT SCREENS */
     #studentScreen {
-      display: grid;
-      grid-template-columns: minmax(0, 2.1fr) minmax(0, 2.9fr) minmax(260px, 1.6fr);
+      display: flex;
+      flex-direction: column;
       gap: 14px;
     }
 
-    #teacherScreen {
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .topics-card {
-      border-top: 4px solid var(--watermelon-dark);
-    }
+    .topics-card { border-top: 4px solid var(--watermelon-dark); }
 
     .topics-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
       gap: 10px;
       margin-top: 10px;
     }
@@ -293,24 +265,10 @@
       overflow: hidden;
     }
 
-    .topic-pill::after {
-      content: "";
-      position: absolute;
-      inset: -40px;
-      background-image: radial-gradient(circle at 0 0, rgba(255, 213, 79, 0.25) 0, transparent 55%);
-      opacity: 0;
-      transition: opacity 0.1s;
-      pointer-events: none;
-    }
-
     .topic-pill:hover {
       transform: translateY(-1px);
       box-shadow: 0 4px 10px rgba(255, 84, 112, 0.25);
       border-color: rgba(255, 84, 112, 0.6);
-    }
-
-    .topic-pill:hover::after {
-      opacity: 1;
     }
 
     .topic-title {
@@ -321,15 +279,12 @@
 
     .topic-meta {
       display: flex;
-      align-items: center;
       justify-content: space-between;
       font-size: 11px;
       color: #587168;
     }
 
-    .stars {
-      font-size: 13px;
-    }
+    .stars { font-size: 13px; }
 
     .badge-soft {
       padding: 2px 7px;
@@ -339,16 +294,18 @@
       font-size: 11px;
     }
 
-    .topic-active {
-      border-color: var(--watermelon-dark);
-      box-shadow: 0 0 0 1px rgba(10, 143, 57, 0.8);
-    }
+    /* Topic screen */
 
-    /* Topic Content */
+    #studentTopic { display: flex; flex-direction: column; gap: 12px; }
 
-    #topicContent.card {
-      border-top: 4px solid var(--watermelon-pink);
-      min-height: 260px;
+    #topicContent.card { border-top: 4px solid var(--watermelon-pink); }
+
+    .topic-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #617774;
+      margin-bottom: 4px;
     }
 
     .topic-header-line {
@@ -364,14 +321,6 @@
       color: var(--watermelon-dark);
     }
 
-    .topic-label {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: #617774;
-      margin-bottom: 4px;
-    }
-
     .grammar-box {
       background: #fff8fb;
       border-radius: 12px;
@@ -381,9 +330,7 @@
       font-size: 13px;
     }
 
-    .grammar-box strong {
-      color: #b2374f;
-    }
+    .grammar-box strong { color: #b2374f; }
 
     .examples-list {
       margin-left: 18px;
@@ -391,9 +338,7 @@
       margin-bottom: 8px;
     }
 
-    .examples-list li {
-      margin-bottom: 4px;
-    }
+    .examples-list li { margin-bottom: 4px; }
 
     .exercise-title {
       margin-top: 6px;
@@ -411,7 +356,7 @@
     }
 
     .exercise-list input[type="text"] {
-      width: 150px;
+      width: 170px;
       padding: 4px 6px;
       border-radius: 8px;
       font-size: 13px;
@@ -433,13 +378,8 @@
       font-weight: 600;
     }
 
-    .topic-result.good {
-      color: var(--watermelon-dark);
-    }
-
-    .topic-result.bad {
-      color: #b52b40;
-    }
+    .topic-result.good { color: var(--watermelon-dark); }
+    .topic-result.bad { color: #b52b40; }
 
     .topic-actions {
       display: flex;
@@ -454,21 +394,13 @@
       margin-top: 4px;
     }
 
-    /* AI PANEL */
+    /* AI panel */
 
-    #aiPanel {
-      border-top: 4px solid var(--gold);
-    }
+    #aiPanel { border-top: 4px solid var(--gold); }
 
-    #aiPanel h3 {
-      font-size: 16px;
-      margin-bottom: 4px;
-    }
+    #aiPanel h3 { font-size: 16px; margin-bottom: 4px; }
 
-    #aiLimit {
-      font-size: 11px;
-      font-weight: 500;
-    }
+    #aiLimit { font-size: 11px; font-weight: 500; }
 
     .chat-note {
       font-size: 11px;
@@ -491,18 +423,11 @@
       margin-bottom: 6px;
       padding: 6px 8px;
       border-radius: 10px;
-      max-width: 100%;
       word-wrap: break-word;
     }
 
-    .msg-user {
-      background: #ffe7ed;
-      align-self: flex-end;
-    }
-
-    .msg-ai {
-      background: #f2fbf5;
-    }
+    .msg-user { background: #ffe7ed; }
+    .msg-ai   { background: #f2fbf5; }
 
     #aiQuestion {
       width: 100%;
@@ -553,9 +478,7 @@
       color: #536560;
     }
 
-    .table-wrapper {
-      overflow-x: auto;
-    }
+    .table-wrapper { overflow-x: auto; }
 
     table {
       width: 100%;
@@ -564,8 +487,7 @@
       margin-top: 6px;
     }
 
-    th,
-    td {
+    th, td {
       padding: 6px 8px;
       border-bottom: 1px solid rgba(0, 0, 0, 0.06);
       text-align: left;
@@ -577,13 +499,9 @@
       font-weight: 600;
     }
 
-    tr:nth-child(even) td {
-      background: rgba(255, 255, 255, 0.7);
-    }
+    tr:nth-child(even) td { background: rgba(255, 255, 255, 0.7); }
 
-    .td-center {
-      text-align: center;
-    }
+    .td-center { text-align: center; }
 
     .pill-role {
       padding: 2px 7px;
@@ -596,67 +514,21 @@
       color: #735800;
     }
 
-    .pill-role--student {
-      background: rgba(10, 143, 57, 0.12);
-      color: var(--watermelon-dark);
-    }
-
-    .top-nav-links {
-      display: flex;
-      gap: 8px;
-      margin-top: 4px;
-      font-size: 11px;
-    }
-
-    .top-nav-links button {
-      font-size: 11px;
-      padding: 4px 10px;
-    }
-
-    .user-label {
-      font-size: 12px;
-    }
-
-    /* PRINT STYLES */
+    /* PRINT */
     @media print {
-      header, #loginScreen, #studentScreen #aiPanel, .topic-actions .btn-print-hide {
+      header,
+      #loginScreen,
+      .btn-print-hide {
         display: none !important;
       }
-      body {
-        background: #ffffff;
-      }
-      main {
-        padding: 0;
-        margin: 0;
-        max-width: 100%;
-      }
-      .card {
-        box-shadow: none;
-        border-radius: 0;
-        border: none;
-      }
-      #teacherScreen {
-        margin: 0;
-      }
-    }
-
-    /* RESPONSIVE */
-    @media (max-width: 960px) {
-      #studentScreen {
-        grid-template-columns: 1fr;
-      }
-      #aiPanel {
-        order: 3;
-      }
+      body { background: #ffffff; }
+      main { padding: 0; margin: 0; max-width: 100%; }
+      .card { box-shadow: none; border-radius: 0; border: none; }
     }
 
     @media (max-width: 540px) {
-      main {
-        padding: 10px;
-      }
-      .card--login {
-        margin: 20px auto;
-      }
+      main { padding: 10px; }
+      .card--login { margin: 20px auto; }
     }
   </style>
 </head>
@@ -666,13 +538,12 @@
     <div class="logo-circle"><span>B</span></div>
     <div class="title-block">
       <h1>ENGLISH WITH AI BAYAN</h1>
-      <p>Grade 7 · Grammar &amp; Workbook · Watermelon Edition 🍉</p>
+      <p>7 grade · Grammar &amp; Workbook · Watermelon Edition 🍉</p>
     </div>
   </div>
   <div class="header-right">
     <div class="tag-pill">
-      <span>AI Bayan</span>
-      · teacher journal · 1 question/day
+      <span>AI Bayan</span> · teacher journal · 1 question/day
     </div>
     <div class="top-nav-links">
       <button class="btn btn-outline btn-print-hide" id="toStudentBtn">Экран ученика</button>
@@ -683,22 +554,18 @@
 </header>
 
 <main>
-  <!-- LOGIN SCREEN -->
+  <!-- LOGIN -->
   <section id="loginScreen">
     <div class="card card--login">
       <div class="card--login-inner">
-        <h2 class="section-title">
-          <span class="emoji">🍉</span>
-          Вход в приложение
-        </h2>
+        <h2 class="section-title"><span class="emoji">🍉</span> ENGLISH WITH AI BAYAN – 7 grade</h2>
         <p class="muted">
-          Введите своё <strong>имя</strong> и <strong>PIN-код</strong>.
-          Учитель и ученики используют разные PIN.
+          Введите своё имя и PIN-код. Никаких подсказок PIN и имён на экране нет – вы даёте их детям сами.
         </p>
 
         <div class="form-group">
-          <label for="nameInput">Имя (как в журнале)</label>
-          <input type="text" id="nameInput" placeholder="Например: Сырым7С" autocomplete="off" />
+          <label for="nameInput">Имя</label>
+          <input type="text" id="nameInput" autocomplete="off" />
         </div>
 
         <div class="form-group">
@@ -707,87 +574,75 @@
         </div>
 
         <div class="btn-row">
-          <button class="btn btn-primary" id="loginBtn">
-            Войти
-          </button>
-          <button class="btn btn-outline" id="clearStorageBtn">
-            Сброс прогресса
-          </button>
+          <button class="btn btn-primary" id="loginBtn">Войти в грамматику</button>
+          <button class="btn btn-outline" id="clearStorageBtn">Сброс прогресса</button>
         </div>
 
         <p class="login-note">
-          • <strong>Учитель</strong>: свой PIN <br />
-          • <strong>Ученики</strong>: имя из журнала + ученический PIN.<br />
-          Подсказки PIN и имён в приложении <strong>не показываются</strong> — вы выдаёте их сами.
+          Отдельные PIN для учителя и учеников задаёте вы. Приложение их нигде не показывает.
         </p>
       </div>
     </div>
   </section>
 
-  <!-- STUDENT SCREEN -->
+  <!-- STUDENT -->
   <section id="studentScreen" class="hidden">
-    <!-- TOPICS LIST -->
-    <aside class="card topics-card">
-      <h2 class="section-title">
-        <span class="emoji">📚</span>
-        Темы грамматики 7 класса
-      </h2>
-      <p class="muted">
-        Нажмите на тему, чтобы открыть объяснение, упражнения и принт-версию.
-        Упражнения основаны на Student’s Book + Workbook 7.
-      </p>
-
-      <div class="topics-grid" id="topicsGrid"></div>
-    </aside>
-
-    <!-- TOPIC CONTENT -->
-    <section id="topicContent" class="card">
-      <!-- Контент темы рендерится из JS -->
-    </section>
-
-    <!-- AI PANEL -->
-    <aside id="aiPanel" class="card">
-      <div>
-        <h3>AI Bayan Chat</h3>
-        <div id="aiLimit"></div>
+    <!-- список тем -->
+    <div id="studentList">
+      <div class="card topics-card">
+        <h2 class="section-title"><span class="emoji">📚</span> Grammar topics – 7 grade</h2>
+        <p class="muted">
+          Нажмите на тему, чтобы открыть отдельный экран с грамматикой, упражнениями и чатом с AI Bayan.
+        </p>
+        <div class="topics-grid" id="topicsGrid"></div>
       </div>
-      <p class="chat-note">
-        Задайте вопрос по грамматике, лексике или переводу. Лимит — <strong>1 вопрос в сутки</strong> на ученика.
-      </p>
+    </div>
 
-      <div id="chatBox" class="chat-box"></div>
+    <!-- экран конкретной темы -->
+    <div id="studentTopic" class="hidden">
+      <button class="btn btn-outline btn-print-hide" style="margin-bottom:10px;" onclick="backToTopicsList()">
+        ← К списку тем
+      </button>
 
-      <textarea id="aiQuestion"
-        placeholder="Напишите вопрос для AI Bayan и нажмите Enter или кнопку «Спросить»..."></textarea>
-      <div class="chat-actions">
-        <button class="btn btn-primary" id="askBtn">Спросить AI Bayan</button>
-        <span class="limit-warning" id="limitWarning"></span>
-      </div>
+      <section id="topicContent" class="card"></section>
 
-      <p class="chat-note">
-        В будущем вопросы и ответы будут видны учителю в журнале.
-      </p>
-    </aside>
+      <aside id="aiPanel" class="card">
+        <div>
+          <h3>AI Bayan Chat</h3>
+          <div id="aiLimit"></div>
+        </div>
+        <p class="chat-note">
+          Вопросы по грамматике, лексике и переводу. Лимит – <strong>1 вопрос в сутки</strong> на ученика.
+        </p>
+        <div id="chatBox" class="chat-box"></div>
+        <textarea id="aiQuestion"
+                  placeholder="Напишите вопрос для AI Bayan и нажмите Enter или кнопку «Спросить»..."></textarea>
+        <div class="chat-actions">
+          <button class="btn btn-primary" id="askBtn">Спросить AI Bayan</button>
+          <span class="limit-warning" id="limitWarning"></span>
+        </div>
+        <p class="chat-note">
+          В будущем вопросы и ответы будут автоматически попадать в учительский журнал.
+        </p>
+      </aside>
+    </div>
   </section>
 
-  <!-- TEACHER SCREEN -->
+  <!-- TEACHER -->
   <section id="teacherScreen" class="hidden">
     <div class="card">
       <div class="teacher-header">
         <div>
-          <h2>Журнал учителя · Grade 7</h2>
+          <h2>Журнал учителя · 7 grade</h2>
           <p class="teacher-meta">
-            Видны только прогресс и активность внутри этого приложения.<br />
-            Для печати используйте кнопку «Печать журнала».
+            Отображает прогресс учеников внутри этого приложения. Для печати используйте кнопку ниже.
           </p>
         </div>
         <div>
           <div class="pill-role pill-role--teacher">Teacher mode</div>
           <div class="topic-actions" style="margin-top:6px;">
             <button class="btn btn-outline btn-print-hide" id="printJournalBtn">Печать журнала</button>
-            <button class="btn btn-outline btn-print-hide" id="backToStudentFromTeacher">
-              Открыть экран ученика
-            </button>
+            <button class="btn btn-outline btn-print-hide" id="backToStudentFromTeacher">Экран ученика</button>
           </div>
         </div>
       </div>
@@ -795,29 +650,28 @@
       <div class="table-wrapper">
         <table>
           <thead>
-            <tr>
-              <th>Ученик</th>
-              <th>Класс</th>
-              <th>Тем выполнено</th>
-              <th>Звёзды (примерно)</th>
-              <th>Всего вопросов к AI</th>
-              <th>Вопрос сегодня</th>
-              <th>Последний вход</th>
-            </tr>
+          <tr>
+            <th>Ученик</th>
+            <th>Класс</th>
+            <th>Тем выполнено</th>
+            <th>Звёзды</th>
+            <th>Всего вопросов к AI</th>
+            <th>Вопрос сегодня</th>
+            <th>Последний вход</th>
+          </tr>
           </thead>
-          <tbody id="teacherTableBody">
-          </tbody>
+          <tbody id="teacherTableBody"></tbody>
         </table>
       </div>
       <p class="note-small">
-        Звёзды считаются условно: чем больше правильных ответов по темам, тем больше звёзд.
+        Звёзды считаются условно: чем больше правильных ответов по темам, тем выше количество звёзд.
       </p>
     </div>
   </section>
 </main>
 
 <script>
-  /* ---------- DATA ---------- */
+  /* -------- DATA -------- */
 
   const TEACHER_PIN = "2844";
 
@@ -843,15 +697,12 @@
       short: "Present Continuous",
       title: "Present Continuous – действия «сейчас»",
       module: "Module 1",
-      workbook: "по мотивам Workbook 1b",
-      level: "7 grade",
       html: `
         <div class="topic-label">Topic 1 · Module 1</div>
         <div class="topic-header-line">
           <h3>Present Continuous – то, что происходит сейчас</h3>
-          <span class="badge-soft">WB: действия в данный момент</span>
+          <span class="badge-soft">Workbook: Module 1b</span>
         </div>
-
         <div class="grammar-box">
           <strong>Форма:</strong> am / is / are + verb + <strong>-ing</strong><br/>
           <strong>Когда используем:</strong>
@@ -861,7 +712,6 @@
             <li>Вопросы: <em>Are you doing your homework?</em></li>
           </ul>
         </div>
-
         <div class="exercise-title">Упр. 1. Вставьте глагол в Present Continuous.</div>
         <ol class="exercise-list">
           <li>My teacher <input data-answer="is talking" type="text" /> to the class now.</li>
@@ -869,21 +719,16 @@
           <li>I <input data-answer="am wearing" type="text" /> a green T-shirt today.</li>
           <li>Look! The children <input data-answer="are playing" type="text" /> in the yard.</li>
         </ol>
-
-        <div class="exercise-title">Упр. 2. Напишите короткие ответы.</div>
+        <div class="exercise-title">Упр. 2. Короткие ответы.</div>
         <ol class="exercise-list">
           <li>Is she studying now? – Yes, <input data-answer="she is" type="text" />.</li>
           <li>Are they sleeping? – No, <input data-answer="they aren't" type="text" />.</li>
         </ol>
-
         <div class="topic-actions">
           <button class="btn btn-primary" onclick="checkCurrentTopic()">Проверить ответы</button>
           <button class="btn btn-outline btn-print-hide" onclick="window.print()">Печать темы</button>
         </div>
         <p class="topic-result" id="topicResult"></p>
-        <p class="note-small">
-          Основано на заданиях к Present Continuous из Workbook Module 1.
-        </p>
       `
     },
     {
@@ -891,46 +736,37 @@
       short: "Present Simple vs Continuous",
       title: "Present Simple vs Present Continuous",
       module: "Module 1",
-      workbook: "по мотивам Workbook 1b",
-      level: "7 grade",
       html: `
         <div class="topic-label">Topic 2 · Module 1</div>
         <div class="topic-header-line">
           <h3>Present Simple или Present Continuous?</h3>
-          <span class="badge-soft">WB: обычные действия и сейчас</span>
+          <span class="badge-soft">обычные действия и «сейчас»</span>
         </div>
-
         <div class="grammar-box">
           <strong>Present Simple</strong> – факты, расписания, привычки.<br/>
           <strong>Present Continuous</strong> – то, что происходит прямо сейчас или временно.
           <ul class="examples-list">
-            <li><em>I go to school every day.</em> – привычка (Present Simple).</li>
-            <li><em>I am going to school now.</em> – сейчас (Present Continuous).</li>
+            <li><em>I go to school every day.</em> – привычка.</li>
+            <li><em>I am going to school now.</em> – сейчас.</li>
           </ul>
         </div>
-
-        <div class="exercise-title">Упр. 1. Выберите: Present Simple или Continuous.</div>
+        <div class="exercise-title">Упр. 1. Выберите время.</div>
         <ol class="exercise-list">
           <li>My mum <input data-answer="works" type="text" /> in a bank every day.</li>
           <li>Listen! The birds <input data-answer="are singing" type="text" /> in the garden.</li>
           <li>We usually <input data-answer="start" type="text" /> lessons at 8 a.m.</li>
           <li>Be quiet, please. The baby <input data-answer="is sleeping" type="text" />.</li>
         </ol>
-
-        <div class="exercise-title">Упр. 2. Найдите ошибку и исправьте.</div>
+        <div class="exercise-title">Упр. 2. Исправьте ошибку.</div>
         <ol class="exercise-list">
           <li>He <input data-answer="doesn't watch" type="text" /> TV every evening. (not watching)</li>
           <li>They <input data-answer="are having" type="text" /> dinner now. (have)</li>
         </ol>
-
         <div class="topic-actions">
           <button class="btn btn-primary" onclick="checkCurrentTopic()">Проверить ответы</button>
           <button class="btn btn-outline btn-print-hide" onclick="window.print()">Печать темы</button>
         </div>
         <p class="topic-result" id="topicResult"></p>
-        <p class="note-small">
-          Основано на упражнениях на Present Simple vs Continuous из Workbook 7.
-        </p>
       `
     },
     {
@@ -938,38 +774,31 @@
       short: "Comparatives & Superlatives",
       title: "Сравнительная и превосходная степени",
       module: "Module 1",
-      workbook: "по мотивам Workbook 1b (comparatives)",
-      level: "7 grade",
       html: `
         <div class="topic-label">Topic 3 · Module 1</div>
         <div class="topic-header-line">
           <h3>Comparatives &amp; Superlatives</h3>
-          <span class="badge-soft">WB: сравнение людей и вещей</span>
+          <span class="badge-soft">сравнение людей и вещей</span>
         </div>
-
         <div class="grammar-box">
-          <strong>Comparative:</strong> short: tall → taller, big → bigger; long: modern → more modern.<br/>
-          <strong>Superlative:</strong> short: the tallest; long: the most modern.
+          <strong>Comparative</strong>: tall → taller, big → bigger, modern → more modern.<br/>
+          <strong>Superlative</strong>: the tallest, the most modern.
           <ul class="examples-list">
             <li><em>Aidar is taller than Madi.</em></li>
             <li><em>This is the most interesting book.</em></li>
           </ul>
         </div>
-
-        <div class="exercise-title">Упр. 1. Сравните (используйте than).</div>
+        <div class="exercise-title">Упр. 1. Сравните (than).</div>
         <ol class="exercise-list">
           <li>Brazil / big / Italy – Brazil is <input data-answer="bigger than italy" type="text" />.</li>
           <li>My bag / heavy / your bag – My bag is <input data-answer="heavier than your bag" type="text" />.</li>
-          <li>Spring / warm / winter – Spring is <input data-answer="warmer than winter" type="text" />.</li>
         </ol>
-
-        <div class="exercise-title">Упр. 2. Напишите в превосходной степени.</div>
+        <div class="exercise-title">Упр. 2. Превосходная степень.</div>
         <ol class="exercise-list">
           <li>fast → <input data-answer="the fastest" type="text" /></li>
           <li>beautiful → <input data-answer="the most beautiful" type="text" /></li>
           <li>good → <input data-answer="the best" type="text" /></li>
         </ol>
-
         <div class="topic-actions">
           <button class="btn btn-primary" onclick="checkCurrentTopic()">Проверить ответы</button>
           <button class="btn btn-outline btn-print-hide" onclick="window.print()">Печать темы</button>
@@ -982,22 +811,18 @@
       short: "Too / Enough",
       title: "Too / Enough",
       module: "Module 1",
-      workbook: "по мотивам Workbook 1b (too / enough)",
-      level: "7 grade",
       html: `
         <div class="topic-label">Topic 4 · Module 1</div>
         <div class="topic-header-line">
           <h3>Too / Enough – «слишком» и «достаточно»</h3>
-          <span class="badge-soft">WB: прилагательные с too / enough</span>
+          <span class="badge-soft">adjectives with too / enough</span>
         </div>
-
         <div class="grammar-box">
           <ul class="examples-list">
-            <li><strong>too + adj</strong>: The bag is <em>too heavy</em>. (слишком тяжёлая)</li>
-            <li><strong>adj + enough</strong>: He is <em>old enough</em> to drive. (достаточно взрослый)</li>
+            <li><strong>too + adj</strong>: The bag is <em>too heavy</em>.</li>
+            <li><strong>adj + enough</strong>: He is <em>old enough</em> to drive.</li>
           </ul>
         </div>
-
         <div class="exercise-title">Упр. 1. Вставьте too или enough.</div>
         <ol class="exercise-list">
           <li>She is <input data-answer="too" type="text" /> tired to do her homework.</li>
@@ -1005,7 +830,6 @@
           <li>Is this room big <input data-answer="enough" type="text" /> for all the students?</li>
           <li>The test was <input data-answer="too" type="text" /> difficult for me.</li>
         </ol>
-
         <div class="topic-actions">
           <button class="btn btn-primary" onclick="checkCurrentTopic()">Проверить ответы</button>
           <button class="btn btn-outline btn-print-hide" onclick="window.print()">Печать темы</button>
@@ -1018,15 +842,12 @@
       short: "Can / Could / Be able to",
       title: "Can / Could / Be able to",
       module: "Module 2",
-      workbook: "по мотивам Workbook 2b",
-      level: "7 grade",
       html: `
         <div class="topic-label">Topic 5 · Module 2</div>
         <div class="topic-header-line">
           <h3>Can, Could и Be able to – умение и возможность</h3>
-          <span class="badge-soft">WB: способности в прошлом, сейчас и в будущем</span>
+          <span class="badge-soft">abilities now / past / future</span>
         </div>
-
         <div class="grammar-box">
           <ul class="examples-list">
             <li><strong>can</strong> – умею сейчас: <em>I can swim.</em></li>
@@ -1036,15 +857,13 @@
             </li>
           </ul>
         </div>
-
-        <div class="exercise-title">Упр. 1. Вставьте: can, could или was/were able to.</div>
+        <div class="exercise-title">Упр. 1. Вставьте: can, could или was/were able to / will be able to.</div>
         <ol class="exercise-list">
           <li>My grandpa <input data-answer="could" type="text" /> play the dombra when he was five.</li>
           <li>We <input data-answer="can" type="text" /> use the computer lab now.</li>
           <li>After an hour the engineer <input data-answer="was able to" type="text" /> fix the problem.</li>
           <li>In the future people <input data-answer="will be able to" type="text" /> live on Mars.</li>
         </ol>
-
         <div class="topic-actions">
           <button class="btn btn-primary" onclick="checkCurrentTopic()">Проверить ответы</button>
           <button class="btn btn-outline btn-print-hide" onclick="window.print()">Печать темы</button>
@@ -1055,24 +874,20 @@
     {
       id: "t6",
       short: "Used to",
-      title: "Used to – привычки в прошлом",
+      title: "Used to – прошлые привычки",
       module: "Module 2",
-      workbook: "по мотивам Workbook 2b (used to)",
-      level: "7 grade",
       html: `
         <div class="topic-label">Topic 6 · Module 2</div>
         <div class="topic-header-line">
           <h3>Used to – то, что делали раньше, но сейчас нет</h3>
-          <span class="badge-soft">WB: прошлые привычки</span>
+          <span class="badge-soft">past habits</span>
         </div>
-
         <div class="grammar-box">
           <ul class="examples-list">
-            <li><em>I used to play video games every day.</em> – раньше играл, сейчас уже нет.</li>
+            <li><em>I used to play video games every day.</em> – раньше играл, сейчас нет.</li>
             <li>Отрицание: <em>didn't use to</em>. Вопрос: <em>Did you use to ...?</em></li>
           </ul>
         </div>
-
         <div class="exercise-title">Упр. 1. Перепишите с used to.</div>
         <ol class="exercise-list">
           <li>When he was ten, he played with toy cars every day. → He
@@ -1080,12 +895,6 @@
           <li>She didn’t eat vegetables when she was a child. → She
             <input data-answer="didn't use to eat vegetables" type="text" />.</li>
         </ol>
-
-        <div class="exercise-title">Упр. 2. Напишите о себе (кратко по-английски).</div>
-        <ol class="exercise-list">
-          <li>I <input data-answer="used to" type="text" /> ... (one old habit)</li>
-        </ol>
-
         <div class="topic-actions">
           <button class="btn btn-primary" onclick="checkCurrentTopic()">Проверить ответы</button>
           <button class="btn btn-outline btn-print-hide" onclick="window.print()">Печать темы</button>
@@ -1098,22 +907,18 @@
       short: "-ing / -ed adjectives",
       title: "-ing / -ed adjectives",
       module: "Module 2",
-      workbook: "по мотивам Workbook 2b (-ing/-ed adjectives)",
-      level: "7 grade",
       html: `
         <div class="topic-label">Topic 7 · Module 2</div>
         <div class="topic-header-line">
           <h3>-ing / -ed adjectives – интересный / заинтересованный</h3>
-          <span class="badge-soft">WB: чувства и характеристики</span>
+          <span class="badge-soft">feelings & descriptions</span>
         </div>
-
         <div class="grammar-box">
           <ul class="examples-list">
             <li><strong>-ing</strong> – какое что-то: <em>The film is boring.</em></li>
             <li><strong>-ed</strong> – как мы себя чувствуем: <em>I am bored.</em></li>
           </ul>
         </div>
-
         <div class="exercise-title">Упр. 1. Выберите: -ing или -ed.</div>
         <ol class="exercise-list">
           <li>The book is very <input data-answer="interesting" type="text" />.</li>
@@ -1121,7 +926,6 @@
           <li>This game is <input data-answer="exciting" type="text" /> for teenagers.</li>
           <li>She felt <input data-answer="surprised" type="text" /> by the news.</li>
         </ol>
-
         <div class="topic-actions">
           <button class="btn btn-primary" onclick="checkCurrentTopic()">Проверить ответы</button>
           <button class="btn btn-outline btn-print-hide" onclick="window.print()">Печать темы</button>
@@ -1134,40 +938,32 @@
       short: "Present Perfect vs Past Simple",
       title: "Present Perfect vs Past Simple",
       module: "Module 3",
-      workbook: "по мотивам Workbook 3b",
-      level: "7 grade",
       html: `
         <div class="topic-label">Topic 8 · Module 3</div>
         <div class="topic-header-line">
           <h3>Present Perfect и Past Simple</h3>
-          <span class="badge-soft">WB: опыт и конкретное время</span>
+          <span class="badge-soft">опыт и конкретное время</span>
         </div>
-
         <div class="grammar-box">
           <ul class="examples-list">
-            <li><strong>Past Simple</strong> – действие в <em>законченном прошлом с временем</em>:
-              <em>We visited London last year.</em></li>
-            <li><strong>Present Perfect</strong> – результат/опыт, важен <em>факт</em>, а не когда:
-              <em>We have visited London.</em></li>
-            <li><strong>Signal words:</strong> yesterday, last year → Past Simple; ever, never, just, already, yet → Present Perfect.</li>
+            <li><strong>Past Simple</strong> – законченное прошлое с временем: <em>We visited London last year.</em></li>
+            <li><strong>Present Perfect</strong> – результат/опыт, важен факт: <em>We have visited London.</em></li>
+            <li><strong>Сигналы:</strong> yesterday, last year → Past Simple; ever, never, just, already, yet → Present Perfect.</li>
           </ul>
         </div>
-
-        <div class="exercise-title">Упр. 1. Вставьте в Present Perfect (have / has + V3).</div>
+        <div class="exercise-title">Упр. 1. Present Perfect.</div>
         <ol class="exercise-list">
           <li>We <input data-answer="have visited" type="text" /> many countries.</li>
           <li>She <input data-answer="has just come" type="text" /> home.</li>
           <li>They <input data-answer="have never seen" type="text" /> the sea.</li>
         </ol>
-
-        <div class="exercise-title">Упр. 2. Выберите время: Past Simple или Present Perfect.</div>
+        <div class="exercise-title">Упр. 2. Выберите время.</div>
         <ol class="exercise-list">
           <li>I <input data-answer="visited" type="text" /> Astana last summer.</li>
           <li>I <input data-answer="have visited" type="text" /> Astana three times.</li>
           <li>He <input data-answer="has already done" type="text" /> his homework.</li>
           <li>We <input data-answer="watched" type="text" /> this film yesterday.</li>
         </ol>
-
         <div class="topic-actions">
           <button class="btn btn-primary" onclick="checkCurrentTopic()">Проверить ответы</button>
           <button class="btn btn-outline btn-print-hide" onclick="window.print()">Печать темы</button>
@@ -1177,14 +973,13 @@
     }
   ];
 
-  /* ---------- STATE ---------- */
+  /* -------- STATE / STORAGE -------- */
 
   let currentUser = null; // {name, role}
   let currentTopicId = null;
 
   function getTodayKey() {
-    const d = new Date();
-    return d.toISOString().slice(0, 10);
+    return new Date().toISOString().slice(0, 10);
   }
 
   function loadAppState() {
@@ -1192,7 +987,7 @@
       const raw = localStorage.getItem("aiBayan7_state");
       if (!raw) return { users: {} };
       return JSON.parse(raw);
-    } catch (e) {
+    } catch {
       return { users: {} };
     }
   }
@@ -1201,23 +996,7 @@
     localStorage.setItem("aiBayan7_state", JSON.stringify(state));
   }
 
-  function getOrCreateUserState(name) {
-    const state = loadAppState();
-    if (!state.users[name]) {
-      state.users[name] = {
-        role: "student",
-        topics: {},   // {topicId: {correct,total,stars}}
-        totalStars: 0,
-        totalAiQuestions: 0,
-        aiUsage: {},  // {date: count}
-        lastLogin: null
-      };
-      saveAppState(state);
-    }
-    return state;
-  }
-
-  function updateUserState(name, updater) {
+  function updateUserState(name, fn) {
     const state = loadAppState();
     if (!state.users[name]) {
       state.users[name] = {
@@ -1229,15 +1008,17 @@
         lastLogin: null
       };
     }
-    updater(state.users[name]);
+    fn(state.users[name]);
     saveAppState(state);
   }
 
-  /* ---------- UI HELPERS ---------- */
+  /* -------- UI HELPERS -------- */
 
   const loginScreen = document.getElementById("loginScreen");
   const studentScreen = document.getElementById("studentScreen");
   const teacherScreen = document.getElementById("teacherScreen");
+  const studentList = document.getElementById("studentList");
+  const studentTopic = document.getElementById("studentTopic");
   const currentUserLabel = document.getElementById("currentUserLabel");
 
   function showScreen(name) {
@@ -1252,15 +1033,12 @@
 
   function setCurrentUser(user) {
     currentUser = user;
-    if (!user) {
-      currentUserLabel.textContent = "Не вошли";
-      return;
-    }
-    const labelRole = user.role === "teacher" ? "Учитель" : "Ученик";
-    currentUserLabel.textContent = `${labelRole}: ${user.name}`;
+    currentUserLabel.textContent = user
+      ? (user.role === "teacher" ? "Учитель: " : "Ученик: ") + user.name
+      : "Не вошли";
   }
 
-  /* ---------- LOGIN LOGIC ---------- */
+  /* -------- LOGIN -------- */
 
   document.getElementById("loginBtn").addEventListener("click", () => {
     const name = document.getElementById("nameInput").value.trim();
@@ -1272,21 +1050,9 @@
     }
 
     if (pin === TEACHER_PIN) {
-      // Teacher
+      // teacher
       setCurrentUser({ name, role: "teacher" });
-      const state = loadAppState();
-      if (!state.users[name]) {
-        state.users[name] = {
-          role: "teacher",
-          topics: {},
-          totalStars: 0,
-          totalAiQuestions: 0,
-          aiUsage: {},
-          lastLogin: null
-        };
-        saveAppState(state);
-      }
-      updateUserState(name, (u) => {
+      updateUserState(name, u => {
         u.role = "teacher";
         u.lastLogin = new Date().toISOString();
       });
@@ -1295,22 +1061,23 @@
       return;
     }
 
-    // Student
-    const found = allowedStudents.some(
-      (s) => s.toLowerCase() === name.toLowerCase()
+    // student
+    const allowed = allowedStudents.some(
+      s => s.toLowerCase() === name.toLowerCase()
     );
-    if (!found) {
+    if (!allowed) {
       alert("Это имя не разрешено. Используйте имя как в журнале.");
       return;
     }
 
     setCurrentUser({ name, role: "student" });
-    updateUserState(name, (u) => {
+    updateUserState(name, u => {
       u.role = "student";
       u.lastLogin = new Date().toISOString();
     });
+
     renderTopicsGrid();
-    openTopic(topics[0].id);
+    openTopic(topics[0].id); // сразу открыть первую тему
     updateAiLimitView();
     showScreen("student");
   });
@@ -1322,14 +1089,14 @@
     }
   });
 
-  /* ---------- TOPICS RENDER ---------- */
+  /* -------- TOPICS LIST / STARS -------- */
 
   function calcStarsForTopic(correct, total) {
-    if (!total || total === 0) return 0;
-    const percent = (correct / total) * 100;
-    if (percent >= 85) return 3;
-    if (percent >= 60) return 2;
-    if (percent > 0) return 1;
+    if (!total) return 0;
+    const pct = (correct / total) * 100;
+    if (pct >= 85) return 3;
+    if (pct >= 60) return 2;
+    if (pct > 0) return 1;
     return 0;
   }
 
@@ -1339,61 +1106,49 @@
     const state = loadAppState();
     const userData = currentUser ? state.users[currentUser.name] : null;
 
-    topics.forEach((t) => {
-      const div = document.createElement("div");
-      div.className = "topic-pill";
-      div.dataset.id = t.id;
-
-      let starsHtml = "☆☆☆";
+    topics.forEach(t => {
+      let stars = "☆☆☆";
       if (userData && userData.topics && userData.topics[t.id]) {
-        const st = userData.topics[t.id].stars || 0;
-        starsHtml = "★".repeat(st) + "☆".repeat(3 - st);
+        const s = userData.topics[t.id].stars || 0;
+        stars = "★".repeat(s) + "☆".repeat(3 - s);
       }
 
+      const div = document.createElement("div");
+      div.className = "topic-pill";
       div.innerHTML = `
         <div class="topic-title">${t.short}</div>
         <div class="topic-meta">
           <span>${t.module}</span>
-          <span class="stars">${starsHtml}</span>
+          <span class="stars">${stars}</span>
         </div>
       `;
-
-      div.addEventListener("click", () => {
-        openTopic(t.id);
-      });
-
+      div.addEventListener("click", () => openTopic(t.id));
       grid.appendChild(div);
     });
 
-    // highlight current
-    if (currentTopicId) {
-      const pills = grid.querySelectorAll(".topic-pill");
-      pills.forEach((p) => {
-        if (p.dataset.id === currentTopicId) p.classList.add("topic-active");
-        else p.classList.remove("topic-active");
-      });
-    }
+    // при входе – показываем список, а не старый экран
+    studentList.classList.remove("hidden");
+    studentTopic.classList.add("hidden");
   }
 
   function openTopic(id) {
+    if (!currentUser || currentUser.role !== "student") {
+      alert("Сначала войдите как ученик.");
+      return;
+    }
     currentTopicId = id;
-    const topic = topics.find((t) => t.id === id);
+    const topic = topics.find(t => t.id === id);
     const container = document.getElementById("topicContent");
     container.innerHTML = topic.html;
 
-    // Update highlight
-    const grid = document.getElementById("topicsGrid");
-    if (grid) {
-      grid.querySelectorAll(".topic-pill").forEach((p) => {
-        p.classList.toggle("topic-active", p.dataset.id === id);
-      });
-    }
+    studentList.classList.add("hidden");
+    studentTopic.classList.remove("hidden");
+    updateAiLimitView();
+  }
 
-    // Update small label with workbook/module (optional)
-    const note = container.querySelector(".note-small");
-    if (note && topic.workbook) {
-      note.textContent += "";
-    }
+  function backToTopicsList() {
+    studentTopic.classList.add("hidden");
+    studentList.classList.remove("hidden");
   }
 
   function checkCurrentTopic() {
@@ -1406,8 +1161,8 @@
     let total = 0;
     let correct = 0;
 
-    inputs.forEach((input) => {
-      const expected = input.dataset.answer.trim().toLowerCase();
+    inputs.forEach(input => {
+      const expected = (input.dataset.answer || "").trim().toLowerCase();
       const value = (input.value || "").trim().toLowerCase();
       if (!expected) return;
       total++;
@@ -1421,35 +1176,34 @@
       }
     });
 
-    const resultEl = container.querySelector("#topicResult") || container.querySelector(".topic-result");
+    const resultEl =
+      container.querySelector("#topicResult") ||
+      container.querySelector(".topic-result");
     if (resultEl) {
       if (!total) {
         resultEl.textContent = "В этой теме пока нет проверяемых заданий.";
         resultEl.classList.remove("good", "bad");
       } else {
         resultEl.textContent = `Правильно: ${correct} из ${total}`;
-        const good = correct / (total || 1) >= 0.6;
+        const good = correct / total >= 0.6;
         resultEl.classList.toggle("good", good);
         resultEl.classList.toggle("bad", !good);
       }
     }
 
-    // Save to state
-    updateUserState(currentUser.name, (u) => {
+    updateUserState(currentUser.name, u => {
       if (!u.topics) u.topics = {};
       const stars = calcStarsForTopic(correct, total);
       u.topics[currentTopicId] = { correct, total, stars };
-      let totalStars = 0;
-      Object.values(u.topics).forEach((info) => {
-        totalStars += info.stars || 0;
-      });
-      u.totalStars = totalStars;
+      let sum = 0;
+      Object.values(u.topics).forEach(info => (sum += info.stars || 0));
+      u.totalStars = sum;
     });
 
     renderTopicsGrid();
   }
 
-  /* ---------- AI CHAT ---------- */
+  /* -------- AI CHAT -------- */
 
   const chatBox = document.getElementById("chatBox");
   const aiLimitEl = document.getElementById("aiLimit");
@@ -1466,23 +1220,22 @@
   function canAskAiToday() {
     if (!currentUser || currentUser.role !== "student") return false;
     const state = loadAppState();
-    const userData = state.users[currentUser.name];
-    if (!userData) return true;
+    const u = state.users[currentUser.name] || {};
     const today = getTodayKey();
-    const count = (userData.aiUsage && userData.aiUsage[today]) || 0;
+    const count = (u.aiUsage && u.aiUsage[today]) || 0;
     return count < 1;
   }
 
   function updateAiLimitView() {
     if (!currentUser || currentUser.role !== "student") {
-      aiLimitEl.textContent = "(только для учеников)";
+      aiLimitEl.textContent = "(доступно только ученикам)";
       limitWarningEl.textContent = "";
       return;
     }
     const state = loadAppState();
-    const userData = state.users[currentUser.name] || {};
+    const u = state.users[currentUser.name] || {};
     const today = getTodayKey();
-    const count = (userData.aiUsage && userData.aiUsage[today]) || 0;
+    const count = (u.aiUsage && u.aiUsage[today]) || 0;
     const left = Math.max(0, 1 - count);
     aiLimitEl.textContent = `· сегодня осталось вопросов: ${left}/1`;
     limitWarningEl.textContent = left === 0 ? "Лимит на сегодня исчерпан." : "";
@@ -1506,8 +1259,7 @@
     textarea.value = "";
     limitWarningEl.textContent = "";
 
-    // Обновляем лимит локально
-    updateUserState(currentUser.name, (u) => {
+    updateUserState(currentUser.name, u => {
       if (!u.aiUsage) u.aiUsage = {};
       const today = getTodayKey();
       if (!u.aiUsage[today]) u.aiUsage[today] = 0;
@@ -1516,41 +1268,25 @@
     });
     updateAiLimitView();
 
-    // Показать временный ответ, пока настоящий Worker не подключён
-    appendMessage("AI Bayan думает над ответом...", "ai");
+    appendMessage("AI Bayan думает над ответом... (подключите Cloudflare Worker)", "ai");
 
-    // ЗДЕСЬ вы подключаете свой Cloudflare Worker
-    // const WORKER_URL = "https://YOUR_CLOUDFLARE_WORKER_URL";
-    // try {
-    //   const res = await fetch(WORKER_URL, {
-    //     method: "POST",
-    //     headers: { "Content-Type": "application/json" },
-    //     body: JSON.stringify({ question, user: currentUser.name, topicId: currentTopicId })
-    //   });
-    //   const data = await res.json();
-    //   appendMessage(data.answer || "AI Bayan: нет ответа", "ai");
-    // } catch (e) {
-    //   appendMessage("Ошибка соединения с AI Bayan. Проверьте Worker.", "ai");
-    // }
-
+    // сюда потом подключишь настоящий Worker
   }
 
   document.getElementById("askBtn").addEventListener("click", sendToAiBayan);
-  document.getElementById("aiQuestion").addEventListener("keydown", (e) => {
+  document.getElementById("aiQuestion").addEventListener("keydown", e => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       sendToAiBayan();
     }
   });
 
-  /* ---------- TEACHER JOURNAL ---------- */
+  /* -------- TEACHER JOURNAL -------- */
 
   function parseClassFromName(name) {
-    // Берём последние 2 символа (примерно: 7С, 7Б и т.п.)
     if (!name) return "";
-    const trimmed = name.trim();
-    if (trimmed.length < 2) return "";
-    return trimmed.slice(-2);
+    const t = name.trim();
+    return t.length >= 2 ? t.slice(-2) : "";
   }
 
   function renderTeacherTable() {
@@ -1559,10 +1295,9 @@
     const state = loadAppState();
     const today = getTodayKey();
 
-    allowedStudents.forEach((studentName) => {
-      const u = state.users[studentName] || {};
-      const topicsData = u.topics || {};
-      const completed = Object.keys(topicsData).length;
+    allowedStudents.forEach(stName => {
+      const u = state.users[stName] || {};
+      const completed = Object.keys(u.topics || {}).length;
       const stars = u.totalStars || 0;
       const aiTotal = u.totalAiQuestions || 0;
       const aiToday = (u.aiUsage && u.aiUsage[today]) || 0;
@@ -1572,8 +1307,8 @@
 
       const tr = document.createElement("tr");
       tr.innerHTML = `
-        <td>${studentName}</td>
-        <td>${parseClassFromName(studentName)}</td>
+        <td>${stName}</td>
+        <td>${parseClassFromName(stName)}</td>
         <td class="td-center">${completed}</td>
         <td class="td-center">${stars}</td>
         <td class="td-center">${aiTotal}</td>
@@ -1584,15 +1319,13 @@
     });
   }
 
-  /* ---------- NAV BUTTONS ---------- */
+  /* -------- NAV BUTTONS -------- */
 
   document.getElementById("toStudentBtn").addEventListener("click", () => {
     if (!currentUser || currentUser.role !== "student") {
       showScreen("login");
     } else {
       renderTopicsGrid();
-      if (!currentTopicId && topics[0]) openTopic(topics[0].id);
-      updateAiLimitView();
       showScreen("student");
     }
   });
@@ -1620,8 +1353,7 @@
     window.print();
   });
 
-  /* ---------- INIT ---------- */
-
+  /* -------- INIT -------- */
   showScreen("login");
 </script>
 </body>
