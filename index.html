@@ -7,7 +7,6 @@
 
   <style>
     :root{
-      /* Арбузный стиль — потом можно подправить */
       --watermelon-dark:#c62828;
       --watermelon-soft:#ff8a80;
       --green-soft:#c8e6c9;
@@ -67,15 +66,9 @@
       padding:0 12px;
     }
 
-    .screen{
-      display:none;
-    }
+    .screen{display:none;}
+    .screen.active{display:block;}
 
-    .screen.active{
-      display:block;
-    }
-
-    /* LOGIN CARD */
     .card{
       background:var(--card);
       padding:18px;
@@ -90,10 +83,7 @@
       color:var(--watermelon-dark);
     }
 
-    .card p{
-      font-size:0.9rem;
-      margin-bottom:10px;
-    }
+    .card p{font-size:0.9rem;margin-bottom:10px;}
 
     label{
       display:block;
@@ -137,9 +127,7 @@
       color:var(--watermelon-dark);
     }
 
-    .btn:active{
-      transform:scale(0.97);
-    }
+    .btn:active{transform:scale(0.97);}
 
     .btn-row{
       margin-top:14px;
@@ -155,18 +143,12 @@
       margin-top:4px;
     }
 
-    /* LAYOUT: STUDENT VIEW */
     .layout{
       display:grid;
       grid-template-columns:minmax(0,1.1fr) minmax(0,1.2fr);
       gap:16px;
     }
-
-    @media(max-width:900px){
-      .layout{
-        grid-template-columns:1fr;
-      }
-    }
+    @media(max-width:900px){.layout{grid-template-columns:1fr;}}
 
     .panel{
       background:var(--card);
@@ -217,20 +199,10 @@
       box-shadow:0 0 0 1px rgba(198,40,40,0.3);
     }
 
-    .topic-title{
-      font-size:0.92rem;
-      font-weight:600;
-    }
+    .topic-title{font-size:0.92rem;font-weight:600;}
+    .topic-sub{font-size:0.78rem;opacity:0.9;}
 
-    .topic-sub{
-      font-size:0.78rem;
-      opacity:0.9;
-    }
-
-    /* TOPIC DETAILS */
-    .topic-details h3{
-      margin-bottom:6px;
-    }
+    .topic-details h3{margin-bottom:6px;}
 
     .rule-block{
       margin-top:8px;
@@ -240,9 +212,7 @@
       font-size:0.86rem;
     }
 
-    .rule-block b{
-      color:#b71c1c;
-    }
+    .rule-block b{color:#b71c1c;}
 
     .formula-block{
       margin-top:8px;
@@ -266,14 +236,12 @@
       align-items:center;
       margin-top:10px;
       font-size:0.86rem;
+      flex-wrap:wrap;
+      gap:8px;
     }
 
-    .star-count{
-      font-weight:600;
-      color:#b71c1c;
-    }
+    .star-count{font-weight:600;color:#b71c1c;}
 
-    /* AI PANEL */
     #aiPanel{
       margin-top:10px;
       border-radius:12px;
@@ -294,14 +262,8 @@
       font-size:0.82rem;
     }
 
-    .chat-msg{
-      margin-bottom:4px;
-    }
-
-    .chat-msg.me{
-      text-align:right;
-      font-weight:500;
-    }
+    .chat-msg{margin-bottom:4px;}
+    .chat-msg.me{text-align:right;font-weight:500;}
 
     #aiQuestion{
       width:100%;
@@ -320,12 +282,8 @@
       box-shadow:0 0 0 1px rgba(198,40,40,0.25);
     }
 
-    .small{
-      font-size:0.78rem;
-      opacity:0.85;
-    }
+    .small{font-size:0.78rem;opacity:0.85;}
 
-    /* TEACHER VIEW */
     table{
       width:100%;
       border-collapse:collapse;
@@ -339,9 +297,7 @@
       text-align:left;
     }
 
-    th{
-      background:#ffe5e5;
-    }
+    th{background:#ffe5e5;}
 
     .pill{
       display:inline-block;
@@ -350,6 +306,29 @@
       background:#fce4ec;
       font-size:0.7rem;
     }
+
+    /* QUIZ */
+    .quiz-item{margin-top:6px;}
+    .quiz-input{
+      border-radius:6px;
+      border:1px solid #ccc;
+      padding:2px 6px;
+      min-width:70px;
+    }
+    .quiz-input.ok{
+      border-color:#2e7d32;
+      background:#e8f5e9;
+    }
+    .quiz-input.bad{
+      border-color:#c62828;
+      background:#ffebee;
+    }
+    .quiz-result{
+      font-size:0.85rem;
+      margin-left:4px;
+    }
+    .quiz-result.correct{color:#2e7d32;}
+    .quiz-result.incorrect{color:#c62828;}
   </style>
 </head>
 <body>
@@ -395,7 +374,7 @@
     <div class="layout">
       <div class="panel">
         <h2>Topics – Modules 1–3</h2>
-        <div class="small">Tap a topic to see full rules and exercises.</div>
+        <div class="small">Tap a topic to see the rules and interactive exercises.</div>
         <div class="topic-list" id="topicList"></div>
       </div>
 
@@ -430,8 +409,7 @@
     <div class="panel">
       <h2>Teacher Journal – Overview</h2>
       <p class="small">
-        This simple journal shows <b>students</b> who logged in and their <b>star progress</b> for topics.
-        Data is stored in this browser (localStorage).
+        This journal shows <b>students</b> who logged in and their <b>star progress</b>.
       </p>
 
       <table id="teacherTable">
@@ -443,29 +421,22 @@
             <th>Last login</th>
           </tr>
         </thead>
-        <tbody>
-          <!-- filled by JS -->
-        </tbody>
+        <tbody></tbody>
       </table>
     </div>
   </section>
 </main>
 
 <script>
-/* ----------- CONFIG ----------- */
-
-// Teacher and student PINs
 const TEACHER_PIN = "3244";
-const STUDENT_PIN = "2844";
+const STUDENT_PIN  = "2844";
 
-// Allowed student names from your journal
 const allowedStudents = [
   "Сырым7Б","Самир7Б","Орда7О","Руслан7В","Руслан7И",
   "Максут7С","Аделина7М","Эльнора7А","Лунара7А",
   "Максим7М","Ринат7Ц","Артем7А","Б7А"
 ];
 
-// Topic data: Modules 1–3, Grammar B
 const topics = [
   /* MODULE 1 */
   {
@@ -478,7 +449,7 @@ const topics = [
       • habits and routines: <i>I get up at 7 a.m.</i><br>
       • permanent situations: <i>She lives in Astana.</i><br>
       • general facts: <i>Water boils at 100°C.</i><br>
-      • timetables and schedules: <i>The lesson starts at 8 o’clock.</i>
+      • timetables: <i>The lesson starts at 8 o’clock.</i>
     `,
     ruleRu:`
       <b>Используем Present Simple, когда говорим:</b><br>
@@ -508,7 +479,13 @@ const topics = [
       2) Do they <b>watch / watches</b> TV every day?<br>
       3) My friend <b>doesn’t / don’t</b> eat breakfast.<br>
       4) I <b>study / studies</b> English at school.
-    `
+    `,
+    quiz:[
+      {text:"She ___ (go) to school at 8.", answer:"goes"},
+      {text:"We ___ (not watch) TV on weekdays.", answer:"don't watch"},
+      {text:"Does your sister ___ (like) English?", answer:"like"},
+      {text:"They ___ (walk) to school every day.", answer:"walk"}
+    ]
   },
   {
     id:2,
@@ -518,19 +495,14 @@ const topics = [
     ruleEn:`
       <b>Adverbs of frequency tell how often something happens.</b><br>
       • before the main verb: <i>I often read in the evening.</i><br>
-      • after the verb “to be”: <i>She is never late.</i><br>
-      Common adverbs: always, usually, often, sometimes, rarely, never.
+      • after the verb “to be”: <i>She is never late.</i>
     `,
     ruleRu:`
       <b>Наречия частотности показывают, как часто происходит действие.</b><br>
-      • перед обычным глаголом: <i>I often read.</i><br>
-      • после глагола to be: <i>She is never late.</i><br>
-      Частотные наречия: always, usually, often, sometimes, rarely, never.
+      • перед обычным глаголом<br>
+      • после to be
     `,
-    formula:`
-      subject + adverb + main verb<br>
-      subject + to be + adverb
-    `,
+    formula:`subject + adverb + main verb<br>subject + to be + adverb`,
     ex1:`
       <b>SB-style Exercise 1 – Put the adverb in the correct place</b><br>
       1) I am tired. (often)<br>
@@ -539,38 +511,38 @@ const topics = [
       4) We watch films. (sometimes)
     `,
     ex2:`
-      <b>SB-style Exercise 2 – Complete the sentences (choose: always / usually / often / sometimes / never)</b><br>
+      <b>SB-style Exercise 2 – Complete the sentences</b><br>
       1) I ___ eat breakfast at school.<br>
       2) My brother is ___ late for class.<br>
       3) We ___ go to the cinema at weekends.<br>
       4) She ___ drinks coffee in the morning.
-    `
+    `,
+    quiz:[
+      {text:"I ___ eat breakfast at school. (sometimes)", answer:"sometimes"},
+      {text:"My brother is ___ late for class. (never)", answer:"never"},
+      {text:"We ___ go to the cinema at weekends. (often)", answer:"often"},
+      {text:"She is ___ tired. (usually)", answer:"usually"}
+    ]
   },
   {
     id:3,
     module:"Module 1",
     short:"PS vs PC",
-    title:"Present Simple vs Present Continuous – basic contrast",
+    title:"Present Simple vs Present Continuous",
     ruleEn:`
       <b>Present Simple:</b> habits, facts, routines, timetables.<br>
-      <b>Present Continuous:</b> actions happening now, temporary situations.<br><br>
-      <b>Signal words:</b><br>
-      • PS: always, usually, often, sometimes, every day<br>
-      • PC: now, at the moment, right now
+      <b>Present Continuous:</b> actions happening now, temporary situations.
     `,
     ruleRu:`
       <b>Present Simple:</b> привычки, факты, расписания.<br>
-      <b>Present Continuous:</b> действие происходит сейчас, временная ситуация.<br><br>
-      <b>Сигнальные слова:</b><br>
-      • PS: always, usually, often, sometimes, every day<br>
-      • PC: now, at the moment, right now
+      <b>Present Continuous:</b> действие происходит сейчас, временная ситуация.
     `,
     formula:`
-      Present Simple: subject + V1 / V1+s<br>
-      Present Continuous: subject + am/is/are + V-ing
+      PS: subject + V1 / V1+s<br>
+      PC: subject + am/is/are + V-ing
     `,
     ex1:`
-      <b>SB-style Exercise 1 – Choose Present Simple or Present Continuous</b><br>
+      <b>SB-style Exercise 1 – Choose PS or PC</b><br>
       1) She ___ (is cooking / cooks) dinner now.<br>
       2) They ___ (play / are playing) football every Saturday.<br>
       3) I ___ (am not watching / don’t watch) TV on weekdays.<br>
@@ -582,14 +554,20 @@ const topics = [
       2) He ___ (sit) in the kitchen at the moment.<br>
       3) My parents ___ (not/work) on Sundays.<br>
       4) Look! The cat ___ (sleep) on your bag.
-    `
+    `,
+    quiz:[
+      {text:"She ___ (cook) dinner now.", answer:"is cooking"},
+      {text:"They ___ (play) football every Saturday.", answer:"play"},
+      {text:"I ___ (not watch) TV on weekdays.", answer:"don't watch"},
+      {text:"Look! The cat ___ (sleep) on your bag.", answer:"is sleeping"}
+    ]
   },
 
   /* MODULE 2 */
   {
     id:4,
     module:"Module 2",
-    short:"Past Simple – regular/irregular",
+    short:"Past Simple",
     title:"Past Simple – regular and irregular verbs",
     ruleEn:`
       <b>Use Past Simple to talk about finished actions in the past.</b><br>
@@ -599,13 +577,9 @@ const topics = [
     ruleRu:`
       <b>Past Simple используется для завершённых действий в прошлом.</b><br>
       Правильные глаголы: +ed (play → played).<br>
-      Неправильные глаголы: вторая форма (go → went).
+      Неправильные: вторая форма (go → went).
     `,
-    formula:`
-      (+) subject + V2<br>
-      (-) subject + didn’t + V1<br>
-      (?) Did + subject + V1?
-    `,
+    formula:`(+) subject + V2<br>(-) subject + didn’t + V1<br>(?) Did + subject + V1?`,
     ex1:`
       <b>SB-style Exercise 1 – Complete the table (base → Past Simple)</b><br>
       go → _______<br>
@@ -620,7 +594,13 @@ const topics = [
       2) My brother ___ (not eat) breakfast this morning.<br>
       3) ___ you ___ (see) the new film?<br>
       4) She ___ (take) her bike to school.
-    `
+    `,
+    quiz:[
+      {text:"We ___ (visit) the museum yesterday.", answer:"visited"},
+      {text:"My brother ___ (not eat) breakfast.", answer:"didn't eat"},
+      {text:"She ___ (go) to London last year.", answer:"went"},
+      {text:"They ___ (not buy) that book.", answer:"didn't buy"}
+    ]
   },
   {
     id:5,
@@ -632,12 +612,10 @@ const topics = [
       Example: At 6 p.m. yesterday, I was doing my homework.
     `,
     ruleRu:`
-      <b>Past Continuous описывает действие, которое происходило в определённый момент в прошлом.</b><br>
+      <b>Past Continuous описывает действие в определённый момент в прошлом.</b><br>
       Пример: Вчера в 6 вечера я делал домашнее задание.
     `,
-    formula:`
-      subject + was/were + V-ing
-    `,
+    formula:`subject + was/were + V-ing`,
     ex1:`
       <b>SB-style Exercise 1 – Complete the sentences</b><br>
       1) I ___ (cook) dinner at 6 p.m.<br>
@@ -651,7 +629,13 @@ const topics = [
       2) I <b>wasn’t listening / didn’t listen</b> when the teacher asked me.<br>
       3) What <b>were you doing / did you do</b> at that time?<br>
       4) She <b>was watching / watched</b> a film when I arrived.
-    `
+    `,
+    quiz:[
+      {text:"I ___ (cook) dinner at 6 p.m.", answer:"was cooking"},
+      {text:"They ___ (play) football at that moment.", answer:"were playing"},
+      {text:"We ___ (not sleep) when the phone rang.", answer:"weren't sleeping"},
+      {text:"My parents ___ (drive) to work at 8 a.m.", answer:"were driving"}
+    ]
   },
   {
     id:6,
@@ -661,18 +645,14 @@ const topics = [
     ruleEn:`
       <b>Past Continuous:</b> long action (background).<br>
       <b>Past Simple:</b> short action that interrupts.<br><br>
-      Pattern: Past Continuous + when + Past Simple<br>
-      Pattern: Past Simple + while + Past Continuous
-    `,
-    ruleRu:`
-      <b>Past Continuous:</b> длительное действие (фон).<br>
-      <b>Past Simple:</b> короткое действие, которое прерывает.<br><br>
-      Схемы: PC + when + PS; PS + while + PC.
-    `,
-    formula:`
       PC + when + PS<br>
       PS + while + PC
     `,
+    ruleRu:`
+      <b>Past Continuous:</b> длительное действие (фон).<br>
+      <b>Past Simple:</b> короткое действие, которое прерывает.
+    `,
+    formula:`PC + when + PS<br>PS + while + PC`,
     ex1:`
       <b>SB-style Exercise 1 – Complete with correct tense</b><br>
       1) I ___ (walk) home when I ___ (see) my friend.<br>
@@ -685,7 +665,13 @@ const topics = [
       1) I was doing my homework — a) when the bell rang.<br>
       2) They were running — b) when it suddenly started to rain.<br>
       3) She was reading — c) when her friend arrived.
-    `
+    `,
+    quiz:[
+      {text:"I ___ (walk) home when I ___ (see) my friend.", answer:"was walking / saw"},
+      {text:"She ___ (watch) TV when the lights ___ (go) off.", answer:"was watching / went"},
+      {text:"They ___ (play) football while their parents ___ (cook).", answer:"were playing / were cooking"},
+      {text:"My phone ___ (ring) while I ___ (wash) the dishes.", answer:"rang / was washing"}
+    ]
   },
 
   /* MODULE 3 */
@@ -694,17 +680,9 @@ const topics = [
     module:"Module 3",
     short:"be going to",
     title:"be going to – plans and intentions",
-    ruleEn:`
-      <b>Use be going to for plans and intentions.</b><br>
-      Example: I am going to visit my cousin next week.
-    `,
-    ruleRu:`
-      <b>be going to используем для планов и намерений.</b><br>
-      Пример: Я собираюсь навестить кузена на следующей неделе.
-    `,
-    formula:`
-      subject + am/is/are + going to + V1
-    `,
+    ruleEn:`<b>Use be going to for plans and intentions.</b>`,
+    ruleRu:`<b>be going to используем для планов и намерений.</b>`,
+    formula:`subject + am/is/are + going to + V1`,
     ex1:`
       <b>SB-style Exercise 1 – Complete the sentences (be going to)</b><br>
       1) I am going to ___ (visit) my cousin.<br>
@@ -717,7 +695,13 @@ const topics = [
       1) We <b>are going to go / go</b> on holiday.<br>
       2) He <b>isn’t going to eat / doesn’t eat</b> pizza tonight.<br>
       3) I <b>am going to study / study</b> for the test after school.
-    `
+    `,
+    quiz:[
+      {text:"I am going to ___ (visit) my cousin.", answer:"visit"},
+      {text:"They are going to ___ (play) tennis.", answer:"play"},
+      {text:"She isn’t going to ___ (buy) a new phone.", answer:"buy"},
+      {text:"We are going to ___ (travel) this summer.", answer:"travel"}
+    ]
   },
   {
     id:8,
@@ -725,23 +709,14 @@ const topics = [
     short:"Will / won’t",
     title:"Will / won’t – predictions and promises",
     ruleEn:`
-      <b>Use will / won’t for:</b><br>
-      • predictions: <i>I think it will rain.</i><br>
-      • promises: <i>I will help you.</i><br>
-      • decisions made now: <i>I’m tired, I’ll go to bed.</i>
+      <b>Use will / won’t for predictions, promises and decisions made now.</b>
     `,
     ruleRu:`
-      <b>Will / won’t используем для:</b><br>
-      • предсказаний: <i>Я думаю, пойдёт дождь.</i><br>
-      • обещаний: <i>Я помогу тебе.</i><br>
-      • решений «прямо сейчас»: <i>Я устал, пойду спать.</i>
+      <b>Will / won’t используем для предсказаний, обещаний и решений «сейчас».</b>
     `,
-    formula:`
-      (+) subject + will + V1<br>
-      (-) subject + won’t + V1
-    `,
+    formula:`(+) subject + will + V1<br>(-) subject + won’t + V1`,
     ex1:`
-      <b>SB-style Exercise 1 – Complete the sentences (will / won’t)</b><br>
+      <b>SB-style Exercise 1 – Complete the sentences</b><br>
       1) I think it ___ (rain) tomorrow.<br>
       2) She ___ (help) you with your homework.<br>
       3) They ___ (not come) today.<br>
@@ -751,27 +726,25 @@ const topics = [
       <b>SB-style Exercise 2 – Choose the correct option</b><br>
       1) I think he <b>will win / wins</b> the race.<br>
       2) Don’t worry, I <b>will help / am helping</b> you.<br>
-      3) I’m cold, I <b>will close / am closing</b> the window.<br>
-    `
+      3) I’m cold, I <b>will close / am closing</b> the window.
+    `,
+    quiz:[
+      {text:"I think it ___ (rain) tomorrow.", answer:"will rain"},
+      {text:"She ___ (help) you with your homework.", answer:"will help"},
+      {text:"They ___ (not come) today.", answer:"won't come"},
+      {text:"We ___ (finish) the project soon.", answer:"will finish"}
+    ]
   },
   {
     id:9,
     module:"Module 3",
-    short:"PC as Future",
+    short:"PC as future",
     title:"Present Continuous for future arrangements",
-    ruleEn:`
-      <b>Use Present Continuous for fixed future plans/arrangements.</b><br>
-      Example: We are meeting our friends on Friday.
-    `,
-    ruleRu:`
-      <b>Present Continuous используем для уже запланированных встреч / договорённостей в будущем.</b><br>
-      Пример: Мы встречаемся с друзьями в пятницу.
-    `,
-    formula:`
-      subject + am/is/are + V-ing (future time word)
-    `,
+    ruleEn:`<b>Use Present Continuous for fixed future plans and arrangements.</b>`,
+    ruleRu:`<b>Present Continuous используем для запланированных встреч / договорённостей в будущем.</b>`,
+    formula:`subject + am/is/are + V-ing (+ future time)`,
     ex1:`
-      <b>SB-style Exercise 1 – Complete the sentences (PC for future)</b><br>
+      <b>SB-style Exercise 1 – Complete the sentences</b><br>
       1) We are ___ (meet) our friends tonight.<br>
       2) She is ___ (travel) to London next Monday.<br>
       3) I am ___ (have) lunch with my cousin tomorrow.
@@ -781,48 +754,49 @@ const topics = [
       1) We meet Sam on Friday. → We are meeting Sam on Friday.<br>
       2) They leave tomorrow. → They are leaving tomorrow.<br>
       3) I go to the dentist on Tuesday. → I am going to the dentist on Tuesday.
-    `
+    `,
+    quiz:[
+      {text:"We are ___ (meet) our friends tonight.", answer:"meeting"},
+      {text:"She is ___ (travel) to London next Monday.", answer:"travelling"},
+      {text:"I am ___ (have) lunch with my cousin tomorrow.", answer:"having"},
+      {text:"They are ___ (leave) tomorrow.", answer:"leaving"}
+    ]
   }
 ];
 
-let currentUser = null; // {name, role}
+let currentUser = null;
 let currentTopicId = null;
 
-/* ----------- UI HELPERS ----------- */
 function showScreen(id){
-  document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
+  document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));
   document.getElementById(id).classList.add("active");
 }
 
 function clearLogin(){
-  document.getElementById("loginName").value = "";
-  document.getElementById("loginPin").value = "";
+  document.getElementById("loginName").value="";
+  document.getElementById("loginPin").value="";
 }
 
 function updateHeader(){
-  const roleDiv = document.getElementById("userRole");
-  const nameDiv = document.getElementById("userName");
+  const roleDiv=document.getElementById("userRole");
+  const nameDiv=document.getElementById("userName");
   if(!currentUser){
-    roleDiv.textContent = "Not logged in";
-    nameDiv.textContent = "";
+    roleDiv.textContent="Not logged in";
+    nameDiv.textContent="";
   }else{
-    roleDiv.textContent = currentUser.role === "teacher" ? "Teacher mode" : "Student mode";
-    nameDiv.textContent = currentUser.name;
+    roleDiv.textContent=currentUser.role==="teacher"?"Teacher mode":"Student mode";
+    nameDiv.textContent=currentUser.name;
   }
 }
 
-/* ----------- LOGIN LOGIC ----------- */
 function handleLogin(){
-  const name = document.getElementById("loginName").value.trim();
-  const pin = document.getElementById("loginPin").value.trim();
+  const name=document.getElementById("loginName").value.trim();
+  const pin=document.getElementById("loginPin").value.trim();
 
-  if(!pin){
-    alert("Enter PIN, please.");
-    return;
-  }
+  if(!pin){alert("Enter PIN, please.");return;}
 
-  if(pin === TEACHER_PIN){
-    currentUser = {name: name || "Teacher", role:"teacher"};
+  if(pin===TEACHER_PIN){
+    currentUser={name:name||"Teacher",role:"teacher"};
     updateHeader();
     buildTeacherTable();
     showScreen("teacherScreen");
@@ -830,16 +804,13 @@ function handleLogin(){
     return;
   }
 
-  if(pin === STUDENT_PIN){
-    if(!name){
-      alert("Enter your name, please.");
-      return;
-    }
+  if(pin===STUDENT_PIN){
+    if(!name){alert("Enter your name, please.");return;}
     if(!allowedStudents.includes(name)){
       alert("This name is not on the student list. Ask your teacher.");
       return;
     }
-    currentUser = {name, role:"student"};
+    currentUser={name,role:"student"};
     updateHeader();
     renderTopicList();
     showScreen("studentScreen");
@@ -850,153 +821,145 @@ function handleLogin(){
   alert("Wrong PIN.");
 }
 
-/* ----------- TOPICS RENDERING ----------- */
 function renderTopicList(){
-  const list = document.getElementById("topicList");
-  list.innerHTML = "";
-
+  const list=document.getElementById("topicList");
+  list.innerHTML="";
   topics.forEach(t=>{
-    const div = document.createElement("div");
-    div.className = "topic-card";
-    div.dataset.id = t.id;
-
-    const mod = document.createElement("div");
-    mod.className = "topic-sub";
-    mod.textContent = t.module;
-
-    const title = document.createElement("div");
-    title.className = "topic-title";
-    title.textContent = t.short + " – " + t.title;
-
+    const div=document.createElement("div");
+    div.className="topic-card";
+    div.dataset.id=t.id;
+    const mod=document.createElement("div");
+    mod.className="topic-sub";
+    mod.textContent=t.module;
+    const title=document.createElement("div");
+    title.className="topic-title";
+    title.textContent=t.short+" – "+t.title;
     div.appendChild(mod);
     div.appendChild(title);
-
-    div.addEventListener("click", ()=>selectTopic(t.id));
+    div.addEventListener("click",()=>selectTopic(t.id));
     list.appendChild(div);
   });
 }
 
+function buildQuizHTML(t){
+  if(!t.quiz) return "";
+  return `
+    <div class="ex-block">
+      <b>Interactive check</b><br>
+      ${t.quiz.map((q,i)=>`
+        <div class="quiz-item">
+          ${i+1}) ${q.text.replace("___",
+            `<input type='text' class='quiz-input' data-topic='${t.id}' data-idx='${i}' />`
+          )}
+          <span id="quizRes_${t.id}_${i}" class="quiz-result"></span>
+        </div>
+      `).join("")}
+      <div class="btn-row" style="justify-content:flex-start;margin-top:8px;">
+        <button class="btn btn-primary" type="button" onclick="checkQuiz(${t.id})">Check answers</button>
+        <button class="btn btn-ghost" type="button" onclick="printTopic()">Print topic</button>
+      </div>
+    </div>
+  `;
+}
+
 function selectTopic(id){
-  currentTopicId = id;
+  currentTopicId=id;
   document.querySelectorAll(".topic-card").forEach(c=>{
-    c.classList.toggle("active", Number(c.dataset.id) === id);
+    c.classList.toggle("active",Number(c.dataset.id)===id);
   });
+  const t=topics.find(x=>x.id===id);
+  if(!t)return;
+  const box=document.getElementById("topicDetails");
+  const stars=getStarsForStudentTopic(currentUser?.name,id);
 
-  const t = topics.find(x => x.id === id);
-  const box = document.getElementById("topicDetails");
-  if(!t) return;
-
-  const stars = getStarsForStudentTopic(currentUser?.name, id);
-
-  box.innerHTML = `
+  box.innerHTML=`
     <span class="module-badge">${t.module} • Grammar B</span>
     <h3>${t.title}</h3>
-    <div class="rule-block">
-      ${t.ruleEn}
-    </div>
-    <div class="rule-block">
-      ${t.ruleRu}
-    </div>
-    <div class="formula-block">
-      ${t.formula}
-    </div>
-    <div class="ex-block">
-      ${t.ex1}
-    </div>
-    <div class="ex-block">
-      ${t.ex2}
-    </div>
+    <div class="rule-block">${t.ruleEn}</div>
+    <div class="rule-block">${t.ruleRu}</div>
+    <div class="formula-block">${t.formula}</div>
+    <div class="ex-block">${t.ex1}</div>
+    <div class="ex-block">${t.ex2}</div>
+    ${buildQuizHTML(t)}
     <div class="star-row">
-      <span>Mark this topic as completed to get a ⭐</span>
+      <span>Mark completed or pass the quiz to get a ⭐.</span>
       <span>
-        <input type="checkbox" id="doneChk" ${stars ? "checked" : ""} onchange="toggleStar(${id}, this.checked)" />
+        <input type="checkbox" id="doneChk" ${stars?"checked":""}
+               onchange="toggleStar(${id}, this.checked)" />
         <label for="doneChk">Completed</label>
-        <span class="star-count">Stars: ${stars ? 1 : 0}</span>
+        <span class="star-count">Stars: ${stars?1:0}</span>
       </span>
     </div>
   `;
 }
 
-/* ----------- STARS & JOURNAL (localStorage) ----------- */
-function getStudentKey(name){
-  return "aiBayan7_" + name;
+function printTopic(){
+  window.print();
 }
 
+/* -------- STARS & JOURNAL -------- */
+function getStudentKey(name){return "aiBayan7_"+name;}
+
 function getStudentData(name){
-  if(!name) return null;
-  const raw = localStorage.getItem(getStudentKey(name));
-  if(!raw) return {stars:[], lastTopic:null, lastLogin:null};
-  try{
-    return JSON.parse(raw);
-  }catch(e){
-    return {stars:[], lastTopic:null, lastLogin:null};
-  }
+  if(!name)return null;
+  const raw=localStorage.getItem(getStudentKey(name));
+  if(!raw)return {stars:[],lastTopic:null,lastLogin:null};
+  try{return JSON.parse(raw);}catch(e){return {stars:[],lastTopic:null,lastLogin:null};}
 }
 
 function saveStudentData(name,data){
-  if(!name) return;
-  localStorage.setItem(getStudentKey(name), JSON.stringify(data));
+  if(!name)return;
+  localStorage.setItem(getStudentKey(name),JSON.stringify(data));
 }
 
 function getStarsForStudentTopic(name,topicId){
-  if(!name) return 0;
-  const data = getStudentData(name);
-  return data.stars.includes(topicId) ? 1 : 0;
+  if(!name)return 0;
+  const data=getStudentData(name);
+  return data.stars.includes(topicId)?1:0;
 }
 
 function toggleStar(topicId,checked){
-  if(!currentUser || currentUser.role!=="student") return;
-  const data = getStudentData(currentUser.name);
+  if(!currentUser||currentUser.role!=="student")return;
+  const data=getStudentData(currentUser.name);
   if(checked){
-    if(!data.stars.includes(topicId)) data.stars.push(topicId);
-    data.lastTopic = topicId;
+    if(!data.stars.includes(topicId))data.stars.push(topicId);
+    data.lastTopic=topicId;
   }else{
-    data.stars = data.stars.filter(id => id !== topicId);
-    data.lastTopic = topicId;
+    data.stars=data.stars.filter(id=>id!==topicId);
+    data.lastTopic=topicId;
   }
   saveStudentData(currentUser.name,data);
-  selectTopic(topicId); // перерисуем, чтобы обновить счётчик
-  buildTeacherTable();  // обновить таблицу учителя, если она открыта
+  selectTopic(topicId);
+  buildTeacherTable();
 }
 
 function saveLoginEvent(){
-  if(!currentUser || currentUser.role!=="student") return;
-  const data = getStudentData(currentUser.name);
-  data.lastLogin = new Date().toISOString();
+  if(!currentUser||currentUser.role!=="student")return;
+  const data=getStudentData(currentUser.name);
+  data.lastLogin=new Date().toISOString();
   saveStudentData(currentUser.name,data);
   buildTeacherTable();
 }
 
 function buildTeacherTable(){
-  const tbody = document.querySelector("#teacherTable tbody");
-  if(!tbody) return;
-  tbody.innerHTML = "";
-
+  const tbody=document.querySelector("#teacherTable tbody");
+  if(!tbody)return;
+  tbody.innerHTML="";
   allowedStudents.forEach(name=>{
-    const data = getStudentData(name);
-    const tr = document.createElement("tr");
-
-    const tdName = document.createElement("td");
-    tdName.textContent = name;
-
-    const tdStars = document.createElement("td");
-    tdStars.textContent = data ? (data.stars?.length || 0) : 0;
-
-    const tdTopic = document.createElement("td");
+    const data=getStudentData(name);
+    const tr=document.createElement("tr");
+    const tdName=document.createElement("td");
+    tdName.textContent=name;
+    const tdStars=document.createElement("td");
+    tdStars.textContent=data?(data.stars?.length||0):0;
+    const tdTopic=document.createElement("td");
     if(data && data.lastTopic){
-      const t = topics.find(x=>x.id === data.lastTopic);
-      tdTopic.textContent = t ? t.module + ": " + t.short : "";
-    }else{
-      tdTopic.textContent = "";
-    }
-
-    const tdLogin = document.createElement("td");
-    if(data && data.lastLogin){
-      tdLogin.textContent = new Date(data.lastLogin).toLocaleString();
-    }else{
-      tdLogin.textContent = "";
-    }
-
+      const t=topics.find(x=>x.id===data.lastTopic);
+      tdTopic.textContent=t?t.module+": "+t.short:"";
+    }else tdTopic.textContent="";
+    const tdLogin=document.createElement("td");
+    tdLogin.textContent=data && data.lastLogin?
+      new Date(data.lastLogin).toLocaleString():"";
     tr.appendChild(tdName);
     tr.appendChild(tdStars);
     tr.appendChild(tdTopic);
@@ -1005,29 +968,56 @@ function buildTeacherTable(){
   });
 }
 
-/* ----------- AI CHAT (stub) ----------- */
-function sendToAi(){
-  const box = document.getElementById("chatBox");
-  const text = document.getElementById("aiQuestion").value.trim();
-  if(!text) return;
+/* -------- QUIZ CHECK -------- */
+function checkQuiz(topicId){
+  const t=topics.find(x=>x.id===topicId);
+  if(!t||!t.quiz)return;
 
-  // student message
-  const m1 = document.createElement("div");
-  m1.className = "chat-msg me";
-  m1.textContent = "You: " + text;
-  box.appendChild(m1);
+  let allCorrect=true;
+  t.quiz.forEach((q,i)=>{
+    const inp=document.querySelector(`.quiz-input[data-topic='${topicId}'][data-idx='${i}']`);
+    const res=document.getElementById(`quizRes_${topicId}_${i}`);
+    if(!inp||!res)return;
+    const user=inp.value.trim().toLowerCase();
+    const correct=q.answer.trim().toLowerCase();
+    if(user===correct){
+      inp.classList.remove("bad");
+      inp.classList.add("ok");
+      res.textContent="✓";
+      res.className="quiz-result correct";
+    }else{
+      inp.classList.remove("ok");
+      inp.classList.add("bad");
+      res.textContent="✗";
+      res.className="quiz-result incorrect";
+      allCorrect=false;
+    }
+  });
 
-  // simple local stub answer
-  const m2 = document.createElement("div");
-  m2.className = "chat-msg";
-  m2.textContent = "AI Bayan (stub): Your teacher will later connect a real AI Worker here. For now, use the rules and examples on the right.";
-  box.appendChild(m2);
-
-  box.scrollTop = box.scrollHeight;
-  document.getElementById("aiQuestion").value = "";
+  if(allCorrect && currentUser && currentUser.role==="student"){
+    alert("Great! All answers are correct. You get a star for this topic!");
+    toggleStar(topicId,true);
+  }
 }
 
-/* ----------- INIT ----------- */
+/* -------- AI STUB -------- */
+function sendToAi(){
+  const box=document.getElementById("chatBox");
+  const text=document.getElementById("aiQuestion").value.trim();
+  if(!text)return;
+  const m1=document.createElement("div");
+  m1.className="chat-msg me";
+  m1.textContent="You: "+text;
+  box.appendChild(m1);
+  const m2=document.createElement("div");
+  m2.className="chat-msg";
+  m2.textContent="AI Bayan (stub): Later your teacher will connect real AI here. Use rules and exercises for now.";
+  box.appendChild(m2);
+  box.scrollTop=box.scrollHeight;
+  document.getElementById("aiQuestion").value="";
+}
+
+/* INIT */
 updateHeader();
 </script>
 </body>
