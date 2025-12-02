@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>ENGLISH WITH AI BAYAN – Grade 7 Grammar</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    :root{
+      --header1:#006d77;
+      --header2:#0096a8;
+      --accent:#ffb703;
+      --accent-soft:#ffe8a3;
+      --bg:#f4f7fb;
+      --card:#ffffff;
+      --text:#163043;
+      --danger:#d32f2f;
+      --success:#2e7d32;
+      --border-soft:#dde5f0;
+    }
+
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    }
+
+    body{
+      background:var(--bg);
+      color:var(--text);
+    }
+
+    header{
+      background:linear-gradient(90deg,var(--header1),var(--header2));
+      color:#fff;
+      padding:10px 16px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      box-shadow:0 2px 6px rgba(0,0,0,0.25);
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .logo-circle{
+      width:40px;
+      height:40px;
+      border-radius:50%;
+      overflow:hidden;
+      border:2px solid #ffd54f;
+      background:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:0.7rem;
+      color:#ff6f00;
+    }
+
+    .brand-text{
+      display:flex;
+      flex-direction:column;
+    }
+
+    .brand-text h1{
+      font-size:1.05rem;
+      letter-spacing:0.04em;
+    }
+
+    .brand-text span{
+      font-size:0.78rem;
+      opacity:0.9;
+    }
+
+    #userSummary{
+      font-size:0.78rem;
+      text-align:right;
+    }
+
+    #userSummary b{
+      color:var(--accent-soft);
+    }
+
+    main{
+      max-width:1100px;
+      margin:14px auto 24px;
+      padding:0 10px 30px;
+    }
+
+    .screen{display:none;}
+    .screen.active{display:block;}
+
+    /* LOGIN CARD */
+    .login-card{
+      max-width:430px;
+      margin:28px auto;
+      background:var(--card);
+      border-radius:16px;
+      box-shadow:0 2px 10px rgba(0,0,0,0.12);
+      padding:18px 18px 20px;
+    }
+
+    .login-card h2{
+      margin-bottom:8px;
+      font-size:1.15rem;
+    }
+
+    .login-card p{
+      font-size:0.9rem;
+      margin-bottom:8px;
+    }
+
+    label{
+      display:block;
+      font-size:0.85rem;
+      margin:8px 0 4px;
+    }
+
+    input[type="text"],
+    input[type="number"]{
+      width:100%;
+      padding:8px 10px;
+      border-radius:10px;
+      border:1px solid var(--border-soft);
+      outline:none;
+      font-size:0.9rem;
+      background:#fdfefe;
+    }
+
+    input:focus{
+      border-color:var(--header2);
+      box-shadow:0 0 0 1px rgba(0,150,168,0.2);
+    }
+
+    .btn{
+      border:none;
+      border-radius:999px;
+      padding:7px 17px;
+      font-size:0.9rem;
+      cursor:pointer;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:4px;
+      white-space:nowrap;
+    }
+
+    .btn-primary{
+      background:var(--header1);
+      color:#fff;
+    }
+
+    .btn-ghost{
+      background:#edf5ff;
+      color:var(--header1);
+    }
+
+    .btn-outline{
+      background:transparent;
+      color:var(--header1);
+      border:1px solid var(--header1);
+    }
+
+    .btn:active{transform:scale(0.97);}
+
+    .btn-row{
+      display:flex;
+      gap:8px;
+      margin-top:12px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+
+    .hint{
+      font-size:0.8rem;
+      opacity:0.8;
+      margin-top:4px;
+    }
+
+    .error-msg{
+      font-size:0.8rem;
+      color:var(--danger);
+      margin-top:6px;
+      min-height:1em;
+    }
+
+    /* TOPICS LIST */
+    .topics-header{
+      margin-bottom:10px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:6px;
+      flex-wrap:wrap;
+    }
+
+    .topics-header h2{
+      font-size:1.05rem;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:4px;
+      padding:3px 9px;
+      border-radius:999px;
+      font-size:0.75rem;
+      background:#e0f2f1;
+    }
+
+    .star-pull{
+      display:inline-flex;
+      align-items:center;
+      gap:4px;
+      font-size:0.82rem;
+    }
+
+    .star-pull span:first-child{
+      color:var(--accent);
+      font-size:1rem;
+    }
+
+    .topic-list{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      margin-top:8px;
+    }
+
+    .topic-card{
+      background:var(--card);
+      border-radius:14px;
+      padding:10px 12px;
+      box-shadow:0 1px 3px rgba(0,0,0,0.12);
+      border-left:5px solid #ffe0b2;
+      cursor:pointer;
+    }
+
+    .topic-card:hover{
+      box-shadow:0 2px 6px rgba(0,0,0,0.18);
+      transform:translateY(-1px);
+    }
+
+    .topic-title-line{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:6px;
+      margin-bottom:3px;
+    }
+
+    .topic-title-line h3{
+      font-size:0.96rem;
+    }
+
+    .topic-level{
+      font-size:0.75rem;
+      color:#607d8b;
+    }
+
+    .topic-stars{
+      font-size:0.75rem;
+      color:#f57f17;
+      white-space:nowrap;
+    }
+
+    /* TOPIC SCREEN */
+    .topic-header-card{
+      background:var(--card);
+      border-radius:16px;
+      box-shadow:0 2px 8px rgba(0,0,0,0.15);
+      padding:12px 12px 8px;
+      margin-bottom:10px;
+      border-top:4px solid var(--accent);
+    }
+
+    .topic-header-title{
+      font-size:1rem;
+      font-weight:600;
+      margin-bottom:6px;
+    }
+
+    .topic-tagline{
+      font-size:0.8rem;
+      color:#607d8b;
+      margin-bottom:8px;
+    }
+
+    .topic-buttons{
+      display:flex;
+      gap:6px;
+      flex-wrap:wrap;
+    }
+
+    .content-card{
+      background:var(--card);
+      border-radius:16px;
+      box-shadow:0 1px 5px rgba(0,0,0,0.11);
+      padding:12px;
+      margin-top:10px;
+    }
+
+    .rule-box{
+      border-left:4px solid #90caf9;
+      background:#eef5ff;
+      padding:8px 10px;
+      font-size:0.88rem;
+      margin-bottom:8px;
+    }
+
+    .rule-box b{color:#0d47a1;}
+    .rule-box + .rule-box{border-left-color:#ffb3a7;background:#fff5f2;}
+    .formula-box{
+      border-left:4px solid #aed581;
+      background:#f4ffe8;
+      padding:7px 10px;
+      font-size:0.86rem;
+      margin-bottom:10px;
+    }
+
+    .exercise-block{
+      border-left:4px solid #4fc3f7;
+      background:#f1f9ff;
+      padding:8px 10px 10px;
+      font-size:0.86rem;
+      margin-top:10px;
+      border-radius:10px;
+    }
+
+    .exercise-title{
+      font-weight:600;
+      margin-bottom:4px;
+    }
+
+    .exercise-note{
+      font-size:0.78rem;
+      color:#546e7a;
+      margin-bottom:4px;
+    }
+
+    .question{
+      margin-top:4px;
+      margin-bottom:2px;
+    }
+
+    .options-row{
+      margin-left:6px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:6px 14px;
+      font-size:0.85rem;
+    }
+
+    .options-row label{
+      margin:0;
+      display:flex;
+      align-items:center;
+      gap:4px;
+    }
+
+    .check-row{
+      margin-top:6px;
+      display:flex;
+      justify-content:flex-end;
+    }
+
+    .exercise-result{
+      font-size:0.8rem;
+      margin-top:4px;
+      min-height:1em;
+    }
+
+    .exercise-result.ok{color:var(--success);}
+    .exercise-result.bad{color:var(--danger);}
+
+    @media print{
+      header,#loginScreen,#mainScreen .topics-header,#mainScreen .topic-list,#userSummary,#topicNavButtons{display:none !important;}
+      body{background:#fff;}
+      main{max-width:none;margin:0;padding:0;}
+      .content-card{box-shadow:none;border-radius:0;}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <div class="logo-circle">
+      <!-- сюда можешь поставить <img src="girl.png"> -->
+      AI
+    </div>
+    <div class="brand-text">
+      <h1>ENGLISH WITH AI BAYAN</h1>
+      <span>Grade 7 · Grammar · interactive topics</span>
+    </div>
+  </div>
+  <div id="userSummary">
+    <div id="userStatus">Not logged in</div>
+    <div id="userStars">Stars: 0</div>
+  </div>
+</header>
+
+<main>
+  <!-- LOGIN SCREEN -->
+  <section id="loginScreen" class="screen active">
+    <div class="login-card">
+      <h2>Login</h2>
+      <p>Enter your <b>Name</b> and <b>Code</b>. Ask your teacher for the code.</p>
+
+      <label for="loginName">Name</label>
+      <input id="loginName" type="text" placeholder="Example: Sырым7Б" />
+
+      <label for="loginCode">Code</label>
+      <input id="loginCode" type="number" placeholder="Example: 701" />
+
+      <div class="hint">
+        For this demo: any name + code from <b>701–720</b> is accepted.<br>
+        (You можешь потом поменять диапазон кодов под свой класс.)
+      </div>
+
+      <div id="loginError" class="error-msg"></div>
+
+      <div class="btn-row">
+        <button class="btn btn-ghost" type="button" onclick="resetLogin()">Reset</button>
+        <button class="btn btn-primary" type="button" onclick="handleLogin()">Login</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN TOPICS SCREEN -->
+  <section id="mainScreen" class="screen">
+    <div class="topics-header">
+      <div>
+        <h2>Grade 7 – Grammar topics</h2>
+        <div class="pill">
+          Topic stars available: about 80+
+        </div>
+      </div>
+      <div class="star-pull">
+        <span>★</span>
+        <span id="starsInfo"></span>
+      </div>
+    </div>
+
+    <div class="topic-list" id="topicList"></div>
+  </section>
+
+  <!-- TOPIC SCREEN -->
+  <section id="topicScreen" class="screen">
+    <div class="topic-header-card">
+      <div class="topic-header-title" id="topicHeaderTitle"></div>
+      <div class="topic-tagline" id="topicHeaderTagline"></div>
+      <div class="topic-buttons" id="topicNavButtons">
+        <button class="btn btn-ghost" type="button" onclick="backToTopics()">← Back</button>
+        <button class="btn btn-ghost" type="button" onclick="goMain()">🏠 Main menu</button>
+        <button class="btn btn-outline" type="button" onclick="window.print()">🖨 Print</button>
+      </div>
+    </div>
+
+    <div class="content-card" id="topicContent"></div>
+  </section>
+</main>
+
+<script>
+/* ---------- DATA ---------- */
+
+const topics = [
+  {
+    id:1,
+    title:"Past Simple – regular and irregular verbs",
+    level:"Module 1",
+    ruleEn:`<b>Rule (EN):</b> We use the Past Simple to talk about <b>finished actions</b> in the past.<br>
+            Regular verbs: <i>+ed</i> (play → played, open → opened).<br>
+            Irregular verbs: 2nd form (go → went, see → saw).`,
+    ruleRu:`<b>Правило (RU):</b> Past Simple используем для <b>завершённых действий</b> в прошлом.<br>
+            Правильные глаголы: <i>+ed</i>. Неправильные – вторая форма (went, saw и т.д.).`,
+    formula:`(+): subject + V2<br>
+             (-): subject + didn’t + V1<br>
+             (?): Did + subject + V1?`,
+    exercises:[
+      {
+        id:"1a",
+        title:"Ex.1 – Choose the correct form (Past Simple).",
+        note:"Each correct answer gives you 1 star.",
+        questions:[
+          {
+            id:"q1",
+            text:"1) We ___ to the cinema yesterday.",
+            options:["go","went","goes"],
+            correct:"went"
+          },
+          {
+            id:"q2",
+            text:"2) My brother ___ breakfast this morning.",
+            options:["didn’t eat","doesn’t eat","not ate"],
+            correct:"didn’t eat"
+          },
+          {
+            id:"q3",
+            text:"3) She ___ a new bike last week.",
+            options:["buyed","bought","buys"],
+            correct:"bought"
+          },
+          {
+            id:"q4",
+            text:"4) ___ you ___ the match on TV?",
+            options:["Did / watch","Do / watched","Did / watched"],
+            correct:"Did / watch"
+          }
+        ]
+      },
+      {
+        id:"1b",
+        title:"Ex.2 – Complete with the Past Simple.",
+        note:"Write the correct verb form.",
+        questions:[
+          {
+            id:"q5",
+            text:"1) They ___ (visit) their grandparents on Sunday.",
+            options:["visited","visit","were visiting"],
+            correct:"visited"
+          },
+          {
+            id:"q6",
+            text:"2) I ___ (not see) you at school yesterday.",
+            options:["didn’t see","don’t see","wasn’t seeing"],
+            correct:"didn’t see"
+          },
+          {
+            id:"q7",
+            text:"3) He ___ (go) to London last year.",
+            options:["went","has gone","goes"],
+            correct:"went"
+          },
+          {
+            id:"q8",
+            text:"4) We ___ (not buy) that book.",
+            options:["didn’t buy","haven’t bought","don’t buy"],
+            correct:"didn’t buy"
+          }
+        ]
+      }
+    ]
+  },
+
+  {
+    id:2,
+    title:"Past Continuous – actions in progress",
+    level:"Module 2",
+    ruleEn:`<b>Rule (EN):</b> We use the Past Continuous for actions that were <b>in progress</b> at a specific moment in the past.<br>
+            Example: At 6 p.m. yesterday, I <i>was doing</i> my homework.`,
+    ruleRu:`<b>Правило (RU):</b> Past Continuous описывает действие, которое <b>происходило</b> в определённый момент в прошлом.`,
+    formula:`subject + was / were + V-ing`,
+    exercises:[
+      {
+        id:"2a",
+        title:"Ex.1 – Complete with Past Continuous.",
+        note:"Choose the correct form.",
+        questions:[
+          {
+            id:"q1",
+            text:"1) I ___ dinner at 6 p.m. yesterday.",
+            options:["cooked","was cooking","am cooking"],
+            correct:"was cooking"
+          },
+          {
+            id:"q2",
+            text:"2) They ___ football when it started to rain.",
+            options:["were playing","played","play"],
+            correct:"were playing"
+          },
+          {
+            id:"q3",
+            text:"3) We ___ TV at 9 o’clock.",
+            options:["were watching","watched","watch"],
+            correct:"were watching"
+          },
+          {
+            id:"q4",
+            text:"4) My parents ___ to work at 8 a.m.",
+            options:["were driving","drove","are driving"],
+            correct:"were driving"
+          }
+        ]
+      },
+      {
+        id:"2b",
+        title:"Ex.2 – Negative sentences.",
+        note:"Choose the correct negative form.",
+        questions:[
+          {
+            id:"q5",
+            text:"1) We ___ sleeping when the phone rang.",
+            options:["weren’t","wasn’t","didn’t"],
+            correct:"weren’t"
+          },
+          {
+            id:"q6",
+            text:"2) I ___ listening to music.",
+            options:["wasn’t","weren’t","didn’t"],
+            correct:"wasn’t"
+          },
+          {
+            id:"q7",
+            text:"3) They ___ talking to the teacher.",
+            options:["weren’t","didn’t","wasn’t"],
+            correct:"weren’t"
+          },
+          {
+            id:"q8",
+            text:"4) She ___ reading a book at that time.",
+            options:["wasn’t","didn’t","weren’t"],
+            correct:"wasn’t"
+          }
+        ]
+      }
+    ]
+  },
+
+  {
+    id:3,
+    title:"Past Simple vs Past Continuous",
+    level:"Module 2",
+    ruleEn:`<b>Rule (EN):</b> Use <b>Past Continuous</b> for the long action (background) and <b>Past Simple</b> for the short action that interrupts it.<br>
+            Pattern: Past Continuous + when + Past Simple; Past Simple + while + Past Continuous.`,
+    ruleRu:`<b>Правило (RU):</b> Past Continuous – длительное действие, Past Simple – короткое, которое его прерывает.`,
+    formula:`PC + when + PS<br>PS + while + PC`,
+    exercises:[
+      {
+        id:"3a",
+        title:"Ex.1 – Complete with the correct tense.",
+        note:"Past Simple or Past Continuous.",
+        questions:[
+          {
+            id:"q1",
+            text:"1) I ___ (walk) home when I ___ (see) my friend.",
+            options:["was walking / saw","walked / was seeing","walked / saw"],
+            correct:"was walking / saw"
+          },
+          {
+            id:"q2",
+            text:"2) She ___ (watch) TV when the lights ___ (go) off.",
+            options:["was watching / went","watched / was going","watched / went"],
+            correct:"was watching / went"
+          },
+          {
+            id:"q3",
+            text:"3) They ___ (play) football while their parents ___ (cook).",
+            options:["were playing / were cooking","played / cooked","were playing / cooked"],
+            correct:"were playing / were cooking"
+          },
+          {
+            id:"q4",
+            text:"4) My phone ___ (ring) while I ___ (wash) the dishes.",
+            options:["rang / was washing","was ringing / washed","rang / washed"],
+            correct:"rang / was washing"
+          }
+        ]
+      },
+      {
+        id:"3b",
+        title:"Ex.2 – Choose when or while.",
+        note:"Each correct answer gives 1 star.",
+        questions:[
+          {
+            id:"q5",
+            text:"1) I was reading ___ my brother was playing computer games.",
+            options:["when","while"],
+            correct:"while"
+          },
+          {
+            id:"q6",
+            text:"2) ___ I was walking to school, it started to snow.",
+            options:["When","While"],
+            correct:"When"
+          },
+          {
+            id:"q7",
+            text:"3) She was talking on the phone ___ she was cooking.",
+            options:["when","while"],
+            correct:"while"
+          },
+          {
+            id:"q8",
+            text:"4) He fell over ___ he was running.",
+            options:["when","while"],
+            correct:"when"
+          }
+        ]
+      }
+    ]
+  },
+
+  {
+    id:4,
+    title:"be going to – plans and intentions",
+    level:"Module 3",
+    ruleEn:`<b>Rule (EN):</b> Use <b>be going to</b> for plans and intentions (we decided before speaking).`,
+    ruleRu:`<b>Правило (RU):</b> be going to используем для <b>планов и намерений</b>, о которых мы решили заранее.`,
+    formula:`subject + am / is / are + going to + V1`,
+    exercises:[
+      {
+        id:"4a",
+        title:"Ex.1 – Complete with be going to.",
+        note:"Choose the best answer.",
+        questions:[
+          {
+            id:"q1",
+            text:"1) We ___ visit our grandparents this weekend.",
+            options:["are going to","will","go"],
+            correct:"are going to"
+          },
+          {
+            id:"q2",
+            text:"2) She ___ buy a new dress.",
+            options:["is going to","will going to","are going to"],
+            correct:"is going to"
+          },
+          {
+            id:"q3",
+            text:"3) I ___ study for the English test tonight.",
+            options:["am going to","going to","will going"],
+            correct:"am going to"
+          },
+          {
+            id:"q4",
+            text:"4) They ___ not ___ play football today.",
+            options:["are going to","are going to not","aren’t going to"],
+            correct:"aren’t going to"
+          }
+        ]
+      },
+      {
+        id:"4b",
+        title:"Ex.2 – Short answers.",
+        note:"Choose yes or no with be going to.",
+        questions:[
+          {
+            id:"q5",
+            text:"1) Are you going to watch the film? – ___, I am.",
+            options:["Yes","No"],
+            correct:"Yes"
+          },
+          {
+            id:"q6",
+            text:"2) Is she going to stay at home? – ___, she isn’t.",
+            options:["Yes","No"],
+            correct:"No"
+          },
+          {
+            id:"q7",
+            text:"3) Are they going to travel in summer? – ___, they are.",
+            options:["Yes","No"],
+            correct:"Yes"
+          },
+          {
+            id:"q8",
+            text:"4) Is he going to play tennis? – ___, he isn’t.",
+            options:["Yes","No"],
+            correct:"No"
+          }
+        ]
+      }
+    ]
+  },
+
+  {
+    id:5,
+    title:"Will / won’t – predictions & promises",
+    level:"Module 3",
+    ruleEn:`<b>Rule (EN):</b> Use <b>will / won’t</b> for predictions, promises and decisions made at the moment of speaking.`,
+    ruleRu:`<b>Правило (RU):</b> Will / won’t используем для <b>предсказаний, обещаний</b> и решений «сейчас».`,
+    formula:`(+): subject + will + V1<br>
+             (-): subject + won’t + V1`,
+    exercises:[
+      {
+        id:"5a",
+        title:"Ex.1 – Predictions.",
+        note:"Choose will or won’t.",
+        questions:[
+          {
+            id:"q1",
+            text:"1) I think it ___ rain tomorrow.",
+            options:["will","won’t"],
+            correct:"will"
+          },
+          {
+            id:"q2",
+            text:"2) They ___ be at school on Sunday.",
+            options:["will","won’t"],
+            correct:"won’t"
+          },
+          {
+            id:"q3",
+            text:"3) I’m sure you ___ pass the exam.",
+            options:["will","won’t"],
+            correct:"will"
+          },
+          {
+            id:"q4",
+            text:"4) She ___ like this book.",
+            options:["will","won’t"],
+            correct:"will"
+          }
+        ]
+      },
+      {
+        id:"5b",
+        title:"Ex.2 – Promises and instant decisions.",
+        note:"Choose the correct form.",
+        questions:[
+          {
+            id:"q5",
+            text:"1) Don’t worry, I ___ help you.",
+            options:["will","am going to"],
+            correct:"will"
+          },
+          {
+            id:"q6",
+            text:"2) It’s cold. I ___ close the window.",
+            options:["will","am going to"],
+            correct:"will"
+          },
+          {
+            id:"q7",
+            text:"3) I’m busy now. I ___ call you later.",
+            options:["will","won’t"],
+            correct:"will"
+          },
+          {
+            id:"q8",
+            text:"4) I’m tired. I ___ not go to the party.",
+            options:["will","will","won’t"],
+            correct:"won’t"
+          }
+        ]
+      }
+    ]
+  },
+
+  {
+    id:6,
+    title:"Present Perfect – ever, never, just, already, yet",
+    level:"Module 4",
+    ruleEn:`<b>Rule (EN):</b> Present Perfect = have / has + V3. We use it for life experience and results connected with now.`,
+    ruleRu:`<b>Правило (RU):</b> Present Perfect = have / has + V3. Используем для <b>жизненного опыта</b> и результата, важного сейчас.`,
+    formula:`(+): have / has + V3<br>
+             (-): haven’t / hasn’t + V3<br>
+             (?): Have / Has + subject + V3?`,
+    exercises:[
+      {
+        id:"6a",
+        title:"Ex.1 – ever / never.",
+        note:"Choose the correct word.",
+        questions:[
+          {
+            id:"q1",
+            text:"1) Have you ___ been to London?",
+            options:["ever","never"],
+            correct:"ever"
+          },
+          {
+            id:"q2",
+            text:"2) She has ___ travelled by plane.",
+            options:["ever","never"],
+            correct:"never"
+          },
+          {
+            id:"q3",
+            text:"3) Have they ___ tried sushi?",
+            options:["ever","never"],
+            correct:"ever"
+          },
+          {
+            id:"q4",
+            text:"4) I have ___ seen this film before.",
+            options:["never","ever"],
+            correct:"never"
+          }
+        ]
+      },
+      {
+        id:"6b",
+        title:"Ex.2 – just / already / yet.",
+        note:"Choose the best option.",
+        questions:[
+          {
+            id:"q5",
+            text:"1) She has ___ finished her homework.",
+            options:["just","yet","ever"],
+            correct:"just"
+          },
+          {
+            id:"q6",
+            text:"2) Have you done the project ___?",
+            options:["yet","already","just"],
+            correct:"yet"
+          },
+          {
+            id:"q7",
+            text:"3) We have ___ seen this movie. Let’s watch something else.",
+            options:["already","just","never"],
+            correct:"already"
+          },
+          {
+            id:"q8",
+            text:"4) I haven’t called him ___ .",
+            options:["yet","already","ever"],
+            correct:"yet"
+          }
+        ]
+      }
+    ]
+  },
+
+  {
+    id:7,
+    title:"Comparatives and Superlatives",
+    level:"Module 5",
+    ruleEn:`<b>Rule (EN):</b> Comparatives compare two things (taller, more interesting). Superlatives show the most (the tallest, the most interesting).`,
+    ruleRu:`<b>Правило (RU):</b> Сравнительная степень – сравниваем два объекта (taller). Превосходная – самый (the tallest).`,
+    formula:`short adj: tall → taller → the tallest<br>
+             long adj: interesting → more interesting → the most interesting<br>
+             irregular: good → better → the best`,
+    exercises:[
+      {
+        id:"7a",
+        title:"Ex.1 – Comparatives.",
+        note:"Choose the correct form.",
+        questions:[
+          {
+            id:"q1",
+            text:"1) My house is ___ than yours.",
+            options:["bigger","the biggest","big"],
+            correct:"bigger"
+          },
+          {
+            id:"q2",
+            text:"2) English is ___ than maths for me.",
+            options:["easier","the easiest","easy"],
+            correct:"easier"
+          },
+          {
+            id:"q3",
+            text:"3) This book is ___ than that one.",
+            options:["more interesting","the most interesting","interesting"],
+            correct:"more interesting"
+          },
+          {
+            id:"q4",
+            text:"4) Today is ___ than yesterday.",
+            options:["colder","the coldest","cold"],
+            correct:"colder"
+          }
+        ]
+      },
+      {
+        id:"7b",
+        title:"Ex.2 – Superlatives.",
+        note:"Choose the correct form.",
+        questions:[
+          {
+            id:"q5",
+            text:"1) Mount Everest is ___ mountain in the world.",
+            options:["the highest","higher","the most high"],
+            correct:"the highest"
+          },
+          {
+            id:"q6",
+            text:"2) This is ___ film I’ve ever seen.",
+            options:["the best","better","good"],
+            correct:"the best"
+          },
+          {
+            id:"q7",
+            text:"3) February is ___ month of the year.",
+            options:["the shortest","shorter","the most short"],
+            correct:"the shortest"
+          },
+          {
+            id:"q8",
+            text:"4) He is ___ student in the class.",
+            options:["the most hard-working","harder","more hard-working"],
+            correct:"the most hard-working"
+          }
+        ]
+      }
+    ]
+  },
+
+  {
+    id:8,
+    title:"Must / mustn’t / have to",
+    level:"Module 6",
+    ruleEn:`<b>Rule (EN):</b> Use <b>must</b> for strong personal obligation, <b>mustn’t</b> for prohibition, <b>have to</b> for rules from outside.`,
+    ruleRu:`<b>Правило (RU):</b> Must – сильная личная обязанность. Mustn’t – запрет. Have to – правило, обязанность «извне».`,
+    formula:`must + V1<br>
+             mustn’t + V1<br>
+             have / has to + V1`,
+    exercises:[
+      {
+        id:"8a",
+        title:"Ex.1 – School rules.",
+        note:"Choose must or mustn’t.",
+        questions:[
+          {
+            id:"q1",
+            text:"1) You ___ do your homework.",
+            options:["must","mustn’t"],
+            correct:"must"
+          },
+          {
+            id:"q2",
+            text:"2) Students ___ use their phones in class.",
+            options:["mustn’t","must"],
+            correct:"mustn’t"
+          },
+          {
+            id:"q3",
+            text:"3) You ___ be late for lessons.",
+            options:["mustn’t","must"],
+            correct:"mustn’t"
+          },
+          {
+            id:"q4",
+            text:"4) We ___ respect our teachers.",
+            options:["must","mustn’t"],
+            correct:"must"
+          }
+        ]
+      },
+      {
+        id:"8b",
+        title:"Ex.2 – have to / don’t have to.",
+        note:"Choose have to or don’t have to.",
+        questions:[
+          {
+            id:"q5",
+            text:"1) I ___ wear a uniform at my school. It’s the rule.",
+            options:["have to","don’t have to"],
+            correct:"have to"
+          },
+          {
+            id:"q6",
+            text:"2) We ___ go to school on Sunday. It’s a holiday.",
+            options:["have to","don’t have to"],
+            correct:"don’t have to"
+          },
+          {
+            id:"q7",
+            text:"3) She ___ get up early tomorrow. She has an exam.",
+            options:["has to","doesn’t have to"],
+            correct:"has to"
+          },
+          {
+            id:"q8",
+            text:"4) You ___ pay for this book, it’s free.",
+            options:["don’t have to","have to"],
+            correct:"don’t have to"
+          }
+        ]
+      }
+    ]
+  }
+];
+
+/* ---------- STATE & STORAGE ---------- */
+
+let currentUser = null;     // {name, code, progress:{}}
+let currentTopic = null;    // topic object
+
+function userKey(code){
+  return "aiBayan7_user_" + code;
+}
+
+function loadUser(code){
+  const raw = localStorage.getItem(userKey(code));
+  if(!raw) return null;
+  try{ return JSON.parse(raw); }catch(e){ return null; }
+}
+
+function saveUser(){
+  if(!currentUser) return;
+  localStorage.setItem(userKey(currentUser.code), JSON.stringify(currentUser));
+}
+
+function getTotalStars(user){
+  if(!user || !user.progress) return 0;
+  let sum = 0;
+  Object.values(user.progress).forEach(exDict=>{
+    Object.values(exDict).forEach(best=>{
+      sum += best;
+    });
+  });
+  return sum;
+}
+
+/* ---------- LOGIN ---------- */
+
+function resetLogin(){
+  document.getElementById("loginName").value = "";
+  document.getElementById("loginCode").value = "";
+  document.getElementById("loginError").textContent = "";
+}
+
+function handleLogin(){
+  const name = document.getElementById("loginName").value.trim();
+  const codeStr = document.getElementById("loginCode").value.trim();
+  const errorEl = document.getElementById("loginError");
+
+  if(!name || !codeStr){
+    errorEl.textContent = "Please enter name and code.";
+    return;
+  }
+  const code = Number(codeStr);
+  if(Number.isNaN(code) || code < 701 || code > 720){
+    errorEl.textContent = "This code is not valid for Grade 7 (use 701–720).";
+    return;
+  }
+
+  let user = loadUser(code);
+  if(!user){
+    user = {name, code, progress:{}};
+  }else{
+    user.name = name; // обновим имя при входе
+  }
+  currentUser = user;
+  saveUser();
+  updateHeader();
+  renderTopics();
+  showScreen("mainScreen");
+}
+
+/* ---------- UI HELPERS ---------- */
+
+function showScreen(id){
+  document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+}
+
+function updateHeader(){
+  const status = document.getElementById("userStatus");
+  const starsEl = document.getElementById("userStars");
+  if(!currentUser){
+    status.textContent = "Not logged in";
+    starsEl.textContent = "Stars: 0";
+  }else{
+    status.textContent = `Student code ${currentUser.code} · ${currentUser.name}`;
+    starsEl.textContent = "Stars: " + getTotalStars(currentUser);
+  }
+}
+
+/* ---------- TOPICS LIST ---------- */
+
+function renderTopics(){
+  const list = document.getElementById("topicList");
+  const starsInfo = document.getElementById("starsInfo");
+  list.innerHTML = "";
+
+  const total = getTotalStars(currentUser);
+  starsInfo.textContent = `Your stars: ${total}`;
+
+  topics.forEach((t,idx)=>{
+    const card = document.createElement("div");
+    card.className = "topic-card";
+    card.onclick = ()=>openTopic(t.id);
+
+    const top = document.createElement("div");
+    top.className = "topic-title-line";
+
+    const title = document.createElement("h3");
+    title.textContent = `${idx+1}. ${t.title}`;
+    top.appendChild(title);
+
+    const starSpan = document.createElement("span");
+    starSpan.className = "topic-stars";
+
+    const topicStars = getTopicStars(t.id);
+    starSpan.textContent = `★ ${topicStars}`;
+    top.appendChild(starSpan);
+
+    const level = document.createElement("div");
+    level.className = "topic-level";
+    level.textContent = t.level + " · Grammar";
+
+    card.appendChild(top);
+    card.appendChild(level);
+
+    list.appendChild(card);
+  });
+}
+
+function getTopicStars(topicId){
+  if(!currentUser || !currentUser.progress) return 0;
+  const tp = currentUser.progress[topicId];
+  if(!tp) return 0;
+  let sum = 0;
+  Object.values(tp).forEach(v=>sum+=v);
+  return sum;
+}
+
+/* ---------- TOPIC VIEW ---------- */
+
+function openTopic(id){
+  const topic = topics.find(t=>t.id===id);
+  if(!topic) return;
+  currentTopic = topic;
+
+  document.getElementById("topicHeaderTitle").textContent = topic.title;
+  document.getElementById("topicHeaderTagline").textContent =
+    topic.level + " · each correct answer gives stars";
+
+  const content = document.getElementById("topicContent");
+  let html = "";
+
+  html += `<div class="rule-box">${topic.ruleEn}</div>`;
+  html += `<div class="rule-box">${topic.ruleRu}</div>`;
+  html += `<div class="formula-box">${topic.formula}</div>`;
+
+  topic.exercises.forEach(ex=>{
+    html += `<div class="exercise-block" id="ex_${topic.id}_${ex.id}">
+               <div class="exercise-title">${ex.title}</div>
+               <div class="exercise-note">${ex.note}</div>`;
+    ex.questions.forEach(q=>{
+      const name = `t${topic.id}_e${ex.id}_q${q.id}`;
+      html += `<div class="question">${q.text}</div><div class="options-row">`;
+      q.options.forEach(opt=>{
+        const optId = name + "_" + opt.replace(/\s+/g,"_");
+        html += `<label><input type="radio" name="${name}" value="${opt}" id="${optId}">
+                 <span>${opt}</span></label>`;
+      });
+      html += `</div>`;
+    });
+    html += `<div class="check-row">
+               <button class="btn btn-primary" type="button"
+                 onclick="checkExercise(${topic.id}, '${ex.id}')">Check</button>
+             </div>
+             <div class="exercise-result" id="res_${topic.id}_${ex.id}"></div>
+           </div>`;
+  });
+
+  content.innerHTML = html;
+
+  showScreen("topicScreen");
+}
+
+function backToTopics(){
+  showScreen("mainScreen");
+}
+
+function goMain(){
+  showScreen("mainScreen");
+}
+
+/* ---------- CHECKING & STARS ---------- */
+
+function checkExercise(topicId, exId){
+  const topic = topics.find(t=>t.id===topicId);
+  if(!topic) return;
+  const ex = topic.exercises.find(e=>e.id===exId);
+  if(!ex) return;
+
+  const resEl = document.getElementById(`res_${topicId}_${exId}`);
+
+  let correct = 0;
+  let total = ex.questions.length;
+
+  ex.questions.forEach(q=>{
+    const name = `t${topicId}_e${exId}_q${q.id}`;
+    const radios = document.querySelectorAll(`input[name="${name}"]`);
+    let chosen = null;
+    radios.forEach(r=>{ if(r.checked) chosen = r.value; });
+    if(chosen && chosen.trim() === q.correct.trim()){
+      correct++;
+    }
+  });
+
+  // previous best for this exercise
+  if(!currentUser.progress) currentUser.progress = {};
+  if(!currentUser.progress[topicId]) currentUser.progress[topicId] = {};
+  const prevBest = currentUser.progress[topicId][exId] || 0;
+  const newBest = Math.max(prevBest, correct);
+  currentUser.progress[topicId][exId] = newBest;
+  saveUser();
+  updateHeader();
+  renderTopics(); // обновим звезды на главном экране
+
+  const gained = newBest - prevBest;
+  if(correct === total){
+    resEl.textContent = `Perfect: ${correct}/${total}. New stars: ${gained}.`;
+    resEl.className = "exercise-result ok";
+  }else{
+    resEl.textContent = `You got ${correct}/${total} correct. Best result saved. New stars: ${gained}.`;
+    resEl.className = "exercise-result bad";
+  }
+}
+
+/* ---------- INIT ---------- */
+
+updateHeader();
+</script>
+</body>
+</html>
