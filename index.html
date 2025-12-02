@@ -7,14 +7,13 @@
 
   <style>
     :root{
-      --watermelon-red:#ff5c7a;
-      --watermelon-dark:#c62828;
-      --watermelon-green:#2e7d32;
-      --watermelon-light:#a5d6a7;
-      --bg:#fffdf7;
+      --blue-main:#005b73;
+      --blue-soft:#008a9e;
+      --gold:#ffd54f;
+      --bg:#f3f7fa;
       --card:#ffffff;
-      --text-main:#263238;
-      --border-soft:#ffe0e6;
+      --text-main:#043042;
+      --border-soft:#e0edf5;
     }
 
     *{
@@ -29,69 +28,65 @@
       color:var(--text-main);
     }
 
+    /* HEADER как в Beginner Grammar */
     header{
-      background:linear-gradient(90deg,var(--watermelon-green),var(--watermelon-red));
+      background:linear-gradient(90deg,var(--blue-main),var(--blue-soft));
       color:#fff;
-      padding:12px 20px;
+      padding:10px 20px;
       display:flex;
       align-items:center;
       justify-content:space-between;
-      box-shadow:0 2px 6px rgba(0,0,0,0.15);
+      box-shadow:0 2px 6px rgba(0,0,0,0.18);
     }
 
-    header .brand{
+    header .left{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    header .logo-circle{
+      width:40px;
+      height:40px;
+      border-radius:50%;
+      background:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+      box-shadow:0 0 0 3px rgba(255,255,255,0.5);
+    }
+
+    header .logo-circle img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    header .title-block{
+      line-height:1.2;
+    }
+
+    header .title-block .app-title{
+      font-size:15px;
       font-weight:700;
-      letter-spacing:0.05em;
+      letter-spacing:0.04em;
       text-transform:uppercase;
-      font-size:14px;
     }
 
-    header .brand span{
-      display:block;
+    header .title-block .app-subtitle{
       font-size:11px;
-      font-weight:500;
       opacity:0.9;
     }
 
-    header .logo-dot{
-      width:32px;
-      height:32px;
-      border-radius:50%;
-      background:radial-gradient(circle at 30% 30%,#fff8e1 0,var(--watermelon-red) 60%,var(--watermelon-dark) 100%);
-      box-shadow:0 0 0 3px rgba(255,255,255,0.6);
-      position:relative;
-      margin-right:10px;
-    }
-
-    header .logo-dot::before,
-    header .logo-dot::after{
-      content:"";
-      position:absolute;
-      background:#00000066;
-      border-radius:50%;
-    }
-
-    header .logo-dot::before{
-      width:4px;
-      height:4px;
-      top:7px;
-      left:11px;
-    }
-
-    header .logo-dot::after{
-      width:4px;
-      height:4px;
-      top:14px;
-      left:18px;
-    }
-
-    header .right-info{
-      font-size:11px;
+    header .right{
       text-align:right;
+      font-size:11px;
+      opacity:0.95;
     }
 
     main{
-      max-width:1100px;
+      max-width:1120px;
       margin:18px auto;
       padding:0 12px 40px;
     }
@@ -129,17 +124,9 @@
       margin-bottom:10px;
     }
 
-    h1{
-      font-size:20px;
-    }
-
-    h2{
-      font-size:18px;
-    }
-
-    h3{
-      font-size:16px;
-    }
+    h1{ font-size:20px; }
+    h2{ font-size:18px; }
+    h3{ font-size:16px; }
 
     .field{
       margin-bottom:12px;
@@ -153,23 +140,21 @@
     }
 
     .field input,
-    .field textarea,
-    .field select{
+    .field textarea{
       width:100%;
       padding:8px 10px;
       border-radius:8px;
       border:1px solid #cfd8dc;
       font-size:14px;
       outline:none;
-      transition:border-color .15s, box-shadow .15s;
-      background:#fafafa;
+      transition:border-color .15s, box-shadow .15s, background .15s;
+      background:#fdfdfd;
     }
 
     .field input:focus,
-    .field textarea:focus,
-    .field select:focus{
-      border-color:var(--watermelon-green);
-      box-shadow:0 0 0 2px rgba(46,125,50,0.18);
+    .field textarea:focus{
+      border-color:var(--blue-soft);
+      box-shadow:0 0 0 2px rgba(0,90,115,0.18);
       background:#ffffff;
     }
 
@@ -195,35 +180,29 @@
     }
 
     .btn-primary{
-      background:var(--watermelon-green);
+      background:var(--blue-main);
       color:#fff;
-      box-shadow:0 2px 6px rgba(46,125,50,0.4);
+      box-shadow:0 2px 6px rgba(0,91,115,0.4);
     }
 
     .btn-primary:hover{
       transform:translateY(-1px);
-      box-shadow:0 3px 8px rgba(46,125,50,0.5);
+      box-shadow:0 3px 8px rgba(0,91,115,0.5);
     }
 
     .btn-ghost{
       background:#ffffff;
-      color:var(--watermelon-green);
-      border:1px solid rgba(46,125,50,0.4);
+      color:var(--blue-main);
+      border:1px solid rgba(0,91,115,0.35);
     }
 
     .btn-ghost:hover{
-      background:#f1f8e9;
-    }
-
-    .btn-danger{
-      background:var(--watermelon-red);
-      color:#fff;
-      box-shadow:0 2px 6px rgba(255,92,122,0.4);
+      background:#e3f2fd;
     }
 
     .hint{
       font-size:12px;
-      color:#546e7a;
+      color:#607d8b;
       margin-top:4px;
     }
 
@@ -234,13 +213,13 @@
     }
 
     .success{
-      color:var(--watermelon-green);
+      color:#2e7d32;
       font-size:12px;
       margin-top:6px;
     }
 
     .login-hero-title{
-      font-size:18px;
+      font-size:17px;
       margin-bottom:6px;
       font-weight:700;
     }
@@ -261,16 +240,9 @@
       border-radius:999px;
       padding:3px 8px;
       font-size:11px;
-      background:var(--watermelon-light);
-      color:#1b5e20;
+      background:#e3f2fd;
+      color:#004d61;
       font-weight:600;
-    }
-
-    .badge span.seed{
-      width:6px;
-      height:6px;
-      border-radius:50%;
-      background:#00000080;
     }
 
     .top-bar{
@@ -286,23 +258,20 @@
       font-size:13px;
     }
 
-    .top-bar strong{
-      font-weight:700;
-    }
-
     .top-bar .stats{
       display:flex;
       flex-wrap:wrap;
       gap:6px;
       font-size:12px;
+      align-items:center;
     }
 
     .pill{
       border-radius:999px;
       padding:4px 10px;
       font-size:12px;
-      background:#fce4ec;
-      color:#ad1457;
+      background:#fff8e1;
+      color:#8d6e00;
       display:inline-flex;
       align-items:center;
       gap:4px;
@@ -313,9 +282,9 @@
       color:#2e7d32;
     }
 
-    .pill.yellow{
-      background:#fff8e1;
-      color:#f9a825;
+    .pill.blue{
+      background:#e3f2fd;
+      color:#0d47a1;
     }
 
     .layout-main{
@@ -339,9 +308,9 @@
 
     .topic-card{
       border-radius:12px;
-      border:1px solid #ffe0e6;
+      border:1px solid #d5e3ef;
       padding:10px 10px 12px;
-      background:linear-gradient(135deg,#fff,#fff7f9);
+      background:linear-gradient(135deg,#fff,#f5fbff);
       position:relative;
       overflow:hidden;
     }
@@ -350,7 +319,7 @@
       font-size:11px;
       text-transform:uppercase;
       letter-spacing:0.05em;
-      color:#c2185b;
+      color:#00796b;
       margin-bottom:4px;
     }
 
@@ -358,6 +327,7 @@
       font-weight:700;
       font-size:14px;
       margin-bottom:4px;
+      color:var(--blue-main);
     }
 
     .topic-meta{
@@ -379,7 +349,7 @@
       flex:1;
       height:6px;
       border-radius:999px;
-      background:#ffe4ec;
+      background:#e0e0e0;
       overflow:hidden;
       margin-right:8px;
     }
@@ -390,24 +360,19 @@
       top:0;
       bottom:0;
       width:0;
-      background:linear-gradient(90deg,var(--watermelon-green),var(--watermelon-red));
+      background:linear-gradient(90deg,var(--blue-main),var(--gold));
       transition:width .2s;
-    }
-
-    .topic-card small{
-      font-size:10px;
-      color:#546e7a;
     }
 
     .topic-card::after{
       content:"";
       position:absolute;
-      width:120px;
-      height:120px;
-      background:radial-gradient(circle at 30% 30%,rgba(255,255,255,0.6),rgba(255,92,122,0.45));
+      width:110px;
+      height:110px;
+      background:radial-gradient(circle at 30% 30%,rgba(255,255,255,0.8),rgba(0,138,158,0.35));
       right:-40px;
       top:-50px;
-      opacity:0.7;
+      opacity:0.8;
     }
 
     .topic-card button{
@@ -418,9 +383,9 @@
     .topic-detail{
       margin-top:14px;
       border-radius:14px;
-      border:1px dashed #ffcdd2;
+      border:1px dashed #bbdefb;
       padding:12px 10px 10px;
-      background:#fffdfd;
+      background:#ffffff;
     }
 
     .topic-detail h3{
@@ -434,7 +399,7 @@
       width:20px;
       height:20px;
       border-radius:50%;
-      background:var(--watermelon-red);
+      background:var(--blue-main);
       color:#fff;
       font-size:11px;
       display:flex;
@@ -459,7 +424,7 @@
 
     .tasks-list{
       margin-top:6px;
-      border-top:1px dashed #ffe0e6;
+      border-top:1px dashed #e1f5fe;
       padding-top:6px;
     }
 
@@ -485,11 +450,12 @@
       cursor:pointer;
     }
 
+    /* AI PANEL – как в Beginner */
     #aiPanel{
       border-radius:14px;
       padding:12px 10px;
-      background:#fce4ec;
-      border:1px solid #f8bbd0;
+      background:#e3f2fd;
+      border:1px solid #bbdefb;
       display:flex;
       flex-direction:column;
       gap:8px;
@@ -506,8 +472,8 @@
 
     #aiLimitInfo{
       font-size:11px;
-      color:#ad1457;
-      background:#fff;
+      color:#0d47a1;
+      background:#ffffff;
       border-radius:999px;
       padding:2px 8px;
     }
@@ -517,7 +483,7 @@
       border-radius:10px;
       background:#ffffff;
       padding:8px;
-      border:1px solid #f8bbd0;
+      border:1px solid #bbdefb;
       overflow-y:auto;
       font-size:12px;
     }
@@ -536,20 +502,13 @@
     }
 
     .chat-message.ai span.bubble{
-      background:#f3e5f5;
+      background:#e3f2fd;
     }
 
     .chat-message span.bubble{
       display:inline-block;
       padding:5px 8px;
       border-radius:10px;
-    }
-
-    .chat-message small{
-      display:block;
-      font-size:10px;
-      color:#78909c;
-      margin-top:1px;
     }
 
     #aiQuestion{
@@ -566,9 +525,10 @@
 
     .chat-note{
       font-size:11px;
-      color:#6a1b9a;
+      color:#0d47a1;
     }
 
+    /* TEACHER TABLE */
     .teacher-table{
       width:100%;
       border-collapse:collapse;
@@ -585,7 +545,7 @@
     }
 
     .teacher-table th{
-      background:#f1f8e9;
+      background:#e8f5e9;
       font-weight:700;
       font-size:11px;
     }
@@ -604,7 +564,7 @@
       color:#607d8b;
     }
 
-    /* --- Печать: показываем только ученика + открытую тему --- */
+    /* PRINT: печатаем только открытую тему + шапку ученика */
     @media print{
       header,
       #loginScreen,
@@ -622,7 +582,7 @@
         padding:0 10px;
       }
       .topic-detail{
-        border:1px solid #00000033;
+        border:1px solid #90caf9;
         background:#ffffff;
       }
       .top-bar{
@@ -634,26 +594,30 @@
 <body>
 
 <header>
-  <div style="display:flex;align-items:center;gap:10px;">
-    <div class="logo-dot"></div>
-    <div class="brand">
-      ENGLISH WITH AI BAYAN
-      <span>7 GRADE – GRAMMAR &amp; WORKBOOK</span>
+  <div class="left">
+    <div class="logo-circle">
+      <!-- Если есть girl-logo: положи файл logo.png в ту же папку -->
+      <!-- <img src="logo.png" alt="AI Bayan" /> -->
+      <span style="color:#005b73;font-weight:700;font-size:18px;">B</span>
+    </div>
+    <div class="title-block">
+      <div class="app-title">ENGLISH WITH AI BAYAN</div>
+      <div class="app-subtitle">7 GRADE – GRAMMAR &amp; WORKBOOK</div>
     </div>
   </div>
-  <div class="right-info">
-    <div>AI Bayan • Grammar + Workbook</div>
-    <div style="font-size:10px;opacity:0.9;">Watermelon edition 🍉</div>
+  <div class="right">
+    <div>AI Bayan • Grammar 7</div>
+    <div>Same structure as Beginner Grammar</div>
   </div>
 </header>
 
 <main>
 
-  <!-- LOGIN -->
+  <!-- LOGIN SCREEN -->
   <section id="loginScreen" class="screen">
     <div class="login-layout">
       <div class="card">
-        <h1>Вход в приложение</h1>
+        <h1>Вход в “Grammar 7”</h1>
         <p class="hint">Введите <b>своё имя</b> и <b>ПИН-код</b>, который вам дала учитель.</p>
 
         <div class="field" style="margin-top:10px;">
@@ -674,27 +638,24 @@
         </div>
 
         <p class="hint">
-          • <b>Учитель</b> входит только по учительскому ПИН-коду.<br>
-          • <b>Ученики</b> входят только по своему ПИН-коду и разрешённому имени.<br>
-          • Подсказки по именам и ПИН-кодам учитель объясняет отдельно.
+          • <b>Учитель</b> входит по учительскому ПИН-коду.<br>
+          • <b>Ученики</b> – по своему ПИН-коду и разрешённому имени.<br>
+          • Подсказки PIN и имён выдаёт учитель отдельно (на экране ничего не пишем).
         </p>
       </div>
 
       <div class="card">
         <div class="login-hero-title">Что внутри “Grammar 7”?</div>
         <ul class="login-hero-list">
-          <li>Грамматика по Student’s Book, темы отдельно.</li>
+          <li>Те же экраны, что в Beginner Grammar.</li>
+          <li>Грамматика по Student’s Book для 7 класса.</li>
           <li>Упражнения из Workbook с галочками и подсчётом.</li>
-          <li>AI Bayan Chat: 1 вопрос в день по грамматике / лексике.</li>
-          <li>Журнал учителя: прогресс, звёзды, вопросы к ИИ.</li>
+          <li>AI Bayan Chat: 1 вопрос в день.</li>
+          <li>Teacher Journal: звёзды, прогресс, вопросы к ИИ.</li>
         </ul>
 
         <div style="margin-top:10px;">
-          <span class="badge">
-            <span class="seed"></span>
-            <span class="seed"></span>
-            Watermelon style
-          </span>
+          <span class="badge">Same layout as Beginner Grammar</span>
         </div>
       </div>
     </div>
@@ -708,7 +669,7 @@
       </div>
       <div class="stats">
         <div class="pill green">⭐ Звёзды: <span id="studentStars">0</span></div>
-        <div class="pill yellow">✔ Упр. выполнено: <span id="studentTasksDone">0</span></div>
+        <div class="pill blue">✔ Упр. выполнено: <span id="studentTasksDone">0</span></div>
         <button class="btn btn-ghost" id="logoutFromStudent">Выйти</button>
       </div>
     </div>
@@ -718,7 +679,7 @@
         <div class="card">
           <h2>Темы грамматики 7 класса</h2>
           <p class="hint">
-            Нажми «Открыть тему», изучи правило, затем отмечай галочками выполненные упражнения из Workbook.
+            Всё как в Beginner Grammar: нажми «Открыть тему», изучи правило, отмечай галочками упражнения из Workbook.
           </p>
 
           <div id="topicsList" class="topics-grid" style="margin-top:10px;"></div>
@@ -749,7 +710,7 @@
             <span id="aiLimitInfo"></span>
           </h3>
           <p class="chat-note">
-            Задай вопрос по грамматике, лексике или переводу. Лимит — <b>1 вопрос в день</b>.
+            Задай вопрос по грамматике, лексике или переводу. Лимит — <b>1 вопрос в день</b>, как в Beginner Grammar.
           </p>
         </div>
 
@@ -785,7 +746,8 @@
       </div>
 
       <p class="hint">
-        Видно прогресс по упражнениям, количество звёзд, дату последнего входа и количество вопросов к AI Bayan.
+        Здесь – как в Beginner Grammar: видно звёзды, количество выполненных упражнений, дату последнего входа и количество
+        вопросов к AI Bayan.
       </p>
 
       <table class="teacher-table">
@@ -829,7 +791,7 @@
 
   const studentKeys = studentDisplayNames.map(n => normalizeName(n));
 
-  /* ---------- TOPICS DATA (ПРИМЕРЫ) ---------- */
+  /* ---------- TOPICS DATA (ПРИМЕРЫ, добавишь свои) ---------- */
 
   const topics = [
     {
@@ -847,7 +809,6 @@
           <li>She <b>is doing</b> her homework now.</li>
           <li>We <b>are not watching</b> TV at the moment.</li>
         </ul>
-        <p><b>Сигналы:</b> always, usually, every day (для Present Simple) и now, at the moment (для Present Continuous).</p>
       `,
       workbookTasks: [
         "WB p.10 ex.1 – Выбери: Present Simple или Present Continuous.",
@@ -858,20 +819,16 @@
     {
       id: 2,
       title: "Past Simple (Regular & Irregular Verbs)",
-      sb: "Student’s Book: рассказ о прошедших событиях.",
+      sb: "Student’s Book: прошедшее время.",
       theoryHtml: `
-        <p><b>Past Simple</b> – действие закончилось в прошлом, есть точное время.</p>
-        <ul>
-          <li>Yesterday, I <b>watched</b> a film.</li>
-          <li>They <b>went</b> to the park last Sunday.</li>
-        </ul>
-        <p><b>Регулярные глаголы</b> → <b>-ed</b> (play → played), <b>неправильные</b> (go → went, see → saw).</p>
-        <p>Отрицание: did not (didn't) + V1. Вопрос: Did + подлежащее + V1?</p>
+        <p><b>Past Simple</b> – действие закончилось в прошлом, есть время: yesterday, last week, in 2010.</p>
+        <p>Регулярные глаголы: play → played, watch → watched.</p>
+        <p>Неправильные: go → went, see → saw, have → had.</p>
       `,
       workbookTasks: [
-        "WB p.18 ex.1 – Заполни пропуски глаголами в Past Simple.",
-        "WB p.18 ex.2 – Составь предложения в Past Simple.",
-        "WB p.19 ex.3 – Преобразуй утвердительные предложения в вопросы и отрицания."
+        "WB p.18 ex.1 – Вставь глаголы в Past Simple.",
+        "WB p.18 ex.2 – Составь предложения.",
+        "WB p.19 ex.3 – Сделай вопросы и отрицания."
       ]
     },
     {
@@ -880,19 +837,11 @@
       sb: "Student’s Book: планы и прогнозы.",
       theoryHtml: `
         <p><b>Will</b> – решения в момент речи, обещания, прогнозы без доказательств.</p>
-        <ul>
-          <li>I'll help you with your homework.</li>
-          <li>It will rain tomorrow. (я так думаю)</li>
-        </ul>
         <p><b>Be going to</b> – планы (есть намерение) и прогнозы с доказательствами.</p>
-        <ul>
-          <li>I'm going to visit my grandparents this weekend.</li>
-          <li>Look at the clouds! It's going to rain.</li>
-        </ul>
       `,
       workbookTasks: [
         "WB p.24 ex.1 – Выбери: will или be going to.",
-        "WB p.24 ex.2 – Заполни предложения своими планами.",
+        "WB p.24 ex.2 – Напиши свои планы.",
         "WB p.25 ex.3 – Соедини части предложений."
       ]
     }
@@ -975,7 +924,7 @@
     return `${day}.${month}.${year} ${hh}:${mm}`;
   }
 
-  /* ---------- LOGIN LOGIC ---------- */
+  /* ---------- LOGIN LOGIC (как в Beginner, только другие PIN) ---------- */
 
   function handleLogin(){
     const nameInput = document.getElementById("studentName").value;
@@ -1007,7 +956,6 @@
 
       currentUser = { role:"student", name:displayName, key:studentKey };
 
-      // update stats: lastLogin
       const stats = loadStats(studentKey);
       stats.lastLogin = new Date().toISOString();
       saveStats(studentKey, stats);
@@ -1023,7 +971,6 @@
       return;
     }
 
-    // Invalid PIN
     setLoginMessage("Неверный ПИН-код. Попробуйте ещё раз или обратитесь к учителю.");
   }
 
@@ -1037,7 +984,7 @@
     showScreen("loginScreen");
   }
 
-  /* ---------- TOPICS UI ---------- */
+  /* ---------- TOPICS UI (как в Beginner) ---------- */
 
   function buildTopicsList(){
     const container = document.getElementById("topicsList");
@@ -1106,7 +1053,6 @@
       tasksContainer.appendChild(item);
     });
 
-    // add listener for tasks (once)
     tasksContainer.onclick = function(e){
       const cb = e.target.closest('input[type="checkbox"][data-topic-id]');
       if(!cb) return;
@@ -1138,7 +1084,6 @@
     const progress   = loadProgress(studentKey);
     const completed  = countCompleted(progress);
 
-    // 1 выполненное упражнение = 1 звезда
     const stars = completed;
 
     document.getElementById("studentTasksDone").textContent = String(completed);
@@ -1160,7 +1105,7 @@
     });
   }
 
-  /* ---------- AI BAYAN CHAT ---------- */
+  /* ---------- AI BAYAN CHAT (как в Beginner) ---------- */
 
   function updateAiLimitInfo(){
     const el = document.getElementById("aiLimitInfo");
@@ -1193,9 +1138,7 @@
     const div = document.createElement("div");
     div.className = "chat-message " + (role === "me" ? "me" : "ai");
     const who = role === "me" ? "Ты" : "AI Bayan";
-    div.innerHTML = `
-      <span class="bubble"><b>${who}:</b> ${text}</span>
-    `;
+    div.innerHTML = `<span class="bubble"><b>${who}:</b> ${text}</span>`;
     box.appendChild(div);
     box.scrollTop = box.scrollHeight;
   }
@@ -1229,24 +1172,21 @@
     appendChatMessage("me", question);
     textarea.value = "";
 
-    // Обновляем лимит (считаем, что вопрос ушёл)
     stats.lastAiQuestionAt = new Date().toISOString();
     stats.aiQuestionCount  = (stats.aiQuestionCount || 0) + 1;
     saveStats(studentKey, stats);
     updateAiLimitInfo();
 
-    // Псевдо-ответ
     setTimeout(() => {
       appendChatMessage(
         "ai",
-        "Здесь будет подробный ответ AI Bayan. " +
-        "Сейчас офлайн-версия: сформулируй правило на английском, приведи свои примеры, " +
-        "а затем обсуди их с учителем."
+        "Здесь будет ответ AI Bayan (как в Beginner Grammar). " +
+        "Сформулируй правило, приведи свои примеры и обсуди их с учителем."
       );
     }, 600);
   }
 
-  /* ---------- TEACHER JOURNAL ---------- */
+  /* ---------- TEACHER JOURNAL (как в Beginner) ---------- */
 
   function renderTeacherTable(){
     const tbody = document.getElementById("teacherTableBody");
@@ -1258,7 +1198,7 @@
       const stats = loadStats(key);
 
       const completed = countCompleted(prog);
-      const stars     = completed; // 1 упр. = 1 звезда
+      const stars     = completed;
 
       const tr = document.createElement("tr");
       tr.innerHTML = `
@@ -1308,7 +1248,6 @@
     });
 
     document.getElementById("printTopicBtn").addEventListener("click", () => {
-      // Печатаем только открытую тему + панель ученика
       window.print();
     });
   });
