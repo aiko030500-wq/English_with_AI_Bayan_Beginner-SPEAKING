@@ -1,348 +1,1034 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>AI Bayan – Grammar 7 Grade (Modules 1–3)</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <title>ENGLISH WITH AI BAYAN – Grade 7 Grammar</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<style>
+  <style>
+    :root{
+      /* Арбузный стиль — потом можно подправить */
+      --watermelon-dark:#c62828;
+      --watermelon-soft:#ff8a80;
+      --green-soft:#c8e6c9;
+      --bg:#fff7f7;
+      --card:#ffffff;
+      --text:#341111;
+    }
+
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    }
+
     body{
-        font-family: system-ui, sans-serif;
-        background:#fafafa;
-        margin:0;
-        padding:20px;
-        color:#333;
+      background:var(--bg);
+      color:var(--text);
     }
-    h1,h2,h3{
-        color:#d43f3a;
-    }
-    .module{
-        background:white;
-        border-radius:12px;
-        padding:20px;
-        margin-bottom:25px;
-        box-shadow:0 0 10px rgba(0,0,0,0.1);
-    }
-    .rule{
-        background:#fff6f2;
-        border-left:5px solid #ff6f61;
-        padding:15px;
-        margin:10px 0;
-    }
-    .exercise{
-        background:#eef7ff;
-        border-left:5px solid #4aa3ff;
-        padding:15px;
-        margin:15px 0;
-    }
-    .formula{
-        background:#f4ffe8;
-        border-left:5px solid #8cc63f;
-        padding:15px;
-        margin-top:10px;
-        font-weight:bold;
-    }
-</style>
-</head>
 
+    header{
+      background:linear-gradient(90deg,var(--watermelon-dark),var(--watermelon-soft));
+      color:#fff;
+      padding:12px 18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      box-shadow:0 2px 6px rgba(0,0,0,0.25);
+      position:sticky;
+      top:0;
+      z-index:10;
+    }
+
+    header .title-block{
+      display:flex;
+      flex-direction:column;
+    }
+
+    header h1{
+      font-size:1.2rem;
+      letter-spacing:0.04em;
+    }
+
+    header span{
+      font-size:0.8rem;
+      opacity:0.9;
+    }
+
+    #userInfo{
+      font-size:0.8rem;
+      text-align:right;
+    }
+
+    main{
+      max-width:1200px;
+      margin:16px auto 32px;
+      padding:0 12px;
+    }
+
+    .screen{
+      display:none;
+    }
+
+    .screen.active{
+      display:block;
+    }
+
+    /* LOGIN CARD */
+    .card{
+      background:var(--card);
+      padding:18px;
+      border-radius:14px;
+      box-shadow:0 2px 10px rgba(0,0,0,0.12);
+      max-width:420px;
+      margin:32px auto;
+    }
+
+    .card h2{
+      margin-bottom:10px;
+      color:var(--watermelon-dark);
+    }
+
+    .card p{
+      font-size:0.9rem;
+      margin-bottom:10px;
+    }
+
+    label{
+      display:block;
+      font-size:0.85rem;
+      margin:8px 0 4px;
+    }
+
+    input[type="text"],
+    input[type="number"]{
+      width:100%;
+      padding:8px 10px;
+      border-radius:8px;
+      border:1px solid #e0b3b3;
+      outline:none;
+    }
+
+    input:focus{
+      border-color:var(--watermelon-dark);
+      box-shadow:0 0 0 1px rgba(198,40,40,0.25);
+    }
+
+    .btn{
+      border:none;
+      cursor:pointer;
+      border-radius:999px;
+      padding:8px 18px;
+      font-size:0.9rem;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:6px;
+    }
+
+    .btn-primary{
+      background:var(--watermelon-dark);
+      color:#fff;
+    }
+
+    .btn-ghost{
+      background:transparent;
+      color:var(--watermelon-dark);
+    }
+
+    .btn:active{
+      transform:scale(0.97);
+    }
+
+    .btn-row{
+      margin-top:14px;
+      display:flex;
+      gap:8px;
+      justify-content:flex-end;
+      flex-wrap:wrap;
+    }
+
+    .hint{
+      font-size:0.78rem;
+      opacity:0.8;
+      margin-top:4px;
+    }
+
+    /* LAYOUT: STUDENT VIEW */
+    .layout{
+      display:grid;
+      grid-template-columns:minmax(0,1.1fr) minmax(0,1.2fr);
+      gap:16px;
+    }
+
+    @media(max-width:900px){
+      .layout{
+        grid-template-columns:1fr;
+      }
+    }
+
+    .panel{
+      background:var(--card);
+      border-radius:14px;
+      padding:14px;
+      box-shadow:0 2px 10px rgba(0,0,0,0.12);
+    }
+
+    .panel h2{
+      font-size:1.05rem;
+      margin-bottom:8px;
+      color:var(--watermelon-dark);
+    }
+
+    .module-badge{
+      display:inline-block;
+      background:var(--green-soft);
+      padding:3px 9px;
+      border-radius:999px;
+      font-size:0.75rem;
+      margin-bottom:8px;
+    }
+
+    .topic-list{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      max-height:420px;
+      overflow:auto;
+      padding-right:6px;
+    }
+
+    .topic-card{
+      border-radius:12px;
+      padding:10px 11px;
+      background:#ffecec;
+      cursor:pointer;
+      border:1px solid transparent;
+    }
+
+    .topic-card:hover{
+      border-color:var(--watermelon-soft);
+      background:#ffe1e1;
+    }
+
+    .topic-card.active{
+      border-color:var(--watermelon-dark);
+      box-shadow:0 0 0 1px rgba(198,40,40,0.3);
+    }
+
+    .topic-title{
+      font-size:0.92rem;
+      font-weight:600;
+    }
+
+    .topic-sub{
+      font-size:0.78rem;
+      opacity:0.9;
+    }
+
+    /* TOPIC DETAILS */
+    .topic-details h3{
+      margin-bottom:6px;
+    }
+
+    .rule-block{
+      margin-top:8px;
+      background:#fff7f2;
+      border-left:4px solid var(--watermelon-soft);
+      padding:8px 10px;
+      font-size:0.86rem;
+    }
+
+    .rule-block b{
+      color:#b71c1c;
+    }
+
+    .formula-block{
+      margin-top:8px;
+      background:#f4ffe8;
+      border-left:4px solid #8bc34a;
+      padding:8px 10px;
+      font-size:0.86rem;
+    }
+
+    .ex-block{
+      margin-top:10px;
+      background:#eef7ff;
+      border-left:4px solid #42a5f5;
+      padding:8px 10px;
+      font-size:0.86rem;
+    }
+
+    .star-row{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-top:10px;
+      font-size:0.86rem;
+    }
+
+    .star-count{
+      font-weight:600;
+      color:#b71c1c;
+    }
+
+    /* AI PANEL */
+    #aiPanel{
+      margin-top:10px;
+      border-radius:12px;
+      border:1px dashed #ffcdd2;
+      padding:10px;
+      background:#fffafa;
+      font-size:0.86rem;
+    }
+
+    #chatBox{
+      border-radius:8px;
+      border:1px solid #ffcdd2;
+      padding:6px;
+      height:150px;
+      overflow-y:auto;
+      background:#fff;
+      margin-bottom:6px;
+      font-size:0.82rem;
+    }
+
+    .chat-msg{
+      margin-bottom:4px;
+    }
+
+    .chat-msg.me{
+      text-align:right;
+      font-weight:500;
+    }
+
+    #aiQuestion{
+      width:100%;
+      min-height:50px;
+      max-height:100px;
+      resize:vertical;
+      border-radius:8px;
+      border:1px solid #ffcdd2;
+      padding:6px 8px;
+      font-size:0.86rem;
+      outline:none;
+    }
+
+    #aiQuestion:focus{
+      border-color:var(--watermelon-dark);
+      box-shadow:0 0 0 1px rgba(198,40,40,0.25);
+    }
+
+    .small{
+      font-size:0.78rem;
+      opacity:0.85;
+    }
+
+    /* TEACHER VIEW */
+    table{
+      width:100%;
+      border-collapse:collapse;
+      font-size:0.82rem;
+      margin-top:8px;
+    }
+
+    th,td{
+      padding:6px 4px;
+      border-bottom:1px solid #f2bdbd;
+      text-align:left;
+    }
+
+    th{
+      background:#ffe5e5;
+    }
+
+    .pill{
+      display:inline-block;
+      padding:2px 8px;
+      border-radius:999px;
+      background:#fce4ec;
+      font-size:0.7rem;
+    }
+  </style>
+</head>
 <body>
 
-<h1>AI Bayan – Grammar 7 Grade<br>Modules 1–3 (Grammar B)</h1>
+<header>
+  <div class="title-block">
+    <h1>ENGLISH WITH AI BAYAN – Grade 7 Grammar</h1>
+    <span>Modules 1–3 • Grammar B • Watermelon Edition 🍉</span>
+  </div>
+  <div id="userInfo">
+    <div id="userRole">Not logged in</div>
+    <div id="userName"></div>
+  </div>
+</header>
 
-<!-- MODULE 1 -->
-<div class="module">
-<h2>📍 MODULE 1 — Grammar B</h2>
+<main>
+  <!-- LOGIN SCREEN -->
+  <section id="loginScreen" class="screen active">
+    <div class="card">
+      <h2>Login</h2>
+      <p>Enter your <b>name</b> and <b>PIN</b> to start learning grammar with AI Bayan.</p>
 
-<!-- TOPIC 1 -->
-<h3>1. Present Simple</h3>
+      <label for="loginName">Name</label>
+      <input id="loginName" type="text" placeholder="Example: Сырым7Б" />
 
-<div class="rule">
-<b>RULE (English):</b><br>
-We use the Present Simple for:
-<br>• habits and routines<br>
-• general facts<br>
-• schedules<br>
-• permanent situations
-</div>
+      <label for="loginPin">PIN</label>
+      <input id="loginPin" type="number" placeholder="4-digit PIN" />
 
-<div class="rule">
-<b>ПРАВИЛО (Русский):</b><br>
-Present Simple используется для:<br>
-• привычек и рутины<br>
-• фактов<br>
-• расписаний<br>
-• постоянных ситуаций
-</div>
+      <div class="hint">
+        • Students: class PIN<br>
+        • Teacher: teacher PIN
+      </div>
 
-<div class="formula">
-(+): I/You/We/They + V1<br>
-(+): He/She/It + V1+s/es<br><br>
-(-): don’t / doesn’t + V1<br><br>
-(?): Do / Does + subject + V1
-</div>
+      <div class="btn-row">
+        <button class="btn btn-ghost" type="button" onclick="clearLogin()">Clear</button>
+        <button class="btn btn-primary" type="button" onclick="handleLogin()">Enter</button>
+      </div>
+    </div>
+  </section>
 
-<div class="exercise">
-<b>SB Exercise 1 – Complete the sentences</b><br><br>
-1. She ___ (go) to school at 8.<br>
-2. We ___ (not/watch) TV on weekdays.<br>
-3. Does your sister ___ (like) English?<br>
-4. They ___ (walk) to school every day.
-</div>
+  <!-- STUDENT SCREEN -->
+  <section id="studentScreen" class="screen">
+    <div class="layout">
+      <div class="panel">
+        <h2>Topics – Modules 1–3</h2>
+        <div class="small">Tap a topic to see full rules and exercises.</div>
+        <div class="topic-list" id="topicList"></div>
+      </div>
 
-<div class="exercise">
-<b>SB Exercise 2 – Choose the correct option</b><br><br>
-1. He <b>go / goes</b> to bed early.<br>
-2. Do they <b>watch / watches</b> TV every day?<br>
-3. My friend <b>doesn’t / don’t</b> eat breakfast.<br>
-4. I <b>study / studies</b> English at school.
-</div>
+      <div class="panel">
+        <div id="topicDetails" class="topic-details">
+          <div class="small">Choose a topic on the left to see the explanation.</div>
+        </div>
 
-<br>
+        <div id="aiPanel">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+            <b>AI Bayan – Grammar Chat</b>
+            <span class="pill">beta</span>
+          </div>
+          <div class="small">
+            Ask 1–2 short grammar questions per day (English or Russian).
+          </div>
 
-<!-- TOPIC 2 -->
-<h3>2. Adverbs of Frequency</h3>
+          <div id="chatBox"></div>
 
-<div class="rule">
-<b>RULE (English):</b><br>
-Adverbs of frequency tell how often something happens.<br><br>
-• before the main verb (I always read)<br>
-• after “to be” (She is never late)
-</div>
+          <textarea id="aiQuestion"
+                    placeholder="Write your question for AI Bayan (for example: “Explain Past Simple vs Past Continuous”)."></textarea>
+          <div class="btn-row" style="justify-content:flex-end;margin-top:6px;">
+            <button class="btn btn-primary" type="button" onclick="sendToAi()">Ask AI Bayan</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<div class="rule">
-<b>ПРАВИЛО (Русский):</b><br>
-Наречия частотности показывают, как часто происходит действие.<br>
-• перед глаголом<br>
-• после to be
-</div>
+  <!-- TEACHER SCREEN -->
+  <section id="teacherScreen" class="screen">
+    <div class="panel">
+      <h2>Teacher Journal – Overview</h2>
+      <p class="small">
+        This simple journal shows <b>students</b> who logged in and their <b>star progress</b> for topics.
+        Data is stored in this browser (localStorage).
+      </p>
 
-<div class="formula">
-always – usually – often – sometimes – never
-</div>
+      <table id="teacherTable">
+        <thead>
+          <tr>
+            <th>Student</th>
+            <th>Stars</th>
+            <th>Last topic</th>
+            <th>Last login</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- filled by JS -->
+        </tbody>
+      </table>
+    </div>
+  </section>
+</main>
 
-<div class="exercise">
-<b>SB Exercise 1 – Put the adverb in the correct place</b><br><br>
-1. I am tired. (often)<br>
-2. They go swimming. (usually)<br>
-3. She is late. (never)<br>
-4. We watch films. (sometimes)
-</div>
+<script>
+/* ----------- CONFIG ----------- */
 
-<div class="exercise">
-<b>SB Exercise 2 – Complete the sentences</b><br><br>
-1. I ___ eat breakfast at school.<br>
-2. My brother is ___ late for class.<br>
-3. We ___ go to the cinema at weekends.<br>
-4. She ___ drinks coffee in the morning.
-</div>
-</div>
+// Teacher and student PINs
+const TEACHER_PIN = "3244";
+const STUDENT_PIN = "2844";
 
-<!-- MODULE 2 -->
-<div class="module">
-<h2>📍 MODULE 2 — Grammar B</h2>
+// Allowed student names from your journal
+const allowedStudents = [
+  "Сырым7Б","Самир7Б","Орда7О","Руслан7В","Руслан7И",
+  "Максут7С","Аделина7М","Эльнора7А","Лунара7А",
+  "Максим7М","Ринат7Ц","Артем7А","Б7А"
+];
 
-<!-- TOPIC 1 -->
-<h3>1. Past Simple (regular & irregular)</h3>
+// Topic data: Modules 1–3, Grammar B
+const topics = [
+  /* MODULE 1 */
+  {
+    id:1,
+    module:"Module 1",
+    short:"Present Simple",
+    title:"Present Simple – habits, facts, timetables",
+    ruleEn:`
+      <b>Use Present Simple to talk about:</b><br>
+      • habits and routines: <i>I get up at 7 a.m.</i><br>
+      • permanent situations: <i>She lives in Astana.</i><br>
+      • general facts: <i>Water boils at 100°C.</i><br>
+      • timetables and schedules: <i>The lesson starts at 8 o’clock.</i>
+    `,
+    ruleRu:`
+      <b>Используем Present Simple, когда говорим:</b><br>
+      • о привычках и режиме: <i>Я встаю в 7 утра.</i><br>
+      • о постоянных ситуациях: <i>Она живёт в Астане.</i><br>
+      • о фактах: <i>Вода кипит при 100°C.</i><br>
+      • о расписаниях: <i>Урок начинается в 8.</i>
+    `,
+    formula:`
+      (+) I/You/We/They + V1<br>
+      (+) He/She/It + V1+s/es<br><br>
+      (-) I/You/We/They + don’t + V1<br>
+      (-) He/She/It + doesn’t + V1<br><br>
+      (?) Do + I/you/we/they + V1?<br>
+      (?) Does + he/she/it + V1?
+    `,
+    ex1:`
+      <b>SB-style Exercise 1 – Complete the sentences (Present Simple)</b><br>
+      1) She ___ (go) to school at 8.<br>
+      2) We ___ (not/watch) TV on weekdays.<br>
+      3) Does your sister ___ (like) English?<br>
+      4) They ___ (walk) to school every day.
+    `,
+    ex2:`
+      <b>SB-style Exercise 2 – Choose the correct option</b><br>
+      1) He <b>go / goes</b> to bed early.<br>
+      2) Do they <b>watch / watches</b> TV every day?<br>
+      3) My friend <b>doesn’t / don’t</b> eat breakfast.<br>
+      4) I <b>study / studies</b> English at school.
+    `
+  },
+  {
+    id:2,
+    module:"Module 1",
+    short:"Adverbs of Frequency",
+    title:"Adverbs of Frequency – always, usually, often, sometimes, never",
+    ruleEn:`
+      <b>Adverbs of frequency tell how often something happens.</b><br>
+      • before the main verb: <i>I often read in the evening.</i><br>
+      • after the verb “to be”: <i>She is never late.</i><br>
+      Common adverbs: always, usually, often, sometimes, rarely, never.
+    `,
+    ruleRu:`
+      <b>Наречия частотности показывают, как часто происходит действие.</b><br>
+      • перед обычным глаголом: <i>I often read.</i><br>
+      • после глагола to be: <i>She is never late.</i><br>
+      Частотные наречия: always, usually, often, sometimes, rarely, never.
+    `,
+    formula:`
+      subject + adverb + main verb<br>
+      subject + to be + adverb
+    `,
+    ex1:`
+      <b>SB-style Exercise 1 – Put the adverb in the correct place</b><br>
+      1) I am tired. (often)<br>
+      2) They go swimming. (usually)<br>
+      3) She is late. (never)<br>
+      4) We watch films. (sometimes)
+    `,
+    ex2:`
+      <b>SB-style Exercise 2 – Complete the sentences (choose: always / usually / often / sometimes / never)</b><br>
+      1) I ___ eat breakfast at school.<br>
+      2) My brother is ___ late for class.<br>
+      3) We ___ go to the cinema at weekends.<br>
+      4) She ___ drinks coffee in the morning.
+    `
+  },
+  {
+    id:3,
+    module:"Module 1",
+    short:"PS vs PC",
+    title:"Present Simple vs Present Continuous – basic contrast",
+    ruleEn:`
+      <b>Present Simple:</b> habits, facts, routines, timetables.<br>
+      <b>Present Continuous:</b> actions happening now, temporary situations.<br><br>
+      <b>Signal words:</b><br>
+      • PS: always, usually, often, sometimes, every day<br>
+      • PC: now, at the moment, right now
+    `,
+    ruleRu:`
+      <b>Present Simple:</b> привычки, факты, расписания.<br>
+      <b>Present Continuous:</b> действие происходит сейчас, временная ситуация.<br><br>
+      <b>Сигнальные слова:</b><br>
+      • PS: always, usually, often, sometimes, every day<br>
+      • PC: now, at the moment, right now
+    `,
+    formula:`
+      Present Simple: subject + V1 / V1+s<br>
+      Present Continuous: subject + am/is/are + V-ing
+    `,
+    ex1:`
+      <b>SB-style Exercise 1 – Choose Present Simple or Present Continuous</b><br>
+      1) She ___ (is cooking / cooks) dinner now.<br>
+      2) They ___ (play / are playing) football every Saturday.<br>
+      3) I ___ (am not watching / don’t watch) TV on weekdays.<br>
+      4) What ___ you ___ (do / doing) at the moment?
+    `,
+    ex2:`
+      <b>SB-style Exercise 2 – Complete with the correct tense</b><br>
+      1) I ___ (study) English every day.<br>
+      2) He ___ (sit) in the kitchen at the moment.<br>
+      3) My parents ___ (not/work) on Sundays.<br>
+      4) Look! The cat ___ (sleep) on your bag.
+    `
+  },
 
-<div class="rule">
-<b>RULE (English):</b><br>
-Past Simple describes finished actions in the past.<br>
-Regular verbs: +ed<br>
-Irregular verbs: use V2
-</div>
+  /* MODULE 2 */
+  {
+    id:4,
+    module:"Module 2",
+    short:"Past Simple – regular/irregular",
+    title:"Past Simple – regular and irregular verbs",
+    ruleEn:`
+      <b>Use Past Simple to talk about finished actions in the past.</b><br>
+      Regular verbs: +ed (play → played, open → opened).<br>
+      Irregular verbs: 2nd form (go → went, see → saw).
+    `,
+    ruleRu:`
+      <b>Past Simple используется для завершённых действий в прошлом.</b><br>
+      Правильные глаголы: +ed (play → played).<br>
+      Неправильные глаголы: вторая форма (go → went).
+    `,
+    formula:`
+      (+) subject + V2<br>
+      (-) subject + didn’t + V1<br>
+      (?) Did + subject + V1?
+    `,
+    ex1:`
+      <b>SB-style Exercise 1 – Complete the table (base → Past Simple)</b><br>
+      go → _______<br>
+      make → _______<br>
+      walk → _______<br>
+      buy → _______<br>
+      help → _______
+    `,
+    ex2:`
+      <b>SB-style Exercise 2 – Complete the sentences</b><br>
+      1) We ___ (visit) the museum yesterday.<br>
+      2) My brother ___ (not eat) breakfast this morning.<br>
+      3) ___ you ___ (see) the new film?<br>
+      4) She ___ (take) her bike to school.
+    `
+  },
+  {
+    id:5,
+    module:"Module 2",
+    short:"Past Continuous",
+    title:"Past Continuous – actions in progress in the past",
+    ruleEn:`
+      <b>Use Past Continuous for actions in progress at a specific moment in the past.</b><br>
+      Example: At 6 p.m. yesterday, I was doing my homework.
+    `,
+    ruleRu:`
+      <b>Past Continuous описывает действие, которое происходило в определённый момент в прошлом.</b><br>
+      Пример: Вчера в 6 вечера я делал домашнее задание.
+    `,
+    formula:`
+      subject + was/were + V-ing
+    `,
+    ex1:`
+      <b>SB-style Exercise 1 – Complete the sentences</b><br>
+      1) I ___ (cook) dinner at 6 p.m.<br>
+      2) They ___ (play) football at that moment.<br>
+      3) My parents ___ (drive) to work at 8 a.m.<br>
+      4) We ___ (not sleep) when the phone rang.
+    `,
+    ex2:`
+      <b>SB-style Exercise 2 – Choose the correct option</b><br>
+      1) They <b>were walking / walked</b> home.<br>
+      2) I <b>wasn’t listening / didn’t listen</b> when the teacher asked me.<br>
+      3) What <b>were you doing / did you do</b> at that time?<br>
+      4) She <b>was watching / watched</b> a film when I arrived.
+    `
+  },
+  {
+    id:6,
+    module:"Module 2",
+    short:"PS vs PC",
+    title:"Past Simple vs Past Continuous",
+    ruleEn:`
+      <b>Past Continuous:</b> long action (background).<br>
+      <b>Past Simple:</b> short action that interrupts.<br><br>
+      Pattern: Past Continuous + when + Past Simple<br>
+      Pattern: Past Simple + while + Past Continuous
+    `,
+    ruleRu:`
+      <b>Past Continuous:</b> длительное действие (фон).<br>
+      <b>Past Simple:</b> короткое действие, которое прерывает.<br><br>
+      Схемы: PC + when + PS; PS + while + PC.
+    `,
+    formula:`
+      PC + when + PS<br>
+      PS + while + PC
+    `,
+    ex1:`
+      <b>SB-style Exercise 1 – Complete with correct tense</b><br>
+      1) I ___ (walk) home when I ___ (see) my friend.<br>
+      2) She ___ (watch) TV when the lights ___ (go) off.<br>
+      3) They ___ (play) football while their parents ___ (cook).<br>
+      4) My phone ___ (ring) while I ___ (wash) the dishes.
+    `,
+    ex2:`
+      <b>SB-style Exercise 2 – Match the halves</b><br>
+      1) I was doing my homework — a) when the bell rang.<br>
+      2) They were running — b) when it suddenly started to rain.<br>
+      3) She was reading — c) when her friend arrived.
+    `
+  },
 
-<div class="rule">
-<b>ПРАВИЛО (Русский):</b><br>
-Past Simple — законченное действие в прошлом.<br>
-Правильные: +ed<br>
-Неправильные: вторая форма
-</div>
+  /* MODULE 3 */
+  {
+    id:7,
+    module:"Module 3",
+    short:"be going to",
+    title:"be going to – plans and intentions",
+    ruleEn:`
+      <b>Use be going to for plans and intentions.</b><br>
+      Example: I am going to visit my cousin next week.
+    `,
+    ruleRu:`
+      <b>be going to используем для планов и намерений.</b><br>
+      Пример: Я собираюсь навестить кузена на следующей неделе.
+    `,
+    formula:`
+      subject + am/is/are + going to + V1
+    `,
+    ex1:`
+      <b>SB-style Exercise 1 – Complete the sentences (be going to)</b><br>
+      1) I am going to ___ (visit) my cousin.<br>
+      2) They are going to ___ (play) tennis.<br>
+      3) She isn’t going to ___ (buy) a new phone.<br>
+      4) We are going to ___ (travel) this summer.
+    `,
+    ex2:`
+      <b>SB-style Exercise 2 – Choose the correct answer</b><br>
+      1) We <b>are going to go / go</b> on holiday.<br>
+      2) He <b>isn’t going to eat / doesn’t eat</b> pizza tonight.<br>
+      3) I <b>am going to study / study</b> for the test after school.
+    `
+  },
+  {
+    id:8,
+    module:"Module 3",
+    short:"Will / won’t",
+    title:"Will / won’t – predictions and promises",
+    ruleEn:`
+      <b>Use will / won’t for:</b><br>
+      • predictions: <i>I think it will rain.</i><br>
+      • promises: <i>I will help you.</i><br>
+      • decisions made now: <i>I’m tired, I’ll go to bed.</i>
+    `,
+    ruleRu:`
+      <b>Will / won’t используем для:</b><br>
+      • предсказаний: <i>Я думаю, пойдёт дождь.</i><br>
+      • обещаний: <i>Я помогу тебе.</i><br>
+      • решений «прямо сейчас»: <i>Я устал, пойду спать.</i>
+    `,
+    formula:`
+      (+) subject + will + V1<br>
+      (-) subject + won’t + V1
+    `,
+    ex1:`
+      <b>SB-style Exercise 1 – Complete the sentences (will / won’t)</b><br>
+      1) I think it ___ (rain) tomorrow.<br>
+      2) She ___ (help) you with your homework.<br>
+      3) They ___ (not come) today.<br>
+      4) We ___ (finish) the project soon.
+    `,
+    ex2:`
+      <b>SB-style Exercise 2 – Choose the correct option</b><br>
+      1) I think he <b>will win / wins</b> the race.<br>
+      2) Don’t worry, I <b>will help / am helping</b> you.<br>
+      3) I’m cold, I <b>will close / am closing</b> the window.<br>
+    `
+  },
+  {
+    id:9,
+    module:"Module 3",
+    short:"PC as Future",
+    title:"Present Continuous for future arrangements",
+    ruleEn:`
+      <b>Use Present Continuous for fixed future plans/arrangements.</b><br>
+      Example: We are meeting our friends on Friday.
+    `,
+    ruleRu:`
+      <b>Present Continuous используем для уже запланированных встреч / договорённостей в будущем.</b><br>
+      Пример: Мы встречаемся с друзьями в пятницу.
+    `,
+    formula:`
+      subject + am/is/are + V-ing (future time word)
+    `,
+    ex1:`
+      <b>SB-style Exercise 1 – Complete the sentences (PC for future)</b><br>
+      1) We are ___ (meet) our friends tonight.<br>
+      2) She is ___ (travel) to London next Monday.<br>
+      3) I am ___ (have) lunch with my cousin tomorrow.
+    `,
+    ex2:`
+      <b>SB-style Exercise 2 – Rewrite the sentences</b><br>
+      1) We meet Sam on Friday. → We are meeting Sam on Friday.<br>
+      2) They leave tomorrow. → They are leaving tomorrow.<br>
+      3) I go to the dentist on Tuesday. → I am going to the dentist on Tuesday.
+    `
+  }
+];
 
-<div class="formula">
-(+): V2<br>
-(-): didn’t + V1<br>
-(?): Did + subject + V1
-</div>
+let currentUser = null; // {name, role}
+let currentTopicId = null;
 
-<div class="exercise">
-<b>SB Exercise 1 – Complete the table</b><br><br>
-go → _______<br>
-make → _______<br>
-walk → _______<br>
-buy → _______<br>
-help → _______
-</div>
+/* ----------- UI HELPERS ----------- */
+function showScreen(id){
+  document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+}
 
-<div class="exercise">
-<b>SB Exercise 2 – Complete the sentences</b><br><br>
-1. We ___ (visit) the museum yesterday.<br>
-2. My brother ___ (not eat) breakfast.<br>
-3. ___ you ___ (see) the new film?<br>
-4. She ___ (take) her bike to school.
-</div>
+function clearLogin(){
+  document.getElementById("loginName").value = "";
+  document.getElementById("loginPin").value = "";
+}
 
-<!-- TOPIC 2 -->
-<h3>2. Past Continuous</h3>
+function updateHeader(){
+  const roleDiv = document.getElementById("userRole");
+  const nameDiv = document.getElementById("userName");
+  if(!currentUser){
+    roleDiv.textContent = "Not logged in";
+    nameDiv.textContent = "";
+  }else{
+    roleDiv.textContent = currentUser.role === "teacher" ? "Teacher mode" : "Student mode";
+    nameDiv.textContent = currentUser.name;
+  }
+}
 
-<div class="rule">
-<b>RULE (English):</b><br>
-Use for actions in progress at a specific moment in the past.
-</div>
+/* ----------- LOGIN LOGIC ----------- */
+function handleLogin(){
+  const name = document.getElementById("loginName").value.trim();
+  const pin = document.getElementById("loginPin").value.trim();
 
-<div class="rule">
-<b>ПРАВИЛО (Русский):</b><br>
-Используем для длительного действия в определённый момент в прошлом.
-</div>
+  if(!pin){
+    alert("Enter PIN, please.");
+    return;
+  }
 
-<div class="formula">
-was / were + V-ing
-</div>
+  if(pin === TEACHER_PIN){
+    currentUser = {name: name || "Teacher", role:"teacher"};
+    updateHeader();
+    buildTeacherTable();
+    showScreen("teacherScreen");
+    saveLoginEvent();
+    return;
+  }
 
-<div class="exercise">
-<b>SB Exercise 1 – Complete the sentences</b><br><br>
-1. I ___ (cook) dinner at 6 p.m.<br>
-2. They ___ (play) football at that moment.<br>
-3. My parents ___ (drive) to work.<br>
-4. We ___ (not sleep) when the phone rang.
-</div>
+  if(pin === STUDENT_PIN){
+    if(!name){
+      alert("Enter your name, please.");
+      return;
+    }
+    if(!allowedStudents.includes(name)){
+      alert("This name is not on the student list. Ask your teacher.");
+      return;
+    }
+    currentUser = {name, role:"student"};
+    updateHeader();
+    renderTopicList();
+    showScreen("studentScreen");
+    saveLoginEvent();
+    return;
+  }
 
-<div class="exercise">
-<b>SB Exercise 2 – Choose the correct option</b><br><br>
-1. They <b>were walking / walked</b> home.<br>
-2. I <b>wasn't listening / didn’t listen</b> when the teacher asked.<br>
-3. What <b>were you doing / did you do</b> at that time?<br>
-4. She <b>was watching / watched</b> a film when I arrived.
-</div>
+  alert("Wrong PIN.");
+}
 
-<!-- TOPIC 3 -->
-<h3>3. Past Simple vs Past Continuous</h3>
+/* ----------- TOPICS RENDERING ----------- */
+function renderTopicList(){
+  const list = document.getElementById("topicList");
+  list.innerHTML = "";
 
-<div class="rule">
-<b>RULE (English):</b><br>
-Past Continuous = long action<br>
-Past Simple = short action that interrupts<br><br>
-PC + when + PS<br>
-PS + while + PC
-</div>
+  topics.forEach(t=>{
+    const div = document.createElement("div");
+    div.className = "topic-card";
+    div.dataset.id = t.id;
 
-<div class="rule">
-<b>ПРАВИЛО (Русский):</b><br>
-PC — длительное действие<br>
-PS — короткое, которое прерывает
-</div>
+    const mod = document.createElement("div");
+    mod.className = "topic-sub";
+    mod.textContent = t.module;
 
-<div class="formula">
-PC + when + PS<br>
-PS + while + PC
-</div>
+    const title = document.createElement("div");
+    title.className = "topic-title";
+    title.textContent = t.short + " – " + t.title;
 
-<div class="exercise">
-<b>SB Exercise 1 – Complete with correct tense</b><br><br>
-1. I ___ (walk) home when I ___ (see) my friend.<br>
-2. She ___ (watch) TV when the lights ___ (go) off.<br>
-3. They ___ (play) football while their parents ___ (cook).
-</div>
+    div.appendChild(mod);
+    div.appendChild(title);
 
-<div class="exercise">
-<b>SB Exercise 2 – Match the halves</b><br><br>
-1. I was doing my homework — a) when the bell rang.<br>
-2. They were running — b) when it suddenly rained.<br>
-3. She was reading — c) when her friend arrived.
-</div>
-</div>
+    div.addEventListener("click", ()=>selectTopic(t.id));
+    list.appendChild(div);
+  });
+}
 
-<!-- MODULE 3 -->
-<div class="module">
-<h2>📍 MODULE 3 — Grammar B</h2>
+function selectTopic(id){
+  currentTopicId = id;
+  document.querySelectorAll(".topic-card").forEach(c=>{
+    c.classList.toggle("active", Number(c.dataset.id) === id);
+  });
 
-<h3>1. be going to</h3>
+  const t = topics.find(x => x.id === id);
+  const box = document.getElementById("topicDetails");
+  if(!t) return;
 
-<div class="rule">
-<b>RULE (English):</b><br>
-Use for plans and intentions.
-</div>
+  const stars = getStarsForStudentTopic(currentUser?.name, id);
 
-<div class="rule">
-<b>ПРАВИЛО (Русский):</b><br>
-Используем для планов и намерений.
-</div>
+  box.innerHTML = `
+    <span class="module-badge">${t.module} • Grammar B</span>
+    <h3>${t.title}</h3>
+    <div class="rule-block">
+      ${t.ruleEn}
+    </div>
+    <div class="rule-block">
+      ${t.ruleRu}
+    </div>
+    <div class="formula-block">
+      ${t.formula}
+    </div>
+    <div class="ex-block">
+      ${t.ex1}
+    </div>
+    <div class="ex-block">
+      ${t.ex2}
+    </div>
+    <div class="star-row">
+      <span>Mark this topic as completed to get a ⭐</span>
+      <span>
+        <input type="checkbox" id="doneChk" ${stars ? "checked" : ""} onchange="toggleStar(${id}, this.checked)" />
+        <label for="doneChk">Completed</label>
+        <span class="star-count">Stars: ${stars ? 1 : 0}</span>
+      </span>
+    </div>
+  `;
+}
 
-<div class="formula">
-am / is / are + going to + V1
-</div>
+/* ----------- STARS & JOURNAL (localStorage) ----------- */
+function getStudentKey(name){
+  return "aiBayan7_" + name;
+}
 
-<div class="exercise">
-<b>SB Exercise 1 – Complete</b><br><br>
-1. I am going to ___ (visit) my cousin.<br>
-2. They are going to ___ (play) tennis.<br>
-3. She isn't going to ___ (buy) a new phone.
-</div>
+function getStudentData(name){
+  if(!name) return null;
+  const raw = localStorage.getItem(getStudentKey(name));
+  if(!raw) return {stars:[], lastTopic:null, lastLogin:null};
+  try{
+    return JSON.parse(raw);
+  }catch(e){
+    return {stars:[], lastTopic:null, lastLogin:null};
+  }
+}
 
-<div class="exercise">
-<b>SB Exercise 2 – Choose</b><br><br>
-1. We <b>are going to go / go</b> on holiday.<br>
-2. He <b>isn’t going to eat / doesn’t eat</b> pizza.<br>
-</div>
+function saveStudentData(name,data){
+  if(!name) return;
+  localStorage.setItem(getStudentKey(name), JSON.stringify(data));
+}
 
-<h3>2. Will / won’t</h3>
+function getStarsForStudentTopic(name,topicId){
+  if(!name) return 0;
+  const data = getStudentData(name);
+  return data.stars.includes(topicId) ? 1 : 0;
+}
 
-<div class="rule">
-<b>RULE (English):</b><br>
-Use for predictions, promises, decisions made now.
-</div>
+function toggleStar(topicId,checked){
+  if(!currentUser || currentUser.role!=="student") return;
+  const data = getStudentData(currentUser.name);
+  if(checked){
+    if(!data.stars.includes(topicId)) data.stars.push(topicId);
+    data.lastTopic = topicId;
+  }else{
+    data.stars = data.stars.filter(id => id !== topicId);
+    data.lastTopic = topicId;
+  }
+  saveStudentData(currentUser.name,data);
+  selectTopic(topicId); // перерисуем, чтобы обновить счётчик
+  buildTeacherTable();  // обновить таблицу учителя, если она открыта
+}
 
-<div class="rule">
-<b>ПРАВИЛО (Русский):</b><br>
-Используем для предсказаний, обещаний, решений сейчас.
-</div>
+function saveLoginEvent(){
+  if(!currentUser || currentUser.role!=="student") return;
+  const data = getStudentData(currentUser.name);
+  data.lastLogin = new Date().toISOString();
+  saveStudentData(currentUser.name,data);
+  buildTeacherTable();
+}
 
-<div class="formula">
-will + V1<br>
-won’t + V1
-</div>
+function buildTeacherTable(){
+  const tbody = document.querySelector("#teacherTable tbody");
+  if(!tbody) return;
+  tbody.innerHTML = "";
 
-<div class="exercise">
-<b>SB Exercise 1 – Complete</b><br><br>
-1. I think it ___ (rain) tomorrow.<br>
-2. She ___ (help) you with your homework.<br>
-3. They ___ (not come) today.
-</div>
+  allowedStudents.forEach(name=>{
+    const data = getStudentData(name);
+    const tr = document.createElement("tr");
 
-<div class="exercise">
-<b>SB Exercise 2 – Choose the correct answer</b><br><br>
-1. I think he <b>will win / wins</b> the race.<br>
-2. Don’t worry, I <b>will help / am helping</b> you.<br>
-</div>
+    const tdName = document.createElement("td");
+    tdName.textContent = name;
 
-<h3>3. Present Continuous for Future</h3>
+    const tdStars = document.createElement("td");
+    tdStars.textContent = data ? (data.stars?.length || 0) : 0;
 
-<div class="rule">
-<b>RULE (English):</b><br>
-Use for fixed plans/arrangements.
-</div>
+    const tdTopic = document.createElement("td");
+    if(data && data.lastTopic){
+      const t = topics.find(x=>x.id === data.lastTopic);
+      tdTopic.textContent = t ? t.module + ": " + t.short : "";
+    }else{
+      tdTopic.textContent = "";
+    }
 
-<div class="rule">
-<b>ПРАВИЛО (Русский):</b><br>
-Используем для запланированных встреч / договорённостей.
-</div>
+    const tdLogin = document.createElement("td");
+    if(data && data.lastLogin){
+      tdLogin.textContent = new Date(data.lastLogin).toLocaleString();
+    }else{
+      tdLogin.textContent = "";
+    }
 
-<div class="formula">
-am / is / are + V-ing
-</div>
+    tr.appendChild(tdName);
+    tr.appendChild(tdStars);
+    tr.appendChild(tdTopic);
+    tr.appendChild(tdLogin);
+    tbody.appendChild(tr);
+  });
+}
 
-<div class="exercise">
-<b>SB Exercise 1 – Complete</b><br><br>
-1. We are ___ (meet) our friends tonight.<br>
-2. She is ___ (travel) next Monday.
-</div>
+/* ----------- AI CHAT (stub) ----------- */
+function sendToAi(){
+  const box = document.getElementById("chatBox");
+  const text = document.getElementById("aiQuestion").value.trim();
+  if(!text) return;
 
-<div class="exercise">
-<b>SB Exercise 2 – Rewrite</b><br><br>
-1. We meet Sam on Friday. → We are meeting Sam on Friday.<br>
-2. They leave tomorrow. → They are leaving tomorrow.
-</div>
+  // student message
+  const m1 = document.createElement("div");
+  m1.className = "chat-msg me";
+  m1.textContent = "You: " + text;
+  box.appendChild(m1);
 
-</div>
+  // simple local stub answer
+  const m2 = document.createElement("div");
+  m2.className = "chat-msg";
+  m2.textContent = "AI Bayan (stub): Your teacher will later connect a real AI Worker here. For now, use the rules and examples on the right.";
+  box.appendChild(m2);
 
+  box.scrollTop = box.scrollHeight;
+  document.getElementById("aiQuestion").value = "";
+}
+
+/* ----------- INIT ----------- */
+updateHeader();
+</script>
 </body>
 </html>
